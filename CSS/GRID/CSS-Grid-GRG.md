@@ -58,3 +58,4 @@ verwenden, und mittels Javascript die berechneten Werte setzen. Beispiel:
 
 - [Dokumentation MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid)
 - [Kevin Powell](https://www.youtube.com/playlist?list=PL4-IK0AVhVjPv5tfS82UF_iQgFp4Bl998)
+- [Kevin Grid Areas](https://youtu.be/duH4DLq5yoo?list=PL4-IK0AVhVjPv5tfS82UF_iQgFp4Bl998)
