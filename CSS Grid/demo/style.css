@@ -1,0 +1,58 @@
+.grid-container {
+    background: lightblue;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: 1fr 3fr 2fr 1fr;
+    grid-template-areas:
+        'header header'
+        'side main'
+        'impressum main'
+        'footer footer';
+}
+@media screen and (max-width: 1000px) and (min-width: 500px) {
+    .grid-container {
+        grid-template-columns: 2fr repeat(2, 3fr);
+        grid-template-rows: 3fr 7fr 2fr;
+        grid-template-areas:
+            'side header header'
+            'side main main'
+            'footer footer impressum';
+    }
+}
+@media screen and (max-width: 500px) {
+    .grid-container {
+        grid-template-rows: 1fr 3fr repeat(3, 1fr);
+        grid-template-columns: none;
+        grid-template-areas:
+            'header'
+            'main'
+            'side'
+            'impressum'
+            'footer';
+    }
+}
+.grid-item {
+    text-align: center;
+}
+
+#header {
+    background: red;
+    grid-area: header;
+}
+#main {
+    background: yellow;
+    grid-area: main;
+}
+#side {
+    background: yellowgreen;
+    grid-area: side;
+}
+#footer {
+    background: brown;
+    grid-area: footer;
+}
+#impressum {
+    background: violet;
+    grid-area: impressum;
+}
