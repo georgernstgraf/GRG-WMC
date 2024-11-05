@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            display: flex;
+            gap: 1em;
+            flex-wrap: wrap;
+            height: 99dvh;
+        }
+
+        .child {
+            height: 100px;
+            display: inline-block;
+            width: 100px;
+            background: yellow;
+            border: 1px solid black;
+            text-align: center;
+            align-content: center;
+        }
+
+        .child:nth-child(3n+5) {
+            background: green;
+        }
+
+        /*.child:nth-child(3n+1) {
+            background: red;
+        }*/
+
+        .child[data-num="1"] {
+            background: lightblue;
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <span class="child"
+              data-num="0">0</span>
+        <span class="child"
+              data-num="1">1</span>
+        <span class="child"
+              data-num="2">2</span>
+        <span class="child"
+              data-num="3">3</span>
+        <span class="child"
+              data-num="4">4</span>
+        <span class="child"
+              data-num="5">5</span>
+        <span class="child"
+              data-num="6">6</span>
+        <span class="child"
+              data-num="7">7</span>
+        <span class="child"
+              data-num="8">8</span>
+        <span class="child"
+              data-num="9">9</span>
+
+        <span class="child"
+              data-num="0">0</span>
+        <span class="child"
+              data-num="1">1</span>
+        <span class="child"
+              data-num="2">2</span>
+        <span class="child"
+              data-num="3">3</span>
+        <span class="child"
+              data-num="4">4</span>
+        <span class="child"
+              data-num="5">5</span>
+        <span class="child"
+              data-num="6">6</span>
+        <span class="child"
+              data-num="7">7</span>
+        <span class="child"
+              data-num="8">8</span>
+        <span class="child"
+              data-num="9">9</span>
+    </div>
+</body>
+
+</html>
