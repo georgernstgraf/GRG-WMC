@@ -1,10 +1,4 @@
-# PLF HTML / CSS
-
-Classroom: <https://classroom.github.com/classrooms/4498528-sj23-25-2ahwii-swp-infi>
-
-## November 2024, Prüfer: GRG
-
-## Nachbau einer Website
+# Nachbau einer Website: Pulse Pricing
 
 Angabe Dateien befinden sich im Ordner "Angabe"
 
