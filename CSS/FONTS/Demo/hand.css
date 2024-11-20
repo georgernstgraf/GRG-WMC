@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Zycon';
+    src: url('fonts/Zycon.woff2');
+}
+
+p {
+    font-size: 15em;
+    font-family: Zycon;
+    color: rgb(0, 0, 0);
+    font-size: 180px;
+    font-variation-settings: "T1  " 1,
+        "T2  " 1,
+        "T3  " 1,
+        "T4  " 1,
+        "M1  " 0.19091,
+        "M2  " -1;
+    transition: all 1s ease-in;
+}
+
+p:hover {
+    transition: all 1s ease-out;
+    font-variation-settings: "T1  " 1,
+        "T2  " 0,
+        "T3  " 1,
+        "T4  " 1,
+        "M1  " 0.19091,
+        "M2  " -1;
+}

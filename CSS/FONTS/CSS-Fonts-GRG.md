@@ -142,6 +142,23 @@ lowercase / uppercase / capitalized
 
 z.B. `small-caps`, `sub`, `super`
 
+### outlined Text
+
+Dies wird mit `text-shadow` erzielt:
+
+```css
+.outlined-text {
+    color: white; /* Text color */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000; /* Outline color */
+}
+```
+
+Für die detaillierte Doku siehe [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow)
+
 ## Variable Fonts
 
 Wenn man mit Fonts richtig "herumnerden" möchte, gibt es schließlich die sog.
