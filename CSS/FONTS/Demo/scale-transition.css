@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    background: #dda;
+    border: 2px solid red;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+    font-size: 2em;
+    transition-property: width;
+    transition-duration: 2s;
+    transition-timing-function: cubic-bezier(.15, -1, .85, 2);
+}
+
+p:hover {
+    width: 600px;
+}
