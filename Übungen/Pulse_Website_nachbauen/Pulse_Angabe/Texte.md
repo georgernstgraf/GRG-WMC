@@ -12,10 +12,9 @@ for any plan and try Pulse absolutely free for 30 days.
 ### These are what we call the Pulse Basics. They’re what every customer gets
 
 - Manage cash flow on a daily, weekly, monthly, or yearly basis
-- Forecast growth with recurring Income or expenses that scale dramatically
+- Forecast growth with recurring Income or expenses that scale automatically
 - Works with any currency
-- See Money In and Money Out, categorize transactions, and run
-helpful reports
+- See Money In and Money Out, categorize transactions, and run helpful reports
 - Toggle entries and accounts and off to game out different secenarios
 
 Just need the Pulse Basics?
@@ -40,13 +39,15 @@ you get pulse basics, plus:
 
 ## card 3
 
+Complex business with multiple financial accounts, currencies, or auditing needs?
+
 ### Unlock Extra Features
 
 $89 per month
 
 Try Premium
 
-GET IT ALL, pLus:
+Get it all, plus:
 
 - Manage cash flow across unlimited financial accounts
 - Convert to any currency for localized alized cash flow
@@ -54,7 +55,7 @@ GET IT ALL, pLus:
 
 #### “Pulse is worth every penny because it empowers business owners with critical financial insight and knowledge”
 
-SUBVERT MARKETING, Inc.
+Subvert Marketing, inc.
 
 ## FAQ
 
@@ -74,7 +75,7 @@ They're designed to be flexible and can be used to
 differentiate between bank accounts, companies, individuals
 or between personal and business entries.
 
-### Will | be able to cancel my account if I don't use Pulse?
+### Will I be able to cancel my account if I don't use Pulse?
 
 Yes - you can cancel your account at any time. To cancel your
 account, go to your billing page and click on “Please cancel my
@@ -103,11 +104,20 @@ Discover, and American Express.
 
 Sign Up for a Free 30-Day Trial
 
-- Product Company Resources
-- Features Customer Stories Support
-- Pricing About Blog
-- Sign Up Contact
+- Product
+- Features
+- Pricing
+- Sign Up
+
+- Company
+- Customer  Stories
+- About
+- Contact
+
+- Resources
+- Support
+- Blog
+
+@2019 Pulseapp.com Inc. All rights reserved | Terms of Use | Privacy Policy | EU Privacy | Pulse is made by Simple Focus. We also make Ballpark, Sifter and Curated.
 
 Contact US
-
-@ Pulseapp.com Inc. All rights reserved | Terms of Use | Privacy Policy | EU Privacy | Pulse is made by Simple Focus. We also make Ballpark, Sifter and Curated.

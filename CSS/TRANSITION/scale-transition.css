@@ -1,6 +1,8 @@
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
 }
 
 p {
@@ -8,13 +10,20 @@ p {
     border: 2px solid red;
     border-radius: 5px;
     text-align: center;
-    width: 300px;
+    padding: 1rem;
     font-size: 2em;
-    transition-property: width;
+    transition-property: font-size;
     transition-duration: 2s;
-    transition-timing-function: cubic-bezier(.15, -1, .85, 2);
+    transition-timing-function: cubic-bezier(.15, 2, .85, -1);
 }
 
-p:hover {
+p.scale {
     width: 600px;
+    font-size: 5em;
+}
+
+button {
+    border-radius: 5px;
+    font-size: 2em;
+    background-color: lightgreen;
 }

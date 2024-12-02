@@ -1,0 +1,13 @@
+:root {
+    --pulse-color-page-background: #eafaf1;
+    --pulse-color-card-background: #d6dae5;
+    --pulse-color-faq-background: #fcfcfc;
+    --pulse-color-headings: #00ad6a;
+    --pulse-color-buttons: #1fe374;
+    --pulse-color-dark: #080c16;
+}
+
+body {
+    color: var(--color-dark);
+    background: var(--color-background);
+}
