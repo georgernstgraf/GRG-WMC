@@ -1,3 +1,12 @@
 :root {
-    --bs-body-bg: #eafaf1;
+    --pulse-color-page-background: #eafaf1;
+    --pulse-color-card-background: #d6dae5;
+    --pulse-color-faq-background: #fcfcfc;
+    --pulse-color-headings: #00ad6a;
+    --pulse-color-headings-rgb: 0, 173, 106;
+    --pulse-color-buttons: #1fe374;
+    --pulse-color-dark: #080c16;
+
+    --bs-success: var(--pulse-color-headings);
+    --bs-success-rgb: var(--pulse-color-headings-rgb)
 }
