@@ -8,5 +8,7 @@
     --pulse-color-dark: #080c16;
 
     --bs-success: var(--pulse-color-headings);
-    --bs-success-rgb: var(--pulse-color-headings-rgb)
+    --bs-success-rgb: var(--pulse-color-headings-rgb);
+    --bs-info-bg-subtle: var(--pulse-color-page-background);
+
 }
