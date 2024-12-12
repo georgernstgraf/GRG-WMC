@@ -5,13 +5,20 @@
     --pulse-color-headings: #00ad6a;
     --pulse-color-headings-rgb: 0, 173, 106;
     --pulse-color-buttons: #1fe374;
+    --pulse-color-buttons-rbg: 31, 227, 116;
     --pulse-color-dark: #080c16;
     --pulse-color-dark-rgb: 8, 12, 22;
     --pulse-color-h2: #707070;
 
+    --bs-primary: var(--pulse-color-buttons);
+    --bs-primary-rgb: var(--pulse-color-buttons-rbg);
     --bs-success: var(--pulse-color-headings);
     --bs-success-rgb: var(--pulse-color-headings-rgb);
     --bs-black-rgb: var(--pulse-color-dark-rgb);
     --bs-info-bg-subtle: var(--pulse-color-page-background);
     --bs-tertiary-color: var(--pulse-color-h2);
+}
+
+.card {
+    width: 25%
 }
