@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÖBB Tickets</title>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <main>
+        <h1>Tickets hier kaufen</h1>
+        <div style="display: flex;">
+            <p>Geld einwerfen:</p>
+            <input type="number" id="einwerfenBetrag" placeholder="Betrag" />
+            <button type="button" id="einwerfenButton">Einwurf</button>
+        </div>
+        <label>Ziel einstellen:
+            <select id="ziel" name="ziel">
+                <!-- Folgende Ziele werden per Javascript ersetzt (hierher gerendert):  -->
+                <option value="Ziel1">Ziel1</option>
+                <option value="Ziel2">Ziel2</option>
+            </select>
+        </label>
+        <label>Anzahl Personen:
+            <input type="number" id="anzahlPersonen" value="1" min="1" max="10" />
+        </label>
+        <label>Fahrpreis:
+            <span id="fahrpreis">-</span>
+        </label>
+        <label>Guthaben:
+            <span id="guthaben">0</span>
+        </label>
+        <span>Ticketausgabe: </span>
+        <pre id="ticketAusgabe">
+    Noch keine Ausgabe
+  </pre>
+        <label>Gesamte Einnahmen:
+            <span id="einnahmen">0</span>
+        </label>
+        <button onclick="ticketKaufenClickHandler()">Ticket kaufen</button>
+        <button type="reset" id="reset">Neuer Kunde</button>
+    </main>
+</body>
+
+</html>
