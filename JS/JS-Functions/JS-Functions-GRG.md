@@ -34,14 +34,10 @@ function f() {
         console.log(i, arguments[i]);
     }
 }
-f(23, "georg", new Date());
-```
+f(23, "javascript", new Date());
 
-Output:
-
-```text
 0 23
-1 georg
+1 javascript
 2 2023-10-18T20:28:55.244Z
 ```
 
@@ -57,9 +53,7 @@ function f(a, b, c) {
     }
 }
 f(23, 3.14159);
-```
 
-```text
 23
 3.14159
 undefined
