@@ -1,0 +1,9 @@
+# 7 Punkte für Frontend-only
+
+1.APPLICATION STATE OBJECT
+2.DOM Node Refs
+3.DOM Node Creation Fn's
+4.RENDER FN
+5.EVENT HANDLERS
+6.INIT BINDINGS
+7.INITIAL RENDER
