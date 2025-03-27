@@ -4,15 +4,28 @@
 
 Nicht alles was aufzählbar ist, ist gleich ein Array!
 
-`Array.from(aufzählbar)` hilft oft, indem es ein Array daraus macht. Beispiel wäre
-eine `
+`Array.from(aufzählbar)` hilft oft, indem es ein Array daraus macht. Beispiel
+
+```javascript
+let x = document.querySelectorAll("span")
+x
+NodeList(4) [span#fahrpreis, span#guthaben, span, span#einnahmen]
+x instanceof NodeList
+true
+x.map(()=>{})
+VM132:1 Uncaught TypeError: x.map is not a function
+    at <anonymous>:1:3
+y=Array.from(x)
+y.map(()=>{})
+(4) [undefined, undefined, undefined, undefined]
+```
 
 ## Bemerkung `in` und `of`
 
 **Objekte:** `for (i in obj)`: `in` liefert alle _keys_ von obj, `of` geht bei
 Objekten nicht.
 
-**Iteratoren:** Hier ist es genau umgekehrt: Man bekommt die Werte mit `of`:
+**Array - Iteratoren:** Hier ist es genau umgekehrt: Man bekommt die Werte mit `of`:
 
 ```javascript
 > array = ["a", 7, true]
@@ -30,11 +43,11 @@ Bei **Arrays** ist beides möglich:
 - `for (let i in array)` iteriert über alle indices. S.u. `array.keys()`
 - `for (let v of array)` iteriert über alle values. S.u. `array.values()`
 
-## Array Methods in node20 (2024)
+## Array Methods
 
 Beispiele mit `array = ["a", 7, true]`
 
-- array.at(index), gleich wie array[index]
+- array.at(index), gleich wie array[index], negative Werte erlaubt
 - array.concat(array2), modifiziert nicht, returned das zusammengekettete
 - array.constructor
 - array.copyWithin
@@ -66,19 +79,21 @@ returnte array hat keine sub-arrays mehr.
 - array.map(cb): Neues Array mit jedem return-wert von cb
 - array.pop(): entfernt und returned das letzte Element
 - array.push(elt): hängt elt an
-- array.reduce()
+- array.reduce(cb, initialValue): ermöglicht beliebig komplexe Operationen.
+Argumente für callback cb(accumumlator, currentValue, currentIndex, originalArray)
 - array.reduceRight()
 - array.reverse(): inplace!
-- array.shift(): enfternt und returniert das elt mit index 0.
-- array.slice():
+- array.shift(): entfernt und returniert das elt mit index 0. (wie pop() von links)
+- array.slice(): retourniert ein "Scheiberl". Ändert nicht.
 - array.some(cb): neues array mit allen elementen wo cb true war.
 - array.sort(cb): inplace sort. cb returned <0, 0, oder >0.
-- array.splice()
+- array.splice(start, deleteCount, item1, item2, ...): in-place modification
 - array.toLocaleString()
 - array.toReversed(): returned reversed
 - array.toSorted(cb): returned sortiert, siehe sort()
 - array.toSpliced()
 - array.toString(): String des arrays, siehe auch join()
-- array.unshift(elt): fügt elt an den index 0 ein
+- array.unshift(elt): fügt elt an den index 0 ein (wie push() von links)
 - array.values(): iterator über values
-- array.with()
+- array.with(): allows you to create a new array with a modified value at a
+specific index, without mutating the original array.
