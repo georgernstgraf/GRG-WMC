@@ -1,0 +1,15 @@
+{
+    "name": "plf-quiz-node-only",
+    "version": "1.0.0",
+    "description": "",
+    "main": "test-obfuscated.js",
+    "scripts": {
+        "start": "node test-obfuscated.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "javascript-obfuscator": "^4.1.0"
+    }
+}

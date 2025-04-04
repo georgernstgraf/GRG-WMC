@@ -1,0 +1,16 @@
+{
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "javascript.format.semicolons": "insert",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 3000,
+    "files.autoSaveWhenNoErrors": true
+}
