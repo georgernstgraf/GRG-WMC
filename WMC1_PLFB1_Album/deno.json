@@ -4,6 +4,7 @@
         "clean": "./clean.sh"
     },
     "imports": {
+        "@faker-js/faker": "npm:@faker-js/faker@^9.8.0",
         "@std/assert": "jsr:@std/assert@1"
     },
     "fmt": {

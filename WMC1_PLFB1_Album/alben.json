@@ -1,0 +1,94 @@
+export const alben = [
+    {
+        "album": "Thrill Of The Chase",
+        "artist": "James Brown",
+        "genre": "Underground Rap",
+        "year": 2024,
+        "songs": [
+            {
+                "title": "She Loves You",
+                "duration": 386
+            },
+            {
+                "title": "Physical",
+                "duration": 454
+            }
+        ]
+    },
+    {
+        "album": "Prazer, Eu Sou Ferrugem (Ao Vivo)",
+        "artist": "Bob Marley & The Wailers",
+        "genre": "Conjunto",
+        "year": 2025,
+        "songs": [
+            {
+                "title": "Spill the Wine",
+                "duration": 168
+            }
+        ]
+    },
+    {
+        "album": "The Greatest Showman: Reimagined",
+        "artist": "Mario Lanza",
+        "genre": "Chill",
+        "year": 2024,
+        "songs": [
+            {
+                "title": "Crazy in Love",
+                "duration": 610
+            },
+            {
+                "title": "Girls Just Wanna Have Fun",
+                "duration": 603
+            },
+            {
+                "title": "Truly Madly Deeply",
+                "duration": 667
+            },
+            {
+                "title": "Swinging On a Star",
+                "duration": 492
+            },
+            {
+                "title": "Too Young",
+                "duration": 150
+            }
+        ]
+    },
+    {
+        "album": "Gallery",
+        "artist": "The Hollies",
+        "genre": "Acid Rock",
+        "year": 2024,
+        "songs": [
+            {
+                "title": "My Man",
+                "duration": 65
+            }
+        ]
+    },
+    {
+        "album": "Purgatory",
+        "artist": "Cody Johnson",
+        "genre": "German Folk",
+        "year": 2024,
+        "songs": [
+            {
+                "title": "Crazy",
+                "duration": 249
+            },
+            {
+                "title": "Don't Let the Sun Go Down On Me",
+                "duration": 319
+            },
+            {
+                "title": "Peggy Sue",
+                "duration": 615
+            },
+            {
+                "title": "Do That to Me One More Time",
+                "duration": 112
+            }
+        ]
+    }
+]
