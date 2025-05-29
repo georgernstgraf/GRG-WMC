@@ -1,0 +1,12 @@
+{
+    "tasks": {
+        "test": "deno test --allow-read",
+        "clean": "./clean.sh"
+    },
+    "imports": {
+        "@std/assert": "jsr:@std/assert@1"
+    },
+    "fmt": {
+        "indentWidth": 4
+    }
+}

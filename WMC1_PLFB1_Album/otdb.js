@@ -1,0 +1,190 @@
+export const otdb = [
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question": "The greek god Poseidon was the god of what?",
+        "correct_answer": "The Sea",
+        "incorrect_answers": ["War", "Sun", "Fire"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question": "Neptune&#039;s greek name was...",
+        "correct_answer": "Poseidon",
+        "incorrect_answers": ["Ares", "Zeus", "Apollo"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Mythology",
+        "question": "What was the punishment for Sysiphus&#039;s craftiness?",
+        "correct_answer": "Cursed to roll a boulder up a hill for eternity.",
+        "incorrect_answers": [
+            "Tied to a boulder for eternity, being pecked by birds.",
+            "Standing in a lake filled with water he could not drink.",
+            "To fell a tree that regenerated after every axe swing.",
+        ],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question":
+            "According to Japanese folklore, what is the favorite food of the Kappa.",
+        "correct_answer": "Cucumbers",
+        "incorrect_answers": ["Kabocha", "Nasu", "Soba"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question": "How many heads does Cerberus have?",
+        "correct_answer": "3",
+        "incorrect_answers": ["2", "1", "5"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Mythology",
+        "question":
+            "What immense structure is referred to in Norse Mythology as the Yggdrasil.",
+        "correct_answer": "Tree",
+        "incorrect_answers": ["Mountain", "Temple", "Castle"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question": "What is the name of the Greek god of blacksmiths?",
+        "correct_answer": "Hephaestus",
+        "incorrect_answers": ["Dyntos", "Vulcan", "Artagatus"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question":
+            "Which figure from Greek mythology traveled to the underworld to return his wife Eurydice to the land of the living?",
+        "correct_answer": "Orpheus",
+        "incorrect_answers": ["Hercules", "Perseus", "Daedalus"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Mythology",
+        "question": "Nidhogg is a mythical creature from what mythology?",
+        "correct_answer": "Norse",
+        "incorrect_answers": ["Egyptian", "Greek", "Hindu"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Mythology",
+        "question":
+            "According to Algonquian folklore, how does one transform into a Wendigo?",
+        "correct_answer": "Participating in cannibalism.",
+        "incorrect_answers": [
+            "Excessive mutilation of animal corpses.",
+            "Performing a ritual involving murder.",
+            "Drinking the blood of many slain animals.",
+        ],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question":
+            "Which greek god\/goddess tossed a golden apple with the words &quot;for the fairest&quot; into the middle of the feast of the gods?",
+        "correct_answer": "Eris",
+        "incorrect_answers": ["Hades", "Ares", "Artemis"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question":
+            "Which of these mythological creatures is said to be half-man and half-horse?",
+        "correct_answer": "Centaur",
+        "incorrect_answers": ["Minotaur", "Pegasus", "Gorgon"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question": "Which of the following is not one of the Greek Fates?",
+        "correct_answer": "Narcissus",
+        "incorrect_answers": ["Clotho", "Atropos", "Lachesis"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question": "In most traditions, who was the wife of Zeus?",
+        "correct_answer": "Hera",
+        "incorrect_answers": ["Aphrodite", "Athena", "Hestia"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question": "In Greek mythology, who is the god of wine?",
+        "correct_answer": "Dionysus",
+        "incorrect_answers": ["Hephaestus", "Demeter", "Apollo"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question":
+            "In Greek mythology, Persephone must return to the underworld because she had eaten what kind of seeds?",
+        "correct_answer": "Pomegranate",
+        "incorrect_answers": ["Sunflower", "Orange", "Fig"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question":
+            "The Nike apparel and footwear brand takes it&#039;s name from the Greek goddess of what?",
+        "correct_answer": "Victory",
+        "incorrect_answers": ["Courage", "Strength", "Honor"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question":
+            "Which Greek &amp; Roman god was known as the god of music, truth and prophecy, healing, the sun and light, plague, poetry, and more?",
+        "correct_answer": "Apollo",
+        "incorrect_answers": ["Aphrodite", "Artemis", "Athena"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "medium",
+        "category": "Mythology",
+        "question":
+            "Which of the following Mesopotamian mythological figures was NOT a deity?",
+        "correct_answer": "Enkidu",
+        "incorrect_answers": ["Enki", "Enlil", "Enkimdu"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "hard",
+        "category": "Mythology",
+        "question":
+            "Who is a minor god that is protector and creator of various arts, such as cheese making and bee keeping.",
+        "correct_answer": "Aristaeus",
+        "incorrect_answers": ["Autonoe", "Carme", "Cephisso"],
+    },
+    {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Mythology",
+        "question":
+            "The ancient Roman god of war was commonly known as which of the following?",
+        "correct_answer": "Mars",
+        "incorrect_answers": ["Jupiter", "Juno", "Ares"],
+    },
+];
