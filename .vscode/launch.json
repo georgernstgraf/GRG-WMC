@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "name": "PLF Alben",
+            "type": "node",
+            "cwd": "${workspaceFolder}/WMC1_PLFB1_Album",
+            "env": {},
+            //"runtimeExecutable": "/home/georg/.deno/bin/deno",
+            "runtimeExecutable": "deno",
+            "runtimeArgs": [
+                "task",
+                "test",
+                "--inspect-wait"
+            ],
+            "attachSimplePort": 9229
+        }
+    ]
+}

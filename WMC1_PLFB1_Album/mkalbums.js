@@ -1,11 +1,11 @@
 import { faker } from "@faker-js/faker";
 
-const alben = Array.from({ length: 5 }).map((_) => {
+const alben = Array.from({ length: 7 }).map((_) => {
     const rv = {
         album: faker.music.album(),
         artist: faker.music.artist(),
         genre: faker.music.genre(),
-        year: faker.date.past(20).getFullYear(),
+        year: faker.date.past({ years: 50 }).getFullYear(),
         songs: Array.from({ length: faker.number.int({ min: 1, max: 5 }) })
             .map(() => ({
                 title: faker.music.songName(),

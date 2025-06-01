@@ -1,42 +1,57 @@
 import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
-import { otdb } from "../fragen.js";
+import { alben } from "../alben.js";
+const songs = alben.flatMap((album) => album.songs);
+
 // 1
-Deno.test("Class Frage exists", () => {
-    assertEquals(typeof plf.Frage, "function", "Frage sollte eine Klasse sein");
+Deno.test("Class Album exists 1P", () => {
+    assertEquals(typeof plf.Album, "function", "Album sollte eine Klasse sein");
     assert(
-        plf.Frage instanceof Function,
-        "Frage sollte als Klasse exportiert werden",
+        plf.Album instanceof Function,
+        "Album sollte als Klasse exportiert werden",
     );
 });
-// 2
-Deno.test("constructor takes 3 arguments", () => {
-    const frage1 = new plf.Frage("Frage", ["Option1", "Option2"], "Option1");
-    assertEquals(frage1.frage, "Frage", "attribut frage sollte Frage sein");
-    assertEquals(
-        frage1.optionen,
-        ["Option1", "Option2"],
-        "attribut optionen sollte Option1 und Option2 sein",
-    );
-    assertEquals(
-        frage1.antwort,
-        "Option1",
-        "attribut antwort sollte Option1 sein",
-    );
-    const frage2 = new plf.Frage("Frage2", ["OptionA", "OptionB"], "OptionB");
-    assertEquals(frage2.frage, "Frage2", "attribut frage sollte Frage2 sein");
-    assertEquals(
-        frage2.optionen,
-        ["OptionA", "OptionB"],
-        "attribut optionen sollte OptionA und OptionB sein",
-    );
-    assertEquals(
-        frage2.antwort,
-        "OptionB",
-        "attribut antwort sollte OptionB sein",
+Deno.test("Class Song exists 1P", () => {
+    assertEquals(typeof plf.Song, "function", "Song sollte eine Klasse sein");
+    assert(
+        plf.Song instanceof Function,
+        "Song sollte als Klasse exportiert werden",
     );
 });
-// 3
+Deno.test("Album constructor takes 1 argument object with properties 3P", () => {
+    const album = new plf.Album({
+        genre: "Rock",
+        year: 2020,
+        artist: "Artist",
+        album: "Album",
+        songs: [],
+    });
+    assertEquals(album.genre, "Rock", "attribut genre sollte Rock sein");
+    assertEquals(album.year, 2020, "attribut year sollte 2020 sein");
+    assertEquals(album.artist, "Artist", "attribut artist sollte Artist sein");
+    assertEquals(album.album, "Album", "attribut album sollte Album sein");
+    assertEquals(
+        album.songs,
+        [],
+        "attribut songs sollte ein leeres Array sein",
+    );
+});
+Deno.test("Song constructor takes 1 argument object with properties 3P", () => {
+    const song = new plf.Song({
+        title: "Song Title",
+        duration: 180,
+    });
+    assertEquals(
+        song.title,
+        "Song Title",
+        "attribut title sollte Song Title sein",
+    );
+    assertEquals(
+        song.duration,
+        180,
+        "attribut duration sollte 180 sein",
+    );
+});
 Deno.test("constructor throws on false arguments", () => {
     assert(plf.Frage);
     assertThrows(() => {
@@ -78,11 +93,11 @@ Deno.test("constructor takes exactly one argument", () => {
     assertThrows(() => {
         new plf.Quiz("fragen.js", "extra");
     });
-    new plf.Quiz(otdb);
+    new plf.Quiz(alben);
 });
 // 7
 Deno.test("fragen is an array of Frage objects", () => {
-    const quiz = new plf.Quiz(otdb);
+    const quiz = new plf.Quiz(alben);
     assertEquals(Array.isArray(quiz.fragen), true, "fragen ist kein Array");
     assertEquals(
         quiz.fragen.length > 0,
@@ -98,7 +113,7 @@ Deno.test("fragen is an array of Frage objects", () => {
 });
 // 8
 Deno.test("getFragenByLength returns questions with minimum length", () => {
-    const quiz = new plf.Quiz(otdb);
+    const quiz = new plf.Quiz(alben);
     const known_anwers = [{ l: 10, a: 21 }, { l: 40, a: 19 }, { l: 60, a: 12 }];
     for (const { l, a } of known_anwers) {
         const longQuestions = quiz.getFragenByLength(l);
@@ -125,7 +140,7 @@ Deno.test("getFragenByLength returns questions with minimum length", () => {
 });
 // 9
 Deno.test("sortFragenByLength returns sorted questions", () => {
-    const quiz = new plf.Quiz(otdb);
+    const quiz = new plf.Quiz(alben);
     const sortedQuestions = quiz.getFragenSortedByLength();
     assert(
         Array.isArray(sortedQuestions),
@@ -138,7 +153,7 @@ Deno.test("sortFragenByLength returns sorted questions", () => {
     );
     assertEquals(
         sortedQuestions.length,
-        otdb.length,
+        alben.length,
         "sortFragenByLength sollte die gleiche Länge wie die ursprüngliche Liste zurückgeben",
     );
 
@@ -156,7 +171,7 @@ Deno.test("sortFragenByLength returns sorted questions", () => {
 });
 // 10
 Deno.test("getFragenWithOption returns questions containing option", () => {
-    const quiz = new plf.Quiz(otdb);
+    const quiz = new plf.Quiz(alben);
     for (
         const { o, c } of [{ o: "Apollo", c: 3 }, { o: "Ares", c: 3 }, {
             o: "Victory",
@@ -183,7 +198,7 @@ Deno.test("getFragenWithOption returns questions containing option", () => {
 });
 // 11
 Deno.test("getAverageOptions returns correct number", () => {
-    const quiz = new plf.Quiz(otdb);
+    const quiz = new plf.Quiz(alben);
     const avg = quiz.getAverageOptions();
     assert(
         typeof avg === "number",
@@ -197,7 +212,7 @@ Deno.test("getAverageOptions returns correct number", () => {
 });
 // 12
 Deno.test("getAllOptions returns unique options array", () => {
-    const quiz = new plf.Quiz(otdb);
+    const quiz = new plf.Quiz(alben);
     const allOptions = quiz.getAllOptions();
     assert(Array.isArray(allOptions), "getAllOptions should return an array");
     assert(allOptions.length > 0, "Should return some options");
