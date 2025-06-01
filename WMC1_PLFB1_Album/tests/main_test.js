@@ -102,6 +102,7 @@ Deno.test("constructor throws on wrong arguments 3P", () => {
             album: "Album",
             songs: ["Hallo Dolly"],
         }), "sollte Exception werfen, da Song-Objekte erwartet werden");
+    new plf.Album(alben[0]); // sollte nicht werfen, da alben[0] ein gültiges Album ist
 });
 // 4
 /*
