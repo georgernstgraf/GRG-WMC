@@ -2,6 +2,9 @@ import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
 import { alben } from "../alben.js";
 const songs = alben.flatMap((album) => album.songs);
+songs.forEach((song) => {
+    song.duration = Number(song.duration);
+});
 
 // 1
 Deno.test("Class Album exists 1P", () => {
@@ -18,39 +21,59 @@ Deno.test("Class Song exists 1P", () => {
         "Song sollte als Klasse exportiert werden",
     );
 });
-Deno.test("Album constructor takes 1 argument object with properties 3P", () => {
-    const album = new plf.Album({
-        genre: "Rock",
-        year: 2020,
-        artist: "Artist",
-        album: "Album",
-        songs: [],
+Deno.test("Album constructor takes 1 argument object with properties 5P", () => {
+    alben.forEach((album) => {
+        album.songs = album.songs.map(
+            (song) => {
+                song.duration = Number(song.duration);
+                return new plf.Song(song);
+            },
+        );
+        const album_instance = new plf.Album(album);
+        assertEquals(
+            album_instance.genre,
+            album.genre,
+            `attribut genre sollte ${album.genre} sein`,
+        );
+        assertEquals(
+            album_instance.year,
+            album.year,
+            `attribut year sollte ${album.year} sein`,
+        );
+        assertEquals(
+            album_instance.artist,
+            album.artist,
+            `attribut artist sollte ${album.artist} sein`,
+        );
+        assertEquals(
+            album_instance.album,
+            album.album,
+            `attribut album sollte ${album.album} sein`,
+        );
+        assertEquals(
+            album_instance.songs,
+            album.songs,
+            "attribut songs sollte ein Array von Song-Instances sein",
+        );
     });
-    assertEquals(album.genre, "Rock", "attribut genre sollte Rock sein");
-    assertEquals(album.year, 2020, "attribut year sollte 2020 sein");
-    assertEquals(album.artist, "Artist", "attribut artist sollte Artist sein");
-    assertEquals(album.album, "Album", "attribut album sollte Album sein");
-    assertEquals(
-        album.songs,
-        [],
-        "attribut songs sollte ein leeres Array sein",
-    );
 });
 Deno.test("Song constructor takes 1 argument object with properties 3P", () => {
-    const song = new plf.Song({
-        title: "Song Title",
-        duration: 180,
+    songs.forEach((song) => {
+        const song_instance = new plf.Song({
+            title: song.title,
+            duration: song.duration,
+        });
+        assertEquals(
+            song_instance.title,
+            song.title,
+            `attribut title sollte ${song.title} sein`,
+        );
+        assertEquals(
+            song_instance.duration,
+            song.duration,
+            `attribut duration sollte ${song.duration} und typ "number" sein`,
+        );
     });
-    assertEquals(
-        song.title,
-        "Song Title",
-        "attribut title sollte Song Title sein",
-    );
-    assertEquals(
-        song.duration,
-        180,
-        "attribut duration sollte 180 sein",
-    );
 });
 Deno.test("constructor throws on false arguments", () => {
     assert(plf.Frage);

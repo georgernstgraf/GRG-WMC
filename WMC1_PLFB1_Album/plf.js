@@ -3,7 +3,7 @@ export class Song {
     constructor({ title, duration }) {
         assertEquals(typeof title, "string", "Titel muss ein String sein");
         assertEquals(typeof duration, "number", "Dauer muss eine Zahl sein");
-        assertEquals(2, arguments.length, "Es werden 2 Argumente erwartet");
+        assertEquals(1, arguments.length, "Es wird 1 Argument erwartet");
         assertEquals(
             duration > 0,
             true,
