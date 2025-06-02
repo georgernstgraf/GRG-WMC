@@ -1,6 +1,6 @@
 #!/bin/sh
 FILES_TO_EMPTY="plf.js"
-FILES_TO_RM="songs.json mkalbums.js deno.lock clean.sh README.* .gitignore"
+FILES_TO_RM="songs.json mkalbums.js deno.lock clean.sh README.* .gitignore prep.sh"
 for i in $FILES_TO_EMPTY; do
     echo >$i
 done
