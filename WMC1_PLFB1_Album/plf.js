@@ -53,10 +53,12 @@ export class Album {
         return this.songs.filter((song) => song.duration >= minDuration);
     }
     getSongsSortedByDuration() {
-        return this.songs.sort((a, b) => a.duration - b.duration);
+        return this.songs.toSorted((a, b) => a.duration - b.duration);
     }
-    getSongsByTitle(title) {
-        return this.songs.filter((song) => song.title.includes(title));
+    getSongsByTitleCaseInsensitive(title) {
+        return this.songs.filter((song) =>
+            song.title.toLowerCase().includes(title.toLowerCase())
+        );
     }
     getAllTitles() {
         return [...new Set(this.songs.map((song) => song.title))];

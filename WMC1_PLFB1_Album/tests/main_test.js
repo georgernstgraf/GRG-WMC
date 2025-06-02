@@ -1,8 +1,8 @@
 import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
-import { alben as alben_pojo } from "../alben.js";
+import { alben as alben_pojo } from "../alben.js"; // werden in test 3 mit durch array mit Song-Objekten ersetzt
 const songs = alben_pojo.flatMap((album) => album.songs);
-console.log(songs);
+//console.log(songs);
 const lengths = [
     1513,
     338,
@@ -27,7 +27,7 @@ Deno.test("Class Song exists 1P", () => {
         "Song sollte als Klasse exportiert werden",
     );
 });
-// Hier wird geprüft, ob alles aus dem Album Constructor-Parameter übernommen wird.
+// 3: Hier wird geprüft, ob alles aus dem Album Constructor-Parameter übernommen wird.
 Deno.test("Album constructor takes 1 argument object with properties 5P", () => {
     alben_pojo.forEach((album) => {
         album.songs = album.songs.map(
@@ -154,10 +154,43 @@ Deno.test("Album::getShortestSong() returns the shortest song", () => {
         );
     });
 });
+Deno.test("Album::getSongsSortedByDuration() returns songs sorted by duration ascending", () => {
+    //const expected = {0: [2,0,1], 1: [0], 2: [0], 3: [1,0], 4: [0,1], 5: [0,1], 6: [2,1,4,3,0]};
+    const expected = { 6: [2, 1, 4, 3, 0] };
+
+    for (const alb_no in Object.keys(expected)) {
+        const album = new plf.Album(alben_pojo[alb_no]);
+        const sorted_songs = album.getSongsSortedByDuration();
+        for (const i in expected[alb_no]) {
+            assertEquals(
+                sorted_songs.shift().title,
+                album`Song ${i} von Album ${alb_no} sollte ${
+                    songs[song_index].title
+                } sein`,
+            );
+        }
+    }
+});
+Deno.test("Album::getSongsByTitle(title) returns songs containing title case-insensitive", () => {
+    const expected = {
+        0: ["The", [1, 2]],
+        6: ["love", [15]],
+    };
+    for (const alb_no of Object.keys(expected)) {
+        const album = new plf.Album(alben_pojo[alb_no]);
+        const search = expected[alb_no][0];
+        const songs_by_title_actual = new Set(
+            album.getSongsByTitleCaseInsensitive(search).map((_) => _.title),
+        );
+        const songs_by_title_expected = new Set();
+        expected[alb_no][1].forEach((song_index) => {
+            songs_by_title_expected.add(songs[song_index].title);
+        });
+        assertEquals(songs_by_title_actual, songs_by_title_expected);
+    }
+});
 /*
  * Album::getSongsByDuration(minDuration) returns songs with duration >= minDuration
- * Album::getSongsSortedByDuration() returns songs sorted by duration
- * Album::getSongsByTitle(title) returns songs containing title
  * Album::getAllTitles() returns all song titles
  * Album::getAverageDuration() returns average duration of all songs
  */
