@@ -1,3 +1,4 @@
+// Erreichbar insgesamt: 32 Punkte
 import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
 import { alben as alben_pojo } from "../alben.js"; // werden in test 3 mit durch array mit Song-Objekten ersetzt
@@ -82,7 +83,7 @@ Deno.test("Song constructor takes 1 argument object with properties 3P", () => {
     });
 });
 // Hier wird getestet, ob der Constructor von Album bei falschen Argumenten eine Exception wirft.
-Deno.test("constructor throws on wrong arguments 3P", () => {
+Deno.test("Album constructor throws on wrong arguments 3P", () => {
     assertThrows(() => {
         new plf.Album();
     });
@@ -124,7 +125,7 @@ Deno.test("Album::getTotalDuration() returns total duration of all songs 4P", ()
         );
     }
 });
-Deno.test("Album::getLongestSong() returns the longest song 4P", () => {
+Deno.test("Album::getLongestSong() returns the longest song 3P", () => {
     const longestSongs = { 1: 3, 3: 5, 6: 14 };
     const songinstances = songs.map((s) => (new plf.Song(s)));
     Object.keys(longestSongs).forEach((key) => {
@@ -139,7 +140,7 @@ Deno.test("Album::getLongestSong() returns the longest song 4P", () => {
         );
     });
 });
-Deno.test("Album::getShortestSong() returns the shortest song", () => {
+Deno.test("Album::getShortestSong() returns the shortest song 3P", () => {
     const shortestSongs = { 1: 3, 3: 6, 5: 12 };
     const songinstances = songs.map((s) => (new plf.Song(s)));
     Object.keys(shortestSongs).forEach((key) => {
@@ -154,7 +155,7 @@ Deno.test("Album::getShortestSong() returns the shortest song", () => {
         );
     });
 });
-Deno.test("Album::getSongsSortedByDuration() returns songs sorted by duration ascending", () => {
+Deno.test("Album::getSongsSortedByDuration() returns songs sorted by duration ascending 4P", () => {
     //const expected = {0: [2,0,1], 1: [0], 2: [0], 3: [1,0], 4: [0,1], 5: [0,1], 6: [2,1,4,3,0]};
     const expected = { 6: [2, 1, 4, 3, 0] };
 
@@ -171,7 +172,7 @@ Deno.test("Album::getSongsSortedByDuration() returns songs sorted by duration as
         }
     }
 });
-Deno.test("Album::getSongsByTitle(title) returns songs containing title case-insensitive", () => {
+Deno.test("Album::getSongsByTitle(title) returns songs containing title case-insensitive 5P", () => {
     const expected = {
         0: ["The", [1, 2]],
         6: ["love", [15]],
