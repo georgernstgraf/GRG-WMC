@@ -12,10 +12,6 @@ const lengths = [
     2365,
 ];
 
-songs.forEach((song) => {
-    song.duration = Number(song.duration);
-});
-
 Deno.test("Class Album exists 1P", () => {
     assertEquals(typeof plf.Album, "function", "Album sollte eine Klasse sein");
     assert(
@@ -114,22 +110,35 @@ Deno.test("constructor throws on wrong arguments 3P", () => {
         }), "sollte Exception werfen, da Song-Objekte erwartet werden");
     new plf.Album(alben[0]); // sollte nicht werfen, da alben[0] ein gültiges Album ist
 });
-Deno.test("Album::getTotalDuration() returns total duration of all songs 3P", () => {
-    for (let i in alben) {
+Deno.test("Album::getTotalDuration() returns total duration of all songs 4P", () => {
+    for (const i in alben) {
         const album = alben[i];
         const album_instance = new plf.Album(album);
         const total_duration = album_instance.getTotalDuration();
         const expected_duration = lengths[i];
-        console.log(
+        assertEquals(
             total_duration,
             expected_duration,
             `Gesamtdauer von Album ${album.album} sollte ${expected_duration} sein`,
         );
     }
 });
-
+Deno.test("Album::getLongestSong() returns the longest song 4P", () => {
+    const longestSongs = { 1: 3, 3: 5, 6: 14 };
+    const songinstances = songs.map((s) => (new plf.Song(s)));
+    Object.keys(longestSongs).forEach((key) => {
+        const album = alben[key];
+        const album_instance = new plf.Album(album);
+        const longest_song = album_instance.getLongestSong();
+        const expected_song = songinstances[longestSongs[key]];
+        assertEquals(
+            longest_song,
+            expected_song,
+            `Längste Song von Album ${album.album} sollte ${expected_song.title} sein`,
+        );
+    });
+});
 /*
- * Album::getLongestSong() returns the longest song
  * Album::getShortestSong() returns the shortest song
  * Album::getSongsByDuration(minDuration) returns songs with duration >= minDuration
  * Album::getSongsSortedByDuration() returns songs sorted by duration
