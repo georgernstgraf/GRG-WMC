@@ -1,7 +1,8 @@
 import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
-import { alben } from "../alben.js";
-const songs = alben.flatMap((album) => album.songs);
+import { alben as alben_pojo } from "../alben.js";
+const songs = alben_pojo.flatMap((album) => album.songs);
+console.log(songs);
 const lengths = [
     1513,
     338,
@@ -28,7 +29,7 @@ Deno.test("Class Song exists 1P", () => {
 });
 // Hier wird geprüft, ob alles aus dem Album Constructor-Parameter übernommen wird.
 Deno.test("Album constructor takes 1 argument object with properties 5P", () => {
-    alben.forEach((album) => {
+    alben_pojo.forEach((album) => {
         album.songs = album.songs.map(
             (song) => new plf.Song(song),
         );
@@ -108,11 +109,11 @@ Deno.test("constructor throws on wrong arguments 3P", () => {
             album: "Album",
             songs: ["Hallo Dolly"],
         }), "sollte Exception werfen, da Song-Objekte erwartet werden");
-    new plf.Album(alben[0]); // sollte nicht werfen, da alben[0] ein gültiges Album ist
+    new plf.Album(alben_pojo[0]); // sollte nicht werfen, da alben[0] ein gültiges Album ist
 });
 Deno.test("Album::getTotalDuration() returns total duration of all songs 4P", () => {
-    for (const i in alben) {
-        const album = alben[i];
+    for (const i in alben_pojo) {
+        const album = alben_pojo[i];
         const album_instance = new plf.Album(album);
         const total_duration = album_instance.getTotalDuration();
         const expected_duration = lengths[i];
@@ -127,7 +128,7 @@ Deno.test("Album::getLongestSong() returns the longest song 4P", () => {
     const longestSongs = { 1: 3, 3: 5, 6: 14 };
     const songinstances = songs.map((s) => (new plf.Song(s)));
     Object.keys(longestSongs).forEach((key) => {
-        const album = alben[key];
+        const album = alben_pojo[key];
         const album_instance = new plf.Album(album);
         const longest_song = album_instance.getLongestSong();
         const expected_song = songinstances[longestSongs[key]];
@@ -138,8 +139,22 @@ Deno.test("Album::getLongestSong() returns the longest song 4P", () => {
         );
     });
 });
+Deno.test("Album::getShortestSong() returns the shortest song", () => {
+    const shortestSongs = { 1: 3, 3: 6, 5: 12 };
+    const songinstances = songs.map((s) => (new plf.Song(s)));
+    Object.keys(shortestSongs).forEach((key) => {
+        const album = alben_pojo[key];
+        const album_instance = new plf.Album(album);
+        const shortest_song = album_instance.getShortestSong();
+        const expected_song = songinstances[shortestSongs[key]];
+        assertEquals(
+            shortest_song,
+            expected_song,
+            `Kürzester Song von Album ${album.album} sollte ${expected_song.title} sein`,
+        );
+    });
+});
 /*
- * Album::getShortestSong() returns the shortest song
  * Album::getSongsByDuration(minDuration) returns songs with duration >= minDuration
  * Album::getSongsSortedByDuration() returns songs sorted by duration
  * Album::getSongsByTitle(title) returns songs containing title
