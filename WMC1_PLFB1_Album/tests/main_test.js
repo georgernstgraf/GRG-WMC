@@ -2,6 +2,16 @@ import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
 import { alben } from "../alben.js";
 const songs = alben.flatMap((album) => album.songs);
+const lengths = [
+    1513,
+    338,
+    301,
+    1041,
+    2417,
+    542,
+    2365,
+];
+
 songs.forEach((song) => {
     song.duration = Number(song.duration);
 });
@@ -20,7 +30,7 @@ Deno.test("Class Song exists 1P", () => {
         "Song sollte als Klasse exportiert werden",
     );
 });
-// Hier wird geprüft, ob alles aus dem Constructor-Parameter übernommen wird.
+// Hier wird geprüft, ob alles aus dem Album Constructor-Parameter übernommen wird.
 Deno.test("Album constructor takes 1 argument object with properties 5P", () => {
     alben.forEach((album) => {
         album.songs = album.songs.map(
@@ -55,7 +65,7 @@ Deno.test("Album constructor takes 1 argument object with properties 5P", () => 
     });
 });
 
-// Hier wird geprüft, ob alles aus dem Constructor-Parameter übernommen wird.
+// Hier wird geprüft, ob alles aus dem Song Constructor-Parameter übernommen wird.
 Deno.test("Song constructor takes 1 argument object with properties 3P", () => {
     songs.forEach((song) => {
         const song_instance = new plf.Song({
@@ -104,9 +114,21 @@ Deno.test("constructor throws on wrong arguments 3P", () => {
         }), "sollte Exception werfen, da Song-Objekte erwartet werden");
     new plf.Album(alben[0]); // sollte nicht werfen, da alben[0] ein gültiges Album ist
 });
-// 4
+Deno.test("Album::getTotalDuration() returns total duration of all songs 3P", () => {
+    for (let i in alben) {
+        const album = alben[i];
+        const album_instance = new plf.Album(album);
+        const total_duration = album_instance.getTotalDuration();
+        const expected_duration = lengths[i];
+        console.log(
+            total_duration,
+            expected_duration,
+            `Gesamtdauer von Album ${album.album} sollte ${expected_duration} sein`,
+        );
+    }
+});
+
 /*
- * Album::getTotalDuration() returns total duration of all songs
  * Album::getLongestSong() returns the longest song
  * Album::getShortestSong() returns the shortest song
  * Album::getSongsByDuration(minDuration) returns songs with duration >= minDuration
