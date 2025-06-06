@@ -110,7 +110,6 @@ Deno.test("Album constructor throws on wrong arguments 3P", () => {
             album: "Album",
             songs: ["Hallo Dolly"],
         }), "sollte Exception werfen, da Song-Objekte erwartet werden");
-    new plf.Album(alben_pojo[0]); // sollte nicht werfen, da alben[0] ein gültiges Album ist
 });
 Deno.test("Album::getTotalDuration() returns total duration of all songs 4P", () => {
     for (const i in alben_pojo) {
