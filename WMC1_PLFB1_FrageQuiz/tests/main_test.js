@@ -63,7 +63,7 @@ Deno.test("constructor throws on not included antwort 4P", () => {
     }, "sollte Exception werfen");
 });
 // 5
-Deno.test("class Quiz exists", () => {
+Deno.test("class Quiz exists 2P", () => {
     assertEquals(typeof plf.Quiz, "function", "Quiz ist keine Klasse");
     assert(
         plf.Quiz instanceof Function,
