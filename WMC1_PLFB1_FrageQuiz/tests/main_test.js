@@ -2,7 +2,7 @@ import { assert, assertEquals, assertThrows } from "@std/assert";
 import * as plf from "../plf.js";
 import { otdb } from "../fragen.js";
 // 1
-Deno.test("Class Frage exists", () => {
+Deno.test("Class Frage exists 2P", () => {
     assertEquals(typeof plf.Frage, "function", "Frage sollte eine Klasse sein");
     assert(
         plf.Frage instanceof Function,
@@ -10,7 +10,7 @@ Deno.test("Class Frage exists", () => {
     );
 });
 // 2
-Deno.test("constructor takes 3 arguments", () => {
+Deno.test("constructor takes 3 arguments 4P", () => {
     const frage1 = new plf.Frage("Frage", ["Option1", "Option2"], "Option1");
     assertEquals(frage1.frage, "Frage", "attribut frage sollte Frage sein");
     assertEquals(
@@ -37,7 +37,7 @@ Deno.test("constructor takes 3 arguments", () => {
     );
 });
 // 3
-Deno.test("constructor throws on false arguments", () => {
+Deno.test("constructor throws on illegal arguments 4P", () => {
     assert(plf.Frage);
     assertThrows(() => {
         new plf.Frage();
@@ -53,7 +53,7 @@ Deno.test("constructor throws on false arguments", () => {
     });
 });
 // 4
-Deno.test("constructor throws on not included antwort", () => {
+Deno.test("constructor throws on not included antwort 4P", () => {
     assert(plf.Frage);
     assertThrows(() => {
         new plf.Frage("Frage", ["Option1", "Option2"], "Option3");
@@ -71,7 +71,7 @@ Deno.test("class Quiz exists", () => {
     );
 });
 // 6
-Deno.test("constructor takes exactly one argument", () => {
+Deno.test("constructor takes exactly one argument 3P", () => {
     assertThrows(() => {
         new plf.Quiz();
     });
@@ -81,7 +81,7 @@ Deno.test("constructor takes exactly one argument", () => {
     new plf.Quiz(otdb);
 });
 // 7
-Deno.test("fragen is an array of Frage objects", () => {
+Deno.test("fragen is an array of Frage objects 4P", () => {
     const quiz = new plf.Quiz(otdb);
     assertEquals(Array.isArray(quiz.fragen), true, "fragen ist kein Array");
     assertEquals(
@@ -97,7 +97,7 @@ Deno.test("fragen is an array of Frage objects", () => {
     }
 });
 // 8
-Deno.test("getFragenByLength returns questions with minimum length", () => {
+Deno.test("getFragenByLength(l) returns questions with minimum length l 4P", () => {
     const quiz = new plf.Quiz(otdb);
     const known_anwers = [{ l: 10, a: 21 }, { l: 40, a: 19 }, { l: 60, a: 12 }];
     for (const { l, a } of known_anwers) {
@@ -124,7 +124,7 @@ Deno.test("getFragenByLength returns questions with minimum length", () => {
     }
 });
 // 9
-Deno.test("sortFragenByLength returns sorted questions", () => {
+Deno.test("sortFragenByLength 4P", () => {
     const quiz = new plf.Quiz(otdb);
     const sortedQuestions = quiz.getFragenSortedByLength();
     assert(
@@ -155,7 +155,7 @@ Deno.test("sortFragenByLength returns sorted questions", () => {
     }
 });
 // 10
-Deno.test("getFragenWithOption returns questions containing option", () => {
+Deno.test("getFragenWithOption returns Fragen that contain option 4P", () => {
     const quiz = new plf.Quiz(otdb);
     for (
         const { o, c } of [{ o: "Apollo", c: 3 }, { o: "Ares", c: 3 }, {
@@ -182,7 +182,7 @@ Deno.test("getFragenWithOption returns questions containing option", () => {
     }
 });
 // 11
-Deno.test("getAverageOptions returns correct number", () => {
+Deno.test("getAverageOptions returns correct number 4P", () => {
     const quiz = new plf.Quiz(otdb);
     const avg = quiz.getAverageOptions();
     assert(
@@ -196,7 +196,7 @@ Deno.test("getAverageOptions returns correct number", () => {
     assertEquals(avg, 1 << 2, "Average should be positive");
 });
 // 12
-Deno.test("getAllOptions returns unique options array", () => {
+Deno.test("getAllOptions returns unique options array 4P", () => {
     const quiz = new plf.Quiz(otdb);
     const allOptions = quiz.getAllOptions();
     assert(Array.isArray(allOptions), "getAllOptions should return an array");
