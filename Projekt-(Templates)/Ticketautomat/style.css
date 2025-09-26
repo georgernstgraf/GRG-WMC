@@ -1,0 +1,43 @@
+body > main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: 12px solid rgb(226, 0, 42);
+    border-radius: 2em;
+    background: #222f5c;
+    margin: 1em 3em;
+    padding: 1em;
+    width: fit-content;
+    color: #fff;
+}
+* {
+    margin: 0.4em auto;
+}
+button {
+    background: #e1c463;
+}
+select {
+    background: #e1c463;
+}
+input {
+    color: #000;
+    background: #e1c463;
+    margin-inline: 0.5em;
+    padding-inline: 0.4em;
+    width: 5em;
+}
+pre {
+    color: #000;
+    border: solid black 0.35em;
+    border-radius: 0.5em;
+    background: #fff;
+    padding: 1em;
+}
+.einwurfDiv {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+.einwurfDiv > * {
+    flex: 1;
+}
