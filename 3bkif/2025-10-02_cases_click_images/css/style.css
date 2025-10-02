@@ -1,0 +1,35 @@
+* {
+    outline: 1px solid red;
+}
+
+h2,
+h3 {
+    text-align: center;
+}
+
+body {
+    background-color: #f5d194;
+}
+
+li:hover {
+    background-color: #00b4;
+}
+
+a {
+    /*4ter Wert: alpha-kanal*/
+    color: #fd98;
+}
+
+.fetter {
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: underline;
+}
+
+.green-background {
+    background-color: #0f0;
+}
+
+#italien {
+    font-style: italic;
+}
