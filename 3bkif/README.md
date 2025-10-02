@@ -6,6 +6,12 @@ Wissensabfrage, multiple choice
 
 am 25.9.: html5-tags 2. Seite
 
+## 2025-10-02
+
+- css Anfänge box model, selectors (angefangen)
+
+HÜ: Bitte mit styles die vorhandene Site gestalten
+
 ## 2025-09-18
 
 bis nächstes MAL BITTE
