@@ -1,5 +1,14 @@
 # sj25-26-34aaif-wmc
 
+## 2025-10-08
+
+- css selectors
+- <https://flukeout.github.io/>
+
+ggf. zu Hause fertig machen
+
+Abgabe: mind. 10 Screenshots ab Übung 16
+
 ## 24.9.2025
 
 - width
