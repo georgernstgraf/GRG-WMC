@@ -4,6 +4,7 @@
 
 **Termine und Beispielcode für:**
 
+- [3aaif](./3aaif/README.md)
 - [3bkif](./3bkif/README.md)
 
 Dieses Repo soll öffentlich bleiben und enthält deshalb *keine* Test Angaben
