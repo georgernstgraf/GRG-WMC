@@ -7,7 +7,6 @@ Wissensabfrage, multiple choice
 ## 2025-10-09
 
 - css selectors bis excl. attr
--
 
 am 25.9.: html5-tags 2. Seite
 
@@ -31,7 +30,7 @@ bis nächstes MAL BITTE
 - W3C Web Validator
 - URL: <http://127.0.0.1:5500/2025-09_html/index.html>
 - google chrome ~2009 -> javascript engine "v8"
-- devtools im browser <F12>
+- devtools im browser `<F12>`
 - <https://caniuse.com/>
 
 ## 2025-09-04
