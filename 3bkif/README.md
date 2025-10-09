@@ -4,6 +4,11 @@
 
 Wissensabfrage, multiple choice
 
+## 2025-10-09
+
+- css selectors bis excl. attr
+-
+
 am 25.9.: html5-tags 2. Seite
 
 ## 2025-10-02

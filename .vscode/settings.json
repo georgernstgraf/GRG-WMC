@@ -10,5 +10,6 @@
     "typescript.tsserver.enable": false,
     "eslint.enable": false,
     "prettier.enable": false,
-    "tslint.enable": false
+    "tslint.enable": false,
+    "liveServer.settings.port": 5501
 }

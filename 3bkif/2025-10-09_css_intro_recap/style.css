@@ -1,0 +1,9 @@
+h1, h2, h3 {
+    color: black !important;
+}
+.first {
+    text-transform: uppercase;
+}
+.italic {
+    font-style: italic;
+}
