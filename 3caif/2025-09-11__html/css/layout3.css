@@ -1,0 +1,24 @@
+/* Layout 3: Dark compact layout */
+body { font-family: Arial, Helvetica, sans-serif; background: #1b1b1b; color: #e6e6e6; margin: 0; }
+
+header, footer { background: #111; padding: 0.6rem 1rem; }
+nav#nav-menu a { color: #9fd3ff; text-decoration: none; margin-right: 0.8rem; }
+
+main { max-width: 900px; margin: 1rem auto; padding: 0 1rem; }
+section { background: rgba(255,255,255,0.02); padding: 0.6rem; margin-bottom: 0.8rem; border: 1px solid rgba(255,255,255,0.04); }
+
+aside { float: left; width: 220px; margin-right: 1rem; background: #151515; padding: 0.5rem; border: 1px solid #222; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+table th, table td { padding: 0.45rem; border: 1px solid #333; }
+table thead th { background: #0f2940; color: #d7f3ff; }
+table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+button { background: #0f2940; color: #d7f3ff; border: 1px solid #09324a; padding: 0.45rem 0.6rem; cursor: pointer; }
+
+img { max-width: 140px; display: block; }
+
+/* small utility */
+.muted { color: #9b9b9b; font-size: 0.95rem; }
+
+footer { text-align: center; }

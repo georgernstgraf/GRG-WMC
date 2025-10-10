@@ -1,0 +1,28 @@
+/* Layout 2: Warm boxed layout with serif headings */
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background: #efe7df;
+  margin: 0;
+  color: #2b1f1a;
+}
+
+.page-box { max-width: 820px; margin: 1.5rem auto; background: #fff; padding: 1rem 1.25rem; border: 1px solid #e0d5cc; }
+
+header, footer { text-align: center; }
+header { padding-bottom: 0.5rem; }
+
+nav#nav-menu ul { list-style: none; padding: 0; margin: 0; }
+nav#nav-menu li { display: inline-block; margin: 0 0.5rem; }
+nav#nav-menu a { color: #a33; text-decoration: none; font-weight: bold; }
+
+h1, h2 { font-family: 'Georgia', serif; color: #5b2b1a; }
+
+aside { background: #fff6f4; border-left: 4px solid #f2d2cc; padding: 0.5rem; margin-top: 0.5rem; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+table th { background: #f7efe9; padding: 0.6rem; border: 1px solid #e6d7cf; }
+table td { padding: 0.5rem; border: 1px solid #eee0d9; }
+
+button { background: #a33; color: #fff; border: none; padding: 0.45rem 0.6rem; cursor: pointer; }
+
+img { max-width: 200px; height: auto; display: block; margin-top: 0.5rem; }

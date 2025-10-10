@@ -1,0 +1,70 @@
+/* Layout 4: Responsive layout with CSS-only burger menu and sticky header */
+/* Uses a checkbox + label trick for the burger menu; no JavaScript required for menu open/close */
+:root{
+  --accent:#0b66a3;
+  --muted:#6b7280;
+  --bg:#fafcff;
+  --card:#ffffff;
+}
+
+*{box-sizing:border-box}
+body{font-family:system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#111}
+
+/* sticky header */
+header{position:sticky; top:0; z-index:40; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.9)); border-bottom:1px solid #e6e9ef}
+.header-inner{max-width:1100px; margin:0 auto; overflow:auto; padding:0.6rem 1rem}
+
+/* branding + burger */
+.brand{display:inline-block; font-weight:700; color:var(--accent); font-size:1.05rem}
+
+/* checkbox-toggle for menu */
+#nav-toggle{ display:none }
+label[for="nav-toggle"]{ float:right; width:38px; height:38px; cursor:pointer; text-align:center; line-height:38px; border-radius:4px}
+label[for="nav-toggle"] .bar{ display:block; width:20px; height:2px; background:#222; margin:4px auto; transition:transform .2s, opacity .2s }
+
+/* nav default (desktop) */
+nav#nav-menu{ display:block }
+nav#nav-menu ul{ list-style:none; margin:0; padding:0 }
+nav#nav-menu li{ display:inline-block; margin-left:1rem }
+nav#nav-menu a{ text-decoration:none; color:#0b3d91; font-weight:600 }
+
+/* layout grid */
+main{ max-width:1100px; margin:1rem auto; padding:0 1rem; display:block }
+article, section{ background:var(--card); padding:0.9rem; border-radius:6px; box-shadow:0 1px 0 rgba(0,0,0,0.03); margin-bottom:1rem }
+aside{ background:transparent; padding:0.6rem; margin-bottom:1rem }
+
+/* table styling */
+table{ width:100%; border-collapse:collapse; font-size:0.98rem }
+caption{ text-align:left; font-weight:700; margin-bottom:0.2rem }
+thead th{ background:var(--accent); color:#fff; padding:0.6rem; text-align:left; font-weight:700 }
+tbody td{ padding:0.55rem; border-bottom:1px solid #eef2f6 }
+tbody tr:nth-child(even){ background:#fbfdff }
+
+/* Form */
+form{ display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center }
+form label{ min-width:80px }
+form input[type="text"], form input[type="email"]{ padding:0.45rem; border:1px solid #d6dbe5; border-radius:4px }
+form button{ background:var(--accent); color:#fff; border:none; padding:0.45rem 0.6rem; border-radius:4px; cursor:pointer }
+
+/* responsive behaviour (simple) */
+@media (max-width:800px){
+  /* show burger */
+  label[for="nav-toggle"]{ display:inline-block }
+  nav#nav-menu{ display:none; clear:both }
+  nav#nav-menu ul{ display:block }
+  nav#nav-menu li{ display:block; margin:0.4rem 0 }
+
+  /* when checkbox is checked, show menu */
+  #nav-toggle:checked + label + nav#nav-menu{ display:block; background:var(--card); padding:0.6rem; border-radius:6px; box-shadow:0 4px 12px rgba(10,20,30,0.06); margin-top:0.5rem }
+
+  /* stack main content with aside below */
+  main{ padding:0 0.6rem }
+}
+
+/* small visual for the burger when active */
+#nav-toggle:checked + label .bar:nth-child(1){ transform: translateY(6px) rotate(45deg) }
+#nav-toggle:checked + label .bar:nth-child(2){ opacity:0 }
+#nav-toggle:checked + label .bar:nth-child(3){ transform: translateY(-6px) rotate(-45deg) }
+
+/* utility */
+.muted{ color:var(--muted) }

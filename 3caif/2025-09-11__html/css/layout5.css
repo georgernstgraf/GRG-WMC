@@ -1,0 +1,32 @@
+header img[alt*="Sportclub"] {
+    float: right;
+    right: 0;
+    position: relative;
+    width: 20%;
+} /* display: inline; */
+.header-inner {
+    display: inline-block;
+}
+header {
+    position: sticky;
+    background-color: #fffc;
+    backdrop-filter: blur(3px);
+    top: 0;
+}
+nav > ul > li {
+    display: inline;
+    margin-right: 1em;
+}
+li a {
+    text-decoration: none;
+    color: black;
+    transition-duration: 0.4s;
+}
+li a:hover {
+    color: red;
+    text-decoration: underline;
+    font-size: 1.5em;
+}
+html {
+    scroll-behavior: smooth;
+}
