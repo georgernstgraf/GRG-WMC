@@ -1,0 +1,32 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "sidebar header header"
+        "sidebar main main"
+        "footer footer footer";
+    gap: 12px;
+    /* optional */
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.grid-container>* {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}

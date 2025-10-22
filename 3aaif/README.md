@@ -1,5 +1,10 @@
 # sj25-26-34aaif-wmc
 
+## 2025-10-15
+
+- flexbox
+- flexbox froggy
+
 ## 2025-10-08
 
 - css selectors
