@@ -1,21 +1,36 @@
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(15%, 1fr);
+    grid-template-rows: repeat(1fr, 5fr, 1fr);
     grid-template-areas:
-        "sidebar header header"
-        "sidebar main main"
-        "footer footer footer";
+        "header header"
+        "side main"
+        "side footer";
     gap: 12px;
     /* optional */
+}
+
+@media screen and (max-width: 400px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+    }
+
+    .side {
+        display: none;
+    }
 }
 
 .header {
     grid-area: header;
 }
 
-.sidebar {
-    grid-area: sidebar;
+.side {
+    grid-area: side;
 }
 
 .main {
