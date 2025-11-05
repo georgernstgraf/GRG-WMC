@@ -1,5 +1,14 @@
 # sj25-26-34aaif-wmc
 
+## 2025-11-05
+
+- wh grid / template areas
+- css-tricks: centering
+- folie fonts
+- axis praxis
+
+HÜ: nachweislich mit fonts zu spielen!!
+
 ## 2025-10-15
 
 - flexbox

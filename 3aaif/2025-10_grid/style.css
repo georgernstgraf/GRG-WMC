@@ -1,5 +1,7 @@
 .grid-container {
+    width: 65%;
     display: grid;
+    margin: auto;
     grid-template-columns: repeat(15%, 1fr);
     grid-template-rows: repeat(1fr, 5fr, 1fr);
     grid-template-areas:
@@ -42,6 +44,6 @@
 }
 
 .grid-container>* {
-    border: 1px solid #ccc;
+    border: 2px solid #f00;
     padding: 0.5em;
 }
