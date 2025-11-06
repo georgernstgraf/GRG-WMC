@@ -4,6 +4,12 @@
 
 Wissensabfrage, multiple choice
 
+## 2025-11-06
+
+- CSS Grid Layout
+- Responsive Design mit Media Queries (@media)
+- cssgridgarden gemacht
+
 ## 2025-10-23
 
 Flexbox mit Froggy
