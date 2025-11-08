@@ -2,7 +2,6 @@
 .tab-nav {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
     justify-content: center;
 }
 
@@ -13,22 +12,23 @@
     border: 2px solid #ccc;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
-    transition: background-color 60s cubic-bezier(0.99, 0.01, 0.99, 0.01), color 60s cubic-bezier(0.99, 0.01, 0.99, 0.01);
+    transition: background-color .5s ease;
 }
 
 .tab-link:hover {
+    transition: background-color .0s;
     background-color: lightblue;
 }
 
 /* Highlight the active tab */
 .tab-link:target,
-.tab-link.active {
+.tab-link:active {
     background-color: coral;
     /* Active tab color */
     border-bottom: 2px solid #fff;
     /* To avoid double border */
     color: white;
-    transition: background-color 0s, color 0s;
+    transition: background-color 0s;
     /* Immediate transition to active */
 }
 
@@ -37,6 +37,9 @@
     display: none;
     padding: 20px;
     border: 2px solid #ccc;
+    border-top-style: double;
+    border-top-width: 10px;
+    margin-top: -15px;
     border-radius: 0 5px 5px 5px;
     background-color: #fff;
 }
