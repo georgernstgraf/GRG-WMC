@@ -9,21 +9,34 @@
 .tab-link {
     text-decoration: none;
     padding: 10px 15px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: yellow;
+    border: 2px solid #ccc;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
+    transition: background-color 60s cubic-bezier(0.99, 0.01, 0.99, 0.01), color 60s cubic-bezier(0.99, 0.01, 0.99, 0.01);
 }
 
 .tab-link:hover {
-    background-color: #e0e0e0;
+    background-color: lightblue;
+}
+
+/* Highlight the active tab */
+.tab-link:target,
+.tab-link.active {
+    background-color: coral;
+    /* Active tab color */
+    border-bottom: 2px solid #fff;
+    /* To avoid double border */
+    color: white;
+    transition: background-color 0s, color 0s;
+    /* Immediate transition to active */
 }
 
 /* Hide all tab content by default */
 .tab-content {
     display: none;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 0 5px 5px 5px;
     background-color: #fff;
 }
@@ -31,11 +44,4 @@
 /* Show the tab content that matches the :target */
 .tab-content:target {
     display: block;
-}
-
-/* Highlight the active tab */
-.tab-link:target {
-    background-color: #d0d0d0;
-    border-bottom: 1px solid #fff;
-    /* To avoid double border */
 }
