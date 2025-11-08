@@ -1,0 +1,41 @@
+/* Tab Navigation */
+.tab-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tab-link {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+}
+
+.tab-link:hover {
+    background-color: #e0e0e0;
+}
+
+/* Hide all tab content by default */
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 5px;
+    background-color: #fff;
+}
+
+/* Show the tab content that matches the :target */
+.tab-content:target {
+    display: block;
+}
+
+/* Highlight the active tab */
+.tab-link:target {
+    background-color: #d0d0d0;
+    border-bottom: 1px solid #fff;
+    /* To avoid double border */
+}
