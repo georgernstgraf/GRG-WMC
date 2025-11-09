@@ -8,28 +8,18 @@
 .tab-link {
     text-decoration: none;
     padding: 10px 15px;
-    background-color: yellow;
     border: 2px solid #ccc;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
-    transition: background-color .5s ease;
 }
 
 .tab-link:hover {
-    transition: background-color .0s;
     background-color: lightblue;
 }
 
 /* Highlight the active tab */
-.tab-link:target,
 .tab-link:active {
-    background-color: coral;
-    /* Active tab color */
     border-bottom: 2px solid #fff;
-    /* To avoid double border */
-    color: white;
-    transition: background-color 0s;
-    /* Immediate transition to active */
 }
 
 /* Hide all tab content by default */
@@ -37,11 +27,7 @@
     display: none;
     padding: 20px;
     border: 2px solid #ccc;
-    border-top-style: double;
-    border-top-width: 10px;
-    margin-top: -15px;
     border-radius: 0 5px 5px 5px;
-    background-color: #fff;
 }
 
 /* Show the tab content that matches the :target */
