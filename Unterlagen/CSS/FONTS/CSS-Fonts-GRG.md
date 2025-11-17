@@ -33,7 +33,7 @@ Kommando `woff2_compress` zur Verfügung. Youtube Channel von Kevin Powell:
 [variablen Fonts](https://www.youtube.com/watch?v=0fVymQ7SZw0) sowie zu den
 [hier dargelegten Inhalten](https://youtu.be/Y5TYDo9Qcv4)
 
-## Vorsicht DSGVO - die Notwendigkeit, Fonts selber zu hosten
+## Achtung DSGVO
 
 Es war üblich, Fonts direkt über Google Fonts einzubinden, z.B. so:
 
@@ -44,8 +44,7 @@ Es war üblich, Fonts direkt über Google Fonts einzubinden, z.B. so:
 />
 ```
 
-Dies sollte vermieden werden, denn wenn mein Browser den Font von Google holt,
-sieht sein Request etwa so aus:
+Dies sollte vermieden werden, denn der Browser schickt folgenden Request an google:
 
 ```code
 GET /css2?family=Aref+Ruqaa+Ink HTTP/2
@@ -53,12 +52,12 @@ Host: fonts.googleapis.com
 Referer: https://www.nicht-dsgvo-konform.at/
 ```
 
-Nach diesem Request weiß Google, dass ich (meine IP Adresse) zuvor die Website
-`https://www.nicht-dsgvo-konform.at/` aufgerufen habe, was die DSGVO verletzt.
-Es gibt diesbezüglich etliche laufende Gerichtsverfahren im europäischen Raum,
+Nach diesem Request weiß Google, dass meine IP Adresse von
+`https://www.nicht-dsgvo-konform.at/` kommend, einen Font anfordert. Dies verletzt die DSGVO.
+Es gab diesbezüglich etliche laufende Gerichtsverfahren im europäischen Raum,
 sowas wollen wir uns ersparen.
 
-### Abhilfe schaffen (neu)
+### Abhilfe schaffen mit `referrerpolicy="no-referrer"`
 
 ```html
 <link
@@ -68,9 +67,11 @@ sowas wollen wir uns ersparen.
 />
 ```
 
+### Oder die Fonts lokal hosten
+
 ## CSS-Attribute
 
-### font-familiy
+### font-family
 
 Die Family ist sozusagen "der Font", Beispiele:
 
