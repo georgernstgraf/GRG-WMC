@@ -28,7 +28,7 @@ Abgabe: mind. 10 Screenshots ab Übung 16
 - width
 - rgba
 - etwas flex
-- <details>
+- `<details>`
 - w3c validator
 - box sizing
 
