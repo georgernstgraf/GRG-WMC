@@ -1,0 +1,45 @@
+table {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: normal;
+}
+
+table.style1 {
+    width: 90%;
+    margin: 0 auto;
+    border: 4px dotted red;
+    padding: 0.5em;
+}
+
+table.style1>tbody>tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+button {
+    font-size: 1em;
+    padding: 1em;
+    font-weight: 100;
+    transition: background-color 2s, font-size 2s, font-weight 2s;
+    background-color: lightyellow;
+}
+
+button:hover {
+    background-color: pink;
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: 900;
+}
+
+h1 {
+    border: 2px dashed blue;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        background-color: yellow;
+    }
+
+    /* Hier wäre z.B. Anpassung eines Grid sinnvoll */
+}
