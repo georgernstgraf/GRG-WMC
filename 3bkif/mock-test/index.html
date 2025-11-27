@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Praktische Leistungsfeststellung (PLF)</title>
+    <link rel="stylesheet" href="nicht_aendern.css">
+    <link rel="stylesheet" href="loesung_aufgaben.css">
+    <!-- <link rel="stylesheet" href="musterloesung.css"> -->
+    <!-- Für Korrektur: loesung_aufgaben.css durch musterloesung.css ersetzen -->
+</head>
+
+<body>
+    <header>
+        <h1>CSS Praktische Leistungsfeststellung (PLF)</h1>
+        <p>Arbeitszeit: 30 Minuten</p>
+    </header>
+
+    <main class="grid-container">
+        <!-- Aufgabenstellung -->
+        <aside class="aufgaben">
+            <h2>Aufgaben (in styles.css bearbeiten)</h2>
+
+            <section class="aufgabe">
+                <h3>Aufgabe 1 (5 Punkte)</h3>
+                <p>Selektieren Sie alle <code>&lt;section&gt;</code>-Elemente die sich in einem
+                    <code>&lt;article&gt;</code>-Element befinden und setzen Sie:
+                </p>
+                <ul>
+                    <li>Hintergrundfarbe: <code>lightgray</code></li>
+                    <li>Schriftart: <code>Arial, sans-serif</code></li>
+                    <li>Schriftgröße: 0.9 mal die Größe des Root Elementes</li>
+                    <li>Innenabstand: 1.5 mal die Größe des Root Elementes</li>
+                    <li>Rand: grau, 1 Pixel, durchgezogene Linie</li>
+                    <li>Gerundete Ecken mit Radius 10 Pixel</li>
+                </ul>
+            </section>
+
+            <section class="aufgabe">
+                <h3>Aufgabe 2 (5 Punkte)</h3>
+                <p>Selektieren Sie den Button mit der ID <code>submit-btn</code> und gestalten Sie ihn:</p>
+                <ul>
+                    <li>Hintergrundfarbe: <code>darkcyan</code></li>
+                    <li>Textfarbe: <code>white</code></li>
+                    <li>Innenabstand: <code>0.8rem 2rem</code></li>
+                    <li>Rahmen: <code>none</code></li>
+                    <li>Border-radius: <code>5px</code></li>
+                </ul>
+            </section>
+
+            <section class="aufgabe">
+                <h3>Aufgabe 3 (10 Punkte)</h3>
+                <p>Platzieren Sie das <code>&lt;div&gt;</code> mit der ID <code>highlight-box</code> im Grid-Container
+                    so:</p>
+                <ul>
+                    <li>Zeile: 3</li>
+                    <li>benutzt alle (vier) Spalten</li>
+                </ul>
+            </section>
+
+            <section class="aufgabe">
+                <h3>Aufgabe 4 (10 Punkte)</h3>
+                <p>Gestalten Sie den Flex-Container mit der Klasse <code>nav-menu</code>:</p>
+                <ul>
+                    <li>Die Elemente sollen gleichmäßig verteilt werden (<code>space-evenly</code>)</li>
+                    <li>Bei Bedarf sollen sie umbrechen (<code>wrap</code>)</li>
+                    <li>Vertikale Ausrichtung: zentriert</li>
+                </ul>
+            </section>
+
+            <section class="aufgabe">
+                <h3>Aufgabe 5 (10 Punkte)</h3>
+                <p>Erstellen Sie einen Hover-Effekt für alle Links (<code>&lt;a&gt;</code>) in der Klasse
+                    <code>footer-links</code>:
+                </p>
+                <ul>
+                    <li>Textfarbe beim Hover: <code>orange</code></li>
+                    <li>Textdekoration: <code>underline</code></li>
+                    <li>Fügen Sie einen sanften Übergang mit Dauer 0.3 Sekunden hinzu</li>
+                </ul>
+            </section>
+
+            <section class="aufgabe">
+                <h3>Aufgabe 6 (10 Punkte)</h3>
+                <p>Formatieren Sie im <code>article.testbereich</code> alle <code>&lt;section&gt;</code>-Elemente deren
+                    <code>data-topic</code> Attribut mit <code>css-adv</code> beginnt:
+                </p>
+                <ul>
+                    <li>Rahmen: 2px, strichliert, Farbe <code>rot</code></li>
+                </ul>
+                <p>Innerhalb dieser Sektion befindet sich eine Liste. Gestalten
+                    Sie NUR den dritten Listeneintrag und darin den direkten
+                    Link:</p>
+                <ul>
+                    <li>Textfarbe: <code>grün</code></li>
+                    <li>Schriftgewicht: <code>bold</code></li>
+                </ul>
+                Fügen Sie zu diesem Link einen Hover-Effekt hinzu, sodass beim
+                Hovern die Schriftfarbe innerhalb von einer Sekunde graduell auf
+                rot geändert wird.
+
+            </section>
+        </aside>
+
+        <!-- Testbereich -->
+        <article class="testbereich">
+            <h2>Testbereich</h2>
+
+            <section>
+                <h3>Content Box 1</h3>
+                <p>Dies ist eine Content Box für Aufgabe 1. Der Text sollte entsprechend formatiert werden.</p>
+            </section>
+
+            <section>
+                <h3>Content Box 2</h3>
+                <p>Eine weitere Content Box. Alle Boxes mit der Klasse "content-box" sollten gleich aussehen.</p>
+            </section>
+
+            <div class="button-bereich">
+                <button id="submit-btn">Absenden</button>
+                <button>Abbrechen</button>
+            </div>
+
+            <div id="highlight-box">
+                <h3>Highlight Box</h3>
+                <p>Diese Box sollte im Grid-Layout richtig positioniert werden (Aufgabe 3).</p>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#">Home</a>
+                <a href="#">Produkte</a>
+                <a href="#">Services</a>
+                <a href="#">Über uns</a>
+                <a href="#">Kontakt</a>
+            </nav>
+
+            <section class="content-box">
+                <h3>Content Box 3</h3>
+                <p>Noch eine Content Box zum Testen der Formatierung aus Aufgabe 1.</p>
+            </section>
+
+            <section data-topic="css-adv-selectors">
+                <h3>Erweiterte Selektoren (Test für Aufgabe 6)</h3>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+                <p class="notice">Nur der dritte Link oberhalb sollte speziell formatiert werden.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">AGB</a>
+            <a href="#">Kontakt</a>
+        </div>
+        <p>&copy; 2025 CSS Prüfung</p>
+    </footer>
+</body>
+
+</html>
