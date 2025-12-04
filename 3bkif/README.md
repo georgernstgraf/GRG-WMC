@@ -1,5 +1,15 @@
 # sj25-26-34bkif-wmc
 
+## Abgabe Website
+
+- Deadline: 8. Jänner 23:59
+- gewünschte Features
+- - 2-3-4-5 Unterseiten
+- - responsive Verhalten erkennbar (handy - view bei devtools beachten!)
+- - flexbox, grid, position, generell besprochene Inhalte anwenden!
+
+Bei zwischendurch Fragen gerne email schreiben.
+
 ## Schriftlicher Test am 15. Jänner 2026
 
 Wissensabfrage, multiple choice
