@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    Checkbox 1: <input type="checkbox" name="check1" id="check1" checked>
+
+    <label for="check2">Checkbox 2: </label>
+    <input type="checkbox" name="check2" id="check2">
+
+    <label><input type="checkbox" name="check3" id="check3">Checkbox 3</label>
+
+    <label><input type="text" name="text1" placeholder="Bitte geben Sie Text ein!" style="margin-right: 1em">Label für Textinput</label>
+
+    <form action="/mein-endpoint" method="get" novalidate>
+        <label for="text2">Textinput 2:</label>
+        <input type="text" name="text2" id="text2" placeholder="Noch ein Textinput" required autocomplete="off">
+        <input type="submit" value="Absenden">
+    </form>
+    <div id="hover"><span>Mein Span
+    </span>
+</div>
+
+</body>
+</html>

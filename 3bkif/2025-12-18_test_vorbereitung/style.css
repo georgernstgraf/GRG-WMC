@@ -1,0 +1,21 @@
+label,
+input {
+    outline: 2px solid green;
+    padding: 1em
+}
+
+body>label,
+body>input {
+    display: block
+}
+
+#hover {
+    padding: 1em;
+    background-color: yellow;
+    transition: 2s ease-in-out;
+
+    &:hover {
+        background-color: orange;
+        transform: rotate(20deg)
+    }
+}
