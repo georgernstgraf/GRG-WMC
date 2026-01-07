@@ -5,6 +5,8 @@
 Am 14.1. und 21.1. finden im Unterricht die Projektabgaben mit
 Demo und Besprechung statt.
 
+Weiters: <https://deno.land/> - Deno installieren (Alternative zu node.js).
+
 ## 2025-11-05
 
 - wh grid / template areas
