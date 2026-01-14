@@ -9,3 +9,16 @@
 - Can: <http://192.168.21.211:5500/>
 - Martin D: <http://192.168.21.111:5500/>
 - Rodion: <http://192.168.21.186:5500/> 
+
+Noch offen:
+
+- Emanuel
+- Omar
+- Kamel
+- Leth
+- Julius
+- Dominic
+- Martin M
+- Luka
+- Can
+- Martin D
