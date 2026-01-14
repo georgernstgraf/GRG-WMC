@@ -6,6 +6,6 @@
 - Martin: <http://192.168.21.152:5500/Website-Marach/Daten.html>
 - Simon: <http://192.168.21.153:5500/>
 - Luka: <http://192.168.21.76:5500/index_fixed.html>
-- Rodion: <
-- Martin D.: 
-- Can: <>
+- Can: <http://192.168.21.211:5500/>
+- Martin D: <http://192.168.21.111:5500/>
+- Rodion: <http://192.168.21.186:5500/> 
