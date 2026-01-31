@@ -152,7 +152,226 @@ const zahlen = [1, 2, 3, 4, 5];
     const treffer = zahlen.find(z => z > 3); // 4
     ```
 
-## 6. Objektorientierung: Klassen
+## 6. Das DOM (Document Object Model)
+
+Wenn wir Frontend programmieren, programmieren wir fast immer das **DOM**: also die HTML-Struktur, die der Browser als Baum im Speicher hält.
+
+### 6.1. Was ist das DOM?
+
+- Das DOM ist eine **Baumstruktur** aus Nodes (Elemente, Text, Kommentare, ...).
+- `document` ist der Einstiegspunkt.
+- Jedes HTML-Element wird zu einem DOM-Element-Objekt (z.B. ein `<button>` wird zu `HTMLButtonElement`).
+
+Wichtig: Das DOM ist **nicht** die HTML-Datei, sondern die *Live*-Repräsentation im Browser.
+
+### 6.2. Wann darf ich auf das DOM zugreifen?
+
+Wenn dein Skript vor dem HTML geladen wird, sind Elemente noch nicht vorhanden.
+Sicher ist:
+
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    // Hier existiert das HTML im DOM
+});
+```
+
+Alternativ (häufig in Übungen): Script-Tag ganz am Ende von `<body>`.
+
+### 6.3. DOM-Elemente finden (Selectors)
+
+Modern arbeiten wir fast immer mit CSS-Selektoren:
+
+```javascript
+const button = document.querySelector('.buy-button');
+const items = document.querySelectorAll('.cart-item');
+```
+
+- `querySelector(...)` gibt **das erste** passende Element (oder `null`).
+- `querySelectorAll(...)` gibt eine `NodeList` (iterierbar).
+
+**Fail-Fast Regel:** Rechne mit `null`, wenn ein Element nicht existiert.
+
+```javascript
+const modal = document.querySelector('#modal');
+if (!modal) throw new Error('Modal fehlt im HTML');
+```
+
+### 6.4. Inhalte ändern (Text vs. HTML)
+
+```javascript
+titleEl.textContent = 'Hallo!';
+```
+
+- `textContent`: sicher (keine HTML-Interpretation).
+- `innerHTML`: bequem, aber potenziell **unsicher** (XSS) und fehleranfällig.
+
+**Regel:** Nutze `textContent` und DOM-Erzeugung (`createElement`) statt `innerHTML`, außer du kontrollierst den Inhalt zu 100%.
+
+### 6.5. Elemente erzeugen/entfernen
+
+```javascript
+const li = document.createElement('li');
+li.textContent = 'Neuer Eintrag';
+listEl.appendChild(li);
+
+// Entfernen
+li.remove();
+```
+
+Für "neu rendern" ist oft besser als `innerHTML = ''`:
+
+```javascript
+listEl.replaceChildren(); // leert den Container
+```
+
+### 6.6. Events (User-Interaktion)
+
+```javascript
+button.addEventListener('click', (event) => {
+    console.log('geklickt', event.currentTarget);
+});
+```
+
+- `event.target`: das *tatsächlich* geklickte Element (z.B. ein `<span>` im Button).
+- `event.currentTarget`: das Element, an dem der Listener hängt.
+
+**Event Delegation (sehr wichtig):** Ein Listener auf dem Container statt 100 Listener auf Kinder.
+
+```javascript
+listEl.addEventListener('click', (e) => {
+    const button = e.target.closest('button[data-action="remove"]');
+    if (!button) return;
+
+    const id = button.dataset.id;
+    console.log('remove', id);
+});
+```
+
+### 6.7. Klassen-Manipulation zur UI-Steuerung
+
+Die beste UI-Architektur im Vanilla-Frontend ist oft:
+
+- JavaScript setzt/entfernt **CSS-Klassen** (State)
+- CSS steuert Aussehen/Animation/Responsiveness
+
+Die zentrale API ist `element.classList`:
+
+```javascript
+panel.classList.add('is-open');
+panel.classList.remove('is-open');
+panel.classList.toggle('is-open');
+panel.classList.toggle('is-open', true);  // explizit setzen
+panel.classList.contains('is-open');
+```
+
+#### Beispiel A: Active Navigation
+
+HTML:
+
+```html
+<nav class="nav">
+    <a class="nav-link is-active" href="#home">Home</a>
+    <a class="nav-link" href="#about">About</a>
+</nav>
+```
+
+JS:
+
+```javascript
+const links = document.querySelectorAll('.nav-link');
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove('is-active'));
+        link.classList.add('is-active');
+    });
+});
+```
+
+CSS (UI-Logik in CSS):
+
+```css
+.nav-link.is-active {
+    background-color: green;
+    color: white;
+}
+```
+
+#### Beispiel B: Modal / Overlay öffnen und schließen
+
+JS:
+
+```javascript
+const openBtn = document.querySelector('[data-open-modal]');
+const closeBtn = document.querySelector('[data-close-modal]');
+const modal = document.querySelector('[data-modal]');
+
+if (!openBtn || !closeBtn || !modal) throw new Error('Modal-Markup unvollstaendig');
+
+const openModal = () => {
+    modal.classList.add('is-open');
+    document.body.classList.add('no-scroll');
+};
+
+const closeModal = () => {
+    modal.classList.remove('is-open');
+    document.body.classList.remove('no-scroll');
+};
+
+openBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal(); // Klick auf Backdrop
+});
+```
+
+CSS:
+
+```css
+.modal {
+    display: none;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+```
+
+#### Beispiel C: Loading/Disabled State bei Buttons
+
+```javascript
+const saveBtn = document.querySelector('#save');
+if (!saveBtn) throw new Error('save button fehlt');
+
+const setLoading = (isLoading) => {
+    saveBtn.classList.toggle('is-loading', isLoading);
+    saveBtn.disabled = isLoading;
+};
+
+saveBtn.addEventListener('click', async () => {
+    try {
+        setLoading(true);
+        // await fetch(...) / await irgendwas
+    } finally {
+        setLoading(false);
+    }
+});
+```
+
+### 6.8. Mini-Regeln fuer gutes DOM-UI
+
+- Halte DOM-Refs zentral (z.B. `const elements = {...}`) statt überall neu zu suchen.
+- Schreibe so, dass UI-State *sichtbar* ist: `is-open`, `is-active`, `is-loading`, `has-error`.
+- Manipuliere das Design nicht per JS (kein `el.style...` als Default). Nutze Klassen.
+- Fehler frueh abfangen: fehlende Nodes, falsche Selektoren, ungueltige Inputs.
+- Denke an Barrierefreiheit: wenn du etwas ausblendest, dann sinnvoll (z.B. `hidden`, `aria-expanded`).
+
+## 7. Objektorientierung: Klassen
 
 JS basierte ursprünglich auf Prototypen. ES6 führte das `class` Keyword ein, das „Syntactic Sugar“ ist, sich aber fast wie C# anfühlt.
 
@@ -181,11 +400,11 @@ const meinAuto = new Auto("VW", 2025);
 // meinAuto.#seriennummer -> Syntax Error (Privat)
 ```
 
-## 7. Asynchrone Programmierung
+## 8. Asynchrone Programmierung
 
 JavaScript läuft in einem einzigen Thread (Single Threaded Event Loop). Blockierende Operationen (wie Netzwerkanfragen) würden das UI einfrieren.
 
-### 7.1. Promises
+### 8.1. Promises
 
 Ein `Promise` ist ein Objekt, das einen Wert repräsentiert, der jetzt, später oder nie verfügbar sein wird.
 Zustände: `pending` (laufend) -> `fulfilled` (Erfolg) oder `rejected` (Fehler).
@@ -207,7 +426,7 @@ ladeDaten()
     .catch(error => console.error(error));
 ```
 
-### 7.2. Async / Await
+### 8.2. Async / Await
 
 Dies ist die moderne Art, Promises zu behandeln. Es sieht aus wie synchroner Code, pausiert aber die Ausführung der Funktion nicht-blockierend, bis das Promise aufgelöst ist.
 
@@ -225,7 +444,7 @@ async function appStart() {
 }
 ```
 
-## 8. Architektur moderner Frontend-Anwendungen
+## 9. Architektur moderner Frontend-Anwendungen
 
 Um ohne Frameworks (wie React oder Angular) sauberen, wartbaren Code zu schreiben, strukturieren wir unsere Applikation strikt nach dem Prinzip **State-Driven UI**. Wir trennen Daten (State) von der Darstellung (DOM).
 
