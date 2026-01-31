@@ -158,9 +158,9 @@ Wenn wir Frontend programmieren, programmieren wir fast immer das **DOM**: also 
 
 ### 6.1. Was ist das DOM?
 
-- Das DOM ist eine **Baumstruktur** aus Nodes (Elemente, Text, Kommentare, ...).
-- `document` ist der Einstiegspunkt.
-- Jedes HTML-Element wird zu einem DOM-Element-Objekt (z.B. ein `<button>` wird zu `HTMLButtonElement`).
+* Das DOM ist eine **Baumstruktur** aus Nodes (Elemente, Text, Kommentare, ...).
+* `document` ist der Einstiegspunkt.
+* Jedes HTML-Element wird zu einem DOM-Element-Objekt (z.B. ein `<button>` wird zu `HTMLButtonElement`).
 
 Wichtig: Das DOM ist **nicht** die HTML-Datei, sondern die *Live*-Repräsentation im Browser.
 
@@ -186,8 +186,8 @@ const button = document.querySelector('.buy-button');
 const items = document.querySelectorAll('.cart-item');
 ```
 
-- `querySelector(...)` gibt **das erste** passende Element (oder `null`).
-- `querySelectorAll(...)` gibt eine `NodeList` (iterierbar).
+* `querySelector(...)` gibt **das erste** passende Element (oder `null`).
+* `querySelectorAll(...)` gibt eine `NodeList` (iterierbar).
 
 **Fail-Fast Regel:** Rechne mit `null`, wenn ein Element nicht existiert.
 
@@ -202,8 +202,8 @@ if (!modal) throw new Error('Modal fehlt im HTML');
 titleEl.textContent = 'Hallo!';
 ```
 
-- `textContent`: sicher (keine HTML-Interpretation).
-- `innerHTML`: bequem, aber potenziell **unsicher** (XSS) und fehleranfällig.
+* `textContent`: sicher (keine HTML-Interpretation).
+* `innerHTML`: bequem, aber potenziell **unsicher** (XSS) und fehleranfällig.
 
 **Regel:** Nutze `textContent` und DOM-Erzeugung (`createElement`) statt `innerHTML`, außer du kontrollierst den Inhalt zu 100%.
 
@@ -232,8 +232,8 @@ button.addEventListener('click', (event) => {
 });
 ```
 
-- `event.target`: das *tatsächlich* geklickte Element (z.B. ein `<span>` im Button).
-- `event.currentTarget`: das Element, an dem der Listener hängt.
+* `event.target`: das *tatsächlich* geklickte Element (z.B. ein `<span>` im Button).
+* `event.currentTarget`: das Element, an dem der Listener hängt.
 
 **Event Delegation (sehr wichtig):** Ein Listener auf dem Container statt 100 Listener auf Kinder.
 
@@ -251,8 +251,8 @@ listEl.addEventListener('click', (e) => {
 
 Die beste UI-Architektur im Vanilla-Frontend ist oft:
 
-- JavaScript setzt/entfernt **CSS-Klassen** (State)
-- CSS steuert Aussehen/Animation/Responsiveness
+* JavaScript setzt/entfernt **CSS-Klassen** (State)
+* CSS steuert Aussehen/Animation/Responsiveness
 
 Die zentrale API ist `element.classList`:
 
@@ -365,11 +365,11 @@ saveBtn.addEventListener('click', async () => {
 
 ### 6.8. Mini-Regeln fuer gutes DOM-UI
 
-- Halte DOM-Refs zentral (z.B. `const elements = {...}`) statt überall neu zu suchen.
-- Schreibe so, dass UI-State *sichtbar* ist: `is-open`, `is-active`, `is-loading`, `has-error`.
-- Manipuliere das Design nicht per JS (kein `el.style...` als Default). Nutze Klassen.
-- Fehler frueh abfangen: fehlende Nodes, falsche Selektoren, ungueltige Inputs.
-- Denke an Barrierefreiheit: wenn du etwas ausblendest, dann sinnvoll (z.B. `hidden`, `aria-expanded`).
+* Halte DOM-Refs zentral (z.B. `const elements = {...}`) statt überall neu zu suchen.
+* Schreibe so, dass UI-State *sichtbar* ist: `is-open`, `is-active`, `is-loading`, `has-error`.
+* Manipuliere das Design nicht per JS (kein `el.style...` als Default). Nutze Klassen.
+* Fehler frueh abfangen: fehlende Nodes, falsche Selektoren, ungueltige Inputs.
+* Denke an Barrierefreiheit: wenn du etwas ausblendest, dann sinnvoll (z.B. `hidden`, `aria-expanded`).
 
 ## 7. Objektorientierung: Klassen
 
@@ -402,46 +402,328 @@ const meinAuto = new Auto("VW", 2025);
 
 ## 8. Asynchrone Programmierung
 
-JavaScript läuft in einem einzigen Thread (Single Threaded Event Loop). Blockierende Operationen (wie Netzwerkanfragen) würden das UI einfrieren.
+JavaScript läuft in einem einzigen Thread (Single Threaded Event Loop). Blockierende Operationen (wie Netzwerkanfragen) würden das UI einfrieren. Asynchrone Programmierung ist deshalb essentiell für moderne Webanwendungen.
 
-### 8.1. Promises
+### 8.1. Der Event Loop verstehen
 
-Ein `Promise` ist ein Objekt, das einen Wert repräsentiert, der jetzt, später oder nie verfügbar sein wird.
-Zustände: `pending` (laufend) -> `fulfilled` (Erfolg) oder `rejected` (Fehler).
+Der Event Loop ist JavaScripts Herzstück. Er ermöglicht das "scheinbare" Multitrotasking in einem Single-Thread:
+
+```txt
+┌─────────────────────────┐
+│         Call Stack       │  ← Wo Code ausgeführt wird
+├─────────────────────────┤
+│      Web APIs (Browser)  │  ← setTimeout, fetch, DOM Events
+├─────────────────────────┤
+│   Callback Queue         │  ← Wartende Callbacks
+├─────────────────────────┤
+│     Event Loop           │  ← Prüft: Stack leer? → Nächsten Callback
+└─────────────────────────┘
+```
+
+**Wichtig:** `async` Code läuft nicht parallel (keine Threads), sondern " später".
+
+### 8.2. Von Callbacks zu Promises
+
+**Historisch:** Callbacks (Callback Hell)
+
+```javascript
+// Alt und unübersichtlich
+ladeDaten(function(data) {
+    verarbeiteDaten(data, function(result) {
+        speichereResult(result, function() {
+            console.log("Fertig!");
+        });
+    });
+});
+```
+
+**Modern:** Promises ermöglichen flache, lesbare Ketten.
+
+### 8.3. Promises im Detail
+
+Ein `Promise` repräsentiert einen Wert, der jetzt, später oder nie verfügbar ist.
+Zustände: `pending` (laufend) → `fulfilled` (Erfolg) oder `rejected` (Fehler).
 
 ```javascript
 function ladeDaten() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-             const erfolg = true;
-             if(erfolg) resolve("Daten geladen");
-             else reject("Fehler beim Laden");
+            const erfolg = true;
+            if (erfolg) {
+                resolve("Daten geladen");
+            } else {
+                reject(new Error("Laden fehlgeschlagen"));
+            }
         }, 1000);
     });
 }
-
-// Nutzung mit .then() und .catch()
-ladeDaten()
-    .then(daten => console.log(daten))
-    .catch(error => console.error(error));
 ```
 
-### 8.2. Async / Await
+#### Promise Methoden
 
-Dies ist die moderne Art, Promises zu behandeln. Es sieht aus wie synchroner Code, pausiert aber die Ausführung der Funktion nicht-blockierend, bis das Promise aufgelöst ist.
+**Promise Chaining mit `.then()`:**
 
-**Try-Catch-Pattern (Standard für Fehlerbehandlung):**
+```javascript
+ladeDaten()
+    .then(daten => {
+        console.log("Schritt 1:", daten);
+        return daten.toUpperCase();
+    })
+    .then(daten => {
+        console.log("Schritt 2:", daten);
+        return verarbeiteWeiter(daten);
+    })
+    .catch(error => {
+        console.error("Fehler in der Kette:", error);
+    })
+    .finally(() => {
+        console.log("Cleanup (immer ausgeführt)");
+    });
+```
+
+**Promise Kombinationen:**
+
+```javascript
+const promise1 = fetch('/api/users');
+const promise2 = fetch('/api/posts');
+const promise3 = fetch('/api/comments');
+
+// Promise.all - Wartet auf ALLE (fail-fast)
+Promise.all([promise1, promise2, promise3])
+    .then(([users, posts, comments]) => {
+        console.log("Alles geladen");
+    })
+    .catch(error => {
+        console.log("Einer ist fehlgeschlagen");
+    });
+
+// Promise.allSettled - Wartet auf alle (egal ob Erfolg/Fehler)
+Promise.allSettled([promise1, promise2, promise3])
+    .then(results => {
+        results.forEach(result => {
+            if (result.status === 'fulfilled') {
+                console.log("Erfolg:", result.value);
+            } else {
+                console.log("Fehler:", result.reason);
+            }
+        });
+    });
+
+// Promise.race - Erstes Ergebnis (Timeout-Pattern)
+const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('Timeout')), 5000)
+);
+
+Promise.race([ladeDaten(), timeout])
+    .then(daten => console.log("Rechtzeitig geladen"))
+    .catch(err => console.log("Zu langsam oder Fehler"));
+```
+
+### 8.4. Async / Await Syntax
+
+`async/await` ist "Syntactic Sugar" für Promises - es sieht aus wie synchroner Code, ist aber nicht-blockierend.
 
 ```javascript
 async function appStart() {
     try {
         console.log("Lade...");
-        const daten = await ladeDaten(); // Wartet hier
-        console.log(daten);
+        const daten = await ladeDaten();
+        console.log("Ergebnis:", daten);
     } catch (error) {
         console.error("Es gab ein Problem:", error);
+    } finally {
+        console.log("Cleanup");
     }
 }
+```
+
+**Wichtige Regeln:**
+* `async` vor einer Funktion macht sie automatisch zu einer Promise-returning Funktion
+* `await` kann nur in `async` Funktionen verwendet werden (oder in Top-Level-Modules)
+* Ein `throw` in einer `async` Funktion rejectet das Promise
+
+#### Parallel vs. Seriell
+
+```javascript
+// ❌ Seriell (langsam): Eine nach der anderen
+async function langsam() {
+    const user = await fetchUser();
+    const posts = await fetchPosts();   // Wartet auf user!
+    const comments = await fetchComments(); // Wartet auf posts!
+    return { user, posts, comments };
+}
+
+// ✅ Parallel (schnell): Alle gleichzeitig
+async function schnell() {
+    const [user, posts, comments] = await Promise.all([
+        fetchUser(),
+        fetchPosts(),
+        fetchComments()
+    ]);
+    return { user, posts, comments };
+}
+```
+
+### 8.5. Fetch API - Praktisches Beispiel
+
+```javascript
+async function getUserData(userId) {
+    const url = `https://api.example.com/users/${userId}`;
+
+    try {
+        const response = await fetch(url);
+
+        // HTTP-Fehler prüfen (404, 500, etc.)
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error("API-Fehler:", error);
+        // Entscheiden: Weiterwerfen oder Default-Wert?
+        throw error;
+    }
+}
+
+// POST-Request mit JSON
+async function createUser(userData) {
+    const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    });
+
+    if (!response.ok) throw new Error('Erstellung fehlgeschlagen');
+    return await response.json();
+}
+```
+
+### 8.6. Fehlerbehandlung Patterns
+
+**Pattern 1: Try-Catch mit spezifischen Fehlertypen**
+
+```javascript
+async function robusteFunktion() {
+    try {
+        const daten = await ladeDaten();
+        return daten;
+    } catch (error) {
+        if (error.name === 'NetworkError') {
+            console.log('Netzwerkproblem - Retry?');
+        } else if (error.name === 'TimeoutError') {
+            console.log('Timeout - später nochmal versuchen');
+        } else {
+            console.log('Unbekannter Fehler:', error);
+        }
+        throw error; // Oder: return defaultWert;
+    }
+}
+```
+
+**Pattern 2: Result-Objekte statt Exceptions**
+
+```javascript
+async function ladeDatenSafe() {
+    try {
+        const daten = await fetchData();
+        return { success: true, data: daten };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+}
+
+// Verwendung
+const result = await ladeDatenSafe();
+if (result.success) {
+    console.log(result.data);
+} else {
+    console.log("Fehler:", result.error);
+}
+```
+
+**Pattern 3: Retry mit Exponential Backoff**
+
+```javascript
+async function fetchWithRetry(url, maxRetries = 3) {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            return await fetch(url);
+        } catch (error) {
+            if (i === maxRetries - 1) throw error;
+            const delay = Math.pow(2, i) * 1000; // 1s, 2s, 4s
+            console.log(`Retry ${i + 1} in ${delay}ms...`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+    }
+}
+```
+
+### 8.7. Häufige Fehler vermeiden
+
+```javascript
+// ❌ Vergessen zu await
+async function falsch() {
+    const daten = fetchData(); // Promise, nicht das Ergebnis!
+    console.log(daten); // Promise {<pending>}
+}
+
+// ✅ Richtig mit await
+async function richtig() {
+    const daten = await fetchData();
+    console.log(daten); // Die tatsächlichen Daten
+}
+
+// ❌ Catch ohne Rethrow (stille Fehler)
+async function problematisch() {
+    try {
+        return await riskanteOperation();
+    } catch (e) {
+        console.log("Fehler ignoriert"); // Daten werden nie zurückgegeben!
+    }
+}
+
+// ✅ Richtig: Fehler weitergeben oder default
+async function besser() {
+    try {
+        return await riskanteOperation();
+    } catch (e) {
+        console.log("Fehler:", e);
+        return { error: true, message: e.message }; // Oder: throw e;
+    }
+}
+
+// ❌ Array.map mit async (erzeugt Array von Promises)
+async function mapFalsch(userIds) {
+    return userIds.map(async id => await fetchUser(id));
+    // Rückgabe: [Promise, Promise, Promise] - nicht die Daten!
+}
+
+// ✅ Richtig: Promise.all warten
+async function mapRichtig(userIds) {
+    const promises = userIds.map(id => fetchUser(id));
+    return await Promise.all(promises);
+    // Rückgabe: [User1, User2, User3]
+}
+```
+
+### 8.8. Microtasks und Reihenfolge
+
+```javascript
+console.log('1');
+
+setTimeout(() => console.log('2'), 0);
+
+Promise.resolve().then(() => console.log('3'));
+
+console.log('4');
+
+// Ausgabe: 1, 4, 3, 2
+// Warum? Promises (Microtasks) haben Priorität vor setTimeout (Macrotasks)
 ```
 
 ## 9. Architektur moderner Frontend-Anwendungen
