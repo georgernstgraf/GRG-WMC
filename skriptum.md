@@ -166,7 +166,7 @@ Wichtig: Das DOM ist **nicht** die HTML-Datei, sondern die *Live*-Repräsentatio
 
 ### 6.2. Wann darf ich auf das DOM zugreifen?
 
-Wenn dein Skript vor dem HTML geladen wird, sind Elemente noch nicht vorhanden.
+Wenn Ihr Skript vor dem HTML geladen wird, sind Elemente noch nicht vorhanden.
 Sicher ist:
 
 ```javascript
@@ -205,7 +205,7 @@ titleEl.textContent = 'Hallo!';
 * `textContent`: sicher (keine HTML-Interpretation).
 * `innerHTML`: bequem, aber potenziell **unsicher** (XSS) und fehleranfällig.
 
-**Regel:** Nutze `textContent` und DOM-Erzeugung (`createElement`) statt `innerHTML`, außer du kontrollierst den Inhalt zu 100%.
+**Regel:** Nutze `textContent` und DOM-Erzeugung (`createElement`) statt `innerHTML`, außer Sie kontrollieren den Inhalt zu 100%.
 
 ### 6.5. Elemente erzeugen/entfernen
 
@@ -363,13 +363,13 @@ saveBtn.addEventListener('click', async () => {
 });
 ```
 
-### 6.8. Mini-Regeln fuer gutes DOM-UI
+### 6.8. Mini-Regeln für gutes DOM-UI
 
 * Halte DOM-Refs zentral (z.B. `const elements = {...}`) statt überall neu zu suchen.
 * Schreibe so, dass UI-State *sichtbar* ist: `is-open`, `is-active`, `is-loading`, `has-error`.
 * Manipuliere das Design nicht per JS (kein `el.style...` als Default). Nutze Klassen.
-* Fehler frueh abfangen: fehlende Nodes, falsche Selektoren, ungueltige Inputs.
-* Denke an Barrierefreiheit: wenn du etwas ausblendest, dann sinnvoll (z.B. `hidden`, `aria-expanded`).
+* Fehler früh abfangen: fehlende Nodes, falsche Selektoren, ungültige Inputs.
+* Denke an Barrierefreiheit: wenn Sie etwas ausblendest, dann sinnvoll (z.B. `hidden`, `aria-expanded`).
 
 ## 7. Objektorientierung: Klassen
 
@@ -406,28 +406,28 @@ JavaScript läuft in einem einzigen Thread (Single Threaded Event Loop). Blockie
 
 ### 8.1. Der Event Loop verstehen
 
-Der Event Loop ist JavaScripts Herzstück. Er ermöglicht das "scheinbare" Multitrotasking in einem Single-Thread:
+Der Event Loop ist JavaScripts Herzstück. Er ermöglicht das "scheinbare" Multitasking in einem Single-Thread:
 
 ```txt
-┌─────────────────────────┐
-│         Call Stack       │  ← Wo Code ausgeführt wird
-├─────────────────────────┤
-│      Web APIs (Browser)  │  ← setTimeout, fetch, DOM Events
-├─────────────────────────┤
-│   Callback Queue         │  ← Wartende Callbacks
-├─────────────────────────┤
-│     Event Loop           │  ← Prüft: Stack leer? → Nächsten Callback
-└─────────────────────────┘
++-------------------------+
+|         Call Stack      |  <-- Wo Code ausgefuehrt wird
++-------------------------+
+|     Web APIs (Browser)  |  <-- setTimeout, fetch, DOM Events
++-------------------------+
+|   Callback Queue        |  <-- Wartende Callbacks
++-------------------------+
+|     Event Loop          |  <-- Prueft: Stack leer? -> Naechsten Callback
++-------------------------+
 ```
 
-**Wichtig:** `async` Code läuft nicht parallel (keine Threads), sondern " später".
+**Wichtig:** `async` Code läuft nicht parallel (keine Threads), sondern "später".
 
 ### 8.2. Von Callbacks zu Promises
 
 **Historisch:** Callbacks (Callback Hell)
 
 ```javascript
-// Alt und unübersichtlich
+// Alt und unuebersichtlich
 ladeDaten(function(data) {
     verarbeiteDaten(data, function(result) {
         speichereResult(result, function() {
@@ -442,7 +442,7 @@ ladeDaten(function(data) {
 ### 8.3. Promises im Detail
 
 Ein `Promise` repräsentiert einen Wert, der jetzt, später oder nie verfügbar ist.
-Zustände: `pending` (laufend) → `fulfilled` (Erfolg) oder `rejected` (Fehler).
+Zustände: `pending` (laufend) -> `fulfilled` (Erfolg) oder `rejected` (Fehler).
 
 ```javascript
 function ladeDaten() {
@@ -477,7 +477,7 @@ ladeDaten()
         console.error("Fehler in der Kette:", error);
     })
     .finally(() => {
-        console.log("Cleanup (immer ausgeführt)");
+        console.log("Cleanup (immer ausgefuehrt)");
     });
 ```
 
@@ -538,6 +538,7 @@ async function appStart() {
 ```
 
 **Wichtige Regeln:**
+
 * `async` vor einer Funktion macht sie automatisch zu einer Promise-returning Funktion
 * `await` kann nur in `async` Funktionen verwendet werden (oder in Top-Level-Modules)
 * Ein `throw` in einer `async` Funktion rejectet das Promise
@@ -545,7 +546,7 @@ async function appStart() {
 #### Parallel vs. Seriell
 
 ```javascript
-// ❌ Seriell (langsam): Eine nach der anderen
+// Seriell (langsam): Eine nach der anderen
 async function langsam() {
     const user = await fetchUser();
     const posts = await fetchPosts();   // Wartet auf user!
@@ -553,7 +554,7 @@ async function langsam() {
     return { user, posts, comments };
 }
 
-// ✅ Parallel (schnell): Alle gleichzeitig
+// Parallel (schnell): Alle gleichzeitig
 async function schnell() {
     const [user, posts, comments] = await Promise.all([
         fetchUser(),
@@ -573,7 +574,7 @@ async function getUserData(userId) {
     try {
         const response = await fetch(url);
 
-        // HTTP-Fehler prüfen (404, 500, etc.)
+        // HTTP-Fehler pruefen (404, 500, etc.)
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
@@ -616,7 +617,7 @@ async function robusteFunktion() {
         if (error.name === 'NetworkError') {
             console.log('Netzwerkproblem - Retry?');
         } else if (error.name === 'TimeoutError') {
-            console.log('Timeout - später nochmal versuchen');
+            console.log('Timeout - spaeter nochmal versuchen');
         } else {
             console.log('Unbekannter Fehler:', error);
         }
@@ -666,28 +667,28 @@ async function fetchWithRetry(url, maxRetries = 3) {
 ### 8.7. Häufige Fehler vermeiden
 
 ```javascript
-// ❌ Vergessen zu await
+// Vergessen zu await
 async function falsch() {
     const daten = fetchData(); // Promise, nicht das Ergebnis!
     console.log(daten); // Promise {<pending>}
 }
 
-// ✅ Richtig mit await
+// Richtig mit await
 async function richtig() {
     const daten = await fetchData();
-    console.log(daten); // Die tatsächlichen Daten
+    console.log(daten); // Die tatsaechlichen Daten
 }
 
-// ❌ Catch ohne Rethrow (stille Fehler)
+// Catch ohne Rethrow (stille Fehler)
 async function problematisch() {
     try {
         return await riskanteOperation();
     } catch (e) {
-        console.log("Fehler ignoriert"); // Daten werden nie zurückgegeben!
+        console.log("Fehler ignoriert"); // Daten werden nie zurueckgegeben!
     }
 }
 
-// ✅ Richtig: Fehler weitergeben oder default
+// Richtig: Fehler weitergeben oder default
 async function besser() {
     try {
         return await riskanteOperation();
@@ -697,17 +698,17 @@ async function besser() {
     }
 }
 
-// ❌ Array.map mit async (erzeugt Array von Promises)
+// Array.map mit async (erzeugt Array von Promises)
 async function mapFalsch(userIds) {
     return userIds.map(async id => await fetchUser(id));
-    // Rückgabe: [Promise, Promise, Promise] - nicht die Daten!
+    // Rueckgabe: [Promise, Promise, Promise] - nicht die Daten!
 }
 
-// ✅ Richtig: Promise.all warten
+// Richtig: Promise.all warten
 async function mapRichtig(userIds) {
     const promises = userIds.map(id => fetchUser(id));
     return await Promise.all(promises);
-    // Rückgabe: [User1, User2, User3]
+    // Rueckgabe: [User1, User2, User3]
 }
 ```
 
