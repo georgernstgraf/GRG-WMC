@@ -1,4 +1,4 @@
-# Urls für Website Assessment:
+# Urls für Website Assessment
 
 - Dominic: <http://192.168.21.140:5500/WMC/Webdesign/>
 - Jakob: <http://192.168.21.80:5500/>
@@ -8,7 +8,8 @@
 - Luka: <http://192.168.21.76:5500/index_fixed.html>
 - Can: <http://192.168.21.211:5500/>
 - Martin D: <http://192.168.21.111:5500/>
-- Rodion: <http://192.168.21.186:5500/> 
+- Rodion: <http://192.168.21.186:5500/>
+- Alex B.: <http://192.168.21.82:5500/HTML%20seiten%20und%20css/test.html>
 
 Noch offen:
 

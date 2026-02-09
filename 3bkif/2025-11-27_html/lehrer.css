@@ -3,7 +3,7 @@ table {
     font-weight: normal;
 }
 
-table.style1 {
+main table.style1 {
     width: 90%;
     margin: 0 auto;
     border: 4px dotted red;
