@@ -1,5 +1,11 @@
 # sj25-26-34aaif-wmc
 
+## 2026-02-11 intro javascript
+
+- datentypen
+- let, const
+- functions, arguments
+
 ## 2026-01-07
 
 Am 14.1. und 21.1. finden im Unterricht die Projektabgaben mit
