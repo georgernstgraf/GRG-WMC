@@ -1,5 +1,17 @@
 # sj25-26-34aaif-wmc
 
+## 2026-02-18 fs functions
+
+- wh .. insbes. functions
+- das Arguments object .. siehe Folie js-functions
+
+siehe auch den code von heute
+
+- template strings
+- document.getElementByXXXXX
+
+HÜ: kleinen Taschenrechner ausgehend v. heutigem code.
+
 ## 2026-02-11 intro javascript
 
 - datentypen
