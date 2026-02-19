@@ -1,5 +1,24 @@
 # sj25-26-34bkif-wmc
 
+## TEST vorläufig am 23.4
+
+## mikro-tests unangekündigt
+
+## 2026-02-19__javascript intro
+
+- interpretierte Sprache
+- runtimes: node deno browser
+- javascript datentypen / typeof
+  - string
+  - number
+  - boolean
+  - bigint (eg. 23n)
+- variable deklaration let const
+- comment: "//" od. "/*.....*/"
+- unterschied == und ===
+- functions arguments (auch unabhängig von Klassen)
+- json javascript object notation { "x": 42 }
+
 ## Abgabe Website
 
 - Deadline: 8. Jänner 23:59
