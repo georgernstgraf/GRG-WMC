@@ -13,8 +13,9 @@
 - for (const [index, value] **of** a.entries()) { console.log(`${index}: ${value}`); }
 - bigInt: 1n
 - a.sort((e1,e2) => {return '<0' | 0 | '>0' })
-
 SÜ / HÜ:
+
+- a = [23, false, -7n, true, "Vladimir", {age: 11}]
 
 Ein array sortieren, welches untersch. Dateentypen hat, zuerst:
 
