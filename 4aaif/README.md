@@ -1,5 +1,26 @@
 # sj25-26-34aaif-wmc
 
+## 2026-02-25 javascript in action
+
+- browser console für errors
+- index.html immer besser mit kleinem i
+- eval und seine Problematik
+- document.*getElementbyId und -querySelector..
+- array / functions
+- anonyme / lambda - functions
+- for (let i ...)
+- template strings+
+- for (const [index, value] **of** a.entries()) { console.log(`${index}: ${value}`); }
+- bigInt: 1n
+- a.sort((e1,e2) => {return '<0' | 0 | '>0' })
+
+SÜ / HÜ:
+
+Ein array sortieren, welches untersch. Dateentypen hat, zuerst:
+
+- nach Datentyp
+- dann nach Wert
+
 ## 2026-02-18 fs functions
 
 - wh .. insbes. functions
