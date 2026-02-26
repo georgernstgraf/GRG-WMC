@@ -4,6 +4,12 @@
 
 ## mikro-tests unangekündigt
 
+## 2026-02-26
+
+typescript kurze demo
+functions folie Unterlagen/JS/JS-Functions/JS-Functions-GRG.pdf
+demo files
+
 ## 2026-02-19__javascript intro
 
 - interpretierte Sprache
