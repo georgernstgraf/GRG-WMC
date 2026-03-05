@@ -1,5 +1,29 @@
 # sj25-26-34aaif-wmc
 
+## 2026-03-04_array methods
+
+`import personen from "./persons.json" with { type: "json" };`
+
+Array MAP: (in ein anderes array transponieren)
+
+sehr verbose: `personen.map( (pers) => { return pers.alter } )`
+erwas kleiner (parameter nicht in klammer):  `personen.map( pers => { return pers.alter } )`
+Das geht NUR mit EINEM Parameter
+`personen.map( pers => pers.alter )` KÜRZEST mögliche Form von Arrow func.
+
+```js
+> personen.filter( p => p.alter <= 30 ).map( p => p.name )
+[ "Lukas Huber", "Mateo Rossi", "Julian Novak" ]
+```
+
+array.slice(startindex, endindex) - gibt neues array zurück, das die Elemente von startindex bis endindex-1 enthält
+
+Neues Array mit Namen aller Personen:
+const namen = personen.map(person => person.name);
+
+Gesamtgewicht aller Personen:
+personen.reduce((acc, person) => acc + person.weight, 0)
+
 ## 2026-02-25 javascript in action
 
 - browser console für errors
