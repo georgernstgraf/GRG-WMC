@@ -2,6 +2,27 @@
 
 ## TEST vorläufig am 23.4
 
+## 2026-03-05
+
+clean functions, bsp nicht clean:
+
+```javascript
+> a
+12
+> function f() {
+    a = 23; // HIER wird die globale Variable a verändert, das ist nicht clean
+ }
+undefined
+> a
+12
+> f()
+undefined
+> a
+23
+```
+
+JSON.stringify() und JSON.parse() detailliert besprochen
+
 ## mikro-tests unangekündigt
 
 ## 2026-02-26
