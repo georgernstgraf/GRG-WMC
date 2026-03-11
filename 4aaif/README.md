@@ -1,5 +1,13 @@
 # sj25-26-34aaif-wmc
 
+## 2026-03-11_js array übungen und HÜ
+
+Frage js runtimes:
+
+- node.js (v8 engine v. google)
+- deno (v8 engine v. google)
+- bun
+
 ## 2026-03-04_array methods
 
 `import personen from "./persons.json" with { type: "json" };`
