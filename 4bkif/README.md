@@ -2,7 +2,23 @@
 
 ## TEST vorläufig am 23.4
 
+## 2026-03-12
+
+Folie "04_JavaScript_Objekte.pdf" besprochen.
+
+Empfehlung DSAI: <https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&si=sefx1YzJGHWlhRAa>
+Empfehlung FreeCodeCamp: <https://www.freecodecamp.org/>
+Weitere gut Plattform: <https://www.boot.dev/>
+
+Construktor in Klasse
+Ternärer Operator ` ? ... : `
+Truthy booleans
+a ? b : c "Wenn a, dann b sonst c"
+Template STrings
+
 ## 2026-03-05
+
+**mini-test findet statt**
 
 clean functions, bsp nicht clean:
 
