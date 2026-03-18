@@ -1,5 +1,10 @@
 # sj25-26-34aaif-wmc
 
+- defer
+- doch kein onclick= sondern addEventListener
+- exceptions und try catch, danach:
+- knowledge assessment
+
 ## 2026-03-18
 
 wie krieg ichs in den Browser?
