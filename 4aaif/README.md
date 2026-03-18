@@ -9,6 +9,8 @@
 
 ## 2026-03-18
 
+HÜ vorhanden
+
 wie krieg ichs in den Browser?
 
 - store as global variable
