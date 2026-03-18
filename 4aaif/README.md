@@ -1,5 +1,15 @@
 # sj25-26-34aaif-wmc
 
+## 2026-03-18
+
+wie krieg ichs in den Browser?
+
+- store as global variable
+- Unterschied temp1.innerText und temp1.innerHTML
+- x = document.querySelector("#temp1"): ALLE gelernten CSS Selectors funktionieren hier
+- querySelectorAll gibt eine NodeList zurück (Array.from(...) oder [...document.querySelectorAll(...)] umwandeln in Array)
+- onclick="funktion()"
+
 ## 2026-03-11_js array übungen und HÜ
 
 Frage js runtimes:

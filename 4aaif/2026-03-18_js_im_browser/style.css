@@ -1,0 +1,19 @@
+body {
+    place-items: center;
+    background-color: darkgray;
+}
+
+body h1:first-child {
+    padding: 1em;
+    border: 2px solid black;
+    color: red;
+}
+
+li {
+    color: blue;
+}
+
+body>div {
+    display: flex;
+    gap: 1em;
+}
