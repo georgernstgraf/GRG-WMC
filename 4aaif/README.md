@@ -1,5 +1,7 @@
 # sj25-26-34aaif-wmc
 
+[→ Hausübungen](./Hausübungen.md)
+
 - defer
 - doch kein onclick= sondern addEventListener
 - exceptions und try catch, danach:
