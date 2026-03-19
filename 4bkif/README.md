@@ -2,6 +2,29 @@
 
 ## TEST vorläufig am 23.4
 
+## 2026-03-19
+
+JS Arrays funktional ähnlich wie Collections in Java (Arraylist)
+JS Array ist ein Hybrid aus Java Array und ArrayList
+
+- array.length in JS <=> arrayList.size() in Java
+- array.splice() Einfügen bzw. entfernen eines oder mehrerer Elemente, modifiziert in-place
+- array.slice(...) bestimmte Ausschnitte erhalten
+- array.filter: callback(elem): boolean
+```js
+a.filter( (elem) => { return typeof elem === "string" && elem.length > 3 } )
+[ "raus", "Natur", "Helle Sonne" ]
+b.forEach((elem, idx) => console.log(`Element: ${elem}, Index: ${idx}`));
+Element: raus, Index: 0
+Element: in, Index: 1
+Element: die, Index: 2
+Element: Natur, Index: 3
+Element: Helle Sonne, Index: 4
+
+b.map( (elem) => { return {"wort": elem} })
+```
+a.foreach(...) callback funktion sollte void returnen
+
 ## 2026-03-12
 
 Folie "04_JavaScript_Objekte.pdf" besprochen.
@@ -15,6 +38,7 @@ Ternärer Operator ` ? ... : `
 Truthy booleans
 a ? b : c "Wenn a, dann b sonst c"
 Template STrings
+JSON gründlich
 
 ## 2026-03-05
 

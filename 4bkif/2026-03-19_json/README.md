@@ -1,22 +1,5 @@
 # Practice: Arrow Functions with filter, map, reduce
 
-## The Dataset
-
-Give students this array to start with:
-
-```js
-const students = [
-  { name: "Anna", age: 17, grade: 2 },
-  { name: "Ben", age: 16, grade: 4 },
-  { name: "Clara", age: 18, grade: 1 },
-  { name: "David", age: 17, grade: 5 },
-  { name: "Elena", age: 16, grade: 3 },
-  { name: "Felix", age: 19, grade: 2 },
-  { name: "Gina", age: 17, grade: 1 },
-  { name: "Hugo", age: 18, grade: 4 },
-];
-```
-
 ## Tasks (progressive difficulty)
 
 **Task 1 – filter:** Find all students who passed (grade ≤ 4). Store the result in `passed`.
