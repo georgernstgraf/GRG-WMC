@@ -4,6 +4,8 @@
 
 ## 2026-03-19
 
+Schul-/Hausübung im heutigen Ordner
+
 JS Arrays funktional ähnlich wie Collections in Java (Arraylist)
 JS Array ist ein Hybrid aus Java Array und ArrayList
 

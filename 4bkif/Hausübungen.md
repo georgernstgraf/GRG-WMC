@@ -1,5 +1,23 @@
 # Hausübungen – 4BKIF
 
+## Hausübung vom 19. März 2026
+
+### Thema: Arrow Functions mit filter, map, reduce
+
+**Aufgabe:** Bearbeitet die Übungsaufgaben im Ordner `2026-03-19_json/`.
+
+Verwendet die Datei `persons.json` (oder das Array in `script.js`) und löst folgende Aufgaben:
+
+1. **filter:** Alle Personen finden, die eine bestimmte Bedingung erfüllen
+2. **map:** Ein Array von Strings im Format `"Name (Alter)"` erstellen
+3. **filter + map:** Kombinieren – z.B. nur Namen von Personen, die eine Bedingung erfüllen
+4. **reduce:** Durchschnittswert berechnen (z.B. Durchschnittsalter)
+5. **Chaining (Bonus):** Mehrere Methoden in einer Kette verknüpfen
+
+**Hinweis:** Die Aufgaben bauen schrittweise aufeinander auf. Beginnt mit `filter` und arbeitet euch bis zu `reduce` vor.
+
+---
+
 ## Hausübung vom 15. Jänner 2026
 
 ### Thema: Schriftlicher Test
