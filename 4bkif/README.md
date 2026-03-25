@@ -1,6 +1,6 @@
 # sj25-26-34bkif-wmc
 
-## TEST vorläufig am 23.4
+## TEST am 23.4
 
 ## 2026-03-19
 
