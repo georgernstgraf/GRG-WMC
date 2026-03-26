@@ -1,5 +1,13 @@
 # WMC 3CAIF
 
+## PLF 7.5.2026
+
+## 2026-03-26
+
+Promises
+
+HÜ: Siehe heutiger Folder
+
 ## Terminplan bis Ende 25
 
 ## Videos Kevin Powell
