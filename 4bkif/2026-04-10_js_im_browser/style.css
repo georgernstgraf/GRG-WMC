@@ -1,0 +1,7 @@
+body {
+    place-items: center;
+}
+
+thead>tr>th {
+    cursor: pointer;
+}
