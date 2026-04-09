@@ -4,13 +4,6 @@ Liste auf github: <https://github.com/public-apis/public-apis>
 
 Sehr gerne wird das dort gelistete "Pokemon API" verwendet!
 
-## point me to a list of publicly available json apis
-
-Antwort deepseek:
-
-Here’s a list of publicly available JSON APIs across various categories.
-These APIs return data in JSON format, making them easy to integrate into applications:
-
 ### **General Purpose APIs**
 
 1. **JSONPlaceholder**
