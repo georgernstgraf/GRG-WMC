@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Lukas Huber",
+        "groesse": 182,
+        "geburtsdatum": "1997-05-12",
+        "herkunft": "Österreich",
+        "gewicht": 78.5
+    },
+    {
+        "id": 2,
+        "name": "Sarah Meyer",
+        "groesse": 165,
+        "geburtsdatum": "1991-11-20",
+        "herkunft": "Deutschland",
+        "gewicht": 62.0
+    },
+    {
+        "id": 3,
+        "name": "Mateo Rossi",
+        "geburtsdatum": "2006-02-28",
+        "groesse": 175,
+        "herkunft": "Italien",
+        "gewicht": 70.2
+    },
+    {
+        "id": 4,
+        "name": "Elena Fischer",
+        "groesse": 170,
+        "geburtsdatum": "1980-08-05",
+        "herkunft": "Schweiz",
+        "gewicht": 65.8
+    },
+    {
+        "id": 5,
+        "name": "Julian Novak",
+        "groesse": 190,
+        "geburtsdatum": "2003-12-15",
+        "herkunft": "Österreich",
+        "gewicht": 85.3
+    },
+    {
+        "id": 6,
+        "name": "Sophie Dubois",
+        "groesse": 168,
+        "geburtsdatum": "1994-03-10",
+        "herkunft": "Frankreich",
+        "gewicht": 59.5
+    },
+    {
+        "id": 7,
+        "name": "Erik Lindström",
+        "groesse": 185,
+        "geburtsdatum": "1973-10-22",
+        "herkunft": "Schweden",
+        "gewicht": 92.1
+    }
+]
