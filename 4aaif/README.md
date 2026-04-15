@@ -1,4 +1,4 @@
-# sj25-26-34aaif-wmc
+# 4aaif wmc
 
 ## PLF Termin:
 
