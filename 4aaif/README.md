@@ -1,17 +1,23 @@
 # 4aaif wmc
 
-## PLF Termin:
-
 [→ Hausübungen](./Hausübungen.md)
+
+## Stundenwiederholungen:
+
+- 22.4. stundenWH
+- mitte/ende mai auch
+- evtl. mitte Juni
+
+## 2026-04-15
+
+github public-apis projekt ansehen und entscheiden mit welchem API will ich ein Projekt machen.
+
+## 2026-04-08
 
 - defer
 - doch kein onclick= sondern addEventListener
 - exceptions und try catch, danach:
 - knowledge assessment
-
-## 2026-04-15
-
-github public-apis projekt ansehen und entscheiden mit welchem API will ich ein Projekt machen.
 
 ## 2026-03-18
 

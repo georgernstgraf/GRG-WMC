@@ -2,10 +2,11 @@
 
 ## Wintersemester
 
-Die Note setzt sich aus Leistungen in 3 Bereichen zusammen:
+Die Note setzt sich aus Leistungen in diesen Bereichen zusammen:
 
+- Aufmerksamkeit im Unterricht
 - zeitnahmes Hochladen (git) der Aufgabenstellungen
-- 1-2 schriftliche Arbeiten (mutliple-choice)
+- ca. 3-4 schriftliche Stundenwiederholungen (mutliple-choice + Freitext)
 - 1 Portfolio Projekt
 
 ## Portfolio Projekt
