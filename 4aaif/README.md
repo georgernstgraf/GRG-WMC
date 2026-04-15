@@ -9,6 +9,10 @@
 - exceptions und try catch, danach:
 - knowledge assessment
 
+## 2026-04-15
+
+github public-apis projekt ansehen und entscheiden mit welchem API will ich ein Projekt machen.
+
 ## 2026-03-18
 
 HÜ vorhanden
