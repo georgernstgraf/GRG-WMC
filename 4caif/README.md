@@ -2,6 +2,12 @@
 
 ## PLF 7.5.2026
 
+## 2026-04-16_TODOAPP
+
+HÜ:
+
+- todos sollen Prioritäten bekommen, WIE steht Ihnen frei.
+
 ## 2026-04-09_js_im_browser
 
 HÜ:
