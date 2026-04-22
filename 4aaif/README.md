@@ -4,9 +4,23 @@
 
 ## Stundenwiederholungen:
 
-- 22.4. stundenWH
+- keine große WMC PLF
+- 29.4. stundenWH (promises, async/await, fetch, dom manipulation vom 22.4.)
 - mitte/ende mai auch
 - evtl. mitte Juni
+
+## 2026-04-22
+
+dom manipulation
+
+- document.querySelector
+- document.querySelectorAll
+- innerText vs innerHTML
+- document.createElement
+- element.appendChild
+- element.remove(Child)
+- element.classList.add/remove/toggle
+- addEventListener mit callback functions
 
 ## 2026-04-15
 
