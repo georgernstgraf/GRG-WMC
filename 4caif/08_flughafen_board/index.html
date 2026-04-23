@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flughafen-Board WebApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Flughafen-Board</h1>
+                <p id="flight-summary" class="counter"></p>
+            </div>
+            <div class="clock-box">
+                <span class="clock-label">Aktuelle Zeit</span>
+                <strong id="current-time"></strong>
+            </div>
+        </header>
+        <section class="panel form-panel">
+            <input id="flight-code-input" type="text" placeholder="Flugcode">
+            <input id="flight-destination-input" type="text" placeholder="Ziel">
+            <select id="flight-type-select">
+                <option value="arrival">Arrival</option>
+                <option value="departure">Departure</option>
+            </select>
+            <input id="flight-time-input" type="time">
+            <button id="flight-add-btn" type="button">Flug hinzufügen</button>
+        </section>
+        <section class="board-columns">
+            <section class="board-column arrivals-column">
+                <h2>Arrivals</h2>
+                <div class="board-table-head">
+                    <span>Time</span>
+                    <span>City</span>
+                    <span>Flight</span>
+                    <span>Status</span>
+                </div>
+                <ul id="arrival-list" class="card-list"></ul>
+            </section>
+            <section class="board-column departures-column">
+                <h2>Departures</h2>
+                <div class="board-table-head">
+                    <span>Time</span>
+                    <span>City</span>
+                    <span>Flight</span>
+                    <span>Status</span>
+                </div>
+                <ul id="departure-list" class="card-list"></ul>
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musikgeschäft WebApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <main class="page">
+        <h1>Musikgeschäft</h1>
+        <p id="instrument-summary" class="counter"></p>
+
+        <section class="deal-panel">
+            <p id="deal-text" class="deal-text"></p>
+        </section>
+
+        <section class="market-layout">
+            <section class="shop-section">
+                <h2>Shop</h2>
+                <div id="shop-grid" class="shop-grid"></div>
+            </section>
+
+            <aside class="cart-section">
+                <h2>Warenkorb</h2>
+                <ul id="cart-list" class="cart-list"></ul>
+                <p id="cart-subtotal" class="cart-subtotal"></p>
+                <p id="cart-discount" class="cart-discount"></p>
+                <p id="cart-total" class="cart-total"></p>
+                <div class="cart-actions">
+                    <button id="buy-btn" type="button">Kaufen</button>
+                    <button id="cancel-btn" type="button">Abbruch</button>
+                </div>
+            </aside>
+        </section>
+
+        <section class="sales-section">
+            <h2>Bestellprotokoll</h2>
+            <ul id="sales-log" class="sales-log"></ul>
+            <p id="sales-summary" class="sales-summary"></p>
+        </section>
+    </main>
+</body>
+
+</html>
