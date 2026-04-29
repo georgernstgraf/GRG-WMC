@@ -9,6 +9,15 @@
 - mitte/ende mai auch
 - evtl. mitte Juni
 
+## 2026-04-29
+
+Heute:
+- typescript primer
+- promises, async/await wiederholt
+- transpile-deno projekt upgeloadet.
+
+HÜ: transpile projet ausputzen bis es keine Deno ts Fehler gibt.
+
 ## 2026-04-22
 
 dom manipulation
