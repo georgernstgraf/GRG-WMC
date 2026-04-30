@@ -1,8 +1,13 @@
 GET http://0.0.0.0:8000/app.ts
 ###
 
-GET http://localhost:8000/script.ts
+GET http://0.0.0.0:8000/flight-board.ts
 ###
-GET http://localhost:8000/essen
+
+GET http://0.0.0.0:8000/canvas-confetti.ts
 ###
-GET http://localhost:8000/hallo
+
+GET http://0.0.0.0:8000/chart-demo.ts
+###
+
+GET http://0.0.0.0:8000/lit-demo.ts

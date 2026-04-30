@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Chart Demo</title>
+    <link rel="stylesheet"
+          href="chart-demo.css">
+    <script src="chart-demo.ts"
+            defer></script>
+</head>
+
+<body>
+    <main class="chart-page">
+        <section class="chart-shell">
+            <div class="chart-copy">
+                <p class="eyebrow">Transpile Server Demo</p>
+                <h1>Chart.js im Browser</h1>
+                <p> Dieses Demo zeigt ein importiertes Visualisierungs-Paket, das direkt aus TypeScript gebundlet und an den Browser ausgeliefert
+                    wird. </p>
+                <button id="refresh-chart-button"
+                        type="button">Daten neu mischen</button>
+            </div>
+            <div class="chart-card">
+                <canvas id="chart-canvas"></canvas>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

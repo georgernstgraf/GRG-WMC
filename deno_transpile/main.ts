@@ -16,6 +16,7 @@ app.get("/:path{.+\\.ts$}", async (c) => {
 
     try {
         const result = await bundle(filePath, {
+            allowRemote: true,
             importMap,
             minify: !isDev,
             type: "module",

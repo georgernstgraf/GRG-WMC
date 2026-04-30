@@ -5,65 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Flughafen-Board WebApp</title>
+    <title>Transpile Demo Hub</title>
     <link rel="stylesheet"
           href="styles.css">
-    <script src="app.ts"
-            defer></script>
 </head>
 
 <body>
-    <main class="page">
-        <header class="page-header">
-            <div>
-                <h1>Flughafen-Board</h1>
-                <p id="flight-summary"
-                   class="counter"></p>
-            </div>
-            <div class="clock-box">
-                <span class="clock-label">Aktuelle Zeit</span>
-                <strong id="current-time"></strong>
-            </div>
-        </header>
-        <section class="panel form-panel">
-            <input id="flight-code-input"
-                   type="text"
-                   placeholder="Flugcode">
-            <input id="flight-destination-input"
-                   type="text"
-                   placeholder="Ziel">
-            <select id="flight-type-select">
-                <option value="arrival">Arrival</option>
-                <option value="departure">Departure</option>
-            </select>
-            <input id="flight-time-input"
-                   type="time">
-            <button id="flight-add-btn"
-                    type="button">Flug hinzufügen</button>
+    <main class="hub-page">
+        <section class="hub-hero">
+            <p class="hub-kicker">Deno + Browser TypeScript</p>
+            <h1>Transpile Demo Hub</h1>
+            <p class="hub-copy"> Diese Startseite ist die Weiche fuer kleine Browser-Demos. Jede Demo besitzt ihre eigene HTML-, CSS- und
+                TypeScript-Datei und wird vom Transpile-Server on demand ausgeliefert. </p>
         </section>
-        <section class="board-columns">
-            <section class="board-column arrivals-column">
-                <h2>Arrivals</h2>
-                <div class="board-table-head">
-                    <span>Time</span>
-                    <span>City</span>
-                    <span>Flight</span>
-                    <span>Status</span>
-                </div>
-                <ul id="arrival-list"
-                    class="card-list"></ul>
-            </section>
-            <section class="board-column departures-column">
-                <h2>Departures</h2>
-                <div class="board-table-head">
-                    <span>Time</span>
-                    <span>City</span>
-                    <span>Flight</span>
-                    <span>Status</span>
-                </div>
-                <ul id="departure-list"
-                    class="card-list"></ul>
-            </section>
+        <section class="hub-grid">
+            <a class="demo-card"
+               href="flight-board.html">
+                <span class="demo-label">Bestehendes Beispiel</span>
+                <h2>Flight Board</h2>
+                <p>Ein groesseres DOM-Beispiel mit Formular, Statuslogik und Live-Uhr.</p>
+                <strong>Zu flight-board.html</strong>
+            </a>
+            <a class="demo-card"
+               href="canvas-confetti.html">
+                <span class="demo-label">Import Demo</span>
+                <h2>Canvas Confetti</h2>
+                <p>Ein minimales Visual-Feedback-Projekt mit importiertem Browser-ESM-Paket.</p>
+                <strong>Zu canvas-confetti.html</strong>
+            </a>
+            <a class="demo-card"
+               href="chart-demo.html">
+                <span class="demo-label">Chart Demo</span>
+                <h2>Chart.js</h2>
+                <p>Ein kleines Dashboard mit Canvas, Datensaetzen und einem importierten Diagramm-Toolkit.</p>
+                <strong>Zu chart-demo.html</strong>
+            </a>
+            <a class="demo-card"
+               href="lit-demo.html">
+                <span class="demo-label">Component Demo</span>
+                <h2>Lit</h2>
+                <p>Eine Web-Component mit State, Styles und Rendering direkt aus einer TS-Datei.</p>
+                <strong>Zu lit-demo.html</strong>
+            </a>
         </section>
     </main>
 </body>

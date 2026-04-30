@@ -1,239 +1,96 @@
 body {
     margin: 0;
-    font-family: "Courier New", Courier, monospace;
-    background: radial-gradient(circle at top, #5c4128 0%, #2a1b11 32%, #120c08 100%);
-    color: #d4b66f;
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #1f1b17;
+    background:
+        radial-gradient(circle at top left, rgba(213, 149, 84, 0.32), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(84, 131, 196, 0.18), transparent 34%),
+        linear-gradient(135deg, #f7f1e7 0%, #ece4d4 100%);
 }
 
-.page {
-    max-width: 1180px;
+.hub-page {
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 32px 24px 48px;
 }
 
-.page-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 16px;
+.hub-hero {
+    max-width: 760px;
+    margin-bottom: 28px;
 }
 
-.page-header h1 {
-    margin: 0 0 8px;
+.hub-kicker {
+    margin: 0 0 10px;
+    color: #9d4b2d;
+    text-transform: uppercase;
     letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #ffe2a1;
+    font-size: 0.8rem;
 }
 
-.clock-box {
-    min-width: 180px;
-    padding: 12px 14px;
-    border-radius: 4px;
-    background: #1a130d;
-    border: 1px solid #5a4228;
-    text-align: right;
-    box-shadow: inset 0 0 0 1px rgba(255, 214, 122, 0.08);
+.hub-hero h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 5vw, 4.9rem);
+    line-height: 0.94;
 }
 
-.clock-label {
-    display: block;
-    font-size: 0.85rem;
-    color: #ad8d54;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+.hub-copy {
+    margin: 18px 0 0;
+    max-width: 45rem;
+    color: #5f564f;
+    font-size: 1.04rem;
+    line-height: 1.65;
 }
 
-#current-time {
-    font-size: 1.45rem;
-    color: #ffe7a8;
-    letter-spacing: 0.08em;
-}
-
-.panel {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 16px;
-    padding: 14px;
-    border-radius: 4px;
-    background: rgba(22, 15, 10, 0.9);
-    border: 1px solid #4e3922;
-}
-
-input,
-select,
-button {
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid #6f5432;
-    background: #2a1c12;
-    color: #f0cf86;
-    font: inherit;
-}
-
-button {
-    background: #6b4b24;
-    color: #ffe8ad;
-    cursor: pointer;
-}
-
-.counter {
-    font-weight: bold;
-    color: #cfb37b;
-    letter-spacing: 0.06em;
-}
-
-.board-columns {
+.hub-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 18px;
-    align-items: start;
 }
 
-.board-column {
-    background: linear-gradient(180deg, #1a120d 0%, #15100b 100%);
-    border: 1px solid #4e3922;
-    border-radius: 4px;
-    padding: 12px 12px 10px;
-    box-shadow: inset 0 0 0 1px rgba(255, 207, 112, 0.04);
+.demo-card {
+    display: block;
+    padding: 24px;
+    border-radius: 24px;
+    color: inherit;
+    text-decoration: none;
+    background: rgba(255, 252, 247, 0.85);
+    border: 1px solid rgba(90, 63, 40, 0.12);
+    box-shadow: 0 24px 60px rgba(92, 63, 32, 0.12);
+    transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
-.board-column h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #f1cd58;
+.demo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 80px rgba(92, 63, 32, 0.18);
+}
+
+.demo-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #8d6c4d;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 1.6rem;
+    font-size: 0.76rem;
 }
 
-.board-table-head {
-    display: grid;
-    grid-template-columns: 72px minmax(0, 1fr) 84px 154px;
-    gap: 10px;
-    padding: 0 8px 6px;
-    margin-bottom: 6px;
-    color: #c3a454;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid #3a2b1b;
-}
-
-.card-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 0;
-}
-
-.card-list li {
-    display: grid;
-    grid-template-columns: 72px minmax(0, 1fr) 84px 154px;
-    align-items: center;
-    gap: 10px;
-    background: #22170f;
-    border: 0;
-    border-bottom: 1px solid #322416;
-    border-radius: 0;
-    padding: 7px 8px;
-    min-height: 42px;
-}
-
-.arrival-card {
-    border-left: 3px solid #756246;
-}
-
-.departure-card {
-    border-left: 3px solid #756246;
-}
-
-.boarding {
-    background: #2a1b10;
-}
-
-.status-text {
-    font-weight: bold;
-}
-
-.flight-code,
-.flight-destination,
-.flight-time,
-.flight-status {
+.demo-card h2 {
     margin: 0;
+    font-size: 1.8rem;
 }
 
-.flight-code {
-    font-size: 1rem;
-    color: #d8be79;
-    letter-spacing: 0.08em;
+.demo-card p {
+    margin: 14px 0 18px;
+    color: #5f564f;
+    line-height: 1.6;
 }
 
-.flight-destination,
-.flight-time,
-.flight-status {
-    font-size: 0.92rem;
+.demo-card strong {
+    color: #b84b28;
 }
 
-.flight-destination {
-    color: #d6bf85;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-}
-
-.flight-time {
-    text-align: left;
-    color: #d9c28a;
-    letter-spacing: 0.08em;
-}
-
-.flight-status {
-    color: #a78f60;
-    text-align: left;
-}
-
-.boarding-status {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 24px;
-    padding: 0;
-    border-radius: 0;
-    background: transparent;
-    color: #ffd84a;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-@media (max-width: 840px) {
-    .page-header {
-        flex-direction: column;
-    }
-
-    .clock-box {
-        width: 100%;
-        text-align: left;
-    }
-
-    .board-columns {
-        grid-template-columns: 1fr;
-    }
-
-    .board-table-head {
-        display: none;
-    }
-
-    .card-list li {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .flight-code,
-    .flight-status {
-        grid-column: 1 / -1;
+@media (max-width: 640px) {
+    .hub-page {
+        padding: 24px 18px 36px;
     }
 }

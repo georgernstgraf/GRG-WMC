@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    color: #1f2033;
+    background:
+        radial-gradient(circle at top, rgba(84, 78, 196, 0.2), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(247, 165, 85, 0.18), transparent 24%),
+        linear-gradient(180deg, #f5f3ff 0%, #ece7fb 100%);
+}
+
+.lit-page {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+.lit-frame {
+    width: min(100%, 760px);
+    padding: 28px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 24px 80px rgba(60, 60, 110, 0.14);
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: #6b4fd3;
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.1rem, 4vw, 3.7rem);
+    line-height: 0.94;
+}
+
+.intro {
+    margin: 16px 0 24px;
+    color: #5d607f;
+    line-height: 1.65;
+}
