@@ -6,7 +6,7 @@
 // - Holds the state of the application
 // - This is the single source of truth for the application state
 
-let state = {
+const state = {
     todos: [
         { text: "CABS lernen", completed: false },
         { text: "NSCS lernen", completed: true },
@@ -18,26 +18,19 @@ let state = {
 // 2. STATE ACCESSORS/MUTATORS FN'S
 // - Functions that allow us to get and set the state
 // - Here we will create functions to add and remove todos
-function saveStateToLocalStorage() {
-    localStorage.setItem("todoAppState", JSON.stringify(state));
-}
-
 function addNewTodoItemToState(text) {
     state.todos.push({ text: text, completed: false });
-    saveStateToLocalStorage();
 }
 
 function toggleTodoState(todoObject) {
     todoObject.completed = !todoObject.completed;
-    saveStateToLocalStorage();
 }
 
 function deleteTodoObjectFromState(todoObject) {
     let idx = state.todos.indexOf(todoObject);
-    if (idx < 0) return;
-    // ab jetzt keine bekannten erros
-    state.todos.splice(idx, 1);
-    saveStateToLocalStorage();
+    if (idx !== -1) {
+        state.todos.splice(idx, 1);
+    }
 }
 
 // 3. DOM Node Refs
@@ -113,11 +106,7 @@ function onTodoObjectDelete(todoObject) {
 // - These are the initial bindings of the event handlers
 
 addBtn.addEventListener("click", (event) => onAddBtnPressed());
-window.state = state; // for debugging purposes
 
 // 8. INITIAL RENDER
 // - Here will call the render function to render the initial state of the application
-if (localStorage.getItem("todoAppState")) {
-    state = JSON.parse(localStorage.getItem("todoAppState"));
-}
 render();
