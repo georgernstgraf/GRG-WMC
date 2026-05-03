@@ -141,10 +141,21 @@
     "https://esm.sh/@types/ms@~2.1.0/index.d.ts": "https://esm.sh/@types/ms@2.1.0/index.d.ts"
   },
   "remote": {
+    "https://esm.sh/@lit/reactive-element@2.1.2/es2022/css-tag.mjs": "aa41150f5240714d45b3eee34be60c8eccf4bbfa6cd875b227d60e293403a24d",
+    "https://esm.sh/@lit/reactive-element@2.1.2/es2022/reactive-element.mjs": "1f298a24663276944fc3fb39680671d27272d0c5006040321a057c7e20a42d42",
+    "https://esm.sh/@lit/reactive-element@^2.1.0?target=es2022": "9239fd19148835edb34696973a6373b96f613131e20472dee6c6817fb43c400e",
     "https://esm.sh/@types/trusted-types@2.0.7/lib/index.js": "fabf6997a3adf11e45d11e3c4d58d0634ab98f9d72f3116f3694123818ccd457",
     "https://esm.sh/canvas-confetti@1.9.4": "776aa76203cc00d6376d8838abc2e532027793cb1c6ca8752c0fc5d551faa8e1",
     "https://esm.sh/chart.js@4.5.1": "feca6397e4aefedaa30b6014a0c57e18a0bbbfd49195fc871a624b1fd1b84951",
+    "https://esm.sh/lit-element@4.2.2/es2022/__lit-element.mjs": "78125b3bb867c07180bef717df0bb6d0479977c16f3a0ab6b68f997cef2b36a0",
+    "https://esm.sh/lit-element@^4.2.0/lit-element?target=es2022": "a268fca1b3707a7bdabfe3ded77432514794b42fc65137f8f94350cad08f5b75",
+    "https://esm.sh/lit-html@3.3.2/es2022/is-server.mjs": "e9e9606de80507c08c0b4f0456041d168d71d12eb4cc195eb8089a615d4e3fab",
+    "https://esm.sh/lit-html@3.3.2/es2022/lit-html.mjs": "79924b247b0711b9d38ccefee6c04658914ffb63bfc0587db33f92b8a56f13cb",
+    "https://esm.sh/lit-html@^3.3.0/is-server?target=es2022": "316d4ba81c596268359b8a47edbdbdf02311f8801e02aaa488cd38f2dc544fb0",
+    "https://esm.sh/lit-html@^3.3.0?target=es2022": "3d340e90dc7302e05f09628a67ca961139e59405afbfbe20140808b1d51908aa",
     "https://esm.sh/lit@3.3.2": "38ef8c65205f404039c666f37ec3a6b4abf653d5e928859b1ef5ae9c4e8c26ee",
+    "https://esm.sh/lit@3.3.2/es2022/lit.mjs": "54356f6a1a5b9b55979e63136ea6e5215114898703faef06311db8ef59c40d12",
+    "https://esm.sh/lit@3.3.2?target=es2022": "b4ffdb867a0a6e70f1248dc1a19405b8525ff80c91578b930d20b5bd22f5cdf3",
     "https://esm.sh/ms@2.1.3": "36f5aa7503ff0ff44ce9e3155a60362d8d3ae5db8db048be5764a3a515b6a263",
     "https://esm.sh/ms@2.1.3/denonext/ms.mjs": "9039464da1f4ae1c2042742d335c82556c048bbe49449b5d0cd5198193afa147"
   },

@@ -1,4 +1,4 @@
-import { Chart, registerables } from "chart.js";
+import { Chart, registerables } from "chart-js";
 
 function getRequiredElement<T extends HTMLElement>(id: string): T {
     const element = document.getElementById(id);
