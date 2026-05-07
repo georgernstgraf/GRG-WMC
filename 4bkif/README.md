@@ -1,6 +1,8 @@
 # sj25-26-34bkif-wmc
 
-## TEST am 23.4
+## 2026-05-07_typescript und transpilation
+
+Folie bis Seite 4 besprochen, siehe Unterlagen/JS/TypeScript/TypeScript-GRG.pdf
 
 ## 2026-04-10_js_im_browser
 
