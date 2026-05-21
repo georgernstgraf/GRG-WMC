@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>PLF Ticketautomat</title>
+    <link rel="stylesheet"
+          href="styles.css">
+    <script src="script.js"
+            defer></script>
+    <script src="tests.js"
+            defer></script>
+    <!-- <script src="solution.js"
+            defer></script> -->
+</head>
+
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">🚂 Ticketautomat</span>
+        <div class="navbar-tabs">
+            <button class="navbar-tab active"
+                    data-view="angabe-view">Angabe</button>
+            <button class="navbar-tab"
+                    data-view="website-view">Website</button>
+            <button class="navbar-tab"
+                    data-view="tests-view">Tests</button>
+        </div>
+    </nav>
+    <section id="angabe-view"
+             class="view active">
+        <div class="angabe-page">
+            <h1>PLF &mdash; Ticketautomat WebApp</h1>
+            <p class="angabe-subtitle">4caif &middot; 7. Mai 2026 &middot; 112 Punkte (+10 Bonus)</p>
+            <div class="angabe-intro">
+                <p> Du arbeitest an einer Webanwendung für einen ÖBB-Ticketautomaten. In der Datei <code>script.js</code> ist der Code in <strong>8
+                        Sektionen</strong> gegliedert — das <strong>8-Punkte-Programm</strong>: </p>
+                <ol class="intro-list">
+                    <li><strong>Application State</strong> — Daten der Anwendung <em>(vorgegeben)</em></li>
+                    <li><strong>State Accessors / Mutators</strong> — State lesen &amp; ändern <em>(Aufgaben 2–5)</em></li>
+                    <li><strong>DOM Node Refs</strong> — HTML-Referenzen <em>(vorgegeben)</em></li>
+                    <li><strong>DOM Node Creation</strong> — Elemente erstellen <em>(Aufgabe 1)</em></li>
+                    <li><strong>Render Fn</strong> — State darstellen <em>(Aufgabe 5c)</em></li>
+                    <li><strong>Event Handlers</strong> — Auf Klicks reagieren <em>(Aufgabe 6)</em></li>
+                    <li><strong>Init Bindings</strong> — Listener verknüpfen <em>(Aufgabe 7)</em></li>
+                    <li><strong>Initial Render</strong> — Erstes Rendern <em>(vorgegeben)</em></li>
+                </ol>
+                <p> Wechsle zur Registerkarte <strong>Website</strong>, um das Ergebnis zu sehen. Sobald du <strong>Aufgabe 1</strong> gelöst hast,
+                    erscheinen die Zielkarten! </p>
+                <p> Unter <strong>Tests</strong> kannst du deine Funktionen prüfen. Auch in der <strong>Browser-Konsole</strong> (F12) sind alle
+                    Funktionen verfügbar. </p>
+            </div>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">1</span>
+                    <h2>createZielElement(ziel)</h2>
+                    <span class="task-points">25 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>createZielElement</code>, die ein <code>Ziel</code>-Objekt erhält und ein
+                    <strong>DOM-Element</strong> zurückgibt. Das Element soll ein <code>&lt;article&gt;</code> mit der CSS-Klasse
+                    <code>ziel-card</code> sein und folgende Kinder enthalten: </p>
+                <ul>
+                    <li>Ein <code>&lt;p&gt;</code> mit der Klasse <code>ziel-emoji</code> und dem Emoji</li>
+                    <li>Ein <code>&lt;h3&gt;</code> mit dem Namen</li>
+                    <li>Ein <code>&lt;p&gt;</code> mit der Klasse <code>ziel-typ</code> und dem Typ</li>
+                    <li>Ein <code>&lt;p&gt;</code> mit der Klasse <code>ziel-preis</code> und dem Preis (formatiert mit <code>.toFixed(2)</code> +
+                        <code>" Euro"</code>)</li>
+                </ul>
+                <pre class="task-signature">function createZielElement(ziel) {
+    // Dein Code hier
+    // Tipp: Nutze document.createElement() und .append()
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Erstelle jedes Kind-Element mit <code>document.createElement("p")</code>, setze
+                    <code>.textContent</code> und <code>.classList.add(...)</code>, und hänge alle mit <code>.append()</code> an das Article-Element.
+                </div>
+                <div class="task-section">Sektion 4: DOM Node Creation</div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">2</span>
+                    <h2>getTotalEinnahmen(tickets)</h2>
+                    <span class="task-points">10 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>getTotalEinnahmen</code>, die ein Array von <code>Ticket</code>-Objekten erhält und die
+                    <strong>Gesamtsumme aller Ticket-Summen</strong> als Zahl zurückgibt. </p>
+                <pre class="task-signature">function getTotalEinnahmen(tickets) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Nutze eine <code>for...of</code>-Schleife und greife mit <code>ticket.summe</code> auf die Summe
+                    zu. Vergiss nicht, das Ergebnis mit <code>return</code> zurückzugeben. </div>
+                <div class="task-section">Sektion 2: State Accessors / Mutators</div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">3</span>
+                    <h2>getByTyp(ziele, typ)</h2>
+                    <span class="task-points">15 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>getByTyp</code>, die ein Array von <code>Ziel</code>-Objekten und einen Typ-String erhält. Gib ein
+                    <strong>neues Array</strong> zurück, das nur die Ziele des angegebenen Typs enthält. </p>
+                <pre class="task-signature">function getByTyp(ziele, typ) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Nutze <code>.filter()</code>. Beispiel: <code>ziele.filter(z =&gt; z.typ === typ)</code>
+                </div>
+                <div class="task-section">Sektion 2: State Accessors / Mutators</div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">4</span>
+                    <h2>sortByPreisAsc / sortByPreisDesc</h2>
+                    <span class="task-points">15 Punkte</span>
+                </header>
+                <p> Schreibe zwei Funktionen: </p>
+                <ul>
+                    <li><code>sortByPreisAsc(ziele)</code> — aufsteigend nach Preis (8P)</li>
+                    <li><code>sortByPreisDesc(ziele)</code> — absteigend nach Preis (7P)</li>
+                </ul>
+                <pre class="task-signature">function sortByPreisAsc(ziele) {
+    // Dein Code hier
+}
+function sortByPreisDesc(ziele) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Nutze <code>.sort()</code> mit einem Comparator. Aufsteigend:
+                    <code>(a, b) =&gt; a.preis - b.preis</code>
+                </div>
+                <div class="task-section">Sektion 2: State Accessors / Mutators</div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">5</span>
+                    <h2>Automat-Funktionen</h2>
+                    <span class="task-points">15 Punkte</span>
+                </header>
+                <p>Schreibe drei Funktionen für den Ticketautomaten:</p>
+                <ol>
+                    <li><strong>einwerfen(betrag)</strong> — Guthaben erhöhen (5P)</li>
+                    <li><strong>resetEingabe()</strong> — Eingabe zurücksetzen (5P)</li>
+                    <li><strong>renderTicketInfo()</strong> — Guthaben und Preis im DOM anzeigen (5P)</li>
+                </ol>
+                <p>Für <code>renderTicketInfo</code>: Lies zuerst <code>anzahlInput.valueAsNumber</code> und speichere es in
+                    <code>state.anzahlPersonen</code>.</p>
+                <pre class="task-signature">function einwerfen(betrag) {
+    // state.eingeworfen += betrag;
+}
+function resetEingabe() {
+    // state.eingeworfen, ausgewaehltesZiel, anzahlPersonen zurücksetzen
+}
+function renderTicketInfo() {
+    // state.anzahlPersonen = anzahlInput.valueAsNumber;
+    // guthabenText und preisText aktualisieren
+}</pre>
+                <div class="task-hint"> 💡 Hinweis für renderTicketInfo: Lies zuerst die Personenanzahl mit
+                    <code>state.anzahlPersonen = anzahlInput.valueAsNumber</code>. Setze dann
+                    <code>guthabenText.textContent = state.eingeworfen + " Euro"</code>. Wenn ein Ziel ausgewählt ist, berechne den Preis mit
+                    <code>state.ausgewaehltesZiel.preis * state.anzahlPersonen</code>, sonst zeige <code>"—"</code>. </div>
+                <div class="task-section">Sektion 2+5: State Mutators + Render Fn</div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">6</span>
+                    <h2>Event Handler</h2>
+                    <span class="task-points">20 Punkte</span>
+                </header>
+                <p> Schreibe fünf Event-Handler-Funktionen (je 4 Punkte): </p>
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Funktion</th>
+                            <th>Aktion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>onFilterAlle()</code></td>
+                            <td><code>renderZiele(state.ziele)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>onFilterRegional()</code></td>
+                            <td><code>renderZiele(getByTyp(state.ziele, "Regional"))</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>onFilterIntercity()</code></td>
+                            <td><code>renderZiele(getByTyp(state.ziele, "Intercity"))</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>onSortAsc()</code></td>
+                            <td><code>renderZiele(sortByPreisAsc(state.ziele))</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>onSortDesc()</code></td>
+                            <td><code>renderZiele(sortByPreisDesc(state.ziele))</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="task-hint"> 💡 Jede Funktion ist nur <strong>ein einzelner Aufruf</strong> von <code>renderZiele(...)</code>. </div>
+                <div class="task-section">Sektion 6: Event Handlers</div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">7</span>
+                    <h2>Init Bindings</h2>
+                    <span class="task-points">12 Punkte</span>
+                </header>
+                <p> Verknüpfe die vorgegebenen Buttons und Inputs mit <code>addEventListener</code>, sodass beim Klicken die entsprechenden
+                    on*-Funktionen aufgerufen werden: </p>
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Funktion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>btnAll</code></td>
+                            <td><code>onFilterAlle</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnRegional</code></td>
+                            <td><code>onFilterRegional</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnIntercity</code></td>
+                            <td><code>onFilterIntercity</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnSortAsc</code></td>
+                            <td><code>onSortAsc</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnSortDesc</code></td>
+                            <td><code>onSortDesc</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>anzahlInput</code></td>
+                            <td><code>renderTicketInfo</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pre class="task-signature">btnAll.addEventListener("click", onFilterAlle);
+anzahlInput.addEventListener("input", renderTicketInfo);
+// ... die restlichen 4 Buttons</pre>
+                <div class="task-section">Sektion 7: Init Bindings</div>
+            </article>
+            <article class="task-card task-bonus">
+                <header class="task-header">
+                    <span class="task-number">⭐</span>
+                    <h2>Bonus: Ticketkauf-Interaktion</h2>
+                    <span class="task-points">+10 Punkte</span>
+                </header>
+                <p> Erweitere die Anwendung um die Ticketkauf-Interaktion: </p>
+                <ol>
+                    <li> Beim Klick auf eine Zielkarte soll <code>state.ausgewaehltesZiel</code> auf das Ziel gesetzt werden und
+                        <code>renderTicketInfo()</code> aufgerufen werden (setze <code>addEventListener</code> in <code>createZielElement</code> auf
+                        das Article-Element). </li>
+                    <li> Der <strong>Einwerfen</strong>-Button (<code>#einwerfen-btn</code>) soll den Betrag aus dem Input
+                        (<code>#betrag-input</code>) lesen, <code>einwerfen()</code> aufrufen und <code>renderTicketInfo()</code> aufrufen. </li>
+                    <li> Der <strong>Kaufen</strong>-Button (<code>#kaufen-btn</code>) soll ein neues <code>Ticket</code> erstellen, es ins
+                        <code>ticketLog</code> pushen, den Restgeld-Betrag anzeigen, <code>resetEingabe()</code> und <code>renderTicketInfo()</code>
+                        aufrufen. </li>
+                    <li> Der <strong>Reset</strong>-Button (<code>#reset-btn</code>) soll <code>resetEingabe()</code> und
+                        <code>renderTicketInfo()</code> aufrufen. </li>
+                </ol>
+                <div class="task-hint"> 💡 Hinweis: Du kannst <code>addEventListener</code> direkt in <code>createZielElement</code> auf das
+                    Article-Element setzen. Für den Ticketkauf:
+                    <code>new Ticket(state.ausgewaehltesZiel, state.anzahlPersonen, state.eingeworfen)</code>. </div>
+            </article>
+            <footer class="angabe-footer">
+                <p>Gutes Gelingen! 🚂</p>
+            </footer>
+        </div>
+    </section>
+    <section id="website-view"
+             class="view">
+        <div class="website-page">
+            <h1>Ticketautomat</h1>
+            <p id="ziel-summary"
+               class="counter"></p>
+            <section class="filter-bar">
+                <button id="btn-all"
+                        type="button">Alle Ziele</button>
+                <button id="btn-regional"
+                        type="button">Regional</button>
+                <button id="btn-intercity"
+                        type="button">Intercity</button>
+                <button id="btn-sort-asc"
+                        type="button">Preis &uarr;</button>
+                <button id="btn-sort-desc"
+                        type="button">Preis &darr;</button>
+            </section>
+            <section class="ticket-layout">
+                <section class="ziel-section">
+                    <h2>Fahrziele</h2>
+                    <div id="ziel-grid"
+                         class="ziel-grid"></div>
+                </section>
+                <aside class="kauf-section">
+                    <h2>Ticket kaufen</h2>
+                    <div class="kauf-row">
+                        <label for="anzahl-input">Personen:</label>
+                        <input type="number"
+                               id="anzahl-input"
+                               value="1"
+                               min="1"
+                               max="10">
+                    </div>
+                    <div class="kauf-row">
+                        <span>Gesamtpreis:</span>
+                        <span id="preis-text">—</span>
+                    </div>
+                    <div class="kauf-row">
+                        <span>Guthaben:</span>
+                        <span id="guthaben-text">0 Euro</span>
+                    </div>
+                    <div class="kauf-row">
+                        <label for="betrag-input">Betrag einwerfen:</label>
+                        <input type="number"
+                               id="betrag-input"
+                               placeholder="€">
+                    </div>
+                    <div class="kauf-actions">
+                        <button id="einwerfen-btn"
+                                type="button">Einwerfen</button>
+                        <button id="kaufen-btn"
+                                type="button">Kaufen</button>
+                        <button id="reset-btn"
+                                type="button">Reset</button>
+                    </div>
+                    <div id="ticket-info"
+                         class="ticket-info"></div>
+                </aside>
+            </section>
+            <section class="sales-section">
+                <h2>Ticketprotokoll</h2>
+                <ul id="ticket-log"
+                    class="ticket-log"></ul>
+                <p id="ticket-summary"
+                   class="sales-summary"></p>
+            </section>
+        </div>
+    </section>
+    <section id="tests-view"
+             class="view">
+        <div class="test-page">
+            <h1>Funktions-Tests</h1>
+            <p class="test-subtitle">Teste deine implementierten Funktionen mit den echten Zieldaten.</p>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 2: getTotalEinnahmen(tickets)</h2>
+                    <button class="test-btn"
+                            id="test-total-btn"
+                            type="button">Testen</button>
+                </header>
+                <pre class="test-code">getTotalEinnahmen(testTickets)</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet:</p>
+                    <p class="test-value">208</p>
+                </div>
+                <div class="test-result"
+                     id="test-total-result"></div>
+            </article>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 3: getByTyp(ziele, typ)</h2>
+                    <div class="test-controls">
+                        <select class="test-select"
+                                id="test-typ-select">
+                            <option value="Regional">Regional</option>
+                            <option value="Intercity">Intercity</option>
+                        </select>
+                        <button class="test-btn"
+                                id="test-typ-btn"
+                                type="button">Testen</button>
+                    </div>
+                </header>
+                <pre class="test-code">getByTyp(state.ziele, "<span id="test-typ-label">Regional</span>")</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet (<span id="test-typ-count-label">Regional</span>):</p>
+                    <ul class="test-list"
+                        id="test-typ-expected">
+                        <li>Eisenstadt — 12.00 Euro</li>
+                        <li>Graz — 35.00 Euro</li>
+                        <li>Linz — 38.00 Euro</li>
+                        <li>St. Pölten — 14.00 Euro</li>
+                    </ul>
+                </div>
+                <div class="test-result"
+                     id="test-typ-result"></div>
+            </article>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 4: sortByPreisAsc(ziele)</h2>
+                    <button class="test-btn"
+                            id="test-asc-btn"
+                            type="button">Testen</button>
+                </header>
+                <pre class="test-code">sortByPreisAsc(state.ziele)</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet (aufsteigend):</p>
+                    <ol class="test-list">
+                        <li>Eisenstadt — 12.00 Euro</li>
+                        <li>St. Pölten — 14.00 Euro</li>
+                        <li>Graz — 35.00 Euro</li>
+                        <li>Linz — 38.00 Euro</li>
+                        <li>Klagenfurt — 55.00 Euro</li>
+                        <li>Salzburg — 65.00 Euro</li>
+                        <li>Innsbruck — 75.00 Euro</li>
+                        <li>Bregenz — 85.00 Euro</li>
+                    </ol>
+                </div>
+                <div class="test-result"
+                     id="test-asc-result"></div>
+            </article>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 4: sortByPreisDesc(ziele)</h2>
+                    <button class="test-btn"
+                            id="test-desc-btn"
+                            type="button">Testen</button>
+                </header>
+                <pre class="test-code">sortByPreisDesc(state.ziele)</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet (absteigend):</p>
+                    <ol class="test-list">
+                        <li>Bregenz — 85.00 Euro</li>
+                        <li>Innsbruck — 75.00 Euro</li>
+                        <li>Salzburg — 65.00 Euro</li>
+                        <li>Klagenfurt — 55.00 Euro</li>
+                        <li>Linz — 38.00 Euro</li>
+                        <li>Graz — 35.00 Euro</li>
+                        <li>St. Pölten — 14.00 Euro</li>
+                        <li>Eisenstadt — 12.00 Euro</li>
+                    </ol>
+                </div>
+                <div class="test-result"
+                     id="test-desc-result"></div>
+            </article>
+        </div>
+    </section>
+</body>
+
+</html>
