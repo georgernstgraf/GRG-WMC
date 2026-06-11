@@ -1,5 +1,14 @@
 # sj25-26-34bkif-wmc
 
+## ABSOLUTE DEADLINE PROJEKT
+
+Abgabe bis Sonntag, 14. Juni Abend
+
+Sicherer Store für praktisch alles:
+
+- <https://youtu.be/joUIdxPOrZY?si=XjtcTLprsDvW0vNI>
+- `pass` kombiniert `git` und `gnupg` (pgp)
+
 ## 2026-05-07_typescript und transpilation
 
 Folie bis Seite 4 besprochen, siehe Unterlagen/JS/TypeScript/TypeScript-GRG.pdf
@@ -17,7 +26,7 @@ HÜ:
 
 Tipp: string.localeCompare() zum Strings-sortieren.
 
-**Phase 2** jeder sortier-button möge ein "toggle" sein. 
+**Phase 2** jeder sortier-button möge ein "toggle" sein.
 
 ## 2026-03-19
 
