@@ -1,0 +1,239 @@
+body {
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+    background: radial-gradient(circle at top, #5c4128 0%, #2a1b11 32%, #120c08 100%);
+    color: #d4b66f;
+}
+
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.page-header h1 {
+    margin: 0 0 8px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ffe2a1;
+}
+
+.clock-box {
+    min-width: 180px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    background: #1a130d;
+    border: 1px solid #5a4228;
+    text-align: right;
+    box-shadow: inset 0 0 0 1px rgba(255, 214, 122, 0.08);
+}
+
+.clock-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #ad8d54;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+#current-time {
+    font-size: 1.45rem;
+    color: #ffe7a8;
+    letter-spacing: 0.08em;
+}
+
+.panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 14px;
+    border-radius: 4px;
+    background: rgba(22, 15, 10, 0.9);
+    border: 1px solid #4e3922;
+}
+
+input,
+select,
+button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #6f5432;
+    background: #2a1c12;
+    color: #f0cf86;
+    font: inherit;
+}
+
+button {
+    background: #6b4b24;
+    color: #ffe8ad;
+    cursor: pointer;
+}
+
+.counter {
+    font-weight: bold;
+    color: #cfb37b;
+    letter-spacing: 0.06em;
+}
+
+.board-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+.board-column {
+    background: linear-gradient(180deg, #1a120d 0%, #15100b 100%);
+    border: 1px solid #4e3922;
+    border-radius: 4px;
+    padding: 12px 12px 10px;
+    box-shadow: inset 0 0 0 1px rgba(255, 207, 112, 0.04);
+}
+
+.board-column h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #f1cd58;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 1.6rem;
+}
+
+.board-table-head {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 84px 154px;
+    gap: 10px;
+    padding: 0 8px 6px;
+    margin-bottom: 6px;
+    color: #c3a454;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #3a2b1b;
+}
+
+.card-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0;
+}
+
+.card-list li {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 84px 154px;
+    align-items: center;
+    gap: 10px;
+    background: #22170f;
+    border: 0;
+    border-bottom: 1px solid #322416;
+    border-radius: 0;
+    padding: 7px 8px;
+    min-height: 42px;
+}
+
+.arrival-card {
+    border-left: 3px solid #756246;
+}
+
+.departure-card {
+    border-left: 3px solid #756246;
+}
+
+.boarding {
+    background: #2a1b10;
+}
+
+.status-text {
+    font-weight: bold;
+}
+
+.flight-code,
+.flight-destination,
+.flight-time,
+.flight-status {
+    margin: 0;
+}
+
+.flight-code {
+    font-size: 1rem;
+    color: #d8be79;
+    letter-spacing: 0.08em;
+}
+
+.flight-destination,
+.flight-time,
+.flight-status {
+    font-size: 0.92rem;
+}
+
+.flight-destination {
+    color: #d6bf85;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.flight-time {
+    text-align: left;
+    color: #d9c28a;
+    letter-spacing: 0.08em;
+}
+
+.flight-status {
+    color: #a78f60;
+    text-align: left;
+}
+
+.boarding-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 24px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #ffd84a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 840px) {
+    .page-header {
+        flex-direction: column;
+    }
+
+    .clock-box {
+        width: 100%;
+        text-align: left;
+    }
+
+    .board-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .board-table-head {
+        display: none;
+    }
+
+    .card-list li {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .flight-code,
+    .flight-status {
+        grid-column: 1 / -1;
+    }
+}

@@ -1,0 +1,13 @@
+GET http://0.0.0.0:8000/app.ts
+###
+
+GET http://0.0.0.0:8000/flight-board.ts
+###
+
+GET http://0.0.0.0:8000/canvas-confetti.ts
+###
+
+GET http://0.0.0.0:8000/chart-demo.ts
+###
+
+GET http://0.0.0.0:8000/lit-demo.ts
