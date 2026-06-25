@@ -1,8 +1,8 @@
 # Frontend-Frameworks – Ein Überblick
 
 Dieses Dokument gibt eine Übersicht über die wichtigsten Werkzeuge der
-modernen Webentwicklung: **React, Vue.js, Angular, Svelte/SvelteKit, Astro** und
-das Build-Tool **Vite**. Für jedes Werkzeug werden die zugrundeliegende Technik
+modernen Webentwicklung: **React, Vue.js, Angular, Svelte/SvelteKit, Astro**, die
+**HTML-first-Alternativen htmx & Alpine.js** sowie das Build-Tool **Vite**. Für jedes Werkzeug werden die zugrundeliegende Technik
 (Templating, Server-Side Rendering), die Verbreitung, die **Lernkurve** und die
 Bedeutung für den europäischen bzw. österreichischen Arbeitsmarkt beleuchtet.
 
@@ -347,7 +347,108 @@ zusätzlich Kenntnisse des jeweiligen Frameworks).
 
 ---
 
-## 7. Vite
+## 7. Die HTML-first-Richtung (ohne Build-Tool)
+
+Die bisherigen Frameworks (React bis Astro) haben gemeinsam, dass sie
+**Komponenten** bauen und dazu ein **Build-Tool** (meist Vite) brauchen. Es gibt
+aber eine ganz andere, bewusst einfache Schule: **HTML-first**. Man schreibt
+normales HTML, ergänzt es um einige Attribute und lässt den **Server** das
+Rendern übernehmen – ganz ohne JavaScript-Framework und ohne Build-Schritt.
+
+Technisch gesehen spricht man von einer **Hypermedia-Driven Application (HDA)**:
+der Browser fordert HTML an, der Server schickt HTML-Fragmente zurück, und die
+Seite wird durch Attribut-Gedöns interaktiv statt durch ein großes JS-Bundle.
+Das ist **didaktisch ein idealer Einstieg**, weil man HTML schon kennt – und es
+passt genau zum Stack dieses Unterrichts (**Deno + Hono + HTMX**).
+
+### htmx
+
+> <https://htmx.org/> · ~14 KB, kein Build-Tool, kein JavaScript von Nöten.
+
+htmx erweitert HTML um Attribute wie `hx-get`, `hx-post`, `hx-swap`: ein Button
+kann damit per AJAX eine Anfrage schicken und einen Teil der Seite ersetzen –
+**ohne eine einzige Zeile JavaScript zu schreiben**. Der Server antwortet nicht
+mit JSON, sondern mit **HTML-Fragmenten**.
+
+**Mini-Beispiel** (Server: Hono auf Deno; Client: reines HTML):
+
+```ts
+// Server: liefert ein HTML-Fragment zurück, kein JSON
+let stand = 0;
+app.get("/zaehler", (c) => {
+    stand += 1;
+    return c.html(`<p>Aktueller Stand: ${stand}</p>`);
+});
+```
+
+```html
+<!-- Client: kein JavaScript, nur zwei Attribute -->
+<button hx-get="/zaehler" hx-target="#anzeige" hx-swap="innerHTML">
+    Erhöhen
+</button>
+<div id="anzeige"><p>Aktueller Stand: 0</p></div>
+```
+
+Ein Klick holt `/zaehler`, und das zurückgegebene HTML landet direkt im
+`#anzeige`-`<div>`.
+
+### Alpine.js
+
+> <https://alpinejs.dev/> · ~15 KB, kein Build-Tool, das „Tailwind für JS".
+
+Alpine bringt **kleine Interaktivität direkt im HTML** unter („Sprinkles"):
+Attribute wie `x-data`, `x-show` oder `@click` steuern reinen Client-Zustand –
+ein Menü aufklappen, ein Feld ein-/ausblenden. htmx kümmert sich um den Server,
+Alpine um den Browser; **beide ergänzen sich ideal**.
+
+```html
+<div x-data="{ offen: false }">
+    <button @click="offen = !offen">Menü</button>
+    <ul x-show="offen" x-transition>
+        <li><a href="/">Start</a></li>
+        <li><a href="/info">Info</a></li>
+    </ul>
+</div>
+```
+
+### Handlebars
+
+> <https://handlebarsjs.com/> · logiklose Template-Engine.
+
+Handlebars gehört in eine etwas andere Schublade: es ist eine **Template-Engine**
+mit `{{variablen}}`-Platzhaltern, die zu HTML-Strings **vorkompiliert** wird –
+typischerweise am Server. Es ist **nicht** reaktiv und eher ein Werkzeug der
+Generation vor den heutigen Frameworks, taucht aber in älteren Codebasen und bei
+E-Mail-/PDF-Templates noch häufig auf.
+
+### AHA-Stack
+
+Die drei Bausteine lassen sich kombinieren – bekannt als **AHA-Stack**
+(<https://ahastack.dev/>): **A**stro + **H**TMX + **A**lpine. Astro liefert das
+statische Grundgerüst, htmx holt dynamische HTML-Fragmente nach, Alpine steuert
+die Client-Interaktion. Ein schlanke Alternative zu einer schweren SPA – und
+eine direkte Fortsetzung der Astro-Sektion oben.
+
+### Mini-Tabelle (paradigmenintern)
+
+|               | Build nötig? | Wer hält den State? | Bundle        | Lernkurve |
+|---------------|--------------|---------------------|---------------|-----------|
+| **htmx**      | nein         | Server              | ~14 KB        | sehr flach |
+| **Alpine.js** | nein         | Browser („Sprinkles") | ~15 KB      | sehr flach |
+| **Handlebars**| optional (vor­kompiliert) | Server | klein | flach |
+| *zum Vergleich: SPA-Frameworks (React, Vue, …)* | **ja** (Vite) | Browser (reaktiv) | groß | mittel–steil |
+
+### Lernkurve & Verbreitung
+
+htmx und Alpine haben die **flachste Lernkurve** aller hier vorgestellten
+Werkzeuge: wer HTML kennt, ist in Stunden produktiv. htmx wächst stark (2023/24
+„Rising Star", ~47k GitHub-Sterne, Millionen Downloads/Monat), ist im
+Marktanteil aber noch eine Nische gegenüber React/Vue – jedoch eine sehr
+praxistaugliche, gerade im Zusammenspiel mit klassischen Server-Backends.
+
+---
+
+## 8. Vite
 
 > <https://vite.dev/> · entwickelt von **Evan You** (dem Vue-Erfinder), seit 2020.
 
@@ -369,6 +470,12 @@ Die Architektur nutzt zwei Werkzeuge unter der Haube:
 Vite hat das frühere Standard-Tool **Webpack** weitgehend verdrängt. Es ist der
 **De-facto-Standard** für moderne Frontend-Projekte und wird von den offiziellen
 Templates für React, Vue und SvelteKit verwendet.
+
+> **Hinweis:** Ganz bewusst **ohne** Build-Tool kommen htmx und Alpine.js aus
+> (siehe Sektion 7) – kein Build-Schritt ist dort gerade der Punkt. Und damit
+> Vite (oder ein Server wie Hono) überhaupt läuft, braucht es einen
+> **JavaScript-Runtime** – in unserem Unterricht ist das **Deno**; siehe das
+> Begleitdokument [`JS-Runtimes.md`](./JS-Runtimes.md).
 
 ### Beispiel: Ein neues Projekt starten
 
@@ -395,7 +502,7 @@ fortgeschrittenen Plugins wird es tiefgreifender.
 
 ---
 
-## 8. Vergleich auf einen Blick
+## 9. Vergleich auf einen Blick
 
 |               | React                | Vue.js             | Angular                 | Svelte (+ SvelteKit)   | Astro                    | Vite                  |
 |---------------|----------------------|--------------------|-------------------------|------------------------|--------------------------|-----------------------|
@@ -413,7 +520,7 @@ Richtwerte für ein HelloWorld/Counter-Setup.)*
 
 ---
 
-## 9. Bedeutung für Europa und Österreich
+## 10. Bedeutung für Europa und Österreich
 
 ### Die DACH-Enterprise-Welt spricht Angular
 
@@ -465,12 +572,16 @@ Agenturen und kleine Teams ein wachsender Baustein.
   **React** bietet die meisten Möglichkeiten weltweit.
 - **Wer schnell produktiv werden will oder projektbezogen lernt**: **Vue** oder
   **Svelte** bieten die sanftesten Einstiege.
+- **htmx + Alpine** sind der „Boring Web"-Pfad: ideal für klassische
+  Server-Backends (in Österreich oft Java/.NET/Python) und für kleinere
+  Agenturen, die ohne schweres JS-Bündel auskommen wollen – ein sehr praxisnaher
+  Einstieg gerade in der DACH-KMU-Welt.
 - **Vite** lernt man „nebenbei" mit jedem dieser Frameworks – es ist die
   gemeinsame Basis der modernen Toolchain.
 
 ---
 
-## 10. Weiterführende Links
+## 11. Weiterführende Links
 
 **Umfragen & Statistiken**
 
@@ -491,6 +602,14 @@ Agenturen und kleine Teams ein wachsender Baustein.
 - SvelteKit: <https://svelte.dev/docs/kit>
 - Astro: <https://docs.astro.build/>
 - Vite: <https://vite.dev/guide/>
+
+**HTML-first (ohne Build-Tool) & Runtimes**
+
+- htmx: <https://htmx.org/>
+- Alpine.js: <https://alpinejs.dev/>
+- Handlebars: <https://handlebarsjs.com/>
+- AHA-Stack (Astro + htmx + Alpine): <https://ahastack.dev/>
+- JS-Runtimes (Node/Deno/Bun): siehe [`JS-Runtimes.md`](./JS-Runtimes.md)
 
 **Jobportale (Österreich / DACH)**
 
