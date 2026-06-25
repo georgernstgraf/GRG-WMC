@@ -5,7 +5,7 @@ evtl. den Content nicht zu akzeptieren. (Ja, das ist komisch ..)
 
 Der Server setzt den `Access-Control-Allow-Origin` Header auf `*` um anzuzeigen,
 der Inhalt ist für jeden bestimmt und möglich. Jeder aktuelle Browser würdigt
-dies und leht den Content ab, wenn er (der Browser) ursprünglich von einer
+dies und lehnt den Content ab, wenn er (der Browser) ursprünglich von einer
 anderen Site kommt.
 
 Will man dennoch ein API im Browser verwenden, welches diesen Header nicht
@@ -18,7 +18,7 @@ fetch(url, {
 });
 ```
 
-CORS https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS **Cross Origin
+CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS> **Cross Origin
 Resource Sharing**
 
 Cors Videos:
