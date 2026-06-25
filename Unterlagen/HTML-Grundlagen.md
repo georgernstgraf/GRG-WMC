@@ -70,28 +70,53 @@ Zusätzlich programmierte er den ersten Browser und den ersten HTTP-Server.
 
 ## Was ist HTML?
 
-- Der Quelltext eines HTML-Dokuments wird im **ASCII-Format** gespeichert –
-  betriebssystemunabhängig, reiner Nur-Text, keine Formatierungen.
-- Für die Erstellung genügt ein **Editor**, für die Anzeige ein **Webbrowser**.
-- Öffentlich zugänglich wird eine Seite erst, wenn sie auf einem **Webserver**
-  liegt.
+- Der Quelltext wird als reiner **Nur-Text** gespeichert – betriebssystemunabhängig,
+  ohne Formatierungen. Für die Erstellung genügt ein **Editor**, für die Anzeige
+  ein **Webbrowser**.
+- Öffentlich zugänglich wird eine Seite erst, wenn sie auf einem **Webserver** liegt.
+
+**Zeichenkodierung:** Heute ist **UTF-8** der Standard (deckt nahezu alle Zeichen
+und Sprachen der Welt ab, > 90 % aller Websites). Früher waren **ASCII** (128
+Zeichen, nur Englisch) bzw. ISO-8859-1 (256 Zeichen) verbreitet – für Umlaute oder
+andere Schriften unzureichend. Deklariert wird die Kodierung im Dokument über
+`<meta charset="utf-8">`; die Datei selbst muss natürlich auch UTF-8-codiert
+gespeichert werden.
+Refs: <https://www.w3.org/International/questions/qa-html-encoding-declarations>,
+<https://www.w3schools.com/html/html_charset.asp>
 
 **Definition:** HTML (HyperText Markup Language) ist eine textbasierte
 **Auszeichnungssprache** zur Strukturierung elektronischer Dokumente – Text mit
-Hyperlinks. Entstanden ist HTML aus **SGML** (Standard Generalized Markup
-Language); die Entwicklung fand am CERN statt. Für die Weiterentwicklung ist das
-**W3-Consortium** (<https://www.w3.org/>) verantwortlich.
+Hyperlinks. Die Entwicklung fand am CERN statt.
+
+**Verwandtschaft der Auszeichnungssprachen:** Ausgangspunkt ist **SGML**
+(Standard Generalized Markup Language, ISO-Standard seit 1986) – die „Mutter" der
+späteren Markup-Sprachen. Davon leiten sich zwei Linien ab:
+
+- **HTML** – ein festes, vordefiniertes Tag-Set zum Strukturieren von Webseiten.
+- **XML** (eXtensible Markup Language) – eine strengere, erweiterbare Syntax, bei
+  der man eigene Tags definiert (Datenbeschreibung, nicht Anzeige).
+
+**XHTML** wiederum ist HTML, das nach den strengen XML-Regeln formuliert ist
+(wohlgeformt, alle Tags geschlossen). **HTML5** definiert hingegen eigene
+Parsing-Regeln und ist nicht mehr SGML-basiert, bietet aber weiterhin eine
+XML-konforme Serialisierung an.
+Refs: <https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language>,
+<https://www.w3.org/People/Raggett/Drafts/xml.html>
 
 **Versionen:** HTML 1.0, 2.0, 3.2, 4.0/4.01 → XHTML 1.0/1.1, XHTML 2.0 →
-**HTML 5** (aktuell als „Living Standard").
+**HTML 5** (aktuell als „Living Standard", siehe [HTML5](#html5)).
 
 **Dateien:** HTML-Dateien haben die Endung `.html` (alte Dateien `.htm`).
 Verwandte Formate: `.css`, `.xml`, `.shtml`.
 
 ### Entwicklungsumgebungen
 
-Adobe Dreamweaver, Brackets (<http://brackets.io/>), JetBrains WebStorm
-(<https://www.jetbrains.com/>), Microsoft Visual Studio, Notepad++.
+Unser primäres Arbeitswerkzeug im Unterricht ist **Visual Studio Code (VS Code)**
+(<https://code.visualstudio.com/>) – ein kostenloser, quelloffener Editor mit
+nützlichen Erweiterungen wie **Live Server** (lokaler Dev-Server, z. B. Port 5500)
+und dem **W3C Web Validator**. Weitere Editoren: JetBrains WebStorm
+(<https://www.jetbrains.com/>), Adobe Dreamweaver, Notepad++, Brackets
+(<http://brackets.io/>). Online-Editoren: CodePen, JSFiddle, StackBlitz.
 
 ---
 
@@ -101,7 +126,10 @@ Adobe Dreamweaver, Brackets (<http://brackets.io/>), JetBrains WebStorm
 
 Protokoll zur Übertragung von Hypertext-Dokumenten (Webseiten) aus dem World
 Wide Web in einen Webbrowser.
-Quelle: <https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol>
+
+Ausführlich behandelt – Verben/Methoden, Statuscodes, Header, Idempotenz – in der
+→ [HTTP-Folie](./HTTP-Folie.md). Quelle:
+<https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol>
 
 ### URL – Uniform Resource Locator
 
@@ -176,9 +204,9 @@ In HTML5 genügt die kurze Form `<!DOCTYPE html>`.
 
 ## Tags, Elemente und Attribute
 
-### HTML-Tags (Befehle)
+### HTML-Tags
 
-- Ein HTML-Tag ist ein einzelner „Befehl", notiert in spitzen Klammern `<...>`.
+- Ein HTML-Tag ist ein einzelnes Tag, notiert in spitzen Klammern `<...>`.
 - HTML basiert auf dem Prinzip **Öffnen und Schließen**: Fast alle Elemente
   bestehen aus einleitendem und schließendem Tag, z. B. `<p>Erster Absatz</p>`.
 - **Alle Tags klein schreiben** – wichtig für XHTML und valide Webseiten.
@@ -188,21 +216,24 @@ In HTML5 genügt die kurze Form `<!DOCTYPE html>`.
 ### Syntax
 
 ```html
-<befehl>Text, Text, Text</befehl>
+<htmltag>Text, Text, Text</htmltag>
 ```
 
-Öffnender und schließender Befehl sind gleich, nur dass der schließende ein `/`
-vor dem Namen trägt.
+Öffnendes und schließendes Tag sind gleich, nur dass das schließende ein `/`
+vor dem Namen trägt: `</htmltag>`.
 
 ### Verbotene Zeichen und Symbole
 
-Spitze Klammern dürfen **nicht** direkt verwendet werden, da sie als Tags
-gelesen werden:
+Spitze Klammern dürfen **nicht** direkt als Text verwendet werden, da der Browser
+sie als Tags liest:
 
 ```
 Verboten:  10 > 8   |   Siehe hier -> und dort <-   |   Das finde ich >>SUPER>>
 ```
 
+Um spitze Klammern trotzdem anzuzeigen, werden sie als **Entities** geschrieben:
+`<` als `&lt;`, `>` als `&gt;` (siehe [Sonderzeichen](#sonderzeichen-escape-characters)
+unten). Beispiel: `10 &gt; 8` ergibt die Anzeige „10 > 8".
 Achtung auch bei Anführungszeichen und Apostrophen.
 
 ### HTML-Elemente
@@ -298,7 +329,11 @@ Ein Überschriften-Tag erzeugt automatisch einen Zeilenumbruch.
 
 Kommentare werden nicht angezeigt.
 
-### Text-Formatierungen
+### Text-Formatierungen (Inline-Elemente)
+
+Diese Tags sind **Inline-Elemente** – sie erzeugen keinen Zeilenumbruch und wirken
+nur auf einzelne Textteile. Für Block-Layout und das eigentliche Aussehen ist
+**CSS** zuständig; die Tags beschreiben lediglich die Bedeutung (z. B. „wichtig").
 
 | Wirkung | Tag |
 |---------|-----|
@@ -375,8 +410,23 @@ verwandte Technologien konzentriert.
 
 ### HTML5 – ein „Living Standard"
 
-Die HTML5-Spezifikation der WHATWG ist ein *Living Standard*: Sie wird ständig
-aktualisiert, um aktuelle Technologien und Best Practices widerzuspiegeln.
+Die HTML-Spezifikation der WHATWG ist ein **Living Standard**: Sie besitzt **keine
+Versionsnummern** mehr, sondern wird **kontinuierlich** weiterentwickelt (seit
+2011), um aktuelle Technologien und Best Practices widerzuspiegeln.
+
+**Standardisierungsprozess:** Die Entwicklung läuft **öffentlich und transparent**
+auf GitHub im Repository `whatwg/html` (<https://github.com/whatwg/html>) über
+Pull Requests ab. Angetrieben wird sie von den großen Browser-Herstellern
+(Apple, Mozilla, Google) gemeinsam mit der Community. Die **WHATWG** betreibt den
+Living Standard; das **W3C** arbeitet über ein *Memorandum of Understanding* mit
+und gibt gefrorene Schnappschüsse als offizielle Empfehlungen (Recommendations)
+heraus. Abgestimmt wird auf Mailinglisten, in GitHub-Issues und auf Konferenzen –
+insbesondere der jährlichen **TPAC** (Technical Plenary / Advisory Committee),
+der gemeinsamen W3C/WHATWG-Konferenz.
+Refs: <https://github.com/whatwg/html/blob/main/FAQ.md>,
+<https://spec.whatwg.org/>,
+<https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model>
+
 Wichtige Punkte der Spezifikation:
 
 - HTML-Tags
@@ -511,7 +561,9 @@ Webentwickler bestimmte Richtlinien durchsetzen.
 ### W3C-Validator
 
 Der W3C-Validator ermöglicht es, HTML- und CSS-Markup auf Konformität mit den
-Standards zu überprüfen. <https://validator.w3.org/>
+Standards zu überprüfen. Neben der Web-Version unter <https://validator.w3.org/>
+gibt es das **VS-Code-Plugin „W3C Web Validator"**, das das Markup direkt im
+Editor validiert – unser Werkzeug im Unterricht.
 
 Beispiel für nicht valides HTML5:
 
@@ -669,14 +721,24 @@ Vergleich:
 - W3Schools – <https://www.w3schools.com/html/>
 - SELFHTML – <http://wiki.selfhtml.org/>
 - WHATWG HTML Living Standard – <https://html.spec.whatwg.org/multipage/>
+- WHATWG FAQ zum Standardisierungsprozess – <https://github.com/whatwg/html/blob/main/FAQ.md>
+- MDN: The web standards model – <https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model>
 - W3C – <https://www.w3.org/>
 - W3C Validator – <https://validator.w3.org/>
+
+**Zeichenkodierung & Sprachfamilie:**
+
+- UTF-8/Charset deklarieren – <https://www.w3.org/International/questions/qa-html-encoding-declarations>
+- HTML Charset (W3Schools) – <https://www.w3schools.com/html/html_charset.asp>
+- SGML (Wikipedia) – <https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language>
+- XML und HTML/SGML (W3C) – <https://www.w3.org/People/Raggett/Drafts/xml.html>
+
+**Editoren:** Visual Studio Code (VS Code) mit Live-Server- und W3C-Web-Validator-
+Erweiterung (unser Arbeitswerkzeug); IntelliJ, jeder Texteditor (offline);
+CodePen, JSFiddle, StackBlitz (online).
 
 **CSS-Lernspiele:**
 
 - Flexbox Froggy – <https://flexboxfroggy.com/#de>
 - CSS Grid Garden – <https://cssgridgarden.com/#de>
 - CSS-Tricks – <https://css-tricks.com/>
-
-**Editoren:** IntelliJ, Visual Studio Code, jeder Texteditor (offline);
-CodePen, JSFiddle, StackBlitz (online).
