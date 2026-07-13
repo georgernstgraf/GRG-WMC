@@ -4,6 +4,28 @@
 
 ---
 
+## Beurteilung
+
+Die Note setzt sich aus drei gleich gewerteten Bereichen zusammen:
+
+| Bereich | Gewicht |
+|---|---|
+| PLF (Praxis-Leistungs-Feststellung) | 1/3 |
+| Hausübungen | 1/3 |
+| Mitarbeit | 1/3 |
+
+Mitarbeit umfasst auch Schulübungen und Stundenwiederholungen; deren Qualität und
+Intensität werden von der Lehrperson beurteilt.
+
+## Hausübungen
+
+- **Abgabe:** spätestens am nächsten Unterrichtstag **00:00 Uhr** (in der Regel eine Woche später).
+- **Nachreichung:** jederzeit möglich – die erreichte Punktezahl zählt **75 %**.
+- **Cutoff:** Genau **eine Woche vor dem Notenschluss, 00:00 Uhr**, ist Endtermin.
+  Danach werden die Repos automatisiert ausgewertet.
+
+---
+
 ## Übersicht
 
 Dieses Repository enthält sämtliche Materialien für das Fach **Web & Mobile Computing** (WMC) im Schuljahr 2025/26. Es dient als zentrale Anlaufstelle für Unterrichtsinhalte, Beispielprojekte, Übungen und Lösungen.
@@ -44,7 +66,6 @@ Dieses Repository enthält sämtliche Materialien für das Fach **Web & Mobile C
 | Datei | Beschreibung |
 |---|---|
 | [`PROJEKT.md`](./PROJEKT.md) | Angabe zum WMC-Abschlussprojekt |
-| [`BENOTUNG.md`](./BENOTUNG.md) | Bewertungsmodell (Portfolio, Stundenwiederholungen, Projekt) |
 | [`PEER_REVIEW.md`](./PEER_REVIEW.md) | Vorlage für Peer-Feedback zu Website-Projekten |
 | [`AGENTS.md`](./AGENTS.md) | Coding Guidelines für KI-Assistenten (Code-Style, Projektstruktur) |
 | [`docs/`](./docs/) | Skriptum, Lehrplan, Projektangaben, Promise-Code |
