@@ -1,10 +1,26 @@
 # AGENTS.md - Coding Guidelines for GRG-WMC Repository
 
-This is an educational repository for the WMC (Web, Mobile, Computing) course at GRG. It contains teaching materials and student projects for HTML5, CSS3, and JavaScript.
+This is an educational repository for the WMC (Webprogrammierung und Mobile Computing) course in the **Erwachsenenbildung at HTL Spengergasse** (Aufbaulehrgang & Kolleg für Berufstätige für Informatik, Abendform). It contains teaching materials and student projects for HTML5, CSS3, JavaScript, TypeScript and React. In the Tagesschule, web content is covered in the POS subject (colleagues) — this repo is **Abendform only**.
+
+## Knowledge Bootstrap
+Before starting any task, read the following files in order:
+1. `docs/ai/HANDOFF.md` ← **read first, act on it**
+2. `docs/ai/CONVENTIONS.md`
+3. `docs/ai/DECISIONS.md`
+4. `docs/ai/ARCHITECTURE.md`
+5. `docs/ai/PITFALLS.md`
+6. `docs/ai/STATE.md`
+7. `docs/ai/DOMAIN.md` (if task involves business logic)
+8. `docs/ai/HISTORY.md` (reference only — read last, as needed)
+
+If `HANDOFF.md` contains open tasks, complete them before starting
+any new work unless the user explicitly says otherwise.
 
 ## Project Structure
 
-- **3aaif/**, **3akif/**, **3bkif/**, **3caif/** - Student class sections (3rd year, different branches)
+- **`<N><zug>/`** - Active class folders, semester-numbered: WS `3aaif` → SS `4aaif`, WS `5akif` → SS `6akif` (AAIF = Aufbaulehrgang, AKIF = Kolleg; B/C = parallel sections). One folder per class per school year, renamed at semester break. Created at semester start.
+- **archiv/** - Archived classes from past school years, named `YYYY-YY-<klasse>/` (e.g. `archiv/2025-26-4aaif/`)
+- **docs/lehrplan/** - Curriculum & semester planning: `LEHRPLAN.md` (3-layer: official/school-adaption/didactics), `METADATA.md`, `RIS.md`, `jahr1-einheiten.md` (retrospective), `jahr2-einheiten.md` (plan)
 - **Unterlagen/** - Teaching materials (HTML, CSS, JS, HTTP, POSIX)
 - **Beispielprojekte/** - Example projects for demonstration
 - **Übungen/** - Exercises and assignments
@@ -12,8 +28,10 @@ This is an educational repository for the WMC (Web, Mobile, Computing) course at
 
 ## Technologies Used
 
-- **Frontend**: HTML5, CSS3 (Flexbox, Grid, Nesting), JavaScript (ES6+)
-- **Backend Examples**: Deno, TypeScript, Hono, HTMX, Prisma
+- **Jahr 1 (Sem 3+4)**: HTML5, CSS3 (Flexbox, Grid, Nesting), JavaScript (ES6+), TypeScript intro (Deno transpilation)
+- **Jahr 2 (Sem 5+6, from 2026/27)**: TypeScript, React + Vite (Node/npm), Mini-Hono reference API (Deno, consumption target only), PWA, Vitest + React Testing Library
+- **Backend (subject matter)**: none in WMC — covered by the POS subject (C#, colleagues)
+- **Example/demos**: Deno, Hono, HTMX, Prisma
 - **Tools**: VS Code, Live Server, W3C Validator, Git
 
 ## Build/Test Commands
@@ -105,7 +123,7 @@ npx serve .
 
 ### Git Conventions
 - Commit messages in German or English (match existing pattern)
-- Use descriptive commit messages: "Add flexbox exercise for 3bkif"
+- Use descriptive commit messages: "Add flexbox exercise for 3aaif"
 - No commit of `node_modules/`, IDE files, or temporary files
 - Students should commit work regularly with meaningful messages
 

@@ -1,6 +1,14 @@
-# GRG-WMC – Web & Mobile Computing
+# GRG-WMC – Webprogrammierung und Mobile Computing
 
-**Unterlagen, Beispielcode und Projekte für den WMC-Unterricht an der HTL Spengergasse (4. Klassen, Abteilung Informatik).**
+**Unterlagen, Beispielcode und Projekte für den WMC-Unterricht in der Erwachsenenbildung
+an der HTL Spengergasse (Aufbaulehrgang & Kolleg für Berufstätige für Informatik, Abendform).**
+
+> Lehrplan & Semesterplanung: [`docs/lehrplan/`](./docs/lehrplan/) —
+> dort [`LEHRPLAN.md`](./docs/lehrplan/LEHRPLAN.md) (dreischichtig),
+> [`jahr1-einheiten.md`](./docs/lehrplan/jahr1-einheiten.md),
+> [`jahr2-einheiten.md`](./docs/lehrplan/jahr2-einheiten.md).
+> In der Tagesschule werden die Web-Inhalte im Fach POS abgedeckt (Kolleg:innen) —
+> dieses Repo betrifft **nur die Abendform**.
 
 ---
 
@@ -28,25 +36,33 @@ Intensität werden von der Lehrperson beurteilt.
 
 ## Übersicht
 
-Dieses Repository enthält sämtliche Materialien für das Fach **Web & Mobile Computing** (WMC) im Schuljahr 2025/26. Es dient als zentrale Anlaufstelle für Unterrichtsinhalte, Beispielprojekte, Übungen und Lösungen.
+Dieses Repository enthält sämtliche Materialien für das Fach **Webprogrammierung und
+Mobile Computing (WMC)**. Es dient als zentrale Anlaufstelle für Unterrichtsinhalte,
+Beispielprojekte, Übungen und Lösungen. WMC wird in zwei Blöcken unterrichtet
+(inhaltlich identisch für Aufbaulehrgang und Kolleg):
 
-### Themen (Sommersemester)
-
-- JavaScript-Grundlagen (Datentypen, `let`/`const`, Funktionen, Template Strings)
-- Array-Methoden (`map`, `filter`, `reduce`, Spread-Syntax)
-- DOM-Manipulation (`querySelector`, `createElement`, `classList`, Events)
-- Asynchrone Programmierung (Promises, `async`/`await`, Fetch API)
-- TypeScript & Transpilation (Deno)
-- State-Driven UI (7-Punkte-Struktur für Vanilla-JS-Apps)
-- Klassen, Objektorientierung, private Felder (`#`)
-
-### Themen (Wintersemester)
+### Jahr 1 (Sem 3+4, 2 h/W)
 
 - HTML5 & semantisches Markup
-- CSS (Flexbox, Grid, Positionierung, Nesting, Transitions, Custom Properties)
+- CSS (Flexbox, Grid, Positionierung, Nesting, Custom Properties, Responsive)
 - CSS-Frameworks (Bootstrap)
-- Responsive Design
-- Projektarbeit (Website mit Peer-Review)
+- JavaScript (Datentypen, `let`/`const`, Funktionen, Template Strings)
+- Array-Methoden (`map`, `filter`, `reduce`, Spread)
+- DOM-Manipulation, Events
+- Asynchrone Programmierung (Promises, `async`/`await`, Fetch API)
+- Klassen, private Felder (`#`), State-Driven UI (7-Punkte-Struktur)
+- TypeScript-Intro & Transpilation (Deno)
+- Projekte: Website (WS, mit Peer-Review) + Webapp (SS, mit Abgabevideo)
+
+### Jahr 2 (Sem 5+6, 3 h-Block/W) — ab SJ 2026/27
+
+- TypeScript vertieft, React + Vite (Components, Props, State, Hooks, Router, Context)
+- REST-Konsum & Auth-Client (JWT) gegen Referenz-API
+- Deployment: Backend liefert Frontend aus (`vite build` → `/static`, same-origin)
+- Testing (Vitest + React Testing Library)
+- Mobile Computing als PWA (Manifest, Service Worker, Offline)
+- Architektur verteilter Systeme, SOA/Middleware/Multi-Tier (Konzept; Server-Umsetzung = POS)
+- Abschlussprojekt (Multi-Tier-Webapp)
 
 ---
 
@@ -54,21 +70,23 @@ Dieses Repository enthält sämtliche Materialien für das Fach **Web & Mobile C
 
 | Verzeichnis | Inhalt |
 |---|---|
-| [`4aaif/`](./4aaif/), [`4akif/`](./4akif/), [`4bkif/`](./4bkif/), [`4caif/`](./4caif/) | Unterrichtsordner pro Klasse – datierte Einträge (`YYYY-MM-DD_thema`) mit Code, Hausübungen und Notizen |
-| [`archiv/`](./archiv/) | Archiv für Klassenordner vergangener Schuljahre |
+| `3aaif/`, `5akif/` … | Unterrichtsordner der **laufenden** Klassen (semestriert: WS `3AAIF` → SS `4AAIF`; datierte Einträge `YYYY-MM-DD_thema`) — entstehen zu Semesterbeginn |
+| [`archiv/`](./archiv/) | Archiv vergangener Schuljahre (`YYYY-YY-<klasse>/`, z. B. `archiv/2025-26-4aaif/`) |
 | [`Unterlagen/`](./Unterlagen/) | Thematische Referenzmaterialien zu HTML, CSS, JS, HTTP, POSIX |
 | [`Beispielprojekte/`](./Beispielprojekte/) | Demo-Projekte (Ticketautomat, Hono + Prisma + HTMX, Deno-Transpilation, Code-Gists) |
 | [`Übungen/`](./Übungen/) | Aufgabenstellungen für Einzel- und Gruppenübungen |
-| [`docs/`](./docs/) | Zentrale Dokumente (Skriptum, Lehrplan, Projektangaben) |
+| [`docs/`](./docs/) | Zentrale Dokumente (Skriptum, Projektangaben) |
+| [`docs/lehrplan/`](./docs/lehrplan/) | **Lehrplan dreischichtig + Semesterpläne** (LEHRPLAN, METADATA, RIS, jahr1/jahr2-einheiten) |
 
 ### Wichtige Dateien
 
 | Datei | Beschreibung |
 |---|---|
-| [`PROJEKT.md`](./PROJEKT.md) | Angabe zum WMC-Abschlussprojekt |
+| [`PROJEKT.md`](./PROJEKT.md) | Angabe zum Jahr-1-Abschlussprojekt (Webapp, SS) |
 | [`PEER_REVIEW.md`](./PEER_REVIEW.md) | Vorlage für Peer-Feedback zu Website-Projekten |
 | [`AGENTS.md`](./AGENTS.md) | Coding Guidelines für KI-Assistenten (Code-Style, Projektstruktur) |
-| [`docs/`](./docs/) | Skriptum, Lehrplan, Projektangaben, Promise-Code |
+| [`docs/skriptum.md`](./docs/skriptum.md) | JS/TS-Skriptum (Selbststudium) |
+| [`docs/wmc_ss_projekt_webapp.md`](./docs/wmc_ss_projekt_webapp.md) | Jahr-1-SS-Projektangabe |
 
 > **Hinweis:** Dieses Repository ist öffentlich. Es enthält **keine** Test-Angaben.
 
@@ -76,17 +94,26 @@ Dieses Repository enthält sämtliche Materialien für das Fach **Web & Mobile C
 
 ## Technologien
 
-- **Frontend:** HTML5, CSS3 (Flexbox, Grid, Nesting, Custom Properties), JavaScript (ES6+)
-- **Backend (Beispiele):** Deno, TypeScript, Hono, HTMX, Prisma
-- **Werkzeuge:** VS Code, Live Server, W3C Validator, Git
+- **Jahr 1:** HTML5, CSS3 (Flexbox, Grid, Nesting, Custom Properties), JavaScript (ES6+),
+  TS-Intro (Deno-Transpilation), Live Server, W3C Validator
+- **Jahr 2 (ab 2026/27):** TypeScript, React + Vite (Node/npm), Mini-Hono-Referenz
+  (Deno) als Übungs-API, PWA, Vitest + React Testing Library
+- **Backend (Stoff):** entfällt in WMC → Fach POS (C#, Kolleg:innen)
+- **Werkzeuge:** VS Code, Git/GitHub, Browser-DevTools
 
 ---
 
 ## Klassen
 
-| Klasse | README |
+### Laufend (SJ 2026/27)
+
+| Klasse | Block | Inhalt |
+|---|---|---|
+| 3AAIF → 4AAIF | Jahr 1 | HTML/CSS (WS) → JS-Basics (SS) |
+| 5AKIF → 6AKIF | Jahr 2 | React + TypeScript |
+
+### Archiv
+
+| Schuljahr | Klassen |
 |---|---|
-| 4AAIF | [`4aaif/README.md`](./4aaif/README.md) |
-| 4AKIF | [`4akif/README.md`](./4akif/README.md) |
-| 4BKIF | [`4bkif/README.md`](./4bkif/README.md) |
-| 4CAIF | [`4caif/README.md`](./4caif/README.md) |
+| 2025/26 (Jahr 1) | [`4aaif`](./archiv/2025-26-4aaif/) · [`4akif`](./archiv/2025-26-4akif/) · [`4bkif`](./archiv/2025-26-4bkif/) · [`4caif`](./archiv/2025-26-4caif/) |
