@@ -135,7 +135,7 @@ Hono-Referenz dient nur als Konsum-Ziel und Deployment-Demonstration.
 
 1. **Referenz-API bauen/aktualisieren:** Mini-Hono-Referenz (REST-CRUD + JWT-Login +
    `/static`-Auslieferung + SPA-Fallback + optional WebSocket) als Repo-Artefakt —
-   Kandidat: [`Beispielprojekte/hono_on_deno/`](../../Beispielprojekte/hono_on_deno/)
+   Kandidat: [`Beispielprojekte/hono_on_deno/`](../Beispielprojekte/hono_on_deno/)
    ausbauen.
 2. **POS-Abstimmung:** Überschneidungen Auth/REST-Design mit den POS-Kolleg:innen
    abstimmen (wer liefert produktiv die API fürs Abschlussprojekt?).

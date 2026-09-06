@@ -3,10 +3,10 @@
 **Unterlagen, Beispielcode und Projekte für den WMC-Unterricht in der Erwachsenenbildung
 an der HTL Spengergasse (Aufbaulehrgang & Kolleg für Berufstätige für Informatik, Abendform).**
 
-> Lehrplan & Semesterplanung: [`docs/lehrplan/`](./docs/lehrplan/) —
-> dort [`LEHRPLAN.md`](./docs/lehrplan/LEHRPLAN.md) (dreischichtig),
-> [`jahr1-einheiten.md`](./docs/lehrplan/jahr1-einheiten.md),
-> [`jahr2-einheiten.md`](./docs/lehrplan/jahr2-einheiten.md).
+> Lehrplan & Semesterplanung: [`lehrplan/`](./lehrplan/) —
+> dort [`LEHRPLAN.md`](./lehrplan/LEHRPLAN.md) (dreischichtig),
+> [`jahr1-einheiten.md`](./lehrplan/jahr1-einheiten.md),
+> [`jahr2-einheiten.md`](./lehrplan/jahr2-einheiten.md).
 > In der Tagesschule werden die Web-Inhalte im Fach POS abgedeckt (Kolleg:innen) —
 > dieses Repo betrifft **nur die Abendform**.
 
@@ -76,7 +76,7 @@ Beispielprojekte, Übungen und Lösungen. WMC wird in zwei Blöcken unterrichtet
 | [`Beispielprojekte/`](./Beispielprojekte/) | Demo-Projekte (Ticketautomat, Hono + Prisma + HTMX, Deno-Transpilation, Code-Gists) |
 | [`Übungen/`](./Übungen/) | Aufgabenstellungen für Einzel- und Gruppenübungen |
 | [`docs/`](./docs/) | Zentrale Dokumente (Skriptum, Projektangaben) |
-| [`docs/lehrplan/`](./docs/lehrplan/) | **Lehrplan dreischichtig + Semesterpläne** (LEHRPLAN, METADATA, RIS, jahr1/jahr2-einheiten) |
+| [`lehrplan/`](./lehrplan/) | **Lehrplan dreischichtig + Semesterpläne** (LEHRPLAN, METADATA, RIS, jahr1/jahr2-einheiten) |
 
 ### Wichtige Dateien
 

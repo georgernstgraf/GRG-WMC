@@ -18,9 +18,10 @@ any new work unless the user explicitly says otherwise.
 
 ## Project Structure
 
-- **`<N><zug>/`** - Active class folders, semester-numbered: WS `3aaif` → SS `4aaif`, WS `5akif` → SS `6akif` (AAIF = Aufbaulehrgang, AKIF = Kolleg; B/C = parallel sections). One folder per class per school year, renamed at semester break. Created at semester start.
+- **`<N><zug>/`** - Active class folders, semester-numbered: WS `3aaif` → SS `4aaif`, WS `5akif` → SS `6akif` (Form-Serien AIF = Aufbaulehrgang, KIF/CIF = Kolleg; Zug-Präfixe A/B/C — Decoder: `lehrplan/METADATA.md`). One folder per class per school year, renamed at semester break. Created at semester start.
 - **archiv/** - Archived classes from past school years, named `YYYY-YY-<klasse>/` (e.g. `archiv/2025-26-4aaif/`)
-- **docs/lehrplan/** - Curriculum & semester planning: `LEHRPLAN.md` (3-layer: official/school-adaption/didactics), `METADATA.md`, `RIS.md`, `jahr1-einheiten.md` (retrospective), `jahr2-einheiten.md` (plan)
+- **`lehrplan/`** - Curriculum & semester planning (Skill-Konvention, Root): `LEHRPLAN.md` (3-layer: official/school-adaption/didactics), `METADATA.md`, `RIS.md`, `jahr1-einheiten.md` (retrospective), `jahr2-einheiten.md` (plan); generische Block-Klassenordner `34AIF/`, `34KIF/`, `34CIF/`, `56KIF/` (je README + `<BLOCK>.lehrplan.md`); `kompetenzmodule/` (km3–km10); RIS-PDFs `YYYY-MM-DD_BGBl-II-*.pdf`
+- **GLOSSAR.md** - Domain abbreviations and terms (Root, nachschlagen vor Namensfragen)
 - **Unterlagen/** - Teaching materials (HTML, CSS, JS, HTTP, POSIX)
 - **Beispielprojekte/** - Example projects for demonstration
 - **Übungen/** - Exercises and assignments

@@ -147,7 +147,7 @@ Die Spengergasse führt „Webprogrammierung und Mobile Computing" als **eigenes
 
 | Block | Semester | Stunden (Ist) | Inhalt | Status |
 |-------|----------|---------------|--------|--------|
-| **Jahr 1** | Sem 3+4 (WS+SS) | **faktisch 2 h/W** (statt 1 h lt. Tafel — schulautonome Verschiebung) | **WS:** HTML5, CSS3 (Flexbox, Grid, Nesting, Responsive, Bootstrap), Website-Projekt · **SS:** JavaScript (Basics, Arrays, DOM, async/fetch), TS-Intro, Klassen, 7-Punkte-Struktur | **unterrichtet** (zuletzt SJ 2025/26, archiviert in [`archiv/`](../../archiv/); Rückpflege: [`jahr1-einheiten.md`](jahr1-einheiten.md)) |
+| **Jahr 1** | Sem 3+4 (WS+SS) | **faktisch 2 h/W** (statt 1 h lt. Tafel — schulautonome Verschiebung) | **WS:** HTML5, CSS3 (Flexbox, Grid, Nesting, Responsive, Bootstrap), Website-Projekt · **SS:** JavaScript (Basics, Arrays, DOM, async/fetch), TS-Intro, Klassen, 7-Punkte-Struktur | **unterrichtet** (zuletzt SJ 2025/26, archiviert in [`archiv/`](../archiv/); Rückpflege: [`jahr1-einheiten.md`](jahr1-einheiten.md)) |
 | **Jahr 2** | Sem 5+6 (WS+SS) | 3 h-Block (Abendeinheit) | **React + TypeScript** (Vollzeit-Frontend: Components, Hooks, Router, State, Auth-Client, PWA, Tests), REST-Konsum, Architektur verteilter Systeme | **geplant ab SJ 2026/27** (5AKIF/6AKIF; Plan: [`jahr2-einheiten.md`](jahr2-einheiten.md)) |
 
 **Offene Punkte (mit Fachgruppe zu verifizieren):** Wer übernimmt die 1-h-WMC-Semester
@@ -179,7 +179,7 @@ POS-Kontext (Kolleg:innen) abgedeckt. **Dieses Repo betrifft nur die Abendform.*
   (Decoder: [`METADATA.md`](METADATA.md)).
 - **Handlungsorientierung & Projektbezug** (Didaktische Grundsätze, Anlage 1):
   Jahr 1 = Website-Projekt + Peer-Review; Jahr 2 = React-Projekt inkl. Build/Deployment.
-- **Beurteilung:** PLF / Hausübungen / Mitarbeit je 1/3 (Root-[`README.md`](../../README.md)).
+- **Beurteilung:** PLF / Hausübungen / Mitarbeit je 1/3 (Root-[`README.md`](../README.md)).
 - **Hoher Selbststudium-Anteil:** Materialien (Skriptum, Folien, Übungen) sind so
   aufbereitet, dass Versäumtes nachholbar ist; Hausübungs-Pipeline über GitHub-Repos.
 

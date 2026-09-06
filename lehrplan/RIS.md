@@ -78,10 +78,14 @@
 ## 7. Konsequenzen für dieses Repo
 
 1. [`METADATA.md`](METADATA.md) führt als Rechtsgrundlage **BGBl. II Nr. 368/2022** (primär)
-   mit Parent-Referenz Anlage 1.10 idF 383/2021.
+   mit Parent-Referenz Anlage 1.10 idF 383/2021. Rechtstexte lokal:
+   `2022-10-04_BGBl-II-368_Sonderformen-VO.pdf`, `2021-09-03_BGBl-II-383_Novelle-Anl-1.10.pdf`
+   (VO-Text; Anlage 1.10 via BgblAuth-HTML), `2015-09-17_BGBl-II-262_HTL-Lehrplanpaket.pdf`.
 2. [`LEHRPLAN.md`](LEHRPLAN.md) ist dreischichtig (① Sonderformen + Parent · ② Schuladaption · ③ Didaktik/Stack).
-3. **Flags zur Verifikation mit der Fachgruppe:** (a) Klassenkürzel `AKIF`/`BKIF`/`CAIF`
-   (Decoder in METADATA.md), (b) Besetzung der Nicht-Georg-WMC-Semester (Aufbaulehrgang
-   Sem 2/5/7, Kolleg Sem 1–4), (c) Aktualität des Schul-PDFs `LP_ab17_Informatik.pdf`.
+3. **Flags zur Verifikation mit der Fachgruppe:** (a) ~~Klassenkürzel~~ **gelöst 2026-09-06**
+   (Decoder in METADATA.md: Form-Serien AIF/KIF/CIF, Semestrierung ungerade/gerade;
+   Rest: Bedeutung des Buchstabens C), (b) Besetzung der Nicht-Georg-WMC-Semester
+   (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4), (c) Aktualität des Schul-PDFs
+   `LP_ab17_Informatik.pdf`.
 4. **Re-Check-Empfehlung:** einmal jährlich (Sommerferien) die konsolidierte Fassung
    (Link oben) auf eine neue „Änderung"-Zeile prüfen. Nächster Check: Sommer 2027.

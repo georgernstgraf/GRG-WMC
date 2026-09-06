@@ -1,10 +1,10 @@
 # Jahr 1 (Sem 3+4) – Einheitenplan (Rückpflege SJ 2025/26)
 
 > **Status:** Rückgepflegt aus den archivierten Klassenordnern
-> ([`archiv/2025-26-4aaif/`](../../archiv/2025-26-4aaif/) ·
-> [`2025-26-4akif`](../../archiv/2025-26-4akif/) ·
-> [`2025-26-4bkif`](../../archiv/2025-26-4bkif/) ·
-> [`2025-26-4caif`](../../archiv/2025-26-4caif/)).
+> ([`archiv/2025-26-4aaif/`](../archiv/2025-26-4aaif/) ·
+> [`2025-26-4akif`](../archiv/2025-26-4akif/) ·
+> [`2025-26-4bkif`](../archiv/2025-26-4bkif/) ·
+> [`2025-26-4caif`](../archiv/2025-26-4caif/)).
 > **Kohorten:** 3AAIF→4AAIF, 3BKIF→4BKIF, 3CAIF→4CAIF (Aufbaulehrgang), 3AKIF→4AKIF (Kolleg).
 > **Zeitmodell:** faktisch **2 h/W** (schulautonom, s. [`LEHRPLAN.md`](LEHRPLAN.md) ②).
 > **Offizieller Bezug:** Anl. 1.9 „Basis-Webtechniken" (Beschreibungssprachen,
@@ -29,7 +29,7 @@
 | 9 | **Bootstrap** | Framework-Einstieg, Grid/Components | `4aaif/2025-11-19_bootstrap`, `4caif/2025-11-27_bootstrap` |
 | 10 | **Konsolidierung/Design** | Wiederholung, Design mit KI (Impuls), Testvorbereitung | `4bkif/2025-12-18_test_vorbereitung`, `2026-01-29_matt_maher` |
 | T | **Schriftlicher Test** (15. 1. 2026, MC) | HTML/CSS-Stoff WS | `4bkif` README |
-| P | **WS-Projekt: Website** | 2–5 Unterseiten, responsive, Flexbox/Grid/Position anwenden; Peer-Review ([`PROJEKT.md`](../../PROJEKT.md), [`PEER_REVIEW.md`](../../PEER_REVIEW.md)); Abgabe 8. 1., Besprechung 14./21. 1. | `4bkif` README „Abgabe Website" |
+| P | **WS-Projekt: Website** | 2–5 Unterseiten, responsive, Flexbox/Grid/Position anwenden; Peer-Review ([`PROJEKT.md`](../PROJEKT.md), [`PEER_REVIEW.md`](../PEER_REVIEW.md)); Abgabe 8. 1., Besprechung 14./21. 1. | `4bkif` README „Abgabe Website" |
 
 ## Sommersemester (Sem 4) — JavaScript (→ TS-Intro)
 
@@ -46,14 +46,14 @@
 | 9 | **TS-Intro & Transpilation** | TypeScript-Primer (Folie TypeScript-GRG), Deno-Transpile-Projekt (HÜ: fehlerfrei transpilieren) | `4aaif/2026-04-29_transpile`, `4bkif` 7.5. |
 | 10 | **Konsolidierung/Certs** | Knowhow & Zertifikate, agentic coding (Impuls), Stundenwiederholungen (Promises/Fetch/DOM) | `4bkif/2026-03-26_knowhow_und_certs`, `4caif/2026-03-19_agentic_coding` |
 | PLF | **Praktische PLF** (Mai) | DOM/Arrays/async — Ticket-Angabe; Lösung archiviert | `4caif/2026-05-07_plf-ticket`, `4aaif/2026-05-13_plf_lsg` |
-| P | **SS-Projekt: Webapp** | WS-Website mit SS-Technologie erweitern **oder** neu: client-side JS, **fetch**, DOM-Nodes tauschen/erzeugen/löschen, Arrays, 3 (Unter-)Seiten; Inspiration public-apis; **Abgabevideo** (OBS, 5–7 min: Demo + Code-Besprechung); Deadline ~10./15. 6., Präsentationen 18./25. 6. | [`PROJEKT.md`](../../PROJEKT.md), [`../wmc_ss_projekt_webapp.md`](../wmc_ss_projekt_webapp.md), `4caif` README |
+| P | **SS-Projekt: Webapp** | WS-Website mit SS-Technologie erweitern **oder** neu: client-side JS, **fetch**, DOM-Nodes tauschen/erzeugen/löschen, Arrays, 3 (Unter-)Seiten; Inspiration public-apis; **Abgabevideo** (OBS, 5–7 min: Demo + Code-Besprechung); Deadline ~10./15. 6., Präsentationen 18./25. 6. | [`PROJEKT.md`](../PROJEKT.md), [`../wmc_ss_projekt_webapp.md`](../docs/wmc_ss_projekt_webapp.md), `4caif` README |
 
 ## Hinweise für die nächste Jahr-1-Iteration (3AAIF/4AAIF ab SJ 2026/27)
 
 - **Bewährt:** Games als Übungsvehikel (Flexbox-Froggy, Grid-Garden, flukeout);
   public-apis als Projekt-Inspiration; Abgabevideo via OBS.
 - **Stundenwiederholungen** unangekündigt (Mikro-Tests) — Qualität zählt zur Mitarbeit.
-- **Skriptum:** [`../skriptum.md`](../skriptum.md) (JS/TS, Frontend-Fokus) als
+- **Skriptum:** [`../skriptum.md`](../docs/skriptum.md) (JS/TS, Frontend-Fokus) als
   Selbststudium-Begleitung; Folien unter `Unterlagen/` (HTML, CSS, JS, HTTP).
 - **Vorgriff auf Jahr 2 sichbar machen:** TS-Intro (UE 9) und 7-Punkte-Struktur (UE 8)
   sind die Brücke zu React/TS — bei der nächsten Iteration explizit benennen.

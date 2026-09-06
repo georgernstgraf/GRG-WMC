@@ -11,7 +11,7 @@ Follow these without question. Do not deviate unless explicitly told.
 - Curriculum docs use "jahr1/jahr2" naming (EB blocks), not SWP's "jgN".
 
 ## File Layout
-- Curriculum: `docs/lehrplan/{LEHRPLAN,METADATA,RIS,jahr1-einheiten,jahr2-einheiten}.md` — LEHRPLAN.md is the 3-layer single source (① official ② school-adaption ③ didactics/stack).
+- Curriculum: `lehrplan/{LEHRPLAN,METADATA,RIS,jahr1-einheiten,jahr2-einheiten}.md` — LEHRPLAN.md is the 3-layer single source (① official ② school-adaption ③ didactics/stack).
 - Knowledge files: `docs/ai/` (this directory) — read HANDOFF.md first.
 - Teaching materials by topic: `Unterlagen/`; demos: `Beispielprojekte/`; assignments: `Übungen/`.
 - Root README.md is rendered by index.html (GitHub Pages) — keep its markdown links valid.

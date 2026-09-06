@@ -7,10 +7,10 @@ Superseded decisions are relocated to HISTORY.md.
 - **Choice**: GRG-WMC documents WMC exclusively for Aufbaulehrgang + Kolleg (Abendform). Tagesschule web content is out of scope (covered by colleagues in the POS subject).
 - **Reason**: User clarification — "WMC gibt es nicht in der Tagesschule, dort ist das Material in 'SWP' gemacht."
 - **Considered**: Treating repo as dual-scope (Tagesschule Anlage 1.10 + EB) — rejected, corrected README/AGENTS which previously (wrongly) claimed "4. Klassen, Abteilung Informatik".
-- **Tradeoff**: Tagesschule Anlage 1.10 kept only as inhaltliche Referenz (KM3–KM10 raster) in docs/lehrplan/LEHRPLAN.md.
+- **Tradeoff**: Tagesschule Anlage 1.10 kept only as inhaltliche Referenz (KM3–KM10 raster) in lehrplan/LEHRPLAN.md.
 
 ## 2026-07-26: Legal basis = Sonderformen-VO 368/2022 (Anlagen 1+1.9), parent ref Anlage 1.10
-- **Choice**: Primary curriculum source for docs/lehrplan is BGBl. II Nr. 368/2022 (Sonderformen, Informatik = Anlage 1.9, variants I.3 7-sem Aufbaulehrgang + I.4 6-sem Kolleg).
+- **Choice**: Primary curriculum source for lehrplan is BGBl. II Nr. 368/2022 (Sonderformen, Informatik = Anlage 1.9, variants I.3 7-sem Aufbaulehrgang + I.4 6-sem Kolleg).
 - **Reason**: That is the binding curriculum for the evening forms; Spengergasse runs variants I.3+I.4.
 - **Considered**: Using Tagesschule Anlage 1.10 idF 383/2021 as primary — rejected (wrong school form).
 - **Tradeoff**: Anlage 1.9 has NO standalone WMC subject (web content spread across NvS/NvSdS/PSE), so the school's schulautonomes Fach WMC must be documented in layer ② with §3/Fußnote-1 legitimation.
@@ -28,7 +28,7 @@ Superseded decisions are relocated to HISTORY.md.
 - **Tradeoff**: One extra concept (SPA fallback, env config) to teach in WS UE 11.
 
 ## 2026-07-26: Curriculum docs 3-layer + jahrN-einheiten (mirroring GRG-SWP/GRG-INFI)
-- **Choice**: docs/lehrplan/{LEHRPLAN (3-layer), METADATA, RIS, jahr1-einheiten (retrospective), jahr2-einheiten (plan)}.md; UE tables `UE | Thema | KM-Bezug | Inhalt/HÜ`; ~13 UE + 2 PLF per semester.
+- **Choice**: lehrplan/{LEHRPLAN (3-layer), METADATA, RIS, jahr1-einheiten (retrospective), jahr2-einheiten (plan)}.md; UE tables `UE | Thema | KM-Bezug | Inhalt/HÜ`; ~13 UE + 2 PLF per semester.
 - **Reason**: User asked for structure analogous to the other two repos.
 - **Considered**: KM-Steckbriefe folder like GRG-SWP kompetenzmodule/ — deferred (not requested; single-teacher subject).
 - **Tradeoff**: Naming uses "jahr1/jahr2" (EB blocks) instead of SWP's "jgN" (Jahrgang) because EB classes are semester-numbered.

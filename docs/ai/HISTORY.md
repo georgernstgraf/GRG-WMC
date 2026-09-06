@@ -8,7 +8,7 @@ Entries here are no longer active truth. Never delete from this file.
 - **Origin**: README.md, AGENTS.md
 - **Reason**: User clarified the repo is EB-only (Aufbaulehrgang/Kolleg, semester-numbered classes); Tagesschule web content lives in POS (colleagues). Both files rewritten 2026-07-26.
 
-## 2026-07-26 (SUPERSEDED 2026-07-26, origin: docs/, reason: absorbed into docs/lehrplan/jahr1-einheiten.md): docs/Lehrinhalte_SS.md als lose Stundenliste
+## 2026-07-26 (SUPERSEDED 2026-07-26, origin: docs/, reason: absorbed into lehrplan/jahr1-einheiten.md): docs/Lehrinhalte_SS.md als lose Stundenliste
 - "Lehrinhalte WMC SS - Javascript": Stunde 1 Grundlagen · Stunde 2 Funktionen/querySelector · Stunde 3 primtest · Stunde 4 Arrays · Stunde 5 Klassen · "noch nicht eingetütet": Promises async/await, generator functions.
 - **Origin**: docs/Lehrinhalte_SS.md (deleted via git rm)
-- **Reason**: Content absorbed into the SS table of docs/lehrplan/jahr1-einheiten.md (Rückpflege); single-source principle for planning docs in docs/lehrplan/.
+- **Reason**: Content absorbed into the SS table of lehrplan/jahr1-einheiten.md (Rückpflege); single-source principle for planning docs in lehrplan/.
