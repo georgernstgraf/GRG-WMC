@@ -1,22 +1,21 @@
 # Project State
 
-Current status as of 2026-07-26.
+Current status as of 2026-09-06.
 
 ## Current Focus
-Lehrplan-Dokumentation + Jahr-2-Planung (React/TS) + Archivierung SJ 2025/26 — abgeschlossen in dieser Session.
+Skill-Konventions-Alignment (unterricht-Skill): lehrplan/ nach Root, KM-Steckbriefe, Block-Klassenordner, GLOSSAR — abgeschlossen in dieser Session. Nächster Fokus: Mini-Hono-Referenz + Semesterstart 5AKIF.
 
 ## Completed (this cycle)
-- [x] Anlage 1.9 (Sonderformen-VO 368/2022) extrahiert & verifiziert (kein eigenes WMC-Fach; §3/Fußnote-1 Schulautonomie; §4 voll in Kraft)
-- [x] docs/lehrplan/LEHRPLAN.md (3-layer), METADATA.md, RIS.md erstellt
-- [x] 4 Klassenordner via git mv → archiv/2025-26-{4aaif,4akif,4bkif,4caif} (162 Renames)
-- [x] docs/lehrplan/jahr1-einheiten.md (Rückpflege SJ 2025/26); docs/Lehrinhalte_SS.md absorbiert & gelöscht
-- [x] docs/lehrplan/jahr2-einheiten.md (Plan 5AKIF/6AKIF, 13 UE + 2 PLF pro Semester, KM-Abdeckung)
-- [x] README.md (EB-Kontext) + AGENTS.md (Struktur/Stack) aktualisiert
-- [x] docs/ai/ Wissensbasis initialisiert
+- [x] lehrplan/ aus `docs/` nach Root umgezogen (Skill-Konvention; Links in AGENTS/README/docs/ai nachgezogen)
+- [x] Klassenkürzel verifiziert: Form-Serien AIF (AL, Reife- u. Diplomprüfung), KIF/CIF (Kolleg, nur Diplomprüfung); ungerade=WS, gerade=SS → Decoder in METADATA.md + DOMAIN.md
+- [x] Block-Klassenordner `lehrplan/{34AIF,34KIF,34CIF,56KIF}/` mit README + `<BLOCK>.lehrplan.md`
+- [x] `lehrplan/kompetenzmodule/`: km3–km10 (voll, inkl. Anl.-1.10-Wortlaut aus BgblAuth-HTML) + Semester↔Klasse↔KM-Übersicht
+- [x] GLOSSAR.md (Root, PMM-Muster)
+- [x] 3 RIS-PDFs nach `lehrplan/` (368/2022, 383/2021, 262/2015; Kundmachungsdaten aus Dokumenten verifiziert)
+- [x] Vorherige Cycle: Anlage 1.9 extrahiert; LEHRPLAN/METADATA/RIS; Archivierung 2025/26; jahr1/jahr2-einheiten; docs/ai init
 
 ## Pending
-- [ ] Klassenkürzel AKIF/BKIF/CAIF mit Fachgruppe verifizieren (DOMAIN.md flags)
-- [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4)
+- [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4) + Bedeutung Buchstabe C (CIF)
 - [ ] Mini-Hono-Referenz als Repo-Artefakt bauen (Kandidat: Beispielprojekte/hono_on_deno/ ausbauen; REST CRUD + JWT + /static + SPA-Fallback + optional WS)
 - [ ] POS-Abstimmung Auth/REST-Design + produktive API fürs Abschlussprojekt
 - [ ] Node-LTS-Verfügbarkeit auf Abendform-Schulrechnern prüfen
