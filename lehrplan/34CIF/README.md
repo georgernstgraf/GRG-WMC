@@ -10,6 +10,7 @@ Generischer Ordner für die Jahr-1-Blöcke des schulautonomen Fachs
 | **Kohorten (Praxiscodes mit Zug-Präfix)** | `3CAIF` → `4CAIF` (CIF-Variante; ggf. weitere Züge) |
 | **Zeitmodell** | **faktisch 2 h/W** (schulautonome Verdichtung; lt. Stundentafel 1 h — Legitimation: Fußnote 1 Stundentafeln + § 3 VO) |
 | **Einstieg** | mit Reifeprüfung (Kolleg-Variante) → Abschluss **Diplomprüfung** (Matura bereits vorhanden) |
+| **Zweig-Charakteristik** | **C = Unterricht erst ab 17:10** (Angabe Georg 2026-09-06; Standard-Rahmenzeit Mo–Do 17:10–22:00) |
 | **Rechtsbasis** | BGBl. II Nr. 368/2022, Anlage 1.9 (6-sem Kolleg, Variante I.4); Referenz-Raster Anlage 1.10 (BGBl. II Nr. 262/2015 idF 383/2021) |
 
 ## Lehrplan-Bezug

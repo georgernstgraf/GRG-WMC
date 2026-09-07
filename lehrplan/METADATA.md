@@ -66,6 +66,9 @@ gerade = SS**). In der Praxis (Kohorten-/Ordner-Codes) wird dem Form-Code ein
 | `KIF` | **Kolleg** | 6 Semester | Reifeprüfung / Berufsreifeprüfung / Studienberechtigungsprüfung → **Matura bereits vorhanden** | **Diplomprüfung** (nur Diplom) | Jahr 1 (Sem 3/4) + Jahr 2 (Sem 5/6) |
 | `CIF` | **zweite Kolleg-Variante** | 6 Semester | Matura bereits vorhanden | **Diplomprüfung** (nur Diplom) | Jahr 1 (Sem 3/4) |
 
+> **C = 17:10-Zweig:** Das C kennzeichnet den Zweig, dessen Unterricht **erst ab
+> 17:10** beginnt (Angabe Georg 2026-09-06).
+
 | Praxiscodes (mit Zug-Präfix) | Serie | SJ 2025/26 (Jahr 1) | SJ 2026/27 |
 |------------------------------|-------|---------------------|------------|
 | `AAIF` | AIF (Zug A) | 3AAIF → 4AAIF | — |
@@ -77,8 +80,8 @@ gerade = SS**). In der Praxis (Kohorten-/Ordner-Codes) wird dem Form-Code ein
 **Quellen:** (a) Schul-Seite „Informatik – Abendform" (`RIS.md` §2, Einstiegsvarianten-Tabelle:
 Kolleg-Einstieg nur mit Reife-/Berufsreife-/Studienberechtigungsprüfung; AL-Einstieg ohne),
 (b) § 1 Z. 9 BGBLA 2022 II 368 (Varianten I.3/I.4), (c) Angabe Georg 2026-09-06 (Form-Serien
-AIF/KIF/CIF, Semestrierung ungerade/gerade). Rest-Flags: Bedeutung des Buchstabens **C**;
-Besetzung der Nicht-Georg-Semester (unten).
+AIF/KIF/CIF, Semestrierung ungerade/gerade, C = 17:10-Zweig). Rest-Flag: Besetzung der
+Nicht-Georg-Semester (unten).
 
 **Semestrierte Namensführung:** `3AIF` = WS, `4AIF` = SS; `5KIF` = WS, `6KIF` = SS.
 Repo-Praxis: **ein Block-Ordner pro Georg-Block** unter `lehrplan/` (`34AIF`, `34KIF`,

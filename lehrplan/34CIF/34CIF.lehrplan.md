@@ -1,6 +1,7 @@
 # WMC — Jahrgang-1-Extrakt (34CIF: Sem 3 WS + Sem 4 SS)
 
-> **Block:** Jahr 1, Kolleg-Variante CIF (`3CIF` WS → `4CIF` SS; Kohorte 3CAIF → 4CAIF)
+> **Block:** Jahr 1, Kolleg-Variante CIF (`3CIF` WS → `4CIF` SS; Kohorte 3CAIF → 4CAIF;
+> C = Zweig mit Unterrichtsbeginn erst ab 17:10)
 > **Rechtsbasis:** BGBl. II Nr. 368/2022, Anlage 1.9 — WMC ist **kein eigenes Unterrichtsfach**
 > der Anlage; schulautonomes Fach der HTL Spengergasse (Fußnote 1 der Stundentafeln + § 3 VO).
 > **Referenz-Raster:** Anlage 1.10, BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021 —

@@ -3,7 +3,7 @@
 Branch: main
 
 ## Offene Aufgaben (klein, < 30 min)
-1. [x] Klassenkürzel verifiziert 2026-09-06 (Georg + Schul-Seite): Form-Serien AIF/KIF/CIF, ungerade=WS/gerade=SS, Zug-Präfixe A/B/C → Decoder in `lehrplan/METADATA.md` + `docs/ai/DOMAIN.md` gepflegt. **Rest:** Bedeutung des Buchstabens C (CIF) + Besetzung Nicht-Georg-WMC-Semester (Kolleg Sem 1–4, AL Sem 2/5/7).
+1. [x] Klassenkürzel verifiziert 2026-09-06 (Georg + Schul-Seite): Form-Serien AIF/KIF/CIF, ungerade=WS/gerade=SS, Zug-Präfixe A/B/C, **C = 17:10-Zweig** → Decoder in `lehrplan/METADATA.md` + `docs/ai/DOMAIN.md` gepflegt. **Rest:** Besetzung Nicht-Georg-WMC-Semester (Kolleg Sem 1–4, AL Sem 2/5/7).
 2. [ ] Node-LTS-Verfügbarkeit auf den Abendform-Rechnern prüfen (Jahr-2-Voraussetzung, s. `lehrplan/jahr2-einheiten.md` → Offene Punkte).
 3. [ ] Zu Semesterbeginn: Klassenordner `3aaif/` + `5akif/` anlegen (Konvention: datierte Unterordner `YYYY-MM-DD_topic`).
 

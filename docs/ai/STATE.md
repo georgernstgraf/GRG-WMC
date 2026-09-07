@@ -15,7 +15,7 @@ Skill-Konventions-Alignment (unterricht-Skill): lehrplan/ nach Root, KM-Steckbri
 - [x] Vorherige Cycle: Anlage 1.9 extrahiert; LEHRPLAN/METADATA/RIS; Archivierung 2025/26; jahr1/jahr2-einheiten; docs/ai init
 
 ## Pending
-- [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4) + Bedeutung Buchstabe C (CIF)
+- [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4)
 - [ ] Mini-Hono-Referenz als Repo-Artefakt bauen (Kandidat: Beispielprojekte/hono_on_deno/ ausbauen; REST CRUD + JWT + /static + SPA-Fallback + optional WS)
 - [ ] POS-Abstimmung Auth/REST-Design + produktive API fürs Abschlussprojekt
 - [ ] Node-LTS-Verfügbarkeit auf Abendform-Schulrechnern prüfen

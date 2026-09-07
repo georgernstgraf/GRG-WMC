@@ -34,7 +34,7 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | `<Semester><Form>IF` | Klassen-Code | Ziffer = Semester (ungerade = WS, gerade = SS); danach Form-Serie + „IF" (Informatik). Details: `lehrplan/METADATA.md` |
 | **AIF** | Aufbaulehrgang Informatik Form | 7 Semester; Einstieg ohne Reifeprüfung (Vorbereitungslehrgang, Fachschule, facheinschlägiger Lehrabschluss); Abschluss **Reife- und Diplomprüfung** |
 | **KIF** | Kolleg Informatik Form | 6 Semester; Einstieg erst mit Reife-/Berufsreife-/Studienberechtigungsprüfung; Abschluss **Diplomprüfung** (Matura bereits vorhanden) |
-| **CIF** | zweite Kolleg-Variante | Matura bereits vorhanden → nur Diplomprüfung; Bedeutung des Buchstabens C: Detail-Flag (METADATA.md) |
+| **CIF** | zweite Kolleg-Variante | Matura bereits vorhanden → nur Diplomprüfung; **C = Zweig mit Unterrichtsbeginn erst ab 17:10** (Angabe Georg 2026-09-06) |
 | **AAIF / CAIF** | AIF-Zug A / Zug C | Zug-Präfix auf dem Form-Code (Praxiscodes der Kohorten) |
 | **AKIF / BKIF** | KIF-Zug A / Zug B | analog; Spengergasse-Züge A/B/C |
 | **Block** | Georgs Unterrichtsblöcke | Jahr 1 = Sem 3+4 (2 h/W), Jahr 2 = Sem 5+6 (3 h/W); Inhalt für AL und Kolleg identisch |
