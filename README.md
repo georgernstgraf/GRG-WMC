@@ -20,7 +20,7 @@ Die Note setzt sich aus drei gleich gewerteten Bereichen zusammen:
 |---|---|
 | PLF (Praxis-Leistungs-Feststellung) | 40% |
 | Haus/Schul Übungen | 40% |
-| mündl Mitarbeit | 20% | (Bauchgefühl)
+| mündl Mitarbeit | 20% | (Bauchgefühl Lehrer)
 
 Mitarbeit umfasst auch Schulübungen und Stundenwiederholungen; deren Qualität und
 Intensität werden von der Lehrperson beurteilt.
