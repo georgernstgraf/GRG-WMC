@@ -18,9 +18,9 @@ Die Note setzt sich aus drei gleich gewerteten Bereichen zusammen:
 
 | Bereich | Gewicht |
 |---|---|
-| PLF (Praxis-Leistungs-Feststellung) | 1/3 |
-| Hausübungen | 1/3 |
-| Mitarbeit | 1/3 |
+| PLF (Praxis-Leistungs-Feststellung) | 40% |
+| Haus/Schul Übungen | 40% |
+| mündl Mitarbeit | 20% | (Bauchgefühl)
 
 Mitarbeit umfasst auch Schulübungen und Stundenwiederholungen; deren Qualität und
 Intensität werden von der Lehrperson beurteilt.
@@ -45,7 +45,7 @@ Beispielprojekte, Übungen und Lösungen. WMC wird in zwei Blöcken unterrichtet
 
 - HTML5 & semantisches Markup
 - CSS (Flexbox, Grid, Positionierung, Nesting, Custom Properties, Responsive)
-- CSS-Frameworks (Bootstrap)
+- CSS-Frameworks (Bootstrap, Tailwind, Picocss)
 - JavaScript (Datentypen, `let`/`const`, Funktionen, Template Strings)
 - Array-Methoden (`map`, `filter`, `reduce`, Spread)
 - DOM-Manipulation, Events
