@@ -2,10 +2,10 @@
 
 **Referenz:** Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Fach
 „5. Webprogrammierung und Mobile Computing", III. Jahrgang, 6. Semester — Kompetenzmodul 6
-**Zuordnung in diesem Repo:** Jahr 2, Sem 5 (WS) — **Anteil-KM** (Komprimierung), Ordner `lehrplan/56KIF/`
+**Zuordnung in diesem Repo:** Jahr 2, Sem 5 (WS) — **Anteil-KM** (Komprimierung), Ordner `lehrplan/wmc-kif/56KIF/`
 **Zeitmodell:** 3 h-Block/W → ~13 UE + 2 PLF pro Semester
 **Anl.-1.9-Haken:** PSE KM2 web-nah (Userinterfaces, Eventhandling, Usability)
-**Semesterplan:** `lehrplan/jahr2-einheiten.md` — WS UE 3–9
+**Semesterplan:** `unterricht/WMC/jg2-einheiten.md` — WS UE 3–9
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 
@@ -30,7 +30,7 @@ Webframework (Vollzeit-Frontend, ab 2026/27).
 **Backend/Datenanbindung (BLA „Backends mit Anbindung einer Datenbank"):** Stoff im
 Repo nur aus **Konsumentensicht** (REST-Contracts, DB-gebackte Ressourcen) —
 Umsetzung gehört zu POS (C#/.NET, Kolleg:innen); Abstimmung: offener Punkt in
-`lehrplan/jahr2-einheiten.md`.
+`unterricht/WMC/jg2-einheiten.md`.
 
 ## Abdeckung Jahr 2 WS (Plan)
 

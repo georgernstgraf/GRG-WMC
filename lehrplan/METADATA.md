@@ -84,9 +84,12 @@ AIF/KIF/CIF, Semestrierung ungerade/gerade, C = 17:10-Zweig). Rest-Flag: Besetzu
 Nicht-Georg-Semester (unten).
 
 **Semestrierte Namensführung:** `3AIF` = WS, `4AIF` = SS; `5KIF` = WS, `6KIF` = SS.
-Repo-Praxis: **ein Block-Ordner pro Georg-Block** unter `lehrplan/` (`34AIF`, `34KIF`,
-`34CIF`, `56KIF`), gemäß Skill-Konvention; UE-Material pro Schuljahr in root-Klassenordnern
-(beim Semesterwechsel Umbenennung 3→4 bzw. 5→6, vgl. Commit „neues semester", Feb 2026).
+Repo-Praxis (seit Retrofit 2026-09-10): **ein Block-Ordner pro Georg-Block** unter
+`lehrplan/wmc-<form>/` (`wmc-aif/34AIF`, `wmc-kif/34KIF` + `wmc-kif/56KIF`,
+`wmc-cif/34CIF`); UE-/Semesterpläne unter `unterricht/WMC/` am Repo-Root
+(form-übergreifend — WMC unterrichtet die Formen gemeinsam). UE-Material pro
+Schuljahr in root-Klassenordnern (beim Semesterwechsel Umbenennung 3→4 bzw. 5→6,
+vgl. Commit „neues semester", Feb 2026).
 
 ## Zeitmodell & Beurteilung
 
@@ -98,11 +101,19 @@ Repo-Praxis: **ein Block-Ordner pro Georg-Block** unter `lehrplan/` (`34AIF`, `3
 ## Planungskonvention
 
 - **Dokumente:** [`LEHRPLAN.md`](LEHRPLAN.md) (dreischichtig, die QUELLE) +
-  [`jahr1-einheiten.md`](jahr1-einheiten.md) (Rückpflege) + [`jahr2-einheiten.md`](jahr2-einheiten.md) (Plan).
+  [`../unterricht/WMC/jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md) (Rückpflege) +
+  [`../unterricht/WMC/jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md) (Plan).
 - **Archiv:** vergangene Schuljahre unter [`archiv/`](../archiv/) im Schema
   `YYYY-YY-<klasse>` (z. B. `archiv/2025-26-4aaif/`).
 - **UE-Tabellen:** `UE | Thema | KM-Bezug | Inhalt/HÜ`; KM-Bezug = Referenz-Raster
   Anl. 1.10 (KM3–KM10) + Anl.-1.9-Haken (Basis-Webtechniken, NvS KM3/4).
+
+## RIS-Status
+
+> **RIS-Status abgefragt am 2026-07-26:** Recherche gegen BGBl. II Nr. 368/2022
+> (Sonderformen-VO, Anlagen 1 + 1.9) und Parent-Raster Anlage 1.10 (BGBl. II Nr.
+> 262/2015 idF 383/2021) — Ergebnis: **aktuell**; Details, Fundstellen und Flags:
+> [`RIS.md`](RIS.md).
 
 ## Technologie-Stack (pädagogische Entscheidung SJ 2026/27)
 
@@ -118,16 +129,23 @@ Repo-Praxis: **ein Block-Ordner pro Georg-Block** unter `lehrplan/` (`34AIF`, `3
 | Datei | Beschreibung |
 |-------|--------------|
 | `METADATA.md` | Diese Datei |
-| [`LEHRPLAN.md`](LEHRPLAN.md) | Lehrstoff **dreischichtig**: ① offizieller Extrakt (368/2022 + Parent 1.10) · ② Schuladaption · ③ Didaktik/Stack — die QUELLE *(Namen weicht bewusst von der Skill-Konvention `<gegenstand>-lehrplan-text.md` ab, da ②+③ mitlegen; Konventions-Abweichung dokumentiert)* |
-| [`RIS.md`](RIS.md) | **Rechtsstand & Recherche** (Fundstellen, Novellen, Flags) |
-| [`jahr1-einheiten.md`](jahr1-einheiten.md) | Jahr 1 (Sem 3+4) – Block-Einheitenplan, Rückpflege aus SJ 2025/26 |
-| [`jahr2-einheiten.md`](jahr2-einheiten.md) | Jahr 2 (Sem 5+6) – Block-Einheitenplan SJ 2026/27 |
-| `34AIF/` · `34KIF/` · `34CIF/` | Generische Jahr-1-Block-Ordner (AIF/KIF/CIF): README + `<BLOCK>.lehrplan.md` |
-| `56KIF/` | Generischer Jahr-2-Block-Ordner (KIF): README + `56KIF.lehrplan.md` |
-| `kompetenzmodule/` | Didaktische KM-Steckbriefe km3–km10 + Semester↔Klasse↔KM-Übersicht |
-| `2022-10-04_BGBl-II-368_Sonderformen-VO.pdf` | RIS-PDF: Erlass Sonderformen-VO (Kundmachung 4.10.2022) |
-| `2021-09-03_BGBl-II-383_Novelle-Anl-1.10.pdf` | RIS-PDF: Novelle (Parent Anl. 1.10 neu gefasst; Kundmachung 3.9.2021; enthält nur VO-Text, Anlage via BgblAuth-HTML in `RIS.md`) |
-| `2015-09-17_BGBl-II-262_HTL-Lehrplanpaket.pdf` | RIS-PDF: Parent-Original (Kundmachung 17.9.2015) |
+| [`LEHRPLAN.md`](LEHRPLAN.md) | Lehrstoff **dreischichtig**: ① offizieller Extrakt (368/2022 + Parent 1.10) · ② Schuladaption · ③ Didaktik/Stack — die QUELLE. **Form-übergreifend** (alle Blöcke decken dieselbe Anlage 1.9 ab) — daher bewusst im `lehrplan/`-Root, Ausnahme dokumentiert (DECISIONS 2026-09-10) |
+| [`RIS.md`](RIS.md) | **Rechtsstand & Recherche** (Fundstellen, Novellen, Flags) — form-übergreifend, dito |
+| `RIS/2015-09-17_BGBl-II-262_HTL-Lehrplanpaket.pdf` | RIS-PDF: Parent-Original (Kundmachung 17.9.2015) |
+| `RIS/2021-09-03_BGBl-II-383_Novelle-Anl-1.10.pdf` | RIS-PDF: Novelle (Parent Anl. 1.10 neu gefasst; Kundmachung 3.9.2021; enthält nur VO-Text, Anlage via BgblAuth-HTML in `RIS.md`) |
+| `RIS/2022-10-04_BGBl-II-368_Sonderformen-VO.pdf` | RIS-PDF: Erlass Sonderformen-VO (Kundmachung 4.10.2022) |
+| `wmc-aif/34AIF/` · `wmc-kif/34KIF/` · `wmc-cif/34CIF/` | Jahr-1-Block-Ordner (AIF/KIF/CIF): README + `<BLOCK>.lehrplan.md` |
+| `wmc-kif/56KIF/` | Jahr-2-Block-Ordner (KIF): README + `56KIF.lehrplan.md` |
+| `kompetenzmodule/` | Didaktische KM-Steckbriefe km3–km10 + Semester↔Klasse↔KM-Übersicht — **form-übergreifend** (KM-Nummerierung identisch über alle Formen), daher im `lehrplan/`-Root |
+| `unterricht/WMC/jg1-einheiten.md` | Jahr 1 (Sem 3+4) – Block-Einheitenplan, Rückpflege aus SJ 2025/26 (ehem. `jahr1-einheiten.md`) |
+| `unterricht/WMC/jg2-einheiten.md` | Jahr 2 (Sem 5+6) – Block-Einheitenplan SJ 2026/27 (ehem. `jahr2-einheiten.md`) |
+
+> **Layout-Retrofit 2026-09-10** (lehrplan-Skill v2): Block-Ordner unter
+> `lehrplan/wmc-<form>/` zusammengeführt (wmc-aif / wmc-kif / wmc-cif), RIS-PDFs
+> in `RIS/` verschoben, Einheitenpläne nach `unterricht/WMC/` (kleines
+> `jg<N>`-Präfix statt `jahr<N>`). `LEHRPLAN.md`, `RIS.md` und
+> `kompetenzmodule/` bleiben als form-übergreifende Shared-Dateien bewusst im
+> `lehrplan/`-Root — dokumentierte Ausnahme (DECISIONS 2026-09-10).
 
 > **Außerhalb:** [`../skriptum.md`](../docs/skriptum.md) (JS/TS-Skriptum), [`../wmc_ss_projekt_webapp.md`](../docs/wmc_ss_projekt_webapp.md)
 > (Jahr-1-SS-Projektangabe), [`../../PROJEKT.md`](../PROJEKT.md) + [`../../PEER_REVIEW.md`](../PEER_REVIEW.md)

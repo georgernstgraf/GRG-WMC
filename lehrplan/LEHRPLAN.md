@@ -3,8 +3,8 @@
 > **Dreischichtig:** ① **offizieller Extrakt** (RIS, verbindlich) · ② **Schuladaption**
 > (Stundentafeln der HTL Spengergasse, Abendform) · ③ **Didaktik/Stack** (unsere Umsetzung).
 > Rechtsstand & Fundstellen: [`RIS.md`](RIS.md) · Metadaten/Stundentafeln/Klassenkürzel:
-> [`METADATA.md`](METADATA.md) · Semesterpläne: [`jahr1-einheiten.md`](jahr1-einheiten.md) ·
-> [`jahr2-einheiten.md`](jahr2-einheiten.md).
+> [`METADATA.md`](METADATA.md) · Semesterpläne: [`jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md) ·
+> [`jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md).
 >
 > **Geltungsbereich dieses Repos:** WMC in der **Erwachsenenbildung** (Aufbaulehrgang +
 > Kolleg für Berufstätige für Informatik, Abendform). In der Tagesschule der Spengergasse
@@ -147,8 +147,8 @@ Die Spengergasse führt „Webprogrammierung und Mobile Computing" als **eigenes
 
 | Block | Semester | Stunden (Ist) | Inhalt | Status |
 |-------|----------|---------------|--------|--------|
-| **Jahr 1** | Sem 3+4 (WS+SS) | **faktisch 2 h/W** (statt 1 h lt. Tafel — schulautonome Verschiebung) | **WS:** HTML5, CSS3 (Flexbox, Grid, Nesting, Responsive, Bootstrap), Website-Projekt · **SS:** JavaScript (Basics, Arrays, DOM, async/fetch), TS-Intro, Klassen, 7-Punkte-Struktur | **unterrichtet** (zuletzt SJ 2025/26, archiviert in [`archiv/`](../archiv/); Rückpflege: [`jahr1-einheiten.md`](jahr1-einheiten.md)) |
-| **Jahr 2** | Sem 5+6 (WS+SS) | 3 h-Block (Abendeinheit) | **React + TypeScript** (Vollzeit-Frontend: Components, Hooks, Router, State, Auth-Client, PWA, Tests), REST-Konsum, Architektur verteilter Systeme | **geplant ab SJ 2026/27** (5AKIF/6AKIF; Plan: [`jahr2-einheiten.md`](jahr2-einheiten.md)) |
+| **Jahr 1** | Sem 3+4 (WS+SS) | **faktisch 2 h/W** (statt 1 h lt. Tafel — schulautonome Verschiebung) | **WS:** HTML5, CSS3 (Flexbox, Grid, Nesting, Responsive, Bootstrap), Website-Projekt · **SS:** JavaScript (Basics, Arrays, DOM, async/fetch), TS-Intro, Klassen, 7-Punkte-Struktur | **unterrichtet** (zuletzt SJ 2025/26, archiviert in [`archiv/`](../archiv/); Rückpflege: [`jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md)) |
+| **Jahr 2** | Sem 5+6 (WS+SS) | 3 h-Block (Abendeinheit) | **React + TypeScript** (Vollzeit-Frontend: Components, Hooks, Router, State, Auth-Client, PWA, Tests), REST-Konsum, Architektur verteilter Systeme | **geplant ab SJ 2026/27** (5AKIF/6AKIF; Plan: [`jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md)) |
 
 **Offene Punkte (mit Fachgruppe zu verifizieren):** Wer übernimmt die 1-h-WMC-Semester
 außerhalb von Georgs Blöcken (Aufbaulehrgang Sem 2 + 5 bzw. Kolleg Sem 1–4 im Detail)
@@ -224,7 +224,7 @@ werden: ein Origin (kein CORS-Zwang), ein Deploy-Artefakt, betriebliche Gepfloge
 2. **Zeitmodell:** Jahr 1 = 2 h/W; Jahr 2 = 3 h-Block/W → **~13 echte UE + 2 PLF** pro
    Semester (Netto nach Ferien/Terminen; Bonus-UE + reservierte Slots separat).
 3. **Konvention pro UE:** `UE | Thema | KM-Bezug | Inhalt/HÜ` (Tabellenform, wie in
-   [`jahr2-einheiten.md`](jahr2-einheiten.md)); KM-Bezug = Referenz-Raster Anl. 1.10
+   [`jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md)); KM-Bezug = Referenz-Raster Anl. 1.10
    (s. o.) + Anl.-1.9-Haken.
 4. **Vorwissen verankern** (Verweis auf Vorjahr), **Bewertungsrahmen** PLF/HÜ/Mitarbeit
    je 1/3.
@@ -235,5 +235,5 @@ werden: ein Origin (kein CORS-Zwang), ein Deploy-Artefakt, betriebliche Gepfloge
 
 | Block | Dokument | Status |
 |-------|----------|--------|
-| Jahr 1 (Sem 3+4) | [`jahr1-einheiten.md`](jahr1-einheiten.md) | **Rückgepflegt** (SJ 2025/26, Quellen: `archiv/2025-26-*`) |
-| Jahr 2 (Sem 5+6) | [`jahr2-einheiten.md`](jahr2-einheiten.md) | **Geplant (SJ 2026/27, priorisiert)** |
+| Jahr 1 (Sem 3+4) | [`jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md) | **Rückgepflegt** (SJ 2025/26, Quellen: `archiv/2025-26-*`) |
+| Jahr 2 (Sem 5+6) | [`jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md) | **Geplant (SJ 2026/27, priorisiert)** |

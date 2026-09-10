@@ -16,7 +16,7 @@ Generischer Ordner für die Jahr-2-Blöcke des schulautonomen Fachs
 ## Lehrplan-Bezug
 
 - **Klassen-Extrakt:** [`56KIF.lehrplan.md`](56KIF.lehrplan.md)
-- **Semesterplan:** [`../jahr2-einheiten.md`](../jahr2-einheiten.md) — 13 UE + 2 PLF
+- **Semesterplan:** [`../../../unterricht/WMC/jg2-einheiten.md`](../../../unterricht/WMC/jg2-einheiten.md) — 13 UE + 2 PLF
   je Semester, mit KM-Bezug pro UE
 - **Kompetenzmodule:** [`../kompetenzmodule/`](../kompetenzmodule/) — KM5–KM10
 - **Rechtsstand/Novellen:** [`../RIS.md`](../RIS.md)

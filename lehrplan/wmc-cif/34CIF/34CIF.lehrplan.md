@@ -33,7 +33,7 @@ dynamische Elemente, Gestaltungsvorlagen.
 
 **Umsetzung (Ist):** HTML5 („HTML ist ein Graph", semantische Tags), CSS3
 (Box-Model, Selektoren, Position, Flexbox, Grid, Nesting, Responsive, Bootstrap),
-Git/VS-Code-Tooling — Details: [`../jahr1-einheiten.md`](../jahr1-einheiten.md) WS-Tabelle.
+Git/VS-Code-Tooling — Details: [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) WS-Tabelle.
 
 ### KM4 (Jg II SS) → Sem 4 (SS)
 
@@ -42,9 +42,9 @@ entwickeln.
 
 **Umsetzung (Ist):** JavaScript (Datentypen, Funktionen, Arrays funktional, Klassen mit
 `#`, DOM, Events, Promises/`async`/`await`, Fetch, 7-Punkte-Struktur), TS-Intro mit
-Deno-Transpilation — Details: [`../jahr1-einheiten.md`](../jahr1-einheiten.md) SS-Tabelle.
+Deno-Transpilation — Details: [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) SS-Tabelle.
 
 ## Vorleistungen für Jahr 2
 
 KM5 (Kommunikation Frontend/Backend, HTTP(S)) wird im SS (fetch, async) teils
-vorweggenommen; vollständige Abdeckung siehe [`../56KIF/56KIF.lehrplan.md`](../56KIF/56KIF.lehrplan.md).
+vorweggenommen; vollständige Abdeckung siehe [`wmc-kif/56KIF/56KIF.lehrplan.md`](../../wmc-kif/56KIF/56KIF.lehrplan.md).

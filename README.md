@@ -4,9 +4,9 @@
 an der HTL Spengergasse (Aufbaulehrgang & Kolleg für Berufstätige für Informatik, Abendform).**
 
 > Lehrplan & Semesterplanung: [`lehrplan/`](./lehrplan/) —
-> dort [`LEHRPLAN.md`](./lehrplan/LEHRPLAN.md) (dreischichtig),
-> [`jahr1-einheiten.md`](./lehrplan/jahr1-einheiten.md),
-> [`jahr2-einheiten.md`](./lehrplan/jahr2-einheiten.md).
+> dort [`LEHRPLAN.md`](./lehrplan/LEHRPLAN.md) (dreischichtlich, form-übergreifend),
+> Semesterpläne unter [`unterricht/WMC/`](./unterricht/WMC/)
+> (`jg1-einheiten.md`, `jg2-einheiten.md`).
 > In der Tagesschule werden die Web-Inhalte im Fach POS abgedeckt (Kolleg:innen) —
 > dieses Repo betrifft **nur die Abendform**.
 
@@ -76,7 +76,7 @@ Beispielprojekte, Übungen und Lösungen. WMC wird in zwei Blöcken unterrichtet
 | [`Beispielprojekte/`](./Beispielprojekte/) | Demo-Projekte (Ticketautomat, Hono + Prisma + HTMX, Deno-Transpilation, Code-Gists) |
 | [`Übungen/`](./Übungen/) | Aufgabenstellungen für Einzel- und Gruppenübungen |
 | [`docs/`](./docs/) | Zentrale Dokumente (Skriptum, Projektangaben) |
-| [`lehrplan/`](./lehrplan/) | **Lehrplan dreischichtig + Semesterpläne** (LEHRPLAN, METADATA, RIS, jahr1/jahr2-einheiten) |
+| [`lehrplan/`](./lehrplan/) | **Lehrplan dreischichtig** (LEHRPLAN, METADATA, RIS/ + RIS.md, wmc-aif/kif/cif Block-Ordner, kompetenzmodule/) |
 
 ### Wichtige Dateien
 

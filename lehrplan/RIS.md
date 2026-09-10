@@ -72,7 +72,7 @@
 > **Bewertung:** Die Schuladaption ist durch Fußnote 1 + § 3 ausdrücklich gedeckt und
 > didaktisch sinnvoll (Web als geschlossenes Fach statt verteilter Haken). Verbindlich
 > bleibt ①; die Abdeckungstabellen in [`LEHRPLAN.md`](LEHRPLAN.md) ③ und
-> [`jahr2-einheiten.md`](jahr2-einheiten.md) beziehen sich auf ② mit Rückverweis auf ①
+> [`jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md) beziehen sich auf ② mit Rückverweis auf ①
 > (inkl. Parent-Raster Anl. 1.10 KM3–KM10).
 
 ## 7. Konsequenzen für dieses Repo

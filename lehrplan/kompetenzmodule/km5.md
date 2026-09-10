@@ -3,10 +3,10 @@
 **Referenz:** Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Fach
 „5. Webprogrammierung und Mobile Computing", III. Jahrgang, 5. Semester — Kompetenzmodul 5
 **Zuordnung in diesem Repo:** Jahr 2, Sem 5 (WS) — **Anteil-KM** (Komprimierung: 6 KMs
-auf 2 Semester), Ordner `lehrplan/56KIF/`
+auf 2 Semester), Ordner `lehrplan/wmc-kif/56KIF/`
 **Zeitmodell:** 3 h-Block/W (Abendeinheit) → ~13 UE + 2 PLF pro Semester
 **Anl.-1.9-Haken:** NvSdS (Architektur und Entwicklung verteilter Systeme), PSE KM2 web-nah
-**Semesterplan:** `lehrplan/jahr2-einheiten.md` — WS UE 1–7
+**Semesterplan:** `unterricht/WMC/jg2-einheiten.md` — WS UE 1–7
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

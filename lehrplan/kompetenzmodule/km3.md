@@ -2,10 +2,10 @@
 
 **Referenz:** Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Fach
 „5. Webprogrammierung und Mobile Computing", II. Jahrgang, 3. Semester — Kompetenzmodul 3
-**Zuordnung in diesem Repo:** Jahr 1, Sem 3 (WS) — Ordner `lehrplan/34AIF/` · `lehrplan/34KIF/` · `lehrplan/34CIF/`
+**Zuordnung in diesem Repo:** Jahr 1, Sem 3 (WS) — Ordner `lehrplan/wmc-aif/34AIF/` · `lehrplan/wmc-kif/34KIF/` · `lehrplan/wmc-cif/34CIF/`
 **Zeitmodell:** 2 h/W (schulautonom; lt. Stundentafel 1 h) → ~13 UE + 2 PLF
 **Anl.-1.9-Haken:** „Netzwerke und verteilte Systeme" (1. Semester), Bereich Basis-Webtechniken
-**Semesterplan:** `lehrplan/jahr1-einheiten.md` — WS-Tabelle (Rückpflege SJ 2025/26)
+**Semesterplan:** `unterricht/WMC/jg1-einheiten.md` — WS-Tabelle (Rückpflege SJ 2025/26)
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

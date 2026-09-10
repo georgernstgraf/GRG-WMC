@@ -6,7 +6,7 @@
 > **Referenz-Raster:** Anlage 1.10, BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021 —
 > Fach „5. Webprogrammierung und Mobile Computing", KM3–KM10; hier komprimiert KM5–KM10.
 > **Quelle (Volltext, dreischichtig):** [`../LEHRPLAN.md`](../LEHRPLAN.md) ①
-> · **UE-Plan:** [`../jahr2-einheiten.md`](../jahr2-einheiten.md) · Extrakt-Datum: 2026-09-06
+> · **UE-Plan:** [`../../../unterricht/WMC/jg2-einheiten.md`](../../../unterricht/WMC/jg2-einheiten.md) · Extrakt-Datum: 2026-09-06
 
 ## Anl. 1.9 — „Netzwerksysteme und verteilte Systeme" (NvSdS), KM3 + KM4
 
@@ -60,4 +60,4 @@ Enterprise Application Architecture; Cloud Computing; Middleware; Multi Tier Sys
 
 > **Anl.-1.9-Deckung:** NvSdS KM3/KM4 → WS UE 1/11, SS UE 9 (Konzept-UEs) · PSE KM3
 > (Teststrategien) → WS/SS Test-UEs. Detailzuordnung pro UE: „Abdeckung"-Tabelle in
-> [`../jahr2-einheiten.md`](../jahr2-einheiten.md).
+> [`../../../unterricht/WMC/jg2-einheiten.md`](../../../unterricht/WMC/jg2-einheiten.md).

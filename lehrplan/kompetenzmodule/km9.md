@@ -2,10 +2,10 @@
 
 **Referenz:** Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Fach
 „5. Webprogrammierung und Mobile Computing", V. Jahrgang, 9. Semester — Kompetenzmodul 9
-**Zuordnung in diesem Repo:** Jahr 2, Sem 6 (SS) — **Anteil-KM** (Komprimierung), Ordner `lehrplan/56KIF/`
+**Zuordnung in diesem Repo:** Jahr 2, Sem 6 (SS) — **Anteil-KM** (Komprimierung), Ordner `lehrplan/wmc-kif/56KIF/`
 **Zeitmodell:** 3 h-Block/W → ~13 UE + 2 PLF pro Semester
 **Anl.-1.9-Haken:** NvSdS KM4 (SOA, Web-Services, EAA, Cloud Computing, Middleware, Multi-Tier)
-**Semesterplan:** `lehrplan/jahr2-einheiten.md` — SS UE 5, 9
+**Semesterplan:** `unterricht/WMC/jg2-einheiten.md` — SS UE 5, 9
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

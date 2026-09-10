@@ -20,10 +20,10 @@ Kolleg-Ablauf ist um ein Semester versetzt, Georg unterrichtet Blöcke, nicht Ei
 
 | Block | Semester | Klasse (generisch) | KM (Anl. 1.10 Referenz) | Anl.-1.9-Haken | Unterrichtet Georg? |
 |-------|----------|--------------------|-------------------------|----------------|---------------------|
-| Jahr 1 | Sem 3 (WS) | `34AIF` · `34KIF` · `34CIF` → `3AIF/3KIF/3CIF` | **KM3** | Basis-Webtechniken (NvS) | ja |
-| Jahr 1 | Sem 4 (SS) | `34AIF` · `34KIF` · `34CIF` → `4AIF/4KIF/4CIF` | **KM4** | Basis-Webtechniken (NvS) | ja |
-| Jahr 2 | Sem 5 (WS) | `56KIF` → `5KIF` | **KM5, KM6 (teils), KM7, KM8, KM10** komprimiert | NvSdS KM3 · PSE KM2/KM3 | ja (ab WS 2026/27) |
-| Jahr 2 | Sem 6 (SS) | `56KIF` → `6KIF` | **KM7, KM8, KM9, KM10** komprimiert | NvSdS KM4 · PSE KM3 | ja (ab SS 2027) |
+| Jahr 1 | Sem 3 (WS) | `wmc-aif/34AIF` · `wmc-kif/34KIF` · `wmc-cif/34CIF` → `3AIF/3KIF/3CIF` | **KM3** | Basis-Webtechniken (NvS) | ja |
+| Jahr 1 | Sem 4 (SS) | `wmc-aif/34AIF` · `wmc-kif/34KIF` · `wmc-cif/34CIF` → `4AIF/4KIF/4CIF` | **KM4** | Basis-Webtechniken (NvS) | ja |
+| Jahr 2 | Sem 5 (WS) | `wmc-kif/56KIF` → `5KIF` | **KM5, KM6 (teils), KM7, KM8, KM10** komprimiert | NvSdS KM3 · PSE KM2/KM3 | ja (ab WS 2026/27) |
+| Jahr 2 | Sem 6 (SS) | `wmc-kif/56KIF` → `6KIF` | **KM7, KM8, KM9, KM10** komprimiert | NvSdS KM4 · PSE KM3 | ja (ab SS 2027) |
 
 > Die restlichen WMC-Semester der Stundentafeln (Aufbaulehrgang Sem II/V + VII,
 > Kolleg Sem I–IV außerhalb Georgs Blöcke) sind mit 1 h besetzt und nicht Georgs Blöcke —
@@ -57,4 +57,4 @@ Kolleg-Ablauf ist um ein Semester versetzt, Georg unterrichtet Blöcke, nicht Ei
 
 - `GLOSSAR.md` (Root) — Abkürzungen & Fachbegriffe mit Repo-Kontext
 - [`../LEHRPLAN.md`](../LEHRPLAN.md) ① — getreue Rechts-Extrakte aller KM/Haken
-- [`../jahr1-einheiten.md`](../jahr1-einheiten.md) · [`../jahr2-einheiten.md`](../jahr2-einheiten.md) — Block-Einheitenpläne
+- [`../unterricht/WMC/jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md) · [`../unterricht/WMC/jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md) — Block-Einheitenpläne

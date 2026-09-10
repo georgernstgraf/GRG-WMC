@@ -3,6 +3,12 @@
 Active architectural and technical decisions still in force.
 Superseded decisions are relocated to HISTORY.md.
 
+## 2026-09-10: lehrplan-Retrofit — WMC-Layout-Ausnahmen (Skill v2)
+- **Choice**: Beim Retrofit auf das lehrplan-Skill-v2-Layout gilt für GRG-WMC zwei dokumentierte Ausnahmen: (1) `LEHRPLAN.md`, `RIS.md` und `kompetenzmodule/` bleiben **form-übergreifend im `lehrplan/`-Root** statt pro `wmc-<form>`-Ordner; (2) die Semesterpläne liegen unter **`unterricht/WMC/`** (form-übergreifend, ohne `<ZWEIG>-`-Präfix) statt `unterricht/<FORM>-WMC/`.
+- **Reason**: WMC unterrichtet AIF/KIF/CIF **gemeinsam** (dieselbe Anlage 1.9, dieselben KM, gemischte Kohorten `3AAIF/3AKIF/3BKIF/3CAIF` bzw. `5AKIF`). Pro-Form-Duplikate würden drift-gefährdete Kopien erzeugen; die Einheiten-Dateien (`jg1`/`jg2`) decken bewusst alle Formen eines Jahrgangs ab.
+- **Considered**: Form-Ordner `wmc-aif/kif/cif` mit je eigener LEHRPLAN.md/RIS.md/Kompetenzmodulkopie — rejected (Duplizierung, Sync-Aufwand ohne inhaltlichen Mehrwert, da ①/②/③ identisch sind).
+- **Tradeoff**: Der generische Konformitäts-Check des Skills meldet die Root-Lage dieser drei Dateien als Befund; die Ausnahme ist hiermit explizit dokumentiert und gilt als gerechtfertigt.
+
 ## 2026-07-26: Repo scope = Erwachsenenbildung (Abendform) only
 - **Choice**: GRG-WMC documents WMC exclusively for Aufbaulehrgang + Kolleg (Abendform). Tagesschule web content is out of scope (covered by colleagues in the POS subject).
 - **Reason**: User clarification — "WMC gibt es nicht in der Tagesschule, dort ist das Material in 'SWP' gemacht."

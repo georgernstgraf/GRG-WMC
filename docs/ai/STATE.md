@@ -8,11 +8,11 @@ Skill-Konventions-Alignment (unterricht-Skill): lehrplan/ nach Root, KM-Steckbri
 ## Completed (this cycle)
 - [x] lehrplan/ aus `docs/` nach Root umgezogen (Skill-Konvention; Links in AGENTS/README/docs/ai nachgezogen)
 - [x] Klassenkürzel verifiziert: Form-Serien AIF (AL, Reife- u. Diplomprüfung), KIF/CIF (Kolleg, nur Diplomprüfung); ungerade=WS, gerade=SS → Decoder in METADATA.md + DOMAIN.md
-- [x] Block-Klassenordner `lehrplan/{34AIF,34KIF,34CIF,56KIF}/` mit README + `<BLOCK>.lehrplan.md`
-- [x] `lehrplan/kompetenzmodule/`: km3–km10 (voll, inkl. Anl.-1.10-Wortlaut aus BgblAuth-HTML) + Semester↔Klasse↔KM-Übersicht
+- [x] Block-Ordner `lehrplan/wmc-aif/34AIF/`, `lehrplan/wmc-kif/{34KIF,56KIF}/`, `lehrplan/wmc-cif/34CIF/` mit README + `<BLOCK>.lehrplan.md` (Retrofit 2026-09-10)
+- [x] `lehrplan/kompetenzmodule/` (shared, form-übergreifend): km3–km10 (voll, inkl. Anl.-1.10-Wortlaut aus BgblAuth-HTML) + Semester↔Klasse↔KM-Übersicht
 - [x] GLOSSAR.md (Root, PMM-Muster)
 - [x] 3 RIS-PDFs nach `lehrplan/` (368/2022, 383/2021, 262/2015; Kundmachungsdaten aus Dokumenten verifiziert)
-- [x] Vorherige Cycle: Anlage 1.9 extrahiert; LEHRPLAN/METADATA/RIS; Archivierung 2025/26; jahr1/jahr2-einheiten; docs/ai init
+- [x] Vorherige Cycle: Anlage 1.9 extrahiert; LEHRPLAN/METADATA/RIS; Archivierung 2025/26; unterricht/WMC/jg1+jg2-einheiten; docs/ai init
 
 ## Pending
 - [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4)

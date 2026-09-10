@@ -15,7 +15,7 @@ Hono-Referenz dient nur als Konsum-Ziel und Deployment-Demonstration.
 > Bootstrap), JS (Datentypen, Funktionen, Arrays funktional, Klassen mit `#`, DOM,
 > Events, Promises/`async`/`await`, Fetch), TS-Intro + Deno-Transpilation,
 > 7-Punkte-Struktur (State → Render → Events), Git/GitHub-Workflow. Details:
-> [`jahr1-einheiten.md`](jahr1-einheiten.md). **UE 1 startet mit Diagnostik-Rep**
+> [`jg1-einheiten.md`](jg1-einheiten.md). **UE 1 startet mit Diagnostik-Rep**
 > (TS/JS-Refresher ist Teil der UE, keine eigene Reserve-Einheit).
 
 ---

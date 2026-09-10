@@ -9,7 +9,7 @@ Klammern wo relevant. Spalte 3 gibt Kontext: wo der Begriff im Repo bzw.
 Unterricht vorkommt. **UE-Verweise immer vollqualifiziert** als
 `UE n (KMx, Block WS/SS)` — UE-Nummern sind nur innerhalb eines
 Block-Einheitenplans eindeutig (UE 5 in Jahr 1 ≠ UE 5 in Jahr 2).
-Block-Pläne: `lehrplan/jahr1-einheiten.md`, `lehrplan/jahr2-einheiten.md`.
+Block-Pläne: `unterricht/WMC/jg1-einheiten.md`, `unterricht/WMC/jg2-einheiten.md`.
 
 ---
 

@@ -16,7 +16,7 @@ Business rules and domain relationships not obvious from code.
 - Class code scheme (verified 2026-09-06 with Georg, cross-checked against school page Einstiegsvarianten): `<Semester><Form-Serie>IF` with odd digit = WS, even digit = SS; practical cohort codes prefix a Zug letter (A/B/C) onto the form code.
   - Form series: **AIF** = Aufbaulehrgang (7 sem, entry WITHOUT Reifeprüfung → finishes with Reife- und Diplomprüfung = Diplom + Matura); **KIF** = Kolleg (6 sem, entry requires Reifeprüfung/Berufsreifeprüfung/Studienberechtigungsprüfung → Diplomprüfung only, Matura already held); **CIF** = second Kolleg variant (Matura already held → Diplomprüfung only; **C = branch whose classes start at 17:10**, per Georg 2026-09-06).
   - Cohorts SJ 2025/26 (Jahr 1): AAIF (Zug A, AIF), AKIF (Zug A, KIF), BKIF (Zug B, KIF), CAIF (C, CIF — per Georg).
-  - Generic block folders under `lehrplan/`: `34AIF`, `34KIF`, `34CIF` (Jahr 1), `56KIF` (Jahr 2, = 5AKIF→6AKIF).
+  - Generic block folders under `lehrplan/wmc-<form>/`: `34AIF`, `34KIF`, `34CIF` (Jahr 1), `56KIF` (Jahr 2, = 5AKIF→6AKIF).
 - Evening form schedule: Mon–Thu 17:10–22:00; Diplomarbeit in the final two semesters.
 - Grading: PLF / Hausübungen / Mitarbeit each 1/3; HÜ deadline next class day 00:00, late submission 75%, cutoff one week before Notenschluss.
 

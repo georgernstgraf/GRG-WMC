@@ -1,6 +1,6 @@
-# WMC — Jahrgang-1-Extrakt (34KIF: Sem 3 WS + Sem 4 SS)
+# WMC — Jahrgang-1-Extrakt (34AIF: Sem 3 WS + Sem 4 SS)
 
-> **Block:** Jahr 1, Kolleg (`3KIF` WS → `4KIF` SS; Kohorten 3AKIF/3BKIF → 4AKIF/4BKIF)
+> **Block:** Jahr 1, Aufbaulehrgang (`3AIF` WS → `4AIF` SS; Kohorten 3AAIF/3CAIF → 4AAIF/4CAIF)
 > **Rechtsbasis:** BGBl. II Nr. 368/2022, Anlage 1.9 — WMC ist **kein eigenes Unterrichtsfach**
 > der Anlage; schulautonomes Fach der HTL Spengergasse (Fußnote 1 der Stundentafeln + § 3 VO).
 > **Referenz-Raster:** Anlage 1.10, BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021 —
@@ -32,7 +32,7 @@ dynamische Elemente, Gestaltungsvorlagen.
 
 **Umsetzung (Ist):** HTML5 („HTML ist ein Graph", semantische Tags), CSS3
 (Box-Model, Selektoren, Position, Flexbox, Grid, Nesting, Responsive, Bootstrap),
-Git/VS-Code-Tooling — Details: [`../jahr1-einheiten.md`](../jahr1-einheiten.md) WS-Tabelle.
+Git/VS-Code-Tooling — Details: [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) WS-Tabelle.
 
 ### KM4 (Jg II SS) → Sem 4 (SS)
 
@@ -41,9 +41,9 @@ entwickeln.
 
 **Umsetzung (Ist):** JavaScript (Datentypen, Funktionen, Arrays funktional, Klassen mit
 `#`, DOM, Events, Promises/`async`/`await`, Fetch, 7-Punkte-Struktur), TS-Intro mit
-Deno-Transpilation — Details: [`../jahr1-einheiten.md`](../jahr1-einheiten.md) SS-Tabelle.
+Deno-Transpilation — Details: [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) SS-Tabelle.
 
 ## Vorleistungen für Jahr 2
 
 KM5 (Kommunikation Frontend/Backend, HTTP(S)) wird im SS (fetch, async) teils
-vorweggenommen; vollständige Abdeckung siehe [`../56KIF/56KIF.lehrplan.md`](../56KIF/56KIF.lehrplan.md).
+vorweggenommen; vollständige Abdeckung siehe [`wmc-kif/56KIF/56KIF.lehrplan.md`](../../wmc-kif/56KIF/56KIF.lehrplan.md).
