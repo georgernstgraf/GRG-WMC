@@ -9,3 +9,6 @@
 - Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser (erlaubt Powershell Scripts auszuführen)
 - npm i -g opencode-ai
 - opencode aufrufen
+- github.com account erstellen (mit spengergassen email)
+- "WMC" Repository erstellen
+- Den Link auf das Repo an grafg@spengergasse.at senden.
