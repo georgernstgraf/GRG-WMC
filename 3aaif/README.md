@@ -7,3 +7,4 @@
 - git software windows: winget / mac: brew install git
 - macht `winget upgrade --all` oder `brew upgrade` um alles zu aktualisieren
 - Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser (erlaubt Powershell Scripts auszuführen)
+- npm i -g opencode-ai
