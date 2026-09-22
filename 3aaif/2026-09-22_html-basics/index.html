@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UE 2 · HTML-Grundlagen · 3AAIF / 3CAIF</title>
+    <style>
+        :root {
+            --bg: #fafaf7;
+            --ink: #1c1c1e;
+            --muted: #6b7280;
+            --accent: #0e7490;
+            --accent-soft: #cffafe;
+            --ok: #15803d;
+            --bad: #b91c1c;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --radius: 0.75rem;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+        }
+        header {
+            background: #083344;
+            color: #fff;
+            padding: 2rem 1rem;
+
+            .wrap {
+                max-width: 44rem;
+                margin: 0 auto;
+            }
+            .kicker {
+                color: #67e8f9;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+            h1 {
+                margin: 0.25rem 0 0.5rem;
+                font-size: 1.8rem;
+            }
+            p {
+                margin: 0;
+                color: #d1d5db;
+            }
+        }
+        main {
+            max-width: 44rem;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 4rem;
+        }
+        section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .meta span {
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.15rem 0.7rem;
+        }
+        code {
+            background: #f3f4f6;
+            border-radius: 0.3rem;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.92em;
+        }
+        pre {
+            background: #111827;
+            color: #e5e7eb;
+            border-radius: 0.6rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+
+            code {
+                background: transparent;
+                padding: 0;
+                color: inherit;
+            }
+        }
+        .demo {
+            border: 1px dashed #9ca3af;
+            border-radius: 0.6rem;
+            padding: 0.9rem 1rem;
+            margin-top: 0.7rem;
+
+            nav ul {
+                display: flex;
+                gap: 1rem;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        fieldset.quiz-q {
+            border: 1px solid var(--border);
+            border-radius: 0.6rem;
+            margin: 0 0 0.9rem;
+            padding: 0.9rem 1rem;
+        }
+        fieldset.quiz-q legend {
+            font-weight: 600;
+            padding: 0 0.4rem;
+        }
+        fieldset.quiz-q label {
+            display: block;
+            padding: 0.35rem 0.5rem;
+            border-radius: 0.45rem;
+            cursor: pointer;
+        }
+        fieldset.quiz-q label:hover {
+            background: #f3f4f6;
+        }
+        .feedback {
+            font-size: 0.9rem;
+            margin-top: 0.4rem;
+            min-height: 1.4em;
+        }
+        .feedback.ok {
+            color: var(--ok);
+        }
+        .feedback.bad {
+            color: var(--bad);
+        }
+        .quiz-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        button {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 0.55rem;
+            padding: 0.65rem 1.1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            min-height: 44px;
+        }
+        button.secondary {
+            background: #fff;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        #score {
+            font-weight: 700;
+        }
+        footer {
+            max-width: 44rem;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        a {
+            color: var(--accent);
+        }
+        @media screen and (max-width: 600px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+            main {
+                padding: 1rem 0.75rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <div class="kicker">WMC · Jahr 1 · Sem 3 (WS) · UE 2 von 3</div>
+            <h1>HTML-Grundlagen: Struktur statt Deko</h1>
+            <p>Grundgerüst, semantische Tags, Links, Bilder, Listen — und deine „Über mich"-Seite. HTML ist ein Graph, kein Malbuch.</p>
+        </div>
+    </header>
+    <main>
+        <section aria-label="Einordnung">
+            <h2>1 · Einordnung</h2>
+            <div class="meta">
+                <span>UE 2 · 2026-09-22</span>
+                <span>KM3 · Auszeichnungssprachen</span>
+                <span>Basis-Webtechniken</span>
+                <span>3aaif + 3caif</span>
+            </div>
+            <p>Letzte Woche: Tooling &amp; Git (<a href="../2026-09-15_tooling-git/index.html">UE 1</a>). Heute: <strong>Beschreibungssprache HTML</strong> — sie beschreibt <em>Bedeutung und Struktur</em>, nicht Aussehen (das ist CSS, <a href="../2026-09-29_css-basics/index.html">UE 3</a>).</p>
+            <p>Lehrplan: <a href="../../../lehrplan/LEHRPLAN.md">LEHRPLAN.md</a> · <a href="../../../lehrplan/kompetenzmodule/km3.md">KM3</a> · <a href="../../../unterricht/WMC/jg1-einheiten.md">jg1 UE 2</a> · Unterlage: <a href="../../../Unterlagen/HTML-Grundlagen.md">HTML-Grundlagen.md</a></p>
+            <p><strong>Lernziel:</strong> du schreibst valides, semantisches HTML mit Kopf, Navigation, Hauptteil und Fuß — und öffnest es per Live Server.</p>
+        </section>
+        <section>
+            <h2>2 · Grundgerüst (Pflicht)</h2>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Über mich&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code> = HTML5, kurz und gut.</li>
+                <li><code>lang="de"</code> hilft Screenreader + SEO.</li>
+                <li><code>charset</code> + <code>viewport</code> sind Pflicht (Umlaute + Mobile).</li>
+                <li>Alles klein schreiben, alle Tags schließen.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>3 · Semantik: die 7 Tags für heute</h2>
+            <pre><code>&lt;header&gt;  Kopf: Titel, Logo
+&lt;nav&gt;     Navigation (nur wichtige Links)
+&lt;main&gt;    Hauptinhalt (genau 1x pro Seite)
+&lt;article&gt; eigenständiger Inhalt (Beitrag)
+&lt;section&gt; thematische Gruppe
+&lt;aside&gt;   Nebeninfo (Sidebar)
+&lt;footer&gt;  Fuß: Autor, Copyright</code></pre>
+            <div class="demo">
+                <header><strong>Mein Blog</strong></header>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Über mich</a></li>
+                    </ul>
+                </nav>
+                <main>
+                    <article>
+                        <h3>Erster Beitrag</h3>
+                        <p>Hallo Welt — das ist ein Absatz.</p>
+                    </article>
+                    <aside><p>Randnotiz: Semantik hilft allen.</p></aside>
+                </main>
+                <footer><p>© 2026 · Meine Seite</p></footer>
+            </div>
+            <p>Plus: <code>h1</code>–<code>h6</code> (genau ein <code>h1</code>), <code>p</code>, <code>ul</code>/<code>ol</code> + <code>li</code>, <code>a href</code>, <code>img src alt</code>, <code>&amp;lt;</code> für <code>&lt;</code>.</p>
+        </section>
+        <section>
+            <h2>4 · Mini-Übung (15 Min, im Unterricht)</h2>
+            <ol>
+                <li><code>index.html</code> mit Grundgerüst anlegen (Emmet <code>!</code>).</li>
+                <li><code>header</code> + <code>h1</code> „Über mich", <code>nav</code> mit 2 Links.</li>
+                <li><code>main</code> mit <code>article</code> (3 Sätze + Liste) und <code>aside</code> (Hobby).</li>
+                <li><code>img</code> mit sinnvollem <code>alt</code>-Text einbauen.</li>
+                <li>Live Server öffnen, W3C Validator: <strong>0 Errors</strong>.</li>
+            </ol>
+        </section>
+        <section aria-label="Quiz">
+            <h2>5 · Quiz: HTML sitzt? (6 Fragen)</h2>
+            <form id="quiz" novalidate>
+                <fieldset class="quiz-q" data-answer="b">
+                    <legend>1. Was gehört in den <code>head</code>?</legend>
+                    <label><input type="radio" name="q1" value="a"> Der sichtbare Hauptinhalt</label>
+                    <label><input type="radio" name="q1" value="b"> Die Metadaten der Seite</label>
+                    <label><input type="radio" name="q1" value="c"> Der Footer der Seite</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="c">
+                    <legend>2. Wie oft darf <code>main</code> vorkommen?</legend>
+                    <label><input type="radio" name="q2" value="a"> In jedem Abschnitt einmal</label>
+                    <label><input type="radio" name="q2" value="b"> Beliebig oft pro Seite</label>
+                    <label><input type="radio" name="q2" value="c"> Genau einmal pro Seite</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="a">
+                    <legend>3. Was ist semantisches HTML?</legend>
+                    <label><input type="radio" name="q3" value="a"> Tags beschreiben die Bedeutung</label>
+                    <label><input type="radio" name="q3" value="b"> Tags steuern die Farben</label>
+                    <label><input type="radio" name="q3" value="c"> Tags messen die Ladezeit</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="b">
+                    <legend>4. Wozu braucht <code>img</code> ein <code>alt</code>?</legend>
+                    <label><input type="radio" name="q4" value="a"> Für schnellere Ladezeiten</label>
+                    <label><input type="radio" name="q4" value="b"> Für barrierefreie Beschreibung</label>
+                    <label><input type="radio" name="q4" value="c"> Für größere Darstellung</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="a">
+                    <legend>5. Was macht <code>&amp;lt;</code> im Text?</legend>
+                    <label><input type="radio" name="q5" value="a"> Es zeigt eine Klammer</label>
+                    <label><input type="radio" name="q5" value="b"> Es startet einen Kommentar</label>
+                    <label><input type="radio" name="q5" value="c"> Es lädt ein Stylesheet</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="c">
+                    <legend>6. Warum <code>viewport</code>-Meta?</legend>
+                    <label><input type="radio" name="q6" value="a"> Für bessere Suchmaschinenwerbung</label>
+                    <label><input type="radio" name="q6" value="b"> Für schnellere Serverantworten</label>
+                    <label><input type="radio" name="q6" value="c"> Für korrektes Mobile-Layout</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <div class="quiz-actions">
+                    <button type="button" id="check">Auswerten</button>
+                    <button type="button" id="reset" class="secondary">Zurücksetzen</button>
+                    <span id="score" aria-live="polite"></span>
+                </div>
+            </form>
+        </section>
+        <section>
+            <h2>6 · HÜ bis 29. 9. 00:00</h2>
+            <ul>
+                <li><code>index.html</code> „Über mich" fertigstellen (semantisch, validiert).</li>
+                <li>Per Dreiklang abgeben: <code>git add .</code> → <code>commit</code> → <code>push</code>.</li>
+                <li>Vorschau: nächstes Mal <strong>CSS-Basics</strong> — wir dekorieren genau diese Seite.</li>
+            </ul>
+            <p>Hauptquelle: <a href="https://developer.mozilla.org/de/docs/Learn_web_development/Core/Structuring_content">MDN: Strukturierung von Inhalten</a> · Validator: <a href="https://validator.w3.org/">validator.w3.org</a></p>
+            <p>Fragen? Frag den Agent/Lehrer — z. B. „wann article vs. section?" oder „warum meckert der Validator?".</p>
+        </section>
+    </main>
+    <footer>
+        <p>WMC 3aaif/3caif · UE 2 (2026-09-22) · KM3 / Auszeichnungssprachen · Zurück: UE 1 Tooling · Weiter: UE 3 CSS-Basics.</p>
+    </footer>
+    <script>
+        'use strict';
+        const form = document.querySelector('#quiz');
+        const checkBtn = document.querySelector('#check');
+        const resetBtn = document.querySelector('#reset');
+        const scoreBox = document.querySelector('#score');
+        const evaluate = () => {
+            const sets = Array.from(form.querySelectorAll('fieldset.quiz-q'));
+            let points = 0;
+            sets.forEach((fs) => {
+                const picked = fs.querySelector('input[type="radio"]:checked');
+                const hint = fs.querySelector('.feedback');
+                if (picked === null) {
+                    hint.textContent = 'Bitte eine Antwort wählen.';
+                    hint.className = 'feedback bad';
+                    return;
+                }
+                if (picked.value === fs.dataset.answer) {
+                    points += 1;
+                    hint.textContent = 'Richtig.';
+                    hint.className = 'feedback ok';
+                } else {
+                    hint.textContent = 'Nicht ganz — nochmal versuchen.';
+                    hint.className = 'feedback bad';
+                }
+            });
+            scoreBox.textContent = points + ' / ' + sets.length + ' richtig';
+        };
+        const reset = () => {
+            form.reset();
+            form.querySelectorAll('.feedback').forEach((el) => {
+                el.textContent = '';
+                el.className = 'feedback';
+            });
+            scoreBox.textContent = '';
+        };
+        checkBtn.addEventListener('click', evaluate);
+        resetBtn.addEventListener('click', reset);
+    </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UE 1 · Tooling &amp; Git · 3AAIF / 3CAIF</title>
+    <style>
+        :root {
+            --bg: #fafaf7;
+            --ink: #1c1c1e;
+            --muted: #6b7280;
+            --accent: #1d4ed8;
+            --accent-soft: #dbeafe;
+            --ok: #15803d;
+            --bad: #b91c1c;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --radius: 0.75rem;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--ink);
+            color: #fff;
+            padding: 2rem 1rem;
+
+            .wrap {
+                max-width: 44rem;
+                margin: 0 auto;
+            }
+            .kicker {
+                color: #bfdbfe;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+            h1 {
+                margin: 0.25rem 0 0.5rem;
+                font-size: 1.8rem;
+            }
+            p {
+                margin: 0;
+                color: #d1d5db;
+            }
+        }
+        main {
+            max-width: 44rem;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 4rem;
+        }
+        section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .meta span {
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.15rem 0.7rem;
+        }
+        code {
+            background: #f3f4f6;
+            border-radius: 0.3rem;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.92em;
+        }
+        pre {
+            background: #111827;
+            color: #e5e7eb;
+            border-radius: 0.6rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+
+            code {
+                background: transparent;
+                padding: 0;
+                color: inherit;
+            }
+        }
+        ol.steps li, ul.check li {
+            margin-bottom: 0.5rem;
+        }
+        fieldset.quiz-q {
+            border: 1px solid var(--border);
+            border-radius: 0.6rem;
+            margin: 0 0 0.9rem;
+            padding: 0.9rem 1rem;
+        }
+        fieldset.quiz-q legend {
+            font-weight: 600;
+            padding: 0 0.4rem;
+        }
+        fieldset.quiz-q label {
+            display: block;
+            padding: 0.35rem 0.5rem;
+            border-radius: 0.45rem;
+            cursor: pointer;
+        }
+        fieldset.quiz-q label:hover {
+            background: #f3f4f6;
+        }
+        .feedback {
+            font-size: 0.9rem;
+            margin-top: 0.4rem;
+            min-height: 1.4em;
+        }
+        .feedback.ok {
+            color: var(--ok);
+        }
+        .feedback.bad {
+            color: var(--bad);
+        }
+        .quiz-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        button {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 0.55rem;
+            padding: 0.65rem 1.1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            min-height: 44px;
+        }
+        button.secondary {
+            background: #fff;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        #score {
+            font-weight: 700;
+        }
+        footer {
+            max-width: 44rem;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        a {
+            color: var(--accent);
+        }
+        @media screen and (max-width: 600px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+            main {
+                padding: 1rem 0.75rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <div class="kicker">WMC · Jahr 1 · Sem 3 (WS) · UE 1 von 3</div>
+            <h1>Tooling &amp; Git: arbeitsfähig in 90 Minuten</h1>
+            <p>VS Code + Live Server + W3C Validator · DevTools · Git &amp; GitHub. Danach läuft dein Setup — und deine erste Seite ist online im Repo.</p>
+        </div>
+    </header>
+    <main>
+        <section aria-label="Einordnung">
+            <h2>1 · Einordnung</h2>
+            <div class="meta">
+                <span>UE 1 · 2026-09-15</span>
+                <span>KM3 · Basis-Webtechniken</span>
+                <span>Anl. 1.9 NvS · Anl. 1.10 KM3</span>
+                <span>3aaif + 3caif</span>
+            </div>
+            <p>Webseiten entstehen aus <strong>Beschreibungssprachen</strong> (HTML), <strong>Formatierungstechniken</strong> (CSS) und <strong>Skriptsprachen</strong> (JS). Heute bauen wir das Werkzeug dafür: Editor, lokaler Server, Validator, Browser-Werkzeuge und Versionsverwaltung.</p>
+            <p>Lehrplan: <a href="../../../lehrplan/LEHRPLAN.md">LEHRPLAN.md ①②③</a> · <a href="../../../lehrplan/wmc-aif/34AIF/34AIF.lehrplan.md">34AIF</a> · <a href="../../../lehrplan/wmc-cif/34CIF/34CIF.lehrplan.md">34CIF</a> · <a href="../../../lehrplan/kompetenzmodule/km3.md">KM3</a> · Semesterplan: <a href="../../../unterricht/WMC/jg1-einheiten.md">jg1-einheiten.md UE 1</a></p>
+            <p><strong>Lernziel heute:</strong> du öffnest VS Code, startest Live Server, validierst eine Seite und pushst sie per Git auf GitHub.</p>
+        </section>
+        <section>
+            <h2>2 · Installieren (15 Min)</h2>
+            <ol class="steps">
+                <li><strong>Git:</strong> Windows <code>winget install git.git</code> · Mac <code>brew install git</code>. Test: <code>git --version</code> muss eine Version zeigen.</li>
+                <li><strong>VS Code:</strong> <code>winget install vscode</code> bzw. von <a href="https://code.visualstudio.com/">code.visualstudio.com</a> laden.</li>
+                <li><strong>Extensions:</strong> <em>Live Server</em> (Ritwick Dey) + <em>W3C Web Validator</em>. Danach VS Code neu laden.</li>
+                <li><strong>PowerShell-Skripte erlauben</strong> (Windows, einmalig): <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></li>
+                <li><strong>Node LTS</strong> (Vorgriff Jahr 2, optional heute): <code>winget install openjs.nodejs.lts</code></li>
+            </ol>
+            <p>Aktualisieren danach mit <code>winget upgrade --all</code> bzw. <code>brew upgrade</code>.</p>
+        </section>
+        <section>
+            <h2>3 · Git in 6 Befehlen</h2>
+            <p>Git merkt sich jede Version deiner Dateien. GitHub ist die Ablage im Netz.</p>
+            <pre><code>git config --global user.name "Dein Name"
+git config --global user.email "deine@email.at"
+git clone https://github.com/DEIN-USER/WMC.git
+git status
+git add .
+git commit -m "Add index.html"
+git push</code></pre>
+            <ul class="check">
+                <li><code>status</code> lügt nie — bei Unsicherheit zuerst aufrufen.</li>
+                <li><code>add .</code> + <code>commit -m "..."</code> + <code>push</code> ist dein Dreiklang für jede HÜ.</li>
+                <li>Repo auf <a href="https://github.com/">github.com</a> mit Spengergassen-Mail anlegen, Name <code>WMC</code>, <strong>public</strong>, mit README.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>4 · Live-Demo: erste Seite (20 Min)</h2>
+            <ol class="steps">
+                <li>Ordner <code>WMC</code> in VS Code öffnen.</li>
+                <li>Datei <code>index.html</code> anlegen, Grundgerüst per Emmet (<code>!</code> + Tab).</li>
+                <li>Rechtsklick → <strong>Open with Live Server</strong> (Port 5500). Seite läuft lokal.</li>
+                <li><strong>DevTools</strong> öffnen (F12): Elements-Tab zeigt den DOM-Baum, Console zeigt Fehler.</li>
+                <li><strong>W3C Validator</strong> in VS Code laufen lassen — 0 Errors ist das Ziel.</li>
+                <li><a href="https://caniuse.com/">caniuse.com</a> prüfen, z. B. ob CSS Nesting im Zielbrowser geht.</li>
+            </ol>
+        </section>
+        <section aria-label="Quiz">
+            <h2>5 · Quiz: sitzt das? (5 Fragen)</h2>
+            <p>Wähle je eine Antwort, dann auf <em>Auswerten</em>. Sofort-Feedback pro Frage.</p>
+            <form id="quiz" novalidate>
+                <fieldset class="quiz-q" data-answer="b">
+                    <legend>1. Was startet einen lokalen Dev-Server in VS Code?</legend>
+                    <label><input type="radio" name="q1" value="a"> Der W3C Validator prüft Syntax</label>
+                    <label><input type="radio" name="q1" value="b"> Live Server liefert localhost-Seiten</label>
+                    <label><input type="radio" name="q1" value="c"> DevTools rendert Markdown-Dateien</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="c">
+                    <legend>2. Was zeigt <code>git status</code> dir an?</legend>
+                    <label><input type="radio" name="q2" value="a"> Es lädt Commits herunter</label>
+                    <label><input type="radio" name="q2" value="b"> Es erzeugt ein Repository</label>
+                    <label><input type="radio" name="q2" value="c"> Es listet geänderte Dateien</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="a">
+                    <legend>3. Richtige Reihenfolge für eine HÜ-Abgabe?</legend>
+                    <label><input type="radio" name="q3" value="a"> Add, Commit, Push ins Remote</label>
+                    <label><input type="radio" name="q3" value="b"> Push, Commit, Add ins Remote</label>
+                    <label><input type="radio" name="q3" value="c"> Clone, Fork, Merge ins Remote</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="b">
+                    <legend>4. Wozu dienen die DevTools (F12)?</legend>
+                    <label><input type="radio" name="q4" value="a"> Zum Kompilieren von TypeScript</label>
+                    <label><input type="radio" name="q4" value="b"> Zum Inspizieren von DOM/CSS</label>
+                    <label><input type="radio" name="q4" value="c"> Zum Signieren von Commits</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <fieldset class="quiz-q" data-answer="a">
+                    <legend>5. Was prüft der W3C Validator?</legend>
+                    <label><input type="radio" name="q5" value="a"> Die Standardkonformität von Markup</label>
+                    <label><input type="radio" name="q5" value="b"> Die Ladegeschwindigkeit von Bildern</label>
+                    <label><input type="radio" name="q5" value="c"> Die Verfügbarkeit von Servern</label>
+                    <div class="feedback" aria-live="polite"></div>
+                </fieldset>
+                <div class="quiz-actions">
+                    <button type="button" id="check">Auswerten</button>
+                    <button type="button" id="reset" class="secondary">Zurücksetzen</button>
+                    <span id="score" aria-live="polite"></span>
+                </div>
+            </form>
+        </section>
+        <section>
+            <h2>6 · HÜ bis nächste Woche 00:00</h2>
+            <ul class="check">
+                <li>Alles oben installieren und lauffähig zeigen (Live Server läuft, <code>git --version</code> ok).</li>
+                <li>GitHub-Account (Spengergassen-Mail) + <strong>public</strong> Repo <code>WMC</code> mit README.</li>
+                <li>Dieses Repo klonen <strong>und</strong> eigenes Repo klonen (<code>git clone …</code>).</li>
+                <li>Repo-Link an <code>grafg@spengergasse.at</code> senden.</li>
+            </ul>
+            <p>Weiter: <strong>UE 2 · HTML-Grundlagen</strong> (22. 9.) → <strong>UE 3 · CSS-Basics</strong> (29. 9.). Hauptquelle zum Nachlesen: <a href="https://developer.mozilla.org/de/docs/Learn_web_development/Getting_started/Your_first_website">MDN: Deine erste Website</a>.</p>
+            <p>Fragen? Frag den Agent/Lehrer — z. B. „Live Server zeigt 404, was nun?" oder „git push fragt nach Login".</p>
+        </section>
+    </main>
+    <footer>
+        <p>WMC 3aaif/3caif · UE 1 (2026-09-15) · KM3 / Basis-Webtechniken · Quellen: Unterlagen/HTML-Grundlagen.md, MDN, validator.w3.org, caniuse.com · Nächste Seite: UE 2 HTML-Grundlagen.</p>
+    </footer>
+    <script>
+        'use strict';
+        const form = document.querySelector('#quiz');
+        const checkBtn = document.querySelector('#check');
+        const resetBtn = document.querySelector('#reset');
+        const scoreBox = document.querySelector('#score');
+        const evaluate = () => {
+            const sets = Array.from(form.querySelectorAll('fieldset.quiz-q'));
+            let points = 0;
+            sets.forEach((fs) => {
+                const picked = fs.querySelector('input[type="radio"]:checked');
+                const hint = fs.querySelector('.feedback');
+                const right = fs.dataset.answer;
+                if (picked === null) {
+                    hint.textContent = 'Bitte eine Antwort wählen.';
+                    hint.className = 'feedback bad';
+                    return;
+                }
+                if (picked.value === right) {
+                    points += 1;
+                    hint.textContent = 'Richtig.';
+                    hint.className = 'feedback ok';
+                } else {
+                    hint.textContent = 'Nicht ganz — nochmal versuchen.';
+                    hint.className = 'feedback bad';
+                }
+            });
+            scoreBox.textContent = points + ' / ' + sets.length + ' richtig';
+        };
+        const reset = () => {
+            form.reset();
+            form.querySelectorAll('.feedback').forEach((el) => {
+                el.textContent = '';
+                el.className = 'feedback';
+            });
+            scoreBox.textContent = '';
+        };
+        checkBtn.addEventListener('click', evaluate);
+        resetBtn.addEventListener('click', reset);
+    </script>
+</body>
+</html>
