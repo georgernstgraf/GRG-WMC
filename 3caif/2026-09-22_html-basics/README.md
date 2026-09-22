@@ -1,5 +1,11 @@
 # UE 2 · HTML-Grundlagen (2026-09-22)
 
+## Mitarbeit
+
+Punkt 4) aus der Lektion umsetzen, im eigenen Repo + push
+
+## inhalt
+
 Selbst-contained Lektion mit Quiz: `index.html` per Live Server öffnen.
 
 - KM-Bezug: KM3 · Auszeichnungssprachen (Anl. 1.9 Basis-Webtechniken)
