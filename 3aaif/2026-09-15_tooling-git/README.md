@@ -6,8 +6,9 @@
 
 wie kriege ich was auf github?
 
-- add / commit / push
+Es ist drei-stufig: add / commit / push
 
+## WMC ist super cool
 
 Selbst-contained Lektion mit Quiz: `index.html` per Live Server öffnen.
 
