@@ -8,6 +8,9 @@ wie kriege ich was auf github?
 
 Es ist drei-stufig: add / commit / push
 
+Vorher: git config --global user.name "Max Mustermann"
+Vorher: git config --global user.email "max.mustermann@example.com"
+
 ## WMC ist super cool
 
 Selbst-contained Lektion mit Quiz: `index.html` per Live Server öffnen.
