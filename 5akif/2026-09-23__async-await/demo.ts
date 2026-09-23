@@ -1,34 +1,51 @@
 // === Async/Await: Bestell-Pipeline mit individuellen Exceptions ===
-// Lektion 2026-09-23, 5akif — läuft mit node demo.js oder deno run demo.js
+// Lektion 2026-09-23, 5akif — Runtime ist Deno: deno run demo.ts
+// Deno führt TypeScript direkt aus; Typ-Prüfung: deno check demo.ts
 
 // --- Stufe 0: eigene Error-Typen (je Pipeline-Stufe einer) ---
 class ValidationError extends Error {
-    constructor(artikel, menge) {
+    constructor(artikel: string, menge: number) {
         super(`Ungültige Bestellung: ${menge}x "${artikel}"`);
         this.name = "ValidationError";
     }
 }
 
 class PaymentError extends Error {
-    constructor(karte) {
+    constructor(karte: string) {
         super(`Zahlung fehlgeschlagen: Karte ${karte} abgelehnt`);
         this.name = "PaymentError";
     }
 }
 
 class ShippingError extends Error {
-    constructor(plz) {
+    constructor(plz: string) {
         super(`Lieferung nicht möglich: PLZ ${plz} außerhalb des Lieferraums`);
         this.name = "ShippingError";
     }
 }
 
+// --- Daten-Form: Auftrag (Input) wird zur Bestellung (durchgereicht) ---
+interface Auftrag {
+    artikel: string;
+    menge: number;
+}
+
+interface Bestellung extends Auftrag {
+    nr: number;
+    zahlung?: string;
+    tracking?: string;
+}
+
 // --- Hilfsbaukasten: simulate(ms, wert) -> Promise ---
-const simulate = (ms, wert) =>
+const simulate = <T>(ms: number, wert: T): Promise<T> =>
     new Promise((resolve) => setTimeout(() => resolve(wert), ms));
 
+// --- Hilfsfunktion: Exception lesbar machen (err ist in catch: unknown) ---
+const fehlerText = (err: unknown): string =>
+    err instanceof Error ? err.message : String(err);
+
 // --- Pipeline-Stufen: jede wirft ihre eigene Exception ---
-async function bestellen(artikel, menge) {
+async function bestellen(artikel: string, menge: number): Promise<Bestellung> {
     const bestellNr = await simulate(300, { nr: 4711, artikel, menge });
     if (menge <= 0) {
         throw new ValidationError(artikel, menge);
@@ -37,7 +54,7 @@ async function bestellen(artikel, menge) {
     return bestellNr;
 }
 
-async function bezahlen(bestellung, karte) {
+async function bezahlen(bestellung: Bestellung, karte: string): Promise<Bestellung> {
     if (karte === "4242-0000-0000-0002") {
         throw new PaymentError(karte);
     }
@@ -46,7 +63,7 @@ async function bezahlen(bestellung, karte) {
     return { ...bestellung, zahlung: zahlung.id };
 }
 
-async function liefern(bestellung, plz) {
+async function liefern(bestellung: Bestellung, plz: string): Promise<Bestellung> {
     if (plz.startsWith("9")) {
         throw new ShippingError(plz);
     }
@@ -56,9 +73,13 @@ async function liefern(bestellung, plz) {
 }
 
 // --- Variante A: ein try/catch, Verzweigung mit instanceof ---
-async function pipelineAlsGanzes(bestellung, karte, plz) {
+async function pipelineAlsGanzes(
+    auftrag: Auftrag,
+    karte: string,
+    plz: string,
+): Promise<void> {
     try {
-        const b = await bestellen(bestellung.artikel, bestellung.menge);
+        const b = await bestellen(auftrag.artikel, auftrag.menge);
         const b2 = await bezahlen(b, karte);
         const b3 = await liefern(b2, plz);
         console.log(`✅ Pipeline fertig:`, b3);
@@ -70,7 +91,7 @@ async function pipelineAlsGanzes(bestellung, karte, plz) {
         } else if (err instanceof ShippingError) {
             console.log(`🛑 Stufe liefern: ${err.message}`);
         } else {
-            console.log(`🛑 Unbekannter Fehler: ${err.message}`);
+            console.log(`🛑 Unbekannter Fehler: ${fehlerText(err)}`);
         }
     } finally {
         console.log(`— Pipeline-Lauf beendet (${new Date().toISOString().slice(11, 19)})\n`);
@@ -78,52 +99,56 @@ async function pipelineAlsGanzes(bestellung, karte, plz) {
 }
 
 // --- Variante B: granular — jedes await eigenes try/catch, Weiterarbeit möglich ---
-async function pipelineGranular(bestellung, karte, plz) {
-    let b;
+async function pipelineGranular(auftrag: Auftrag, karte: string, plz: string): Promise<void> {
+    let b: Bestellung;
     try {
-        b = await bestellen(bestellung.artikel, bestellung.menge);
+        b = await bestellen(auftrag.artikel, auftrag.menge);
     } catch (err) {
-        console.log(`🛑 Abbruch: ${err.message}`);
+        console.log(`🛑 Abbruch: ${fehlerText(err)}`);
         return;
     }
 
     try {
         b = await bezahlen(b, karte);
     } catch (err) {
-        console.log(`⚠️  Bezahlung fehlgeschlagen (${err.message}) — andere Karte versuchen?`);
+        console.log(`⚠️  Bezahlung fehlgeschlagen (${fehlerText(err)}) — andere Karte versuchen?`);
         b = await bezahlen(b, "4242-1111-1111-1111"); // Fallback-Karte
     }
 
     try {
         await liefern(b, plz);
     } catch (err) {
-        console.log(`⚠️  Lieferung fehlgeschlagen (${err.message})`);
+        console.log(`⚠️  Lieferung fehlgeschlagen (${fehlerText(err)})`);
         throw err; // Re-Throw: oben will das Ganze noch jemand sehen
     }
 }
 
 // --- Kontrast: dieselbe Kette mit .then()/.catch() (Promise-Recap vom 18.9.) ---
-function pipelineDann(bestellung, karte, plz) {
-    bestellen(bestellung.artikel, bestellung.menge)
+function pipelineDann(auftrag: Auftrag, karte: string, plz: string): void {
+    bestellen(auftrag.artikel, auftrag.menge)
         .then((b) => bezahlen(b, karte))
         .then((b) => liefern(b, plz))
         .then((b) => console.log(`✅ Pipeline fertig:`, b))
         .catch((err) => console.log(`🛑 .catch(): ${err.name}: ${err.message}`));
 }
 
-// --- Hauptprogramm: 3 Läufe, jeder fängt etwas anderes ---
-const hauptprogramm = async () => {
+// --- Hauptprogramm: 4 Läufe, jeder zeigt ein anderes Fangen ---
+const hauptprogramm = async (): Promise<void> => {
     // Lauf 1: alles ok
     await pipelineAlsGanzes({ artikel: "USB-C Hub", menge: 2 }, "4242-1111-1111-1111", "1100");
 
     // Lauf 2: PaymentError wird gefangen (instanceof-Variante A)
-    await pipelineAlsGanzes({ artikel: "Mechanische Tastatur", menge: 1 }, "4242-0000-0000-0002", "1100");
+    await pipelineAlsGanzes(
+        { artikel: "Mechanische Tastatur", menge: 1 },
+        "4242-0000-0000-0002",
+        "1100",
+    );
 
     // Lauf 3: granulare Variante B — PaymentError gefangen, Fallback greift, ShippingError Re-Throw
     try {
         await pipelineGranular({ artikel: "Webcam", menge: 1 }, "4242-0000-0000-0002", "9980");
     } catch (err) {
-        console.log(`🛑 Hauptprogramm fängt Re-Throw: ${err.name}`);
+        console.log(`🛑 Hauptprogramm fängt Re-Throw: ${err instanceof Error ? err.name : String(err)}`);
     }
 
     // Kontrast: dieselbe Story mit .then()/.catch()

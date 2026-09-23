@@ -86,15 +86,16 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 |---|---|
 | async function | Funktion, die implizit ein `Promise` zurückgibt; `await` nur darin (bzw. auf Modulebene) erlaubt — Diagnostik-Rep UE 1 (KM3/KM7, Block WS) |
 | await | Operator: entpackt Fulfillment-Wert eines `Promise`s; bei Rejection wird die Exception geworfen (→ try/catch) — Diagnostik-Rep UE 1 (KM3/KM7, Block WS) |
-| Promise-Kette | Aufeinanderfolgende `.then()`-Aufrufe; jeder `.then()` gibt ein neues `Promise` zurück (Recap 18.9.2026, `5akif/2026-09-18__promise/`) |
 | CORS | Cross-Origin Resource Sharing — Grund, warum Backend `/static` + `/api` unter einem Origin liefert (Jahr 2 WS UE 11) |
 | CSP | Content Security Policy — Client-Security (Jahr 2 SS UE 8) |
+| Deno | Runtime für WMC-Demos/Lektionen: führt TypeScript direkt aus (`deno run`), Typ-Prüfung via `deno check` — bewusst **nicht Node** (Node-LTS nur Jahr-2-Vite-Tooling) |
 | JWT | JSON Web Token — Auth-Client-Flow (WS UE 10): Token-Ablage, 401-Handling |
 | Live Server | VS-Code-Extension für statisches Dev-Hosting (Jahr 1) |
 | Manifest | Web App Manifest — PWA-Kern (SS UE 2): name, icons, `display`, `theme_color` |
 | Mini-Hono-Referenz | Übungs-API (Deno/Hono) in `Beispielprojekte/hono_on_deno/` — Konsum-Ziel, kein Stoff |
 | Offline-Fallback | SW-Strategie (cache-first/network-first, App-Shell, Fallback-Seite) (SS UE 3) |
 | PWA | Progressive Web App — Manifest + Service Worker + HTTPS (SS UE 1–4) |
+| Promise-Kette | Aufeinanderfolgende `.then()`-Aufrufe; jeder `.then()` gibt ein neues `Promise` zurück (Recap 18.9.2026, `5akif/2026-09-18__promise/`) |
 | REST | Representational State Transfer — CRUD-Konsum (WS UE 6), RFC-7807-Fehler (SS UE 5) |
 | RTL | React Testing Library — strukturiertes Testen nach Rollen/Queries (WS UE 12) |
 | Service Worker | Browser-Proxy-Script: Cache, Offline, Background-Sync, Update-Flow (SS UE 3–4) |

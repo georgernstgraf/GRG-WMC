@@ -23,6 +23,7 @@ Follow these without question. Do not deviate unless explicitly told.
 
 ## Stack
 - Jahr 1: vanilla HTML/CSS/JS, 7-Punkte-Struktur, TS-Intro via Deno transpilation, Live Server, W3C Validator.
+- Unterrichts-Runtime: WMC-Demos/Lektionen laufen mit **Deno** (`deno run`, TS direkt ausführbar), nicht Node; Node-LTS betrifft nur das Jahr-2-Vite-Tooling.
 - Jahr 2: TypeScript + React + Vite (Node/npm); Mini-Hono reference (Deno) is a consumption target only — never backend subject matter (POS territory, C# colleagues).
 - Deployment demos: `vite build` → backend serves `/static` + `/api` one origin (no split-brain).
 - Code style per root AGENTS.md (4-space HTML, CSS nesting, ES6+, `===`, camelCase/PascalCase, German comments where established).

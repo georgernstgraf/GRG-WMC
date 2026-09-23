@@ -205,7 +205,7 @@
     <main>
         <header class="lektion">
             <h1>Async & Await: Bestell-Pipeline mit individuellen Exceptions</h1>
-            <p class="meta">5akif · 23.9.2026 · 1 UE · Anschluss an <a href="../2026-09-18__promise/REAMDE.md">Promise-Recap vom 18.9.</a> · WMC UE 1 (Diagnostik-Rep: async)</p>
+            <p class="meta">5akif · 23.9.2026 · 1 UE · Runtime: Deno · Anschluss an <a href="../2026-09-18__promise/REAMDE.md">Promise-Recap vom 18.9.</a> · WMC UE 1 (Diagnostik-Rep: async)</p>
         </header>
 
         <!-- Lektüre-Box (Pflicht, link don't copy) -->
@@ -233,11 +233,17 @@
         <!-- 2. Ziel-Artefakt -->
         <h2>2 · Ziel-Artefakt: der Output, auf den wir hinbauen</h2>
         <div class="box ziel">
-            <p>So sieht der Konsolen-Output von <code>node demo.js</code> (in diesem Ordner) aus — Fehlerfälle fett besprochen in der UE:</p>
+            <p>So sieht der Konsolen-Output von <code>deno run demo.ts</code> (in diesem Ordner) aus — die Fehlerfälle besprechen wir gemeinsam in der UE:</p>
             <pre><code>✓ Bestellung 4711: 2x USB-C Hub
 ✓ Bezahlung ok (pay-99, 39.80 €)
 ✓ Lieferung an 1100 unterwegs (AT-8812)
-✅ Pipeline fertig: { nr: 4711, artikel: 'USB-C Hub', menge: 2, zahlung: 'pay-99', tracking: 'AT-8812' }
+✅ Pipeline fertig: {
+  nr: 4711,
+  artikel: "USB-C Hub",
+  menge: 2,
+  zahlung: "pay-99",
+  tracking: "AT-8812"
+}
 — Pipeline-Lauf beendet (…)
 
 ✓ Bestellung 4711: 1x Mechanische Tastatur
@@ -251,55 +257,77 @@
 
         <h3>Schritt 0 — Recap: Promise-Kette mit .then()/.catch()</h3>
         <p>Vom 18.9. (Promise-Recap) bekannt: Ein <code>Promise</code> ist ein Versprechen für einen zukünftigen Wert — zunächst <code>pending</code>, dann <code>settled</code> (<code>resolved</code>/<code>rejected</code>). Verkettet wird mit <code>.then()</code>, Fehler landen im <code>.catch()</code>:</p>
-        <pre><code>bestellen(artikel, menge)
-    .then((b) => bezahlen(b, karte))     // jeder .then braucht wieder return/implizit return
-    .then((b) => liefern(b, plz))
-    .then((b) => console.log("✅ fertig", b))
-    .catch((err) => console.log("🛑", err.name, err.message));</code></pre>
+        <pre><code>function pipelineDann(auftrag: Auftrag, karte: string, plz: string): void {
+    bestellen(auftrag.artikel, auftrag.menge)
+        .then((b) => bezahlen(b, karte))     // jeder .then braucht wieder return
+        .then((b) => liefern(b, plz))
+        .then((b) => console.log("✅ fertig", b))
+        .catch((err) => console.log("🛑", err.name, err.message));
+}</code></pre>
         <p class="klein">Tippfehler-Gefahr vom Recap: vergessenes <code>return</code> in der Kette — dann ist der Wert der nächsten Stufe <code>undefined</code> (genau das steht im promise-demo.ts vom 18.9.).</p>
 
         <h3>Schritt 1 — async/await: gleiche Kette, liest sich wie Sequenz</h3>
         <p>Jede Stufe ist eine <code>async function</code>. Mit <code>await</code> liest sich die Kette wie ein sequentieller Ablauf; Fehler wandern in <code>try/catch</code>:</p>
-        <pre><code>async function pipeline() {
+        <div class="box pflicht">
+            <strong>Runtime ist Deno:</strong> <code>deno run demo.ts</code> führt TypeScript direkt aus — kein Transpile-Schritt (Motto vom 11.9.: <em>Jedes JavaScript ist auch gültiges TypeScript</em>). <code>deno check demo.ts</code> prüft die Typen. Im catch-Block ist <code>err</code> vom Typ <code>unknown</code> — der Helfer <code>fehlerText(err)</code> macht die Meldung lesbar.
+        </div>
+        <pre><code>async function pipeline(auftrag: Auftrag, karte: string, plz: string): Promise&lt;void&gt; {
     try {
-        const b  = await bestellen(artikel, menge);
+        const b  = await bestellen(auftrag.artikel, auftrag.menge);
         const b2 = await bezahlen(b, karte);
         const b3 = await liefern(b2, plz);
         console.log("✅ fertig", b3);
     } catch (err) {
-        console.log("🛑 irgendein Fehler:", err.message);
+        console.log("🛑 irgendein Fehler:", fehlerText(err));
     }
 }</code></pre>
         <p>Das fängt <em>alle</em> Exceptions der Pipeline — sagt aber nicht, aus welcher Stufe der Fehler kommt.</p>
 
         <h3>Schritt 2 — Kern der UE: individuelle Exceptions pro Stufe</h3>
-        <p>Jede Stufe wirft im Fehlerfall eine <em>eigene</em> Exception (eigene Error-Klasse, Erben von <code>Error</code>):</p>
-        <pre><code>class ValidationError extends Error {
-    constructor(artikel, menge) {
+        <p>Daten-Formen: Ein <code>Auftrag</code> (artikel, menge) geht in die Pipeline, wird zur <code>Bestellung</code> (mit Bestellnummer) und reichert sich stufenweise an:</p>
+        <pre><code>interface Auftrag {
+    artikel: string;
+    menge: number;
+}
+
+interface Bestellung extends Auftrag {
+    nr: number;
+    zahlung?: string;    // von bezahlen ergänzt
+    tracking?: string;   // von liefern ergänzt
+}</code></pre>
+        <p>Die Stufen selbst sind <code>async function</code>s, die über einen Simulations-Helper (<code>simulate(ms, wert)</code> — ein <code>new Promise</code> mit <code>setTimeout</code>) laufzeitähnlich warten; jede wirft im Fehlerfall eine <em>eigene</em> Exception (eigene Error-Klasse, Erben von <code>Error</code>):</p>
+        <pre><code>const simulate = &lt;T&gt;(ms: number, wert: T): Promise&lt;T&gt; =&gt;
+    new Promise((resolve) =&gt; setTimeout(() =&gt; resolve(wert), ms));
+
+const fehlerText = (err: unknown): string =&gt;
+    err instanceof Error ? err.message : String(err);
+
+class ValidationError extends Error {
+    constructor(artikel: string, menge: number) {
         super(`Ungültige Bestellung: ${menge}x "${artikel}"`);
         this.name = "ValidationError";   // name setzen, sonst "Error"
     }
 }
 
 class PaymentError extends Error {
-    constructor(karte) {
+    constructor(karte: string) {
         super(`Zahlung fehlgeschlagen: Karte ${karte} abgelehnt`);
         this.name = "PaymentError";
     }
 }
 
 class ShippingError extends Error {
-    constructor(plz) {
+    constructor(plz: string) {
         super(`Lieferung nicht möglich: PLZ ${plz} außerhalb des Lieferraums`);
         this.name = "ShippingError";
     }
 }</code></pre>
         <p>Der Konsument der Pipeline kann mit <strong>instanceof</strong> unterscheiden, <em>wer</em> geworfen hat — Variante A,</p>
         <pre><code>try {
-    const b  = await bestellen(artikel, menge);
+    const b  = await bestellen(auftrag.artikel, auftrag.menge);
     const b2 = await bezahlen(b, karte);
     const b3 = await liefern(b2, plz);
-    console.log("✅ fertig", b3);
+    console.log(`✅ Pipeline fertig:`, b3);
 } catch (err) {
     if (err instanceof ValidationError) {
         console.log(`🛑 Stufe bestellen: ${err.message}`);
@@ -308,30 +336,30 @@ class ShippingError extends Error {
     } else if (err instanceof ShippingError) {
         console.log(`🛑 Stufe liefern: ${err.message}`);
     } else {
-        console.log(`🛑 Unbekannter Fehler: ${err.message}`);
+        console.log(`🛑 Unbekannter Fehler: ${fehlerText(err)}`);
     }
 }</code></pre>
         <p>… oder granular mit eigenem try/catch pro Stufe — Variante B (Weiterarbeit nach Fehlschlag möglich):</p>
-        <pre><code>let b;
+        <pre><code>let b: Bestellung;
 try {
-    b = await bestellen(artikel, menge);       // wirft ValidationError
+    b = await bestellen(auftrag.artikel, auftrag.menge);   // wirft ValidationError
 } catch (err) {
-    console.log(`🛑 Abbruch: ${err.message}`);
-    return;                                     // ohne Bestellung geht nix
+    console.log(`🛑 Abbruch: ${fehlerText(err)}`);
+    return;                                                // ohne Bestellung geht nix
 }
 
 try {
-    b = await bezahlen(b, karte);               // wirft PaymentError
+    b = await bezahlen(b, karte);                          // wirft PaymentError
 } catch (err) {
-    console.log(`⚠️ Bezahlung fehlgeschlagen — andere Karte versuchen`);
-    b = await bezahlen(b, "4242-1111-1111-1111");   // Fallback-Karte
+    console.log(`⚠️ Bezahlung fehlgeschlagen — andere Karte versuchen?`);
+    b = await bezahlen(b, "4242-1111-1111-1111");          // Fallback-Karte
 }
 
 try {
-    await liefern(b, plz);                      // wirft ShippingError
+    await liefern(b, plz);                                 // wirft ShippingError
 } catch (err) {
-    console.log(`⚠️ Lieferungsmangel (${err.message})`);
-    throw err;                                  // Re-Throw nach Logging
+    console.log(`⚠️ Lieferung fehlgeschlagen (${fehlerText(err)})`);
+    throw err;                                             // Re-Throw nach Logging
 }</code></pre>
         <p><strong>Merke:</strong> <code>instanceof</code> folgt der Vererbungskette des konkreten Objekts — deshalb fängt <code>err instanceof PaymentError</code> wirklich nur <code>PaymentError</code>-Instanzen (und Subklassen), nicht <code>ValidationError</code> oder <code>ShippingError</code>.</p>
 
@@ -344,15 +372,15 @@ try {
 } finally {
     console.log("— Pipeline beendet");
 }</code></pre>
-        <p>Ein <strong>Re-Throw</strong> (<code>throw err;</code> im catch-Block) loogt lokal und lässt den Fehler nach oben weiterlaufen — siehe Hauptprogramm in <code>demo.js</code> (Variante B, Stufe liefern):</p>
+        <p>Ein <strong>Re-Throw</strong> (<code>throw err;</code> im catch-Block) loggt lokal und lässt den Fehler nach oben weiterlaufen — siehe Hauptprogramm in <code>demo.ts</code> (Variante B, Stufe liefern):</p>
 
         <!-- 4. Jetzt du! -->
         <h2>4 · Jetzt du! (erst Vorhersage, dann ausführen)</h2>
         <ol>
             <li>
-                <strong>Vorhersage:</strong> In <code>demo.js</code>, Lauf 2 (Mechanische Tastatur + abgelehnte Karte): Welche Konsole entsteht, welche Zeilen fehlen vergl. Lauf 1?
+                <strong>Vorhersage:</strong> In <code>demo.ts</code>, Lauf 2 (Mechanische Tastatur + abgelehnte Karte): Welche Konsole entsteht, welche Zeilen fehlen vergl. Lauf 1?
 
-                Erst entscheiden, dann <code>node demo.js</code>.</li>
+                Erst entscheiden, dann <code>deno run demo.ts</code>.</li>
             <li>
                 <strong>Erweiterung:</strong> Baue in <code>pipelineGranular</code> eine vierte Stufe „reklamieren" mit eigenem Error-Typ <code>ClaimError</code>, wirft bei wenig Kundenzufriedenheit. Fangen in einer eigenen try/catch-Stufe oder der Pipeline?</li>
             <li>
@@ -423,8 +451,8 @@ try { … } catch (err) { }</code></pre></td>
         </details>
 
         <footer class="ausblick">
-            <p><strong>Ausblick:</strong> Nächste UE: Node/npm-Tooling + Vite-Setup (Scheduler: WS UE 2, s. <a href="../../unterricht/WMC/jg2-einheiten.md">jg2-einheiten.md</a>). Was heute war Diagnostik-Rep (async) aus WS UE 1.</p>
-            <p>Demo-Code: <code>demo.js</code> in diesem Ordner — läuft mit <code>node demo.js</code> oder <code>deno run demo.js</code>.</p>
+            <p><strong>Ausblick:</strong> Nächste UE: Node/npm-Tooling + Vite-Setup (Scheduler: WS UE 2, s. <a href="../../unterricht/WMC/jg2-einheiten.md">jg2-einheiten.md</a>). Was heute war Diagnostik-Rep (async) aus WS UE 1. (Vite ist Tooling der React-App — unsere WMC-Demos laufen weiter mit Deno.)</p>
+            <p>Demo-Code: <code>demo.ts</code> in diesem Ordner — läuft mit <code>deno run demo.ts</code> (Deno führt TypeScript direkt aus, kein Transpile-Schritt); Typ-Prüfung mit <code>deno check demo.ts</code>.</p>
         </footer>
     </main>
 

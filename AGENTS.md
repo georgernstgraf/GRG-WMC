@@ -32,6 +32,7 @@ any new work unless the user explicitly says otherwise.
 - **Jahr 1 (Sem 3+4)**: HTML5, CSS3 (Flexbox, Grid, Nesting), JavaScript (ES6+), TypeScript intro (Deno transpilation)
 - **Jahr 2 (Sem 5+6, from 2026/27)**: TypeScript, React + Vite (Node/npm), Mini-Hono reference API (Deno, consumption target only), PWA, Vitest + React Testing Library
 - **Backend (subject matter)**: none in WMC — covered by the POS subject (C#, colleagues)
+- **Unterrichts-Runtime: Deno** — WMC-Demos und Lektionen werden mit **Deno** ausgeführt (`deno run`), **nicht mit Node**; Deno führt `.ts` direkt aus. Node-LTS ist nur als Jahr-2-Vite-Tooling-Thema relevant (`unterricht/WMC/jg2-einheiten.md`)
 - **Example/demos**: Deno, Hono, HTMX, Prisma
 - **Tools**: VS Code, Live Server, W3C Validator, Git
 
