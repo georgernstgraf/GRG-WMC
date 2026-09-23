@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async/Await — Bestell-Pipeline mit individuellen Exceptions</title>
+    <style>
+        :root {
+            --bg: #0f1220;
+            --panel: #171b2e;
+            --panel2: #1d2238;
+            --text: #e8eaf6;
+            --muted: #9aa1c0;
+            --line: #2a3050;
+            --accent: #7fb4ff;
+            --ok: #6fce91;
+            --err: #ef8f9a;
+            --warn: #e5c07b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        main {
+            max-width: 56rem;
+            margin: 0 auto;
+            padding: 1rem 1rem 4rem;
+        }
+
+        header.lektion {
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        header.lektion h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        header.lektion p.meta {
+            margin: 0.25rem 0 0;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        @media (min-width: 600px) {
+            header.lektion h1 { font-size: 1.75rem; }
+        }
+
+        @media (min-width: 900px) {
+            header.lektion h1 { font-size: 2rem; }
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 2.25rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.6rem;
+        }
+
+        h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        p, li { font-size: 1rem; }
+
+        a { color: var(--accent); }
+
+        code {
+            font-family: "Cascadia Code", Consolas, monospace;
+            background: var(--panel2);
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 0.9rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .box {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+            margin: 1.25rem 0;
+        }
+
+        .box.pflicht {
+            border-left: 4px solid var(--accent);
+        }
+
+        .box.ziel {
+            background: var(--panel2);
+        }
+
+        .box.ziel pre {
+            border: none;
+            background: #14182a;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--line);
+            padding: 0.45rem 0.6rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th { background: var(--panel2); }
+
+        .quiz fieldset {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+        }
+
+        .quiz legend {
+            font-weight: 600;
+            padding: 0 0.4rem;
+        }
+
+        .quiz label {
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+            padding: 0.55rem 0.6rem;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .quiz label:hover { background: var(--panel2); }
+
+        .quiz button {
+            margin-top: 0.75rem;
+            background: var(--accent);
+            color: #0f1220;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .quiz output {
+            display: block;
+            margin-top: 0.6rem;
+            font-weight: 600;
+            min-height: 1.4em;
+        }
+
+        .richtig { color: var(--ok); }
+
+        .falsch { color: var(--err); }
+
+        details {
+            background: var(--panel2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 0.6rem 0.9rem;
+            margin: 0.75rem 0;
+        }
+
+        summary { cursor: pointer; font-weight: 600; }
+
+        footer.ausblick {
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="lektion">
+            <h1>Async & Await: Bestell-Pipeline mit individuellen Exceptions</h1>
+            <p class="meta">5akif · 23.9.2026 · 1 UE · Anschluss an <a href="../2026-09-18__promise/REAMDE.md">Promise-Recap vom 18.9.</a> · WMC UE 1 (Diagnostik-Rep: async)</p>
+        </header>
+
+        <!-- Lektüre-Box (Pflicht, link don't copy) -->
+        <div class="box pflicht">
+            <strong>Lektüre (Pflicht, vor dem Weiterlesen):</strong>
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">MDN: async function</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">MDN: await</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#chained_promises">MDN: Promise (Abschnitt Chained Promises)</a></li>
+            </ul>
+        </div>
+
+        <!-- 1. Einstiegsfrage -->
+        <h2>1 · Einstiegsfrage</h2>
+        <div class="box">
+            <p><em>Eine Bestellung durchläuft drei Stufen: <strong>bestellen → bezahlen → liefern</strong>. In Stufe 2 (Bezahlung) lehnt die Bank die Karte ab. Was passiert dann?</em></p>
+            <ul>
+                <li>Stürzt die ganze Pipeline ab?</li>
+                <li>Weiss die Stufe „bestellen", dass es in „bezahlen" gekracht ist?</li>
+                <li>Kann die App gezielt sagen: <em>„Bezahlung fehlgeschlagen — andere Karte?"</em> statt nur <em>„irgendein Fehler"</em>?</li>
+            </ul>
+            <p>Nach dieser UE kann der Code genau diese Fragen beantworten.</p>
+        </div>
+
+        <!-- 2. Ziel-Artefakt -->
+        <h2>2 · Ziel-Artefakt: der Output, auf den wir hinbauen</h2>
+        <div class="box ziel">
+            <p>So sieht der Konsolen-Output von <code>node demo.js</code> (in diesem Ordner) aus — Fehlerfälle fett besprochen in der UE:</p>
+            <pre><code>✓ Bestellung 4711: 2x USB-C Hub
+✓ Bezahlung ok (pay-99, 39.80 €)
+✓ Lieferung an 1100 unterwegs (AT-8812)
+✅ Pipeline fertig: { nr: 4711, artikel: 'USB-C Hub', menge: 2, zahlung: 'pay-99', tracking: 'AT-8812' }
+— Pipeline-Lauf beendet (…)
+
+✓ Bestellung 4711: 1x Mechanische Tastatur
+🛑 Stufe bezahlen: Zahlung fehlgeschlagen: Karte 4242-0000-0000-0002 abgelehnt
+— Pipeline-Lauf beendet (…)</code></pre>
+            <p>Die Pipeline: <code>bestellen → bezahlen → liefern</code>. Jede Stufe wirft im Fehlerfall <em>ihr eigenen</em> Error-Typ; der Konsument entscheidet, wie er reagiert.</p>
+        </div>
+
+        <!-- 3. Inkrementeller Aufbau -->
+        <h2>3 · Inkrementeller Aufbau</h2>
+
+        <h3>Schritt 0 — Recap: Promise-Kette mit .then()/.catch()</h3>
+        <p>Vom 18.9. (Promise-Recap) bekannt: Ein <code>Promise</code> ist ein Versprechen für einen zukünftigen Wert — zunächst <code>pending</code>, dann <code>settled</code> (<code>resolved</code>/<code>rejected</code>). Verkettet wird mit <code>.then()</code>, Fehler landen im <code>.catch()</code>:</p>
+        <pre><code>bestellen(artikel, menge)
+    .then((b) => bezahlen(b, karte))     // jeder .then braucht wieder return/implizit return
+    .then((b) => liefern(b, plz))
+    .then((b) => console.log("✅ fertig", b))
+    .catch((err) => console.log("🛑", err.name, err.message));</code></pre>
+        <p class="klein">Tippfehler-Gefahr vom Recap: vergessenes <code>return</code> in der Kette — dann ist der Wert der nächsten Stufe <code>undefined</code> (genau das steht im promise-demo.ts vom 18.9.).</p>
+
+        <h3>Schritt 1 — async/await: gleiche Kette, liest sich wie Sequenz</h3>
+        <p>Jede Stufe ist eine <code>async function</code>. Mit <code>await</code> liest sich die Kette wie ein sequentieller Ablauf; Fehler wandern in <code>try/catch</code>:</p>
+        <pre><code>async function pipeline() {
+    try {
+        const b  = await bestellen(artikel, menge);
+        const b2 = await bezahlen(b, karte);
+        const b3 = await liefern(b2, plz);
+        console.log("✅ fertig", b3);
+    } catch (err) {
+        console.log("🛑 irgendein Fehler:", err.message);
+    }
+}</code></pre>
+        <p>Das fängt <em>alle</em> Exceptions der Pipeline — sagt aber nicht, aus welcher Stufe der Fehler kommt.</p>
+
+        <h3>Schritt 2 — Kern der UE: individuelle Exceptions pro Stufe</h3>
+        <p>Jede Stufe wirft im Fehlerfall eine <em>eigene</em> Exception (eigene Error-Klasse, Erben von <code>Error</code>):</p>
+        <pre><code>class ValidationError extends Error {
+    constructor(artikel, menge) {
+        super(`Ungültige Bestellung: ${menge}x "${artikel}"`);
+        this.name = "ValidationError";   // name setzen, sonst "Error"
+    }
+}
+
+class PaymentError extends Error {
+    constructor(karte) {
+        super(`Zahlung fehlgeschlagen: Karte ${karte} abgelehnt`);
+        this.name = "PaymentError";
+    }
+}
+
+class ShippingError extends Error {
+    constructor(plz) {
+        super(`Lieferung nicht möglich: PLZ ${plz} außerhalb des Lieferraums`);
+        this.name = "ShippingError";
+    }
+}</code></pre>
+        <p>Der Konsument der Pipeline kann mit <strong>instanceof</strong> unterscheiden, <em>wer</em> geworfen hat — Variante A,</p>
+        <pre><code>try {
+    const b  = await bestellen(artikel, menge);
+    const b2 = await bezahlen(b, karte);
+    const b3 = await liefern(b2, plz);
+    console.log("✅ fertig", b3);
+} catch (err) {
+    if (err instanceof ValidationError) {
+        console.log(`🛑 Stufe bestellen: ${err.message}`);
+    } else if (err instanceof PaymentError) {
+        console.log(`🛑 Stufe bezahlen: ${err.message}`);
+    } else if (err instanceof ShippingError) {
+        console.log(`🛑 Stufe liefern: ${err.message}`);
+    } else {
+        console.log(`🛑 Unbekannter Fehler: ${err.message}`);
+    }
+}</code></pre>
+        <p>… oder granular mit eigenem try/catch pro Stufe — Variante B (Weiterarbeit nach Fehlschlag möglich):</p>
+        <pre><code>let b;
+try {
+    b = await bestellen(artikel, menge);       // wirft ValidationError
+} catch (err) {
+    console.log(`🛑 Abbruch: ${err.message}`);
+    return;                                     // ohne Bestellung geht nix
+}
+
+try {
+    b = await bezahlen(b, karte);               // wirft PaymentError
+} catch (err) {
+    console.log(`⚠️ Bezahlung fehlgeschlagen — andere Karte versuchen`);
+    b = await bezahlen(b, "4242-1111-1111-1111");   // Fallback-Karte
+}
+
+try {
+    await liefern(b, plz);                      // wirft ShippingError
+} catch (err) {
+    console.log(`⚠️ Lieferungsmangel (${err.message})`);
+    throw err;                                  // Re-Throw nach Logging
+}</code></pre>
+        <p><strong>Merke:</strong> <code>instanceof</code> folgt der Vererbungskette des konkreten Objekts — deshalb fängt <code>err instanceof PaymentError</code> wirklich nur <code>PaymentError</code>-Instanzen (und Subklassen), nicht <code>ValidationError</code> oder <code>ShippingError</code>.</p>
+
+        <h3>Schritt 3 — finally + Re-Throw</h3>
+        <p><code>finally</code> läuft immer — egal ob Erfolg, Abfangen oder Re-Throw. Ideal für Aufräumarbeiten:</p>
+        <pre><code>try {
+    // Pipeline
+} catch (err) {
+    // Typ-Verzweigung (Variante A)
+} finally {
+    console.log("— Pipeline beendet");
+}</code></pre>
+        <p>Ein <strong>Re-Throw</strong> (<code>throw err;</code> im catch-Block) loogt lokal und lässt den Fehler nach oben weiterlaufen — siehe Hauptprogramm in <code>demo.js</code> (Variante B, Stufe liefern):</p>
+
+        <!-- 4. Jetzt du! -->
+        <h2>4 · Jetzt du! (erst Vorhersage, dann ausführen)</h2>
+        <ol>
+            <li>
+                <strong>Vorhersage:</strong> In <code>demo.js</code>, Lauf 2 (Mechanische Tastatur + abgelehnte Karte): Welche Konsole entsteht, welche Zeilen fehlen vergl. Lauf 1?
+
+                Erst entscheiden, dann <code>node demo.js</code>.</li>
+            <li>
+                <strong>Erweiterung:</strong> Baue in <code>pipelineGranular</code> eine vierte Stufe „reklamieren" mit eigenem Error-Typ <code>ClaimError</code>, wirft bei wenig Kundenzufriedenheit. Fangen in einer eigenen try/catch-Stufe oder der Pipeline?</li>
+            <li>
+                <strong>Interleaving zum 18.9.:</strong> Wie hängt die Message-Queue-Callback-Logik mit Promise-Zuständen (pending → settled) zusammen? 2–3 Sätze. Hilfestellung: <a href="../2026-09-18__promise/REAMDE.md">Recap vom 18.9.</a>
+            </li>
+        </ol>
+
+        <!-- 5. Typische Fehler -->
+        <h2>5 · Typische Fehler (Anti-Beispiele)</h2>
+        <table>
+            <thead>
+                <tr><th>Anti-Beispiel</th><th>Was passiert</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><pre><code>const b = bestellen();
+const b2 = bezahlen(b);   // await fehlt!</code></pre></td>
+                    <td>Ohne <code>await</code> ist <code>b</code> ein Promise, nicht das Bestell-Objekt. <code>bezahlen(b, …)</code> bekommt kein nutzbares Objekt. Folge: <code>b.menge</code> ist <code>undefined</code>.</td>
+                </tr>
+                <tr>
+                    <td><pre><code>// außerhalb einer async function:
+const b = await bestellen();</code></pre></td>
+                    <td><code>await</code> nur innerhalb von <code>async</code>-Funktionen (Ausnahme: Modul-Ebene, top-level await). Sonst SyntaxError.</td>
+                </tr>
+                <tr>
+                    <td><pre><code>catch (err) {
+    // „vorübergehend": nur console.log
+}</code></pre></td>
+                    <td>Fehler verschluckt: Die Pipeline „läuft weiter", obwohl sie gestorben ist. Besser: loggen <strong>und</strong> <code>throw err</code> oder sinnvoll weiterarbeiten (Variante B).</td>
+                </tr>
+                <tr>
+                    <td><pre><code>try { … } catch (err) { }
+try { … } catch (err) { }</code></pre></td>
+                    <td>Ein catch ohne Auswertung (kein <code>instanceof</code>, kein <code>name</code>-Check) liest sich leicht, ist aber in einer 3-Stufen-Pipeline allein zu generisch — Variante A/B kombinieren!</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Quiz -->
+        <h2>Quiz</h2>
+        <section class="quiz">
+            <fieldset>
+                <legend>In einer try/catch-Pipeline: Was prüft die Bedingung <code>err instanceof PaymentError</code>?</legend>
+                <label><input type="radio" name="quiz" value="a"> Ob <code>err</code> vom konkreten Typ <code>PaymentError</code> (exklusiv, ohne Vererbung) ist</label>
+                <label><input type="radio" name="quiz" value="b"> Ob <code>err</code> in der Vererbungskette von <code>PaymentError</code> liegt (Instanz oder Subklasse)</label>
+                <label><input type="radio" name="quiz" value="c"> Ob <code>err</code> irgendein genereller <code>Error</code> ist</label>
+                <label><input type="radio" name="quiz" value="d"> Ob die Pipeline-Stufe <code>bezahlen</code> den Fehler geworfen hat</label>
+                <button type="button" id="check">Antwort prüfen</button>
+                <output id="feedback"></output>
+            </fieldset>
+        </section>
+
+        <!-- 6. Zusammenfassung -->
+        <h2>6 · Zusammenfassung</h2>
+        <table>
+            <thead><tr><th>Thema</th><th>.then()/.catch()</th><th>async/await + try/catch</th></tr></thead>
+            <tbody>
+                <tr><td>Lesbarkeit</td><td>Kette: hängt pro Stufe ein .then()</td><td>Sequenz liest sich wie synchroner Code</td></tr>
+                <tr><td>Fehlerbehandlung</td><td>ein .catch() am Ende der Kette</td><td>try/catch um die awaited Aufrufe</td></tr>
+                <tr><td>Typ-Differenzierung</td><td>im .catch() mit instanceof prüfen</td><td>instanceof im catch oder try pro Stufe</td></tr>
+                <tr><td>Granularität</td><td>ein catch = „irgendwo"</td><td>pro Stufe: Fallback/Weiterarbeit möglich</td></tr>
+            </tbody>
+        </table>
+
+        <details>
+            <summary>Warum individuelle Exceptions pro Stufe?</summary>
+            <p>Jede Pipeline-Stufe hat eigenen Domänen-Fehlergrund (Ungültige Bestellung / Kartenausschluss / Lieferraum). Der Aufrufer kann dann mit <code>instanceof</code> gezielt reagieren — oder fährt pro Stufe eine eigene catch-Logik (Variante B). Genau das ist der Kern dieser UE.</p>
+        </details>
+
+        <footer class="ausblick">
+            <p><strong>Ausblick:</strong> Nächste UE: Node/npm-Tooling + Vite-Setup (Scheduler: WS UE 2, s. <a href="../../unterricht/WMC/jg2-einheiten.md">jg2-einheiten.md</a>). Was heute war Diagnostik-Rep (async) aus WS UE 1.</p>
+            <p>Demo-Code: <code>demo.js</code> in diesem Ordner — läuft mit <code>node demo.js</code> oder <code>deno run demo.js</code>.</p>
+        </footer>
+    </main>
+
+    <script>
+        const ANTWORT = "b";
+        document.querySelector("#check").addEventListener("click", () => {
+            const selected = document.querySelector('input[name="quiz"]:checked');
+            const feedback = document.querySelector("#feedback");
+            if (!selected) {
+                feedback.textContent = "Bitte zuerst eine Antwort wählen.";
+                feedback.className = "";
+                return;
+            }
+            const ok = selected.value === ANTWORT;
+            feedback.textContent = ok
+                ? "✅ Richtig! instanceof folgt der Vererbungskette — PaymentError-Instanz oder Subklasse."
+                : "❌ Noch einmal nachdenken: instanceof prüft die Vererbungskette des konkreten Objekts.";
+            feedback.className = ok ? "richtig" : "falsch";
+        });
+    </script>
+</body>
+</html>

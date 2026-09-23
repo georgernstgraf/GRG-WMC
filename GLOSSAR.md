@@ -84,6 +84,9 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 
 | Begriff | Kurzerklärung & Kontext |
 |---|---|
+| async function | Funktion, die implizit ein `Promise` zurückgibt; `await` nur darin (bzw. auf Modulebene) erlaubt — Diagnostik-Rep UE 1 (KM3/KM7, Block WS) |
+| await | Operator: entpackt Fulfillment-Wert eines `Promise`s; bei Rejection wird die Exception geworfen (→ try/catch) — Diagnostik-Rep UE 1 (KM3/KM7, Block WS) |
+| Promise-Kette | Aufeinanderfolgende `.then()`-Aufrufe; jeder `.then()` gibt ein neues `Promise` zurück (Recap 18.9.2026, `5akif/2026-09-18__promise/`) |
 | CORS | Cross-Origin Resource Sharing — Grund, warum Backend `/static` + `/api` unter einem Origin liefert (Jahr 2 WS UE 11) |
 | CSP | Content Security Policy — Client-Security (Jahr 2 SS UE 8) |
 | JWT | JSON Web Token — Auth-Client-Flow (WS UE 10): Token-Ablage, 401-Handling |
