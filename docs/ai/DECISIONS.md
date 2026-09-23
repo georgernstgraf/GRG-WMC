@@ -44,3 +44,11 @@ Superseded decisions are relocated to HISTORY.md.
 - **Reason**: Formalizes previous ad-hoc renaming (3xx→4xx at semester break, commit "neues semester"); mirrors GRG-SWP `ARCHIV/2025-26-2ahwii` pattern but keeps this repo's existing lowercase `archiv/`.
 - **Considered**: `archiv/2025-26/4aaif/` (year subfolder) — rejected per user choice.
 - **Tradeoff**: Class folder name = SS designation (semester-renaming practice retained).
+
+## 2026-09-23: 5akif-Lessons — Runtime Deno, Shared-Theme, Aufgabe-Framing, Housekeeping
+- **Choice**: (1) WMC-Demos/Lektionen laufen mit **Deno** (`deno run`, `deno check`), nicht Node. (2) Gemeinsames Theme-Asset `<klasse>/assets/` (Hell/Dunkel-Toggle, `prefers-color-scheme` + `localStorage`, Print hell, kein CDN) statt Inline-Style pro Lesson. (3) Studentischer Begriff **Aufgabe** (= Mitarbeit), nie „Hausübung". (4) Tages-README: Inhalt oben, `## Housekeeping` (Lehrplan · KM-Bezug · Runtime) unten. (5) Quiz 3–5 Fragen mit rotierenden Richtige-Positionen.
+- **Reason**: Deno ist die festgelegte Unterrichts-Runtime (TS direkt, kein Transpile); die async/await-Lesson war dark-only mit Housekeeping im Kopf — Treiber für die helpers-Skill-Änderung #77; „Aufgabe = Mitarbeit" rahmt die Hausaufgabe als bewertete Mitarbeit.
+- **Considered**: Node als Demo-Runtime (verworfen — widerspricht Deno-Vorgabe); Inline-Toggle pro Lesson (verworfen — Duplikat); „Hausübung" mit „Aufgabe"-Glossar (verworfen — ein Begriff).
+- **Tradeoff**: On-Disk-Dateinamen/Plan-Tabellen dürfen weiter „HÜ" tragen; der Skill `create-lesson` ist die Quelle der Regel (helpers #76/#77/#78).
+- **Issue**: #4
+

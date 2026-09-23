@@ -1,29 +1,27 @@
 # Project State
 
-Current status as of 2026-09-06.
+Current status as of 2026-09-23.
 
 ## Current Focus
-Skill-Konventions-Alignment (unterricht-Skill): lehrplan/ nach Root, KM-Steckbriefe, Block-Klassenordner, GLOSSAR — abgeschlossen in dieser Session. Nächster Fokus: Mini-Hono-Referenz + Semesterstart 5AKIF.
+WMC-Jahr-2-Unterricht (5akif) läuft; Lesson 03 „async/await" (Deno, Shared-Theme, Aufgabe, 5 Quizfragen) ist geliefert. Nächster Fokus: Mini-Hono-Referenz (#3) + Jahr-2-Tooling (Node/Vite).
 
 ## Completed (this cycle)
-- [x] lehrplan/ aus `docs/` nach Root umgezogen (Skill-Konvention; Links in AGENTS/README/docs/ai nachgezogen)
-- [x] Klassenkürzel verifiziert: Form-Serien AIF (AL, Reife- u. Diplomprüfung), KIF/CIF (Kolleg, nur Diplomprüfung); ungerade=WS, gerade=SS → Decoder in METADATA.md + DOMAIN.md
-- [x] Block-Ordner `lehrplan/wmc-aif/34AIF/`, `lehrplan/wmc-kif/{34KIF,56KIF}/`, `lehrplan/wmc-cif/34CIF/` mit README + `<BLOCK>.lehrplan.md` (Retrofit 2026-09-10)
-- [x] `lehrplan/kompetenzmodule/` (shared, form-übergreifend): km3–km10 (voll, inkl. Anl.-1.10-Wortlaut aus BgblAuth-HTML) + Semester↔Klasse↔KM-Übersicht
-- [x] GLOSSAR.md (Root, PMM-Muster)
-- [x] 3 RIS-PDFs nach `lehrplan/` (368/2022, 383/2021, 262/2015; Kundmachungsdaten aus Dokumenten verifiziert)
-- [x] Vorherige Cycle: Anlage 1.9 extrahiert; LEHRPLAN/METADATA/RIS; Archivierung 2025/26; unterricht/WMC/jg1+jg2-einheiten; docs/ai init
+- [x] Lesson 03 async/await für 5akif (#4): mehrstufige Bestell-Pipeline mit je eigenem Error-Typ, Variante A (instanceof) und B (granular + Re-Throw), `demo.ts` per `deno check`/`deno run` verifiziert
+- [x] Runtime-Festlegung: WMC-Demos/Lektionen laufen mit **Deno** (nicht Node) — AGENTS.md + docs/ai/CONVENTIONS.md
+- [x] Gemeinsames Lesson-Theme `5akif/assets/` (lesson.css + theme.js): hell/dunkel, `prefers-color-scheme` + `localStorage`, Print hell, kein CDN
+- [x] Begriff „Aufgabe" (= Mitarbeit) statt „Hausübung" in Lesson, READMEs und GLOSSAR
+- [x] Tages-README-Layout mit `## Housekeeping` (Lehrplan · KM-Bezug · Runtime) unten; Lessons-Tabelle in `5akif/README.md`
+- [x] helpers #76/#77/#78 gespiegelt: create-lesson-Skill (Aufgabe-Abschnitt, Tages-README, Shared-Theme, 3–5 Quizfragen)
 
 ## Pending
 - [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4)
-- [ ] Mini-Hono-Referenz als Repo-Artefakt bauen (Kandidat: Beispielprojekte/hono_on_deno/ ausbauen; REST CRUD + JWT + /static + SPA-Fallback + optional WS)
+- [ ] Mini-Hono-Referenz als Repo-Artefakt bauen (#3; REST CRUD + JWT + /static + SPA-Fallback + optional WS)
 - [ ] POS-Abstimmung Auth/REST-Design + produktive API fürs Abschlussprojekt
-- [ ] Node-LTS-Verfügbarkeit auf Abendform-Schulrechnern prüfen
-- [ ] Neue Klassenordner 3aaif/ + 5akif/ zu Semesterbeginn anlegen
+- [ ] Node-LTS-Verfügbarkeit auf Abendform-Schulrechnern prüfen (nur Jahr-2-Vite-Tooling)
 - [ ] Jährlicher RIS-Re-Check: Sommer 2027 (RIS.md §7)
 
 ## Blockers
 - None
 
 ## Next Session Suggestion
-Issue-verlinkten Commit dieser Session abschließen (issue-workflow finish), dann Mini-Hono-Referenz als Vorbereitung auf SJ 2026/27 bauen.
+Mini-Hono-Referenz als Vorbereitung auf die Jahr-2-REST-UEs bauen (#3); bei neuen Lessons das Theme-Asset `5akif/assets/` wiederverwenden.

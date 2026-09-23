@@ -31,3 +31,9 @@ Follow these without question. Do not deviate unless explicitly told.
 ## Testing
 - Jahr 2: Vitest + React Testing Library; test role/query not implementation; API mocks via MSW or fetch stub.
 - Repo itself: no build/test system (static educational content); validate HTML via W3C Validator.
+
+## Classroom Material (create-lesson)
+- Lesson-HTML bindet das **gemeinsame Theme-Asset der Klasse** ein (`<klasse>/assets/`: `lesson.css` + `theme.js`) — hell als Default, dunkel via `[data-theme="dark"]`/`prefers-color-scheme`, Wahl in `localStorage`, Print immer hell, kein CDN; nie einen pro-Lesson-Inline-Kopie des Themes.
+- Studentischer Begriff ist immer **Aufgabe** (= Mitarbeit), nie „Hausübung"; „HÜ" nur umgangssprachlich bzw. als On-Disk-Dateiname. Tages-README führt Inhalt oben und schließt mit `## Housekeeping` (Lehrplan · KM-Bezug · Runtime).
+- Quiz: 3–5 Fragen je Lesson (passungsabhängig), Richtige-Positionen ausgewogen rotieren; Lessons-Tabelle im Klassen-README mit Quiz-Richtige als Sequenz (z. B. `B·A·C·D·B`).
+
