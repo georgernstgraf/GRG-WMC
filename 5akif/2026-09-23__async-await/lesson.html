@@ -4,218 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Async/Await — Bestell-Pipeline mit individuellen Exceptions</title>
-    <style>
-        :root {
-            --bg: #0f1220;
-            --panel: #171b2e;
-            --panel2: #1d2238;
-            --text: #e8eaf6;
-            --muted: #9aa1c0;
-            --line: #2a3050;
-            --accent: #7fb4ff;
-            --ok: #6fce91;
-            --err: #ef8f9a;
-            --warn: #e5c07b;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            font-family: "Segoe UI", system-ui, sans-serif;
-            line-height: 1.6;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        main {
-            max-width: 56rem;
-            margin: 0 auto;
-            padding: 1rem 1rem 4rem;
-        }
-
-        header.lektion {
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        header.lektion h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        header.lektion p.meta {
-            margin: 0.25rem 0 0;
-            color: var(--muted);
-            font-size: 0.875rem;
-        }
-
-        @media (min-width: 600px) {
-            header.lektion h1 { font-size: 1.75rem; }
-        }
-
-        @media (min-width: 900px) {
-            header.lektion h1 { font-size: 2rem; }
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            margin-top: 2.25rem;
-            border-left: 3px solid var(--accent);
-            padding-left: 0.6rem;
-        }
-
-        h3 {
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
-        }
-
-        p, li { font-size: 1rem; }
-
-        a { color: var(--accent); }
-
-        code {
-            font-family: "Cascadia Code", Consolas, monospace;
-            background: var(--panel2);
-            padding: 0.1rem 0.3rem;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-
-        pre {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 0.9rem;
-            overflow-x: auto;
-            font-size: 0.9rem;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-        }
-
-        .box {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 0.9rem 1.1rem;
-            margin: 1.25rem 0;
-        }
-
-        .box.pflicht {
-            border-left: 4px solid var(--accent);
-        }
-
-        .box.ziel {
-            background: var(--panel2);
-        }
-
-        .box.ziel pre {
-            border: none;
-            background: #14182a;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1rem 0;
-            font-size: 0.95rem;
-        }
-
-        th, td {
-            border: 1px solid var(--line);
-            padding: 0.45rem 0.6rem;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        th { background: var(--panel2); }
-
-        .quiz fieldset {
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 0.9rem 1.1rem;
-            margin-top: 1rem;
-        }
-
-        .quiz legend {
-            font-weight: 600;
-            padding: 0 0.4rem;
-        }
-
-        .quiz label {
-            display: flex;
-            gap: 0.6rem;
-            align-items: flex-start;
-            padding: 0.55rem 0.6rem;
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            margin-top: 0.5rem;
-            cursor: pointer;
-            min-height: 44px;
-        }
-
-        .quiz label:hover { background: var(--panel2); }
-
-        .quiz button {
-            margin-top: 0.75rem;
-            background: var(--accent);
-            color: #0f1220;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            min-height: 44px;
-        }
-
-        .quiz output {
-            display: block;
-            margin-top: 0.6rem;
-            font-weight: 600;
-            min-height: 1.4em;
-        }
-
-        .richtig { color: var(--ok); }
-
-        .falsch { color: var(--err); }
-
-        .hausuebung {
-            background: var(--panel2);
-            border: 1px solid var(--line);
-            border-left: 4px solid var(--warn);
-            border-radius: 8px;
-            padding: 0.9rem 1.1rem;
-            margin: 1rem 0;
-        }
-
-        details {
-            background: var(--panel2);
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            padding: 0.6rem 0.9rem;
-            margin: 0.75rem 0;
-        }
-
-        summary { cursor: pointer; font-weight: 600; }
-
-        footer.ausblick {
-            margin-top: 2.5rem;
-            border-top: 1px solid var(--line);
-            padding-top: 1rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/lesson.css">
+    <script src="../assets/theme.js" defer></script>
 </head>
 <body>
     <main>
         <header class="lektion">
-            <h1>Async & Await: Bestell-Pipeline mit individuellen Exceptions</h1>
-            <p class="meta">5akif · 23.9.2026 · 1 UE · Runtime: Deno · Anschluss an <a href="../2026-09-18__promise/REAMDE.md">Promise-Recap vom 18.9.</a> · WMC UE 1 (Diagnostik-Rep: async)</p>
+            <div>
+                <h1>Lektion 03 · Async &amp; Await — Bestell-Pipeline mit individuellen Exceptions</h1>
+                <p class="meta">5AKIF · 23.9.2026 · 1 UE · Anschluss an <a href="../2026-09-18__promise/REAMDE.md">Promise-Recap vom 18.9.</a></p>
+            </div>
+            <button class="theme-toggle no-print" type="button">☾ dunkel</button>
         </header>
 
         <!-- Lektüre-Box (Pflicht, link don't copy) -->
@@ -500,13 +299,16 @@ try { … } catch (err) { }</code></pre></td>
             <p>Jede Pipeline-Stufe hat eigenen Domänen-Fehlergrund (Ungültige Bestellung / Kartenausschluss / Lieferraum). Der Aufrufer kann dann mit <code>instanceof</code> gezielt reagieren — oder fährt pro Stufe eine eigene catch-Logik (Variante B). Genau das ist der Kern dieser UE.</p>
         </details>
 
-        <!-- 7. Hausübung -->
-        <h2>7 · Hausübung (bis nächste UE)</h2>
-        <section class="hausuebung">
-            <p><strong>Aufgabe:</strong> Erweitere die Bestell-Pipeline um eine vierte Stufe <strong>reclamieren</strong> mit eigenem Error-Typ. Runtime ist Deno — arbeite in einer Kopie von <code>demo.ts</code> (z. B. <code>hue-claim.ts</code>), ausgeführt mit <code>deno run hue-claim.ts</code>. Abgabe: eigener Commit im Schüler-Repo (HÜ-Konvention).</p>
+        <!-- 7. Aufgabe -->
+        <h2>7 · Aufgabe</h2>
+        <section class="aufgabe">
+            <p><strong>Aufgabe (Mitarbeit):</strong> Erweitere die Bestell-Pipeline um eine vierte Stufe <strong>reclamieren</strong> mit eigenem Error-Typ. Arbeite in einer Kopie von <code>demo.ts</code> (z. B. <code>claim.ts</code>), ausgeführt mit <code>deno run claim.ts</code>. Abgabe: eigener Commit im Schüler-Repo.</p>
             <ol>
                 <li>
-                    <strong>Stufe 1 — ClaimError:</strong> Definiere die Error-Klasse und die Stufe <code>reclamieren</code>: Sie wartet kurz (Helfer <code>simulate</code>) und wirft einen <code>ClaimError</code>, wenn der Reklamationsgrund <code>"kaputt"</code> ist — sonst resolved sie mit einer Stornierungs-Bestätigung:
+                    <strong>Zuerst vorhersagen:</strong> Rufe <code>pipelineAlsGanzes</code> mit <code>menge: 0</code> auf. Schreib die erwartete Konsole auf, bevor du ausführst — und erkläre: Warum wird in <code>bestellen</code> erst <em>nach</em> der <code>simulate</code>-Wartezeit geworfen (Blick auf die Reihenfolge im Funktionskörper)?
+                </li>
+                <li>
+                    <strong>ClaimError &amp; Stufe <code>reclamieren</code>:</strong> Definiere die Error-Klasse; die Stufe wartet kurz (Helfer <code>simulate</code>) und wirft einen <code>ClaimError</code>, wenn der Reklamationsgrund <code>"kaputt"</code> ist — sonst resolved sie mit einer Stornierungs-Bestätigung:
                     <pre><code>class ClaimError extends Error {
     constructor(artikel: string, grund: string) {
         super(`Reklamation ${artikel}: ${grund}`);
@@ -515,16 +317,13 @@ try { … } catch (err) { }</code></pre></td>
 }</code></pre>
                 </li>
                 <li>
-                    <strong>Stufe 2 — ValidationError-Vorhersage:</strong> Rufe <code>pipelineAlsGanzes</code> mit <code>menge: 0</code> auf. Schreib zuerst die erwartete Konsole auf, dann erst ausführen — und erkläre: Warum wird in <code>bestellen</code> erst <em>nach</em> der <code>simulate</code>-Wartezeit geworfen (Blick auf die Reihenfolge im Funktionskörper)?
-                </li>
-                <li>
-                    <strong>Stufe 3 — finally:</strong> Ergänze in <code>pipelineGranular</code> ein <code>finally</code>, das nach jedem Lauf <code>— Granularer Lauf beendet</code> loggt. Prüfe: Läuft es auch im Re-Throw-Fall der Stufe liefern?
+                    <strong>finally:</strong> Ergänze in <code>pipelineGranular</code> ein <code>finally</code>, das nach jedem Lauf <code>— Granularer Lauf beendet</code> loggt. Prüfe: Läuft es auch im Re-Throw-Fall der Stufe liefern?
                 </li>
                 <li>
                     <strong>Bonus:</strong> Fange <code>ClaimError</code> zusätzlich in Variante A (instanceof-Kette) und gib die Stufe <code>reclamieren</code> in der Verzweigung aus.
                 </li>
             </ol>
-            <p class="klein">Besprechung nächste UE; Abgabe per Commit mit nachvollziehbarer Message.</p>
+            <p class="klein">Besprechung in der nächsten UE; Abgabe per Commit mit nachvollziehbarer Message.</p>
         </section>
 
         <footer class="ausblick">

@@ -69,8 +69,8 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | Begriff | Kurzerklärung & Kontext |
 |---|---|
 | Abgabevideo | SS-Projekt-Jahr 1: OBS-Demo (5–7 min) mit Code-Besprechung |
+| Aufgabe | Mitarbeit-Aufgabe am Lesson-Ende (studentischer Begriff, nie „Hausübung"); Abgabe per Commit im Schüler-Repo. „HÜ"/„Hausübung" nur umgangssprachlich bzw. als On-Disk-Dateiname |
 | Cutoff | Nachreich-Frist für HÜ: eine Woche vor Notenschluss |
-| HÜ | Hausübung; Abgabe über Schüler-Repos (GitHub) |
 | Nachreichung | 75-%-Regel für HÜ-Nachschieben (Root-README) |
 | Peer-Review | Gegenseitige Review-Runde beim WS-Jahr-1-Projekt (`PEER_REVIEW.md`) |
 | PLF R1/R2 | Reservierte Slots: PLF 1 (nach UE 7), PLF 2 (Semesterende) |

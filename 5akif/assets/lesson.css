@@ -1,0 +1,280 @@
+/* Gemeinsames Lesson-Stylesheet der 5akif (WMC).
+   Theme: hell als Default, dunkel über data-theme bzw. prefers-color-scheme.
+   Print bleibt immer hell. Kein CDN, alles offline. */
+
+:root {
+    color-scheme: light dark;
+
+    --bg: #f7f8fc;
+    --panel: #ffffff;
+    --panel2: #eef1f8;
+    --code-bg: #eef1f8;
+    --text: #1b1f2a;
+    --muted: #5b6478;
+    --line: #d7dcea;
+    --accent: #2f6fd0;
+    --on-accent: #ffffff;
+    --ok: #1c7c46;
+    --err: #b3261e;
+    --warn: #9a6700;
+}
+
+:root[data-theme="dark"] {
+    --bg: #0f1220;
+    --panel: #171b2e;
+    --panel2: #1d2238;
+    --code-bg: #14182a;
+    --text: #e8eaf6;
+    --muted: #9aa1c0;
+    --line: #2a3050;
+    --accent: #7fb4ff;
+    --on-accent: #0f1220;
+    --ok: #6fce91;
+    --err: #ef8f9a;
+    --warn: #e5c07b;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0f1220;
+        --panel: #171b2e;
+        --panel2: #1d2238;
+        --code-bg: #14182a;
+        --text: #e8eaf6;
+        --muted: #9aa1c0;
+        --line: #2a3050;
+        --accent: #7fb4ff;
+        --on-accent: #0f1220;
+        --ok: #6fce91;
+        --err: #ef8f9a;
+        --warn: #e5c07b;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+}
+
+main {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 1rem 1rem 4rem;
+}
+
+header.lektion {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+header.lektion h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header.lektion p.meta {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+@media (min-width: 600px) {
+    header.lektion h1 { font-size: 1.75rem; }
+}
+
+@media (min-width: 900px) {
+    header.lektion h1 { font-size: 2rem; }
+}
+
+.theme-toggle {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.7rem;
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.theme-toggle:hover { border-color: var(--accent); }
+
+h2 {
+    font-size: 1.2rem;
+    margin-top: 2.25rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.6rem;
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+p, li { font-size: 1rem; }
+
+a { color: var(--accent); }
+
+code {
+    font-family: "Cascadia Code", Consolas, monospace;
+    background: var(--panel2);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+.box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1.25rem 0;
+}
+
+.box.pflicht { border-left: 4px solid var(--accent); }
+
+.box.ziel { background: var(--panel2); }
+
+.box.ziel pre { border: none; background: var(--code-bg); }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+th, td {
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.6rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th { background: var(--panel2); }
+
+.quiz fieldset {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin-top: 1rem;
+}
+
+.quiz legend {
+    font-weight: 600;
+    padding: 0 0.4rem;
+}
+
+.quiz label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    padding: 0.55rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    min-height: 44px;
+}
+
+.quiz label:hover { background: var(--panel2); }
+
+.quiz button {
+    margin-top: 0.75rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-height: 44px;
+}
+
+.quiz output {
+    display: block;
+    margin-top: 0.6rem;
+    font-weight: 600;
+    min-height: 1.4em;
+}
+
+.richtig { color: var(--ok); }
+
+.falsch { color: var(--err); }
+
+.aufgabe {
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+}
+
+details {
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    margin: 0.75rem 0;
+}
+
+summary { cursor: pointer; font-weight: 600; }
+
+footer.ausblick {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Print immer hell, unabhängig vom gewählten oder System-Theme */
+@media print {
+    :root,
+    :root:not([data-theme="light"]),
+    :root[data-theme="dark"] {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --panel2: #f5f5f5;
+        --code-bg: #f5f5f5;
+        --text: #000000;
+        --muted: #555555;
+        --line: #bbbbbb;
+        --accent: #00008b;
+        --on-accent: #ffffff;
+        --ok: #1c7c46;
+        --err: #b3261e;
+        --warn: #9a6700;
+    }
+
+    body { background: #ffffff; color: #000000; }
+
+    .no-print { display: none; }
+}
