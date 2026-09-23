@@ -138,6 +138,7 @@
             border: 1px solid var(--line);
             border-radius: 8px;
             padding: 0.9rem 1.1rem;
+            margin-top: 1rem;
         }
 
         .quiz legend {
@@ -428,17 +429,57 @@ try { … } catch (err) { }</code></pre></td>
             </tbody>
         </table>
 
-        <!-- Quiz -->
+        <!-- Quiz: 5 Fragen, Richtige rotieren (B · A · C · D · B) -->
         <h2>Quiz</h2>
         <section class="quiz">
-            <fieldset>
-                <legend>In einer try/catch-Pipeline: Was prüft die Bedingung <code>err instanceof PaymentError</code>?</legend>
-                <label><input type="radio" name="quiz" value="a"> Ob <code>err</code> vom konkreten Typ <code>PaymentError</code> (exklusiv, ohne Vererbung) ist</label>
-                <label><input type="radio" name="quiz" value="b"> Ob <code>err</code> in der Vererbungskette von <code>PaymentError</code> liegt (Instanz oder Subklasse)</label>
-                <label><input type="radio" name="quiz" value="c"> Ob <code>err</code> irgendein genereller <code>Error</code> ist</label>
-                <label><input type="radio" name="quiz" value="d"> Ob die Pipeline-Stufe <code>bezahlen</code> den Fehler geworfen hat</label>
-                <button type="button" id="check">Antwort prüfen</button>
-                <output id="feedback"></output>
+            <fieldset data-antwort="b" data-erklaerung="instanceof folgt der Vererbungskette des konkreten Objekts — PaymentError-Instanz oder Subklasse, nichts anderes.">
+                <legend>Frage 1 · Was prüft die Bedingung <code>err instanceof PaymentError</code>?</legend>
+                <label><input type="radio" name="quiz1" value="a"> Ob <code>err</code> vom konkreten Typ <code>PaymentError</code> (exklusiv, ohne Vererbung) ist</label>
+                <label><input type="radio" name="quiz1" value="b"> Ob <code>err</code> in der Vererbungskette von <code>PaymentError</code> liegt (Instanz oder Subklasse)</label>
+                <label><input type="radio" name="quiz1" value="c"> Ob <code>err</code> irgendein genereller <code>Error</code> ist</label>
+                <label><input type="radio" name="quiz1" value="d"> Ob die Pipeline-Stufe <code>bezahlen</code> den Fehler geworfen hat</label>
+                <button type="button">Antwort prüfen</button>
+                <output></output>
+            </fieldset>
+
+            <fieldset data-antwort="a" data-erklaerung="await entpackt den Fulfillment-Wert; bei Rejection wirft der await-Ausdruck die Exception — try/catch fängt sie.">
+                <legend>Frage 2 · Ein <code>await</code>-Ausdruck erhält ein rejected Promise. Was passiert?</legend>
+                <label><input type="radio" name="quiz2" value="a"> Der <code>await</code>-Ausdruck wirft die Rejection als Exception — <code>try/catch</code> kann sie fangen</label>
+                <label><input type="radio" name="quiz2" value="b"> Die Funktion gibt das rejected Promise unverändert an den Aufrufer zurück</label>
+                <label><input type="radio" name="quiz2" value="c"> Der <code>await</code>-Ausdruck resolved zu <code>undefined</code> und läuft weiter</label>
+                <label><input type="radio" name="quiz2" value="d"> Das Programm bricht sofort und vollständig ab</label>
+                <button type="button">Antwort prüfen</button>
+                <output></output>
+            </fieldset>
+
+            <fieldset data-antwort="c" data-erklaerung="Eine async function gibt immer ein Promise zurück — return 42 wird implizit zu Promise.resolve(42).">
+                <legend>Frage 3 · <code>async function f() { return 42; }</code> — was liefert der Aufruf <code>f()</code>?</legend>
+                <label><input type="radio" name="quiz3" value="a"> Den Wert <code>42</code> direkt als Rückgabewert</label>
+                <label><input type="radio" name="quiz3" value="b"> Den Wert <code>undefined</code>, weil <code>await</code> fehlt</label>
+                <label><input type="radio" name="quiz3" value="c"> Ein <code>Promise</code>, das mit dem Wert <code>42</code> resolved</label>
+                <label><input type="radio" name="quiz3" value="d"> Einen SyntaxError, weil <code>await</code> fehlt</label>
+                <button type="button">Antwort prüfen</button>
+                <output></output>
+            </fieldset>
+
+            <fieldset data-antwort="d" data-erklaerung="Granular heißt: pro Stufe ein try/catch — nach dem Abfangen kann die Pipeline weiterarbeiten (Fallback-Karte), statt komplett abzubrechen.">
+                <legend>Frage 4 · Was zeigt Variante B (granular, try pro Stufe) gegenüber Variante A (einstufig)?</legend>
+                <label><input type="radio" name="quiz4" value="a"> Sie ersetzt <code>instanceof</code>-Prüfungen vollständig durch <code>err.name</code>-Vergleiche</label>
+                <label><input type="radio" name="quiz4" value="b"> Sie macht die Stufen <code>bestellen</code> und <code>liefern</code> überflüssig</label>
+                <label><input type="radio" name="quiz4" value="c"> Sie fängt Exceptions ausschließlich im <code>finally</code>-Block ab</label>
+                <label><input type="radio" name="quiz4" value="d"> Nach dem Abfangen kann die Pipeline weiterlaufen — z. B. Fallback-Karte</label>
+                <button type="button">Antwort prüfen</button>
+                <output></output>
+            </fieldset>
+
+            <fieldset data-antwort="b" data-erklaerung="Re-Throw: der catch-Block behandelt den Fehler lokal (z. B. loggen) und gibt ihn mit throw err an einen höheren Aufrufer weiter — finally läuft trotzdem.">
+                <legend>Frage 5 · Was bewirkt <code>throw err;</code> innerhalb eines <code>catch</code>-Blocks?</legend>
+                <label><input type="radio" name="quiz5" value="a"> Der Fehler ist damit endgültig abgeschlossen und verschluckt</label>
+                <label><input type="radio" name="quiz5" value="b"> Er wird nach dem lokalen Loggen an einen höheren Aufrufer weitergegeben</label>
+                <label><input type="radio" name="quiz5" value="c"> Die <code>finally</code>-Klausel desselben try-Blocks wird übersprungen</label>
+                <label><input type="radio" name="quiz5" value="d"> Er startet die fehlgeschlagene Pipeline-Stufe von vorne neu</label>
+                <button type="button">Antwort prüfen</button>
+                <output></output>
             </fieldset>
         </section>
 
@@ -493,20 +534,23 @@ try { … } catch (err) { }</code></pre></td>
     </main>
 
     <script>
-        const ANTWORT = "b";
-        document.querySelector("#check").addEventListener("click", () => {
-            const selected = document.querySelector('input[name="quiz"]:checked');
-            const feedback = document.querySelector("#feedback");
-            if (!selected) {
-                feedback.textContent = "Bitte zuerst eine Antwort wählen.";
-                feedback.className = "";
-                return;
-            }
-            const ok = selected.value === ANTWORT;
-            feedback.textContent = ok
-                ? "✅ Richtig! instanceof folgt der Vererbungskette — PaymentError-Instanz oder Subklasse."
-                : "❌ Noch einmal nachdenken: instanceof prüft die Vererbungskette des konkreten Objekts.";
-            feedback.className = ok ? "richtig" : "falsch";
+        document.querySelectorAll(".quiz fieldset").forEach((fieldset) => {
+            const button = fieldset.querySelector("button");
+            const output = fieldset.querySelector("output");
+            const richtig = fieldset.dataset.antwort;
+            button.addEventListener("click", () => {
+                const selected = fieldset.querySelector("input:checked");
+                if (!selected) {
+                    output.textContent = "Bitte zuerst eine Antwort wählen.";
+                    output.className = "";
+                    return;
+                }
+                const ok = selected.value === richtig;
+                output.textContent = ok
+                    ? `✅ Richtig! ${fieldset.dataset.erklaerung}`
+                    : "❌ Noch einmal überlegen — die Zusammenfassung hilft.";
+                output.className = ok ? "richtig" : "falsch";
+            });
         });
     </script>
 </body>
