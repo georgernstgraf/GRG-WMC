@@ -182,6 +182,15 @@
 
         .falsch { color: var(--err); }
 
+        .hausuebung {
+            background: var(--panel2);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--warn);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+            margin: 1rem 0;
+        }
+
         details {
             background: var(--panel2);
             border: 1px solid var(--line);
@@ -449,6 +458,33 @@ try { … } catch (err) { }</code></pre></td>
             <summary>Warum individuelle Exceptions pro Stufe?</summary>
             <p>Jede Pipeline-Stufe hat eigenen Domänen-Fehlergrund (Ungültige Bestellung / Kartenausschluss / Lieferraum). Der Aufrufer kann dann mit <code>instanceof</code> gezielt reagieren — oder fährt pro Stufe eine eigene catch-Logik (Variante B). Genau das ist der Kern dieser UE.</p>
         </details>
+
+        <!-- 7. Hausübung -->
+        <h2>7 · Hausübung (bis nächste UE)</h2>
+        <section class="hausuebung">
+            <p><strong>Aufgabe:</strong> Erweitere die Bestell-Pipeline um eine vierte Stufe <strong>reclamieren</strong> mit eigenem Error-Typ. Runtime ist Deno — arbeite in einer Kopie von <code>demo.ts</code> (z. B. <code>hue-claim.ts</code>), ausgeführt mit <code>deno run hue-claim.ts</code>. Abgabe: eigener Commit im Schüler-Repo (HÜ-Konvention).</p>
+            <ol>
+                <li>
+                    <strong>Stufe 1 — ClaimError:</strong> Definiere die Error-Klasse und die Stufe <code>reclamieren</code>: Sie wartet kurz (Helfer <code>simulate</code>) und wirft einen <code>ClaimError</code>, wenn der Reklamationsgrund <code>"kaputt"</code> ist — sonst resolved sie mit einer Stornierungs-Bestätigung:
+                    <pre><code>class ClaimError extends Error {
+    constructor(artikel: string, grund: string) {
+        super(`Reklamation ${artikel}: ${grund}`);
+        this.name = "ClaimError";
+    }
+}</code></pre>
+                </li>
+                <li>
+                    <strong>Stufe 2 — ValidationError-Vorhersage:</strong> Rufe <code>pipelineAlsGanzes</code> mit <code>menge: 0</code> auf. Schreib zuerst die erwartete Konsole auf, dann erst ausführen — und erkläre: Warum wird in <code>bestellen</code> erst <em>nach</em> der <code>simulate</code>-Wartezeit geworfen (Blick auf die Reihenfolge im Funktionskörper)?
+                </li>
+                <li>
+                    <strong>Stufe 3 — finally:</strong> Ergänze in <code>pipelineGranular</code> ein <code>finally</code>, das nach jedem Lauf <code>— Granularer Lauf beendet</code> loggt. Prüfe: Läuft es auch im Re-Throw-Fall der Stufe liefern?
+                </li>
+                <li>
+                    <strong>Bonus:</strong> Fange <code>ClaimError</code> zusätzlich in Variante A (instanceof-Kette) und gib die Stufe <code>reclamieren</code> in der Verzweigung aus.
+                </li>
+            </ol>
+            <p class="klein">Besprechung nächste UE; Abgabe per Commit mit nachvollziehbarer Message.</p>
+        </section>
 
         <footer class="ausblick">
             <p><strong>Ausblick:</strong> Nächste UE: Node/npm-Tooling + Vite-Setup (Scheduler: WS UE 2, s. <a href="../../unterricht/WMC/jg2-einheiten.md">jg2-einheiten.md</a>). Was heute war Diagnostik-Rep (async) aus WS UE 1. (Vite ist Tooling der React-App — unsere WMC-Demos laufen weiter mit Deno.)</p>

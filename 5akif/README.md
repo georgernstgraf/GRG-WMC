@@ -3,7 +3,7 @@
 ## Asynchronität II: async/await 23.9.2026
 
 Wiederholung/Ausbau zu Promises vom 18.9. — Lesson: [`2026-09-23__async-await/lesson.html`](./2026-09-23__async-await/lesson.html)
-(Demo: `demo.ts` im selben Ordner, Runtime Deno: `deno run demo.ts`)
+(Demo: `demo.ts` im selben Ordner, Runtime Deno: `deno run demo.ts`; HÜ integriert am Lesson-Ende — siehe auch [Tages-README](./2026-09-23__async-await/README.md))
 
 - `async`-Funktion gibt immer ein `Promise` zurück
 - `await` nur in `async`-Funktionen (oder Modul-Ebene)
