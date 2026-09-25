@@ -1,6 +1,13 @@
 # Async/Await — Bestell-Pipeline mit individuellen Exceptions (2026-09-23)
 
+## Aufgabe bis zum nächsten Mal
+
+Aus dem .html Punkt 4.) lösen
+
+## Anmerkungen
+
 Lesson: [`lesson.html`](./lesson.html) im selben Ordner — mehrstufige Promise-Kette `bestellen → bezahlen → liefern`, jede Stufe mit eigenem Error-Typ und individuell gefangen (`instanceof` bzw. try pro Stufe).
+
 - Demo: [`demo.ts`](./demo.ts) — `deno run demo.ts` (Typ-Prüfung `deno check demo.ts`)
 - Quiz: 5 Fragen, Richtige B · A · C · D · B
 - Aufgabe: vierte Stufe `reclamieren` mit `ClaimError`, Vorhersage zuerst, `finally`, Bonus — Abschnitt am Lesson-Ende; Abgabe per Commit im Schüler-Repo
