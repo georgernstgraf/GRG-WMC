@@ -1,7 +1,40 @@
-###
+### Startseite (statisch, SPA-Fallback)
 GET http://localhost:8000/
-###
-GET http://localhost:8000/index.html
-###
-GET http://localhost:8000/style.css
-###
+
+### Shop-Seite
+GET http://localhost:8000/shop.html
+
+### Logo (statisches Bild)
+GET http://localhost:8000/images/logo.svg
+
+### Client-TypeScript wird on demand zu JavaScript transpiliert
+GET http://localhost:8000/client/shop.ts
+
+### API: alle Produkte
+GET http://localhost:8000/api/products
+
+### API: Produkte nach Kategorie
+GET http://localhost:8000/api/products?category=Zubehoer
+
+### API: einzelnes Produkt
+GET http://localhost:8000/api/products/capo-deluxe
+
+### API: Bestellung anlegen (10 % Rabatt ab 3 Artikeln)
+POST http://localhost:8000/api/orders
+Content-Type: application/json
+
+{
+  "items": ["capo-deluxe", "pedal-echo", "studio-kopfhoerer"]
+}
+
+### API: Verkaufslog
+GET http://localhost:8000/api/orders
+
+### API: Kennzahlen
+GET http://localhost:8000/api/stats
+
+### API: Bestellung stornieren (ID aus POST/GET einsetzen)
+DELETE http://localhost:8000/api/orders/<order-id>
+
+### API: unbekannter Endpunkt -> JSON-404
+GET http://localhost:8000/api/unbekannt

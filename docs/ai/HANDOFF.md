@@ -8,7 +8,7 @@ Branch: main
 3. [x] Klassenordner `3aaif/` + `5akif/` angelegt (2026-09) — datierte Unterordner `YYYY-MM-DD_topic` (5akif nutzt `YYYY-MM-DD__thema`).
 
 ## Größere Vorhaben (→ GitHub Issues)
-- [ ] Siehe #3 — Mini-Hono-Referenz-API als Repo-Artefakt (REST CRUD + JWT + `/static` + SPA-Fallback + optional WebSocket; Startpunkt `Beispielprojekte/hono_on_deno/`).
+- [~] #3 Mini-Hono-Referenz-API (`Beispielprojekte/hono_on_deno/`, ausgebaut 2026-09-25): **fertig** sind REST-CRUD Musikgeschäft (in-memory), `/static` + Bilder, SPA-Fallback, Echtzeit-TS-Transpilation (`@deno/emit`), TS-Client-Demo, Logger + 9 Deno-Tests. **Offen:** JWT-Login/Rollen, RFC-7807-Fehler, optionaler WebSocket (bewusst ausgeklammert, Issue bleibt deshalb offen).
 - [ ] POS-Abstimmung (Auth/REST-Design, produktive Projekt-API) mit Kolleg:innen — orga-seitig, Ergebnis in `unterricht/WMC/jg2-einheiten.md` → Offene Punkte eintragen.
 
 ## Kontext für die nächste Session

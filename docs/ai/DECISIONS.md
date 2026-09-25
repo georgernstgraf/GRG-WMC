@@ -52,3 +52,11 @@ Superseded decisions are relocated to HISTORY.md.
 - **Tradeoff**: On-Disk-Dateinamen/Plan-Tabellen dürfen weiter „HÜ" tragen; der Skill `create-lesson` ist die Quelle der Regel (helpers #76/#77/#78).
 - **Issue**: #4
 
+## 2026-09-25: Mini-Hono-Referenz-Rumpf — in-place, in-memory, @deno/emit, ohne Auth
+- **Choice**: `Beispielprojekte/hono_on_deno/` wird in-place zum Referenzrumpf ausgebaut: (1) **in-memory** Store statt DB; (2) Client-TS on demand via **`@deno/emit` in-process** (nicht `deno bundle`-CLI); (3) Auslieferung `/api` + `/static` + SPA-Fallback unter einem Origin; (4) Musikgeschäft-Domäne (Produkte/Bestellungen/10 %-Rabatt ab 3 Artikeln/Storno) als Beispielressource; (5) Umfang in diesem Wurf **ohne** JWT/Rollen, RFC-7807 und WebSocket.
+- **Reason**: Issue #3 will einen Konsum- und Deployment-Rumpf für die React-UEs; die bestehenden Einzelteile (`deno_transpile`, `hono-prisma-htmx`, Archiv-Musikgeschäft) lagen fertig vor und sollten nur zusammengeführt werden. In-Memory + kein Auth hält den Rumpf maximal lesbar; die weggelassenen Teile sind additiv nachrüstbar.
+- **Considered**: Neuer Ordner `hono_referenz/` (verworfen — Issue #3 nennt `hono_on_deno/` als Startpunkt, User-Entscheid in-place); SQLite/`@db/sqlite` bzw. Deno KV (verworfen — Setup/FFI ohne didaktischen Mehrwert für den Rumpf); `deno bundle`-Subprozess (verworfen — `@deno/emit` ist in-process und bereits implementiert).
+- **Tradeoff**: Issue #3 bleibt **teilweise offen** (JWT, RFC-7807, WS) und ist in HANDOFF/STATE als Rest vermerkt. `@deno/emit` ist offiziell, aber seit 2 Jahren (0.46.0) unverändert; der Transpile-Endpoint hat einen Path-Traversal-Guard, der im Ursprungsbeispiel fehlte.
+- **Issue**: #3
+
+

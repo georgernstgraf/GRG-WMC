@@ -1,6 +1,6 @@
 # Architecture
 
-Living structural map of the system as of 2026-07-26.
+Living structural map of the system as of 2026-09-25.
 Overwritten when structural changes occur during a session.
 
 ## Overview
@@ -12,7 +12,7 @@ GRG-WMC is a static educational content repository (no build system) for the WMC
 | `<N><zug>/` | Active class folders (semester-numbered) | created at semester start; renamed at semester break |
 | `archiv/YYYY-YY-<klasse>/` | Archived classes per school year | populated SJ 2025/26 (4 folders) |
 | `Unterlagen/` | Topic reference materials (HTML, CSS, JS, HTTP, POSIX) | |
-| `Beispielprojekte/` | Demo projects (hono_on_deno, hono-prisma-htmx, deno_transpile, gists) | Hono demos = start point for Jahr-2 reference API |
+| `Beispielprojekte/` | Demo projects (hono_on_deno, hono-prisma-htmx, deno_transpile, gists) | `hono_on_deno` = Mini-Hono-Referenzrumpf (Deno/Hono, in-memory Musikgeschäft-API, `/static`, SPA-Fallback, TS-Transpilation) |
 | `Übungen/` | Assignments | |
 | `docs/` | skriptum.md, wmc_ss_projekt_webapp.md, PDFs | Lehrinhalte_SS.md removed (absorbed into unterricht/WMC/jg1-einheiten.md) |
 | `lehrplan/` | LEHRPLAN (3-layer source), METADATA, RIS/ + RIS.md, wmc-aif/kif/cif + kompetenzmodule/ | created 2026-07-26, zweig-retrofit 2026-09-10 |

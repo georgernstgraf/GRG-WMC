@@ -1,17 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
+    <title>Hono on Deno – Referenz</title>
     <link rel="stylesheet"
-          href="style.css">
-    <title>Document</title>
+          href="styles.css">
 </head>
 
 <body>
-    schönes html
+    <main class="page">
+        <header class="hub-hero">
+            <img src="images/logo.svg"
+                 alt="WMC Musikgeschaeft Logo"
+                 class="hub-logo">
+            <p class="hub-kicker">Deno 2 + Hono 4 · Referenz-API</p>
+            <h1>Mini-Hono-Referenz</h1>
+            <p class="hub-copy"> Ein Rumpf aus statischer Auslieferung, JSON-API und Echtzeit-TypeScript-Transpilation.
+                Die Shop-Seite konsumiert die API als Browser-TypeScript, das vom Server on demand gebuendelt wird. </p>
+            <a class="hub-cta"
+               href="shop.html">Zum Musikgeschaeft</a>
+        </header>
+
+        <section class="hub-section">
+            <h2>API-Endpunkte</h2>
+            <ul class="endpoint-list">
+                <li><code>GET /api/products</code><span>Alle Artikel (optional ?category=)</span></li>
+                <li><code>GET /api/products/:id</code><span>Einzelner Artikel</span></li>
+                <li><code>POST /api/orders</code><span>Bestellung anlegen (10 % ab 3 Artikeln)</span></li>
+                <li><code>GET /api/orders</code><span>Verkaufslog</span></li>
+                <li><code>DELETE /api/orders/:id</code><span>Bestellung stornieren</span></li>
+                <li><code>GET /api/stats</code><span>Kennzahlen</span></li>
+                <li><code>GET /client/shop.ts</code><span>Transpiliertes Client-JavaScript</span></li>
+            </ul>
+        </section>
+
+        <section class="hub-section">
+            <h2>Auslieferung</h2>
+            <p> Statische Assets kommen aus <code>/static</code> unter einem Origin; unbekannte Pfade fallen auf diese
+                Seite zurueck (SPA-Fallback) – dasselbe Muster wie beim Deployment eines <code>vite build</code>. </p>
+        </section>
+    </main>
 </body>
 
 </html>

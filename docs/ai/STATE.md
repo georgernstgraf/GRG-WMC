@@ -1,11 +1,12 @@
 # Project State
 
-Current status as of 2026-09-23.
+Current status as of 2026-09-25.
 
 ## Current Focus
-WMC-Jahr-2-Unterricht (5akif) läuft; Lesson 03 „async/await" (Deno, Shared-Theme, Aufgabe, 5 Quizfragen) ist geliefert. Nächster Fokus: Mini-Hono-Referenz (#3) + Jahr-2-Tooling (Node/Vite).
+Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
+- [x] Mini-Hono-Referenz (#3, Teil 1): `Beispielprojekte/hono_on_deno/` von Mini-Demo zum Referenzrumpf ausgebaut — Deno 2.9/Hono 4.13 (JSR), In-Memory-Musikgeschäft-API (Produkte/Bestellungen/10%-Rabatt/Storno/Stats), `/static`+Bilder, SPA-Fallback, Echtzeit-TS→JS-Transpilation via `@deno/emit` (mit Path-Traversal-Guard), 7-Punkte-TS-Client `client/shop.ts`, `hono/logger`, 9 Deno-Tests; `deno check`/`lint`/`test` grün
 - [x] Lesson 03 async/await für 5akif (#4): mehrstufige Bestell-Pipeline mit je eigenem Error-Typ, Variante A (instanceof) und B (granular + Re-Throw), `demo.ts` per `deno check`/`deno run` verifiziert
 - [x] Runtime-Festlegung: WMC-Demos/Lektionen laufen mit **Deno** (nicht Node) — AGENTS.md + docs/ai/CONVENTIONS.md
 - [x] Gemeinsames Lesson-Theme `5akif/assets/` (lesson.css + theme.js): hell/dunkel, `prefers-color-scheme` + `localStorage`, Print hell, kein CDN
@@ -15,7 +16,7 @@ WMC-Jahr-2-Unterricht (5akif) läuft; Lesson 03 „async/await" (Deno, Shared-Th
 
 ## Pending
 - [ ] Besetzung der Nicht-Georg-WMC-Semester klären (Aufbaulehrgang Sem 2/5/7, Kolleg Sem 1–4)
-- [ ] Mini-Hono-Referenz als Repo-Artefakt bauen (#3; REST CRUD + JWT + /static + SPA-Fallback + optional WS)
+- [ ] Mini-Hono-Referenz vervollständigen (#3 Rest): JWT-Login/Rollen, RFC-7807-Fehler, optional WebSocket
 - [ ] POS-Abstimmung Auth/REST-Design + produktive API fürs Abschlussprojekt
 - [ ] Node-LTS-Verfügbarkeit auf Abendform-Schulrechnern prüfen (nur Jahr-2-Vite-Tooling)
 - [ ] Jährlicher RIS-Re-Check: Sommer 2027 (RIS.md §7)
@@ -24,4 +25,4 @@ WMC-Jahr-2-Unterricht (5akif) läuft; Lesson 03 „async/await" (Deno, Shared-Th
 - None
 
 ## Next Session Suggestion
-Mini-Hono-Referenz als Vorbereitung auf die Jahr-2-REST-UEs bauen (#3); bei neuen Lessons das Theme-Asset `5akif/assets/` wiederverwenden.
+Jahr-2-Tooling (Node/Vite) angehen; für die Auth-UE der Referenz-API JWT (#3-Rest) ergänzen. Bei neuen Lessons das Theme-Asset `5akif/assets/` wiederverwenden.

@@ -1,10 +1,22 @@
 {
-  "tasks": {
-    "dev": "deno run --watch main.ts",
-    "start": "deno run -A --watch main.js"
-  },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1",
-    "hono": "jsr:@hono/hono"
-  }
+    "tasks": {
+        "dev": "deno run -A --watch main.ts",
+        "start": "deno run -A main.ts",
+        "check": "deno check main.ts client/shop.ts test/api_test.ts",
+        "test": "deno test -A",
+        "fmt": "deno fmt",
+        "lint": "deno lint"
+    },
+    "compilerOptions": {
+        "lib": ["deno.window", "dom", "dom.iterable"]
+    },
+    "imports": {
+        "@std/assert": "jsr:@std/assert@1",
+        "@deno/emit": "jsr:@deno/emit@^0.46.0",
+        "hono": "jsr:@hono/hono@^4.13.9"
+    },
+    "fmt": {
+        "indentWidth": 4,
+        "exclude": ["static/**/*.html", "static/**/*.svg"]
+    }
 }
