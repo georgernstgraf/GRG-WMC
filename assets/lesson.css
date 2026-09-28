@@ -1,6 +1,6 @@
-/* Gemeinsames Lesson-Stylesheet der 5akif (WMC).
-   Theme: hell als Default, dunkel über data-theme bzw. prefers-color-scheme.
-   Print bleibt immer hell. Kein CDN, alles offline. */
+/* GRG-WMC — zentrales Lesson-Stylesheet.
+   Hell als Default, dunkel über data-theme bzw. prefers-color-scheme.
+   Print bleibt immer hell. Beamer-taugliche, helle Code-Boxen. Kein CDN. */
 
 :root {
     color-scheme: light dark;
@@ -8,11 +8,12 @@
     --bg: #f7f8fc;
     --panel: #ffffff;
     --panel2: #eef1f8;
-    --code-bg: #eef1f8;
-    --text: #1b1f2a;
+    --code-bg: #f4f6fb;
+    --code-border: #d7dcea;
+    --text: #14181f;
     --muted: #5b6478;
     --line: #d7dcea;
-    --accent: #2f6fd0;
+    --accent: #6d28d9;
     --on-accent: #ffffff;
     --ok: #1c7c46;
     --err: #b3261e;
@@ -24,10 +25,11 @@
     --panel: #171b2e;
     --panel2: #1d2238;
     --code-bg: #14182a;
+    --code-border: #2a3050;
     --text: #e8eaf6;
     --muted: #9aa1c0;
     --line: #2a3050;
-    --accent: #7fb4ff;
+    --accent: #b79bff;
     --on-accent: #0f1220;
     --ok: #6fce91;
     --err: #ef8f9a;
@@ -40,10 +42,11 @@
         --panel: #171b2e;
         --panel2: #1d2238;
         --code-bg: #14182a;
+        --code-border: #2a3050;
         --text: #e8eaf6;
         --muted: #9aa1c0;
         --line: #2a3050;
-        --accent: #7fb4ff;
+        --accent: #b79bff;
         --on-accent: #0f1220;
         --ok: #6fce91;
         --err: #ef8f9a;
@@ -55,8 +58,9 @@
 
 body {
     margin: 0;
-    font-family: "Segoe UI", system-ui, sans-serif;
-    line-height: 1.6;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    font-size: 1.05rem;
     background: var(--bg);
     color: var(--text);
 }
@@ -64,7 +68,7 @@ body {
 main {
     max-width: 56rem;
     margin: 0 auto;
-    padding: 1rem 1rem 4rem;
+    padding: 1.25rem 1.25rem 4rem;
 }
 
 header.lektion {
@@ -74,33 +78,30 @@ header.lektion {
     gap: 1rem;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--line);
-    padding-bottom: 0.75rem;
-    margin-bottom: 1.5rem;
+    padding-bottom: 0.9rem;
+    margin-bottom: 1.75rem;
 }
 
 header.lektion h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.25;
 }
 
 header.lektion p.meta {
-    margin: 0.25rem 0 0;
+    margin: 0.3rem 0 0;
     color: var(--muted);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
 }
 
-@media (min-width: 600px) {
-    header.lektion h1 { font-size: 1.75rem; }
-}
-
-@media (min-width: 900px) {
-    header.lektion h1 { font-size: 2rem; }
+@media (min-width: 700px) {
+    header.lektion h1 { font-size: 1.9rem; }
 }
 
 .theme-toggle {
     font: inherit;
     font-size: 0.85rem;
-    padding: 0.35rem 0.7rem;
+    padding: 0.4rem 0.75rem;
     min-height: 44px;
     border: 1px solid var(--line);
     border-radius: 6px;
@@ -112,41 +113,43 @@ header.lektion p.meta {
 .theme-toggle:hover { border-color: var(--accent); }
 
 h2 {
-    font-size: 1.2rem;
-    margin-top: 2.25rem;
-    border-left: 3px solid var(--accent);
-    padding-left: 0.6rem;
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.65rem;
 }
 
 h3 {
-    font-size: 1rem;
+    font-size: 1.08rem;
     margin-bottom: 0.4rem;
 }
-
-p, li { font-size: 1rem; }
 
 a { color: var(--accent); }
 
 code {
-    font-family: "Cascadia Code", Consolas, monospace;
+    font-family: "Cascadia Code", Consolas, "DejaVu Sans Mono", monospace;
     background: var(--panel2);
     padding: 0.1rem 0.3rem;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 0.92em;
 }
 
+/* Code-Boxen: hell und beamer-tauglich (heller Grund, dunkle Schrift). */
 pre {
     background: var(--code-bg);
-    border: 1px solid var(--line);
+    border: 1px solid var(--code-border);
+    border-left: 4px solid var(--accent);
     border-radius: 8px;
-    padding: 0.9rem;
+    padding: 1rem 1.1rem;
     overflow-x: auto;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 pre code {
     background: none;
     padding: 0;
+    font-size: 1em;
 }
 
 .box {
@@ -161,72 +164,79 @@ pre code {
 
 .box.ziel { background: var(--panel2); }
 
-.box.ziel pre { border: none; background: var(--code-bg); }
+.box.ziel pre { border: none; border-left: 4px solid var(--accent); }
+
+.baustein {
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+}
 
 table {
     border-collapse: collapse;
     width: 100%;
     margin: 1rem 0;
-    font-size: 0.95rem;
+    font-size: 0.98rem;
 }
 
 th, td {
     border: 1px solid var(--line);
-    padding: 0.45rem 0.6rem;
+    padding: 0.5rem 0.65rem;
     text-align: left;
     vertical-align: top;
 }
 
 th { background: var(--panel2); }
 
-.quiz fieldset {
+/* Quiz (nutzt assets/quiz.js, Markup <div class="quiz" data-loesung="N">) */
+.quiz {
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 0.9rem 1.1rem;
-    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    margin: 1.25rem 0;
+    background: var(--panel);
 }
 
-.quiz legend {
+.quiz .frage {
     font-weight: 600;
-    padding: 0 0.4rem;
+    margin: 0 0 0.7rem;
 }
 
 .quiz label {
-    display: flex;
-    gap: 0.6rem;
-    align-items: flex-start;
-    padding: 0.55rem 0.6rem;
+    display: block;
+    padding: 0.5rem 0.65rem;
+    margin: 0.35rem 0;
     border: 1px solid var(--line);
     border-radius: 6px;
-    margin-top: 0.5rem;
     cursor: pointer;
     min-height: 44px;
+    background: var(--panel2);
 }
 
-.quiz label:hover { background: var(--panel2); }
+.quiz label:hover { border-color: var(--accent); }
 
-.quiz button {
-    margin-top: 0.75rem;
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    min-height: 44px;
-}
+.quiz input { margin-right: 0.55rem; }
 
-.quiz output {
-    display: block;
-    margin-top: 0.6rem;
+.quiz .feedback {
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    min-height: 1.4em;
+    min-height: 1.3em;
 }
 
-.richtig { color: var(--ok); }
+.quiz .feedback.richtig { color: var(--ok); }
+.quiz .feedback.falsch { color: var(--err); }
 
-.falsch { color: var(--err); }
+.quiz .erklaerung,
+.quiz .hinweis {
+    display: none;
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+}
 
 .aufgabe {
     background: var(--panel2);
@@ -248,11 +258,11 @@ details {
 summary { cursor: pointer; font-weight: 600; }
 
 footer.ausblick {
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
     border-top: 1px solid var(--line);
     padding-top: 1rem;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
 }
 
 /* Print immer hell, unabhängig vom gewählten oder System-Theme */
@@ -264,6 +274,7 @@ footer.ausblick {
         --panel: #ffffff;
         --panel2: #f5f5f5;
         --code-bg: #f5f5f5;
+        --code-border: #bbbbbb;
         --text: #000000;
         --muted: #555555;
         --line: #bbbbbb;
@@ -275,6 +286,6 @@ footer.ausblick {
     }
 
     body { background: #ffffff; color: #000000; }
-
+    pre { white-space: pre-wrap; }
     .no-print { display: none; }
 }

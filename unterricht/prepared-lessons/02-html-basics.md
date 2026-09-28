@@ -1,7 +1,7 @@
-# HTML-Grundlagen (2026-09-22)
+# HTML-Grundlagen (<Datum>)
 
-Lesson: `index.html` im selben Ordner — Grundgerüst, Pflichtelemente, semantische Tags
-(„Struktur statt Deko"); Grundlage für die eigene „Über mich"-Seite.
+Lesson: `lesson.html` im selben Ordner — Grundgerüst, Pflichtelemente, semantische Tags,
+Struktur statt Deko; die eigene „Über mich"-Seite.
 
 - Demo: semantisches Grundgerüst (header/nav/main/article/aside/footer), `<details>`
 - Übung: „Jetzt du!" (3 Aufgaben)
@@ -10,9 +10,9 @@ Lesson: `index.html` im selben Ordner — Grundgerüst, Pflichtelemente, semanti
 
 ## Aufgabe
 
-`index.html` „Über mich" fertigstellen: Grundgerüst, `header`/`nav`/`main`/`article`/`aside`
-/`footer`, `img` mit sinnvollem `alt` — semantisch und valide (W3C Validator 0 Errors).
-— Abgabe per Push bis 2026-09-29 00:00.
+`index.html` mit Grundgerüst anlegen; `header` + `h1`, `nav` mit zwei Links; `main` mit
+`article` (drei Sätze + Liste) und `aside`; `img` mit sinnvollem `alt`; W3C Validator
+0 Errors. — Abgabe per Push bis zur nächsten UE 00:00.
 
 ## Housekeeping
 

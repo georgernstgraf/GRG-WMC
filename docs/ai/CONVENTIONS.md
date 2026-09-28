@@ -33,7 +33,10 @@ Follow these without question. Do not deviate unless explicitly told.
 - Repo itself: no build/test system (static educational content); validate HTML via W3C Validator.
 
 ## Classroom Material (create-lesson)
-- Lesson-HTML bindet das **gemeinsame Theme-Asset der Klasse** ein (`<klasse>/assets/`: `lesson.css` + `theme.js`) — hell als Default, dunkel via `[data-theme="dark"]`/`prefers-color-scheme`, Wahl in `localStorage`, Print immer hell, kein CDN; nie einen pro-Lesson-Inline-Kopie des Themes.
-- Studentischer Begriff ist immer **Aufgabe** (= Mitarbeit), nie „Hausübung"; „HÜ" nur umgangssprachlich bzw. als On-Disk-Dateiname. Tages-README führt Inhalt oben und schließt mit `## Housekeeping` (Lehrplan · KM-Bezug · Runtime).
-- Quiz: 3–5 Fragen je Lesson (passungsabhängig), Richtige-Positionen ausgewogen rotieren; Lessons-Tabelle im Klassen-README mit Quiz-Richtige als Sequenz (z. B. `B·A·C·D·B`).
+- Anforderung ist das **KM/die Ziel-UE**; `Unterlagen/` und Alt-Lektionen sind gelebte Praxis: kritisch auf Abdeckung prüfen, borgen/kopieren erlaubt, aber **keine Obergrenze**.
+- **Prepared Lessons** liegen unter `unterricht/prepared-lessons/NN-slug.html` (+ Tages-README-Vorlage `NN-slug.md`); die Übernahme in `<klasse>/YYYY-MM-DD_thema/` (`index.html` + `README.md`) erfolgt per Hand. Der Skill schreibt nie direkt in Klassenordner.
+- Zentrale, repo-weite **`assets/`**: `loader.js` (generischer Inline-Bootstrap + Ahnen-Suche), `site.js`, `github-pages-link.js` (Badge), `theme.js` (Hell/Dunkel, `localStorage`, Print hell), `quiz.js`, `lesson.css`. Kein CDN; Nutzung über den Live-Server (`serve.sh`), nie `file://`.
+- **Code-Boxen sind hell und beamer-tauglich** (heller Grund, dunkle Schrift, ausreichend groß); zentrale Assets werden an zentraler Stelle korrigiert, nicht pro Lesson überschrieben.
+- Studentischer Begriff ist immer **Aufgabe** (= Mitarbeit), nie „Hausübung"; „HÜ" nur umgangssprachlich bzw. als On-Disk-Dateiname. Tages-README führt Inhalt oben, dann als ersten eigenen H2-Abschnitt `## Aufgabe`, und schließt mit `## Housekeeping` (Lehrplan · KM-Bezug · Runtime).
+- Quiz-Markup ist `<div class="quiz" data-loesung="N">` (zentrales `assets/quiz.js`); **1–5 Fragen** je Lesson (passungsabhängig), Richtige-Positionen ausgewogen rotieren, jede Frage ist durch den Lesson-Text gedeckt. Lessons-Tabelle im Klassen-README mit Quiz-Richtige als Sequenz (z. B. `B·A·C·D·B`).
 

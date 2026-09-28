@@ -22,10 +22,12 @@ any new work unless the user explicitly says otherwise.
 - **archiv/** - Archived classes from past school years, named `YYYY-YY-<klasse>/` (e.g. `archiv/2025-26-4aaif/`)
 - **`lehrplan/`** - Curriculum (lehrplan-Skill-Konvention mit Zweig-Ebene, Retrofit 2026-09-10): `LEHRPLAN.md` (3-layer: official/school-adaption/didactics; form-übergreifend, bewusst im Root — DECISIONS 2026-09-10), `METADATA.md`, `RIS.md` + `RIS/` (RIS-PDFs `YYYY-MM-DD_BGBl-II-*.pdf`); generische Block-Ordner `wmc-aif/34AIF/`, `wmc-kif/34KIF/` + `wmc-kif/56KIF/`, `wmc-cif/34CIF/` (je README + `<BLOCK>.lehrplan.md`); shared `kompetenzmodule/` (km3–km10). Semesterpläne: **`unterricht/WMC/`** am Repo-Root (`jg1-einheiten.md` Rückpflege, `jg2-einheiten.md` Plan)
 - **GLOSSAR.md** - Domain abbreviations and terms (Root, nachschlagen vor Namensfragen)
+- **`unterricht/prepared-lessons/`** - Prepared (undatierte) Lessons als Master: `NN-slug.html` + Tages-README-Vorlage `NN-slug.md`; Semesterpläne daneben in `unterricht/WMC/`. Klassenübernahme per Hand in `<klasse>/YYYY-MM-DD_topic/` (`index.html` + `README.md`).
+- **`assets/` + `serve.sh`** - Zentrales, repo-weites Lesson-Fundament: `loader.js` (generischer Inline-Bootstrap über Ahnen-Verzeichnisse), `site.js`, `github-pages-link.js` (Badge), `theme.js` (Hell/Dunkel), `quiz.js`, `lesson.css` (helle, beamer-taugliche Code-Boxen). Nutzung über den Live-Server (`./serve.sh`), nie `file://`.
 - **Unterlagen/** - Teaching materials (HTML, CSS, JS, HTTP, POSIX)
 - **Beispielprojekte/** - Example projects for demonstration
 - **Übungen/** - Exercises and assignments
-- Each class folder contains dated subfolders (YYYY-MM-DD_topic) with lesson materials
+- Each class folder contains dated subfolders (YYYY-MM-DD_topic) with lesson materials; jede Lektion bindet die zentralen `assets/` per Inline-Bootstrap ein.
 
 ## Technologies Used
 

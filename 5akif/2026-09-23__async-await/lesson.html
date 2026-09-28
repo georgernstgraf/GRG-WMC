@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Async/Await — Bestell-Pipeline mit individuellen Exceptions</title>
-    <link rel="stylesheet" href="../assets/lesson.css">
-    <script src="../assets/theme.js" defer></script>
+    <script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","theme.js,quiz.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
 </head>
 <body>
     <main>
@@ -14,7 +13,7 @@
                 <h1>Lektion 03 · Async &amp; Await — Bestell-Pipeline mit individuellen Exceptions</h1>
                 <p class="meta">5AKIF · 23.9.2026 · 1 UE · Anschluss an <a href="../2026-09-18__promise/REAMDE.md">Promise-Recap vom 18.9.</a></p>
             </div>
-            <button class="theme-toggle no-print" type="button">☾ dunkel</button>
+            <button class="theme-toggle no-print" type="button" id="theme-toggle">Dunkel</button>
         </header>
 
         <!-- Lektüre-Box (Pflicht, link don't copy) -->
@@ -230,57 +229,61 @@ try { … } catch (err) { }</code></pre></td>
 
         <!-- Quiz: 5 Fragen, Richtige rotieren (B · A · C · D · B) -->
         <h2>Quiz</h2>
-        <section class="quiz">
-            <fieldset data-antwort="b" data-erklaerung="instanceof folgt der Vererbungskette des konkreten Objekts — PaymentError-Instanz oder Subklasse, nichts anderes.">
-                <legend>Frage 1 · Was prüft die Bedingung <code>err instanceof PaymentError</code>?</legend>
-                <label><input type="radio" name="quiz1" value="a"> Ob <code>err</code> vom konkreten Typ <code>PaymentError</code> (exklusiv, ohne Vererbung) ist</label>
-                <label><input type="radio" name="quiz1" value="b"> Ob <code>err</code> in der Vererbungskette von <code>PaymentError</code> liegt (Instanz oder Subklasse)</label>
-                <label><input type="radio" name="quiz1" value="c"> Ob <code>err</code> irgendein genereller <code>Error</code> ist</label>
-                <label><input type="radio" name="quiz1" value="d"> Ob die Pipeline-Stufe <code>bezahlen</code> den Fehler geworfen hat</label>
-                <button type="button">Antwort prüfen</button>
-                <output></output>
-            </fieldset>
 
-            <fieldset data-antwort="a" data-erklaerung="await entpackt den Fulfillment-Wert; bei Rejection wirft der await-Ausdruck die Exception — try/catch fängt sie.">
-                <legend>Frage 2 · Ein <code>await</code>-Ausdruck erhält ein rejected Promise. Was passiert?</legend>
-                <label><input type="radio" name="quiz2" value="a"> Der <code>await</code>-Ausdruck wirft die Rejection als Exception — <code>try/catch</code> kann sie fangen</label>
-                <label><input type="radio" name="quiz2" value="b"> Die Funktion gibt das rejected Promise unverändert an den Aufrufer zurück</label>
-                <label><input type="radio" name="quiz2" value="c"> Der <code>await</code>-Ausdruck resolved zu <code>undefined</code> und läuft weiter</label>
-                <label><input type="radio" name="quiz2" value="d"> Das Programm bricht sofort und vollständig ab</label>
-                <button type="button">Antwort prüfen</button>
-                <output></output>
-            </fieldset>
+        <div class="quiz" data-loesung="1">
+            <p class="frage">Frage 1 · Was prüft die Bedingung <code>err instanceof PaymentError</code>?</p>
+            <label><input type="radio" name="quiz1" value="0"> Ob <code>err</code> vom konkreten Typ <code>PaymentError</code> (exklusiv, ohne Vererbung) ist</label>
+            <label><input type="radio" name="quiz1" value="1"> Ob <code>err</code> in der Vererbungskette von <code>PaymentError</code> liegt (Instanz oder Subklasse)</label>
+            <label><input type="radio" name="quiz1" value="2"> Ob <code>err</code> irgendein genereller <code>Error</code> ist</label>
+            <label><input type="radio" name="quiz1" value="3"> Ob die Pipeline-Stufe <code>bezahlen</code> den Fehler geworfen hat</label>
+            <p class="feedback" aria-live="polite"></p>
+            <p class="erklaerung">instanceof folgt der Vererbungskette des konkreten Objekts — PaymentError-Instanz oder Subklasse, nichts anderes.</p>
+            <p class="hinweis">Nicht ganz: Prüfe, ob auch Subklassen zutreffen dürfen.</p>
+        </div>
 
-            <fieldset data-antwort="c" data-erklaerung="Eine async function gibt immer ein Promise zurück — return 42 wird implizit zu Promise.resolve(42).">
-                <legend>Frage 3 · <code>async function f() { return 42; }</code> — was liefert der Aufruf <code>f()</code>?</legend>
-                <label><input type="radio" name="quiz3" value="a"> Den Wert <code>42</code> direkt als Rückgabewert</label>
-                <label><input type="radio" name="quiz3" value="b"> Den Wert <code>undefined</code>, weil <code>await</code> fehlt</label>
-                <label><input type="radio" name="quiz3" value="c"> Ein <code>Promise</code>, das mit dem Wert <code>42</code> resolved</label>
-                <label><input type="radio" name="quiz3" value="d"> Einen SyntaxError, weil <code>await</code> fehlt</label>
-                <button type="button">Antwort prüfen</button>
-                <output></output>
-            </fieldset>
+        <div class="quiz" data-loesung="0">
+            <p class="frage">Frage 2 · Ein <code>await</code>-Ausdruck erhält ein rejected Promise. Was passiert?</p>
+            <label><input type="radio" name="quiz2" value="0"> Der <code>await</code>-Ausdruck wirft die Rejection als Exception — <code>try/catch</code> kann sie fangen</label>
+            <label><input type="radio" name="quiz2" value="1"> Die Funktion gibt das rejected Promise unverändert an den Aufrufer zurück</label>
+            <label><input type="radio" name="quiz2" value="2"> Der <code>await</code>-Ausdruck resolved zu <code>undefined</code> und läuft weiter</label>
+            <label><input type="radio" name="quiz2" value="3"> Das Programm bricht sofort und vollständig ab</label>
+            <p class="feedback" aria-live="polite"></p>
+            <p class="erklaerung">await entpackt den Fulfillment-Wert; bei Rejection wirft der await-Ausdruck die Exception — try/catch fängt sie.</p>
+            <p class="hinweis">Nicht ganz: Überlege, wie await einen Fehler weiterreicht.</p>
+        </div>
 
-            <fieldset data-antwort="d" data-erklaerung="Granular heißt: pro Stufe ein try/catch — nach dem Abfangen kann die Pipeline weiterarbeiten (Fallback-Karte), statt komplett abzubrechen.">
-                <legend>Frage 4 · Was zeigt Variante B (granular, try pro Stufe) gegenüber Variante A (einstufig)?</legend>
-                <label><input type="radio" name="quiz4" value="a"> Sie ersetzt <code>instanceof</code>-Prüfungen vollständig durch <code>err.name</code>-Vergleiche</label>
-                <label><input type="radio" name="quiz4" value="b"> Sie macht die Stufen <code>bestellen</code> und <code>liefern</code> überflüssig</label>
-                <label><input type="radio" name="quiz4" value="c"> Sie fängt Exceptions ausschließlich im <code>finally</code>-Block ab</label>
-                <label><input type="radio" name="quiz4" value="d"> Nach dem Abfangen kann die Pipeline weiterlaufen — z. B. Fallback-Karte</label>
-                <button type="button">Antwort prüfen</button>
-                <output></output>
-            </fieldset>
+        <div class="quiz" data-loesung="2">
+            <p class="frage">Frage 3 · <code>async function f() { return 42; }</code> — was liefert der Aufruf <code>f()</code>?</p>
+            <label><input type="radio" name="quiz3" value="0"> Den Wert <code>42</code> direkt als Rückgabewert</label>
+            <label><input type="radio" name="quiz3" value="1"> Den Wert <code>undefined</code>, weil <code>await</code> fehlt</label>
+            <label><input type="radio" name="quiz3" value="2"> Ein <code>Promise</code>, das mit dem Wert <code>42</code> resolved</label>
+            <label><input type="radio" name="quiz3" value="3"> Einen SyntaxError, weil <code>await</code> fehlt</label>
+            <p class="feedback" aria-live="polite"></p>
+            <p class="erklaerung">Eine async function gibt immer ein Promise zurück — return 42 wird implizit zu Promise.resolve(42).</p>
+            <p class="hinweis">Nicht ganz: Was gibt eine async function grundsätzlich zurück?</p>
+        </div>
 
-            <fieldset data-antwort="b" data-erklaerung="Re-Throw: der catch-Block behandelt den Fehler lokal (z. B. loggen) und gibt ihn mit throw err an einen höheren Aufrufer weiter — finally läuft trotzdem.">
-                <legend>Frage 5 · Was bewirkt <code>throw err;</code> innerhalb eines <code>catch</code>-Blocks?</legend>
-                <label><input type="radio" name="quiz5" value="a"> Der Fehler ist damit endgültig abgeschlossen und verschluckt</label>
-                <label><input type="radio" name="quiz5" value="b"> Er wird nach dem lokalen Loggen an einen höheren Aufrufer weitergegeben</label>
-                <label><input type="radio" name="quiz5" value="c"> Die <code>finally</code>-Klausel desselben try-Blocks wird übersprungen</label>
-                <label><input type="radio" name="quiz5" value="d"> Er startet die fehlgeschlagene Pipeline-Stufe von vorne neu</label>
-                <button type="button">Antwort prüfen</button>
-                <output></output>
-            </fieldset>
-        </section>
+        <div class="quiz" data-loesung="3">
+            <p class="frage">Frage 4 · Was zeigt Variante B (granular, try pro Stufe) gegenüber Variante A (einstufig)?</p>
+            <label><input type="radio" name="quiz4" value="0"> Sie ersetzt <code>instanceof</code>-Prüfungen vollständig durch <code>err.name</code>-Vergleiche</label>
+            <label><input type="radio" name="quiz4" value="1"> Sie macht die Stufen <code>bestellen</code> und <code>liefern</code> überflüssig</label>
+            <label><input type="radio" name="quiz4" value="2"> Sie fängt Exceptions ausschließlich im <code>finally</code>-Block ab</label>
+            <label><input type="radio" name="quiz4" value="3"> Nach dem Abfangen kann die Pipeline weiterlaufen — z. B. Fallback-Karte</label>
+            <p class="feedback" aria-live="polite"></p>
+            <p class="erklaerung">Granular heißt: pro Stufe ein try/catch — nach dem Abfangen kann die Pipeline weiterarbeiten (Fallback-Karte), statt komplett abzubrechen.</p>
+            <p class="hinweis">Nicht ganz: Der Vorteil liegt im Weiterarbeiten nach einem Fehler.</p>
+        </div>
+
+        <div class="quiz" data-loesung="1">
+            <p class="frage">Frage 5 · Was bewirkt <code>throw err;</code> innerhalb eines <code>catch</code>-Blocks?</p>
+            <label><input type="radio" name="quiz5" value="0"> Der Fehler ist damit endgültig abgeschlossen und verschluckt</label>
+            <label><input type="radio" name="quiz5" value="1"> Er wird nach dem lokalen Loggen an einen höheren Aufrufer weitergegeben</label>
+            <label><input type="radio" name="quiz5" value="2"> Die <code>finally</code>-Klausel desselben try-Blocks wird übersprungen</label>
+            <label><input type="radio" name="quiz5" value="3"> Er startet die fehlgeschlagene Pipeline-Stufe von vorne neu</label>
+            <p class="feedback" aria-live="polite"></p>
+            <p class="erklaerung">Re-Throw: der catch-Block behandelt den Fehler lokal (z. B. loggen) und gibt ihn mit throw err an einen höheren Aufrufer weiter — finally läuft trotzdem.</p>
+            <p class="hinweis">Nicht ganz: Überlege, wohin der Fehler nach dem catch wandert.</p>
+        </div>
 
         <!-- 6. Zusammenfassung -->
         <h2>6 · Zusammenfassung</h2>
@@ -331,26 +334,5 @@ try { … } catch (err) { }</code></pre></td>
             <p>Demo-Code: <code>demo.ts</code> in diesem Ordner — läuft mit <code>deno run demo.ts</code> (Deno führt TypeScript direkt aus, kein Transpile-Schritt); Typ-Prüfung mit <code>deno check demo.ts</code>.</p>
         </footer>
     </main>
-
-    <script>
-        document.querySelectorAll(".quiz fieldset").forEach((fieldset) => {
-            const button = fieldset.querySelector("button");
-            const output = fieldset.querySelector("output");
-            const richtig = fieldset.dataset.antwort;
-            button.addEventListener("click", () => {
-                const selected = fieldset.querySelector("input:checked");
-                if (!selected) {
-                    output.textContent = "Bitte zuerst eine Antwort wählen.";
-                    output.className = "";
-                    return;
-                }
-                const ok = selected.value === richtig;
-                output.textContent = ok
-                    ? `✅ Richtig! ${fieldset.dataset.erklaerung}`
-                    : "❌ Noch einmal überlegen — die Zusammenfassung hilft.";
-                output.className = ok ? "richtig" : "falsch";
-            });
-        });
-    </script>
 </body>
 </html>

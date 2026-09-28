@@ -74,6 +74,7 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | Nachreichung | 75-%-Regel für HÜ-Nachschieben (Root-README) |
 | Peer-Review | Gegenseitige Review-Runde beim WS-Jahr-1-Projekt (`PEER_REVIEW.md`) |
 | PLF R1/R2 | Reservierte Slots: PLF 1 (nach UE 7), PLF 2 (Semesterende) |
+| Prepared Lesson | Undatierte, vorbereitete Lektion als Master in `unterricht/prepared-lessons/NN-slug.html` (+ Tages-README-Vorlage `NN-slug.md`); Übernahme in den Klassenordner per Hand |
 | UE | Unterrichtseinheit; Konvention: `UE \| Thema \| KM-Bezug \| Inhalt/HÜ` |
 | WS-/SS-Projekt | Blockübergreifendes Projekt (Website bzw. Webapp); Angaben: `PROJEKT.md`, `docs/wmc_ss_projekt_webapp.md` |
 | 7-Punkte-Struktur | App-Grundgerüst: State → DOM-Refs → Node-Erzeugung → Render → Events → Bindings → Initial Render |

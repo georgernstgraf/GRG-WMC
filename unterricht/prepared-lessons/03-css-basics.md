@@ -1,7 +1,7 @@
-# CSS-Basics (2026-09-29)
+# CSS-Basics (<Datum>)
 
-Lesson: `index.html` im selben Ordner — die drei Wege, CSS einzubinden, Box-Model/
-`box-sizing`, Farben mit `rgba()`, Einheiten; die „Über mich"-Seite bekommt ein Gesicht.
+Lesson: `lesson.html` im selben Ordner — die drei Wege, CSS einzubinden, Selektoren,
+Box-Model/`box-sizing`, Farben mit `rgba()`, Einheiten.
 
 - Demo: Box-Model-Diagramm, `<details>`-Element
 - Übung: „Jetzt du!" (3 Aufgaben)
@@ -11,9 +11,8 @@ Lesson: `index.html` im selben Ordner — die drei Wege, CSS einzubinden, Box-Mo
 ## Aufgabe
 
 `style.css` anlegen und per `link` einbinden; Seite dekorieren (Hintergrund + Textfarbe,
-`box-sizing: border-box`, eine Klasse, Abstände in `rem`); Überschrift mit
-`rgba()`-Hintergrund; W3C CSS- und HTML-Validator 0 Errors. — Abgabe per Push bis zur
-nächsten UE 00:00.
+`box-sizing: border-box`, eine Klasse, Abstände in `rem`); Überschrift mit `rgba()`-Hintergrund;
+W3C CSS- und HTML-Validator 0 Errors. — Abgabe per Push bis zur nächsten UE 00:00.
 
 ## Housekeeping
 
