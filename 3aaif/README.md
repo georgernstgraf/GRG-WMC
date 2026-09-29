@@ -3,6 +3,7 @@
 ## 2026-09-29
 
 HTML Basics mit Aufgabe, siehe "3aaif/2026-09-29_html-basics"
+Abgabe im Repo
 
 ## Eigenes Laptop erforderlich
 
