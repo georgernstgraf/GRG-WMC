@@ -1,5 +1,9 @@
 # Willkommen beim WMC Unterricht
 
+## 2026-09-29
+
+HTML Basics mit Aufgabe, siehe "3aaif/2026-09-29_html-basics"
+
 ## Eigenes Laptop erforderlich
 
 ## 2026-09-15 Installationen der Basics
