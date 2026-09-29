@@ -143,42 +143,34 @@ git push -u origin main
 
     <div class="quiz" data-loesung="1">
         <p class="frage">1. Welcher Befehl schreibt einen Stand <em>lokal</em> fest?</p>
-        <label><input type="radio" name="q1" value="0"> <code>git push</code> lädt zum Server, mehr nicht</label>
-        <label><input type="radio" name="q1" value="1"> <code>git commit</code> schreibt den Stand fest</label>
-        <label><input type="radio" name="q1" value="2"> <code>git add</code> schreibt den Stand fest</label>
+        <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil git push den Commit nur zu GitHub hochlädt und den Stand nicht lokal festschreibt."> <code>git push</code> lädt zum Server, mehr nicht</label>
+        <label><input type="radio" name="q1" value="1" data-grund="Richtig, weil git commit den vorgemerkten Stand lokal dauerhaft (mit Nachricht) speichert."> <code>git commit</code> schreibt den Stand fest</label>
+        <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil git add die Änderungen nur für den nächsten Commit vormerkt, aber nichts festschreibt."> <code>git add</code> schreibt den Stand fest</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: <code>add</code> merkt nur vor, <code>commit</code> schreibt lokal fest, <code>push</code> lädt hoch.</p>
-        <p class="hinweis">Nicht ganz: <code>add</code> merkt nur vor, <code>commit</code> schreibt lokal fest.</p>
     </div>
 
     <div class="quiz" data-loesung="0">
         <p class="frage">2. Wozu dient der Live Server?</p>
-        <label><input type="radio" name="q2" value="0"> Er hostet die Seite lokal und lädt neu</label>
-        <label><input type="radio" name="q2" value="1"> Er speichert Commits auf GitHub</label>
-        <label><input type="radio" name="q2" value="2"> Er validiert das HTML auf Fehler</label>
+        <label><input type="radio" name="q2" value="0" data-grund="Richtig, weil Live Server einen lokalen Mini-Server (Port 5500) startet und die Seite bei jedem Speichern neu lädt."> Er hostet die Seite lokal und lädt neu</label>
+        <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil das Hochladen git push macht; der Live Server hat mit Git nichts zu tun."> Er speichert Commits auf GitHub</label>
+        <label><input type="radio" name="q2" value="2" data-grund="Falsch, weil die Prüfung auf Standard-Konformität der W3C Web Validator übernimmt."> Er validiert das HTML auf Fehler</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Genau: Live Server startet einen lokalen Server (Port 5500) und lädt die Seite bei jedem Speichern neu.</p>
-        <p class="hinweis">Nicht ganz: Das Hochladen macht <code>git push</code>, das Prüfen der Validator.</p>
     </div>
 
     <div class="quiz" data-loesung="2">
         <p class="frage">3. Was macht <code>git clone</code>?</p>
-        <label><input type="radio" name="q3" value="0"> Es erstellt ein leeres Repository</label>
-        <label><input type="radio" name="q3" value="1"> Es lädt nur die neueste Datei herunter</label>
-        <label><input type="radio" name="q3" value="2"> Es kopiert ein Repository samt Historie</label>
+        <label><input type="radio" name="q3" value="0" data-grund="Falsch, weil clone ein vorhandenes Repository herunterlädt; ein leeres Repo legt man mit git init an."> Es erstellt ein leeres Repository</label>
+        <label><input type="radio" name="q3" value="1" data-grund="Falsch, weil clone das gesamte Repository holt, nicht nur eine einzelne Datei."> Es lädt nur die neueste Datei herunter</label>
+        <label><input type="radio" name="q3" value="2" data-grund="Richtig, weil clone das Repository inklusive kompletter Historie in einen neuen Ordner kopiert."> Es kopiert ein Repository samt Historie</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: <code>clone</code> holt das gesamte Repository inklusive Historie in einen neuen Ordner.</p>
-        <p class="hinweis">Nicht ganz: <code>clone</code> holt das ganze Repository samt Historie, nicht nur eine Datei.</p>
     </div>
 
     <div class="quiz" data-loesung="1">
         <p class="frage">4. Wo setzt du Name und E-Mail für Commits?</p>
-        <label><input type="radio" name="q4" value="0"> In der <code>index.html</code> im Kopf</label>
-        <label><input type="radio" name="q4" value="1"> Per <code>git config --global user.*</code></label>
-        <label><input type="radio" name="q4" value="2"> Per <code>git push --user</code></label>
+        <label><input type="radio" name="q4" value="0" data-grund="Falsch, weil die Identität in der Git-Konfiguration steckt, nicht in der Seite."> In der <code>index.html</code> im Kopf</label>
+        <label><input type="radio" name="q4" value="1" data-grund="Richtig, weil Git Name und E-Mail aus der Konfiguration liest; --global gilt für alle Repositories."> Per <code>git config --global user.*</code></label>
+        <label><input type="radio" name="q4" value="2" data-grund="Falsch, weil git push keinen Benutzer setzt — das erledigt git config."> Per <code>git push --user</code></label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Genau: Git liest Name/E-Mail aus der Konfiguration (<code>--global</code> gilt für alle Repos).</p>
-        <p class="hinweis">Nicht ganz: Die Identität steckt in <code>git config</code>, nicht in der Seite.</p>
     </div>
 
     <h2>9 · Aufgabe</h2>

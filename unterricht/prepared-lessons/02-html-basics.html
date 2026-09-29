@@ -167,52 +167,42 @@
 
     <div class="quiz" data-loesung="1">
         <p class="frage">1. Was gehört in den <code>head</code>?</p>
-        <label><input type="radio" name="q1" value="0"> der sichtbare Hauptinhalt der Seite</label>
-        <label><input type="radio" name="q1" value="1"> die Metadaten der Seite</label>
-        <label><input type="radio" name="q1" value="2"> der Fußbereich der Seite</label>
+        <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil der sichtbare Inhalt im body steht, nicht im head."> der sichtbare Hauptinhalt der Seite</label>
+        <label><input type="radio" name="q1" value="1" data-grund="Richtig, weil der head Metadaten wie charset, viewport und title trägt."> die Metadaten der Seite</label>
+        <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil der Fußbereich (footer) sichtbar ist und damit in den body gehört."> der Fußbereich der Seite</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: Der <code>head</code> trägt Metadaten (charset, viewport, title) — Sichtbares gehört in den <code>body</code>.</p>
-        <p class="hinweis">Nicht ganz: Sichtbares (Inhalt, Footer) steht im <code>body</code>.</p>
     </div>
 
     <div class="quiz" data-loesung="2">
         <p class="frage">2. Wie oft darf <code>main</code> vorkommen?</p>
-        <label><input type="radio" name="q2" value="0"> in jedem Abschnitt einmal</label>
-        <label><input type="radio" name="q2" value="1"> beliebig oft pro Seite</label>
-        <label><input type="radio" name="q2" value="2"> genau einmal pro Seite</label>
+        <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil main den gesamten Hauptinhalt kennzeichnet und nicht pro Abschnitt gesetzt wird."> in jedem Abschnitt einmal</label>
+        <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil mehrfaches main pro Seite ein Semantik-Fehler ist."> beliebig oft pro Seite</label>
+        <label><input type="radio" name="q2" value="2" data-grund="Richtig, weil main den Hauptinhalt kennzeichnet und genau einmal vorkommen darf."> genau einmal pro Seite</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Genau: <code>main</code> kennzeichnet den Hauptinhalt und darf genau einmal vorkommen.</p>
-        <p class="hinweis">Nicht ganz: Mehrfaches <code>main</code> ist ein Semantik-Fehler.</p>
     </div>
 
     <div class="quiz" data-loesung="0">
         <p class="frage">3. Was ist semantisches HTML?</p>
-        <label><input type="radio" name="q3" value="0"> Tags beschreiben die Bedeutung des Inhalts</label>
-        <label><input type="radio" name="q3" value="1"> Tags steuern die Farben der Seite</label>
-        <label><input type="radio" name="q3" value="2"> Tags messen die Ladezeit der Seite</label>
+        <label><input type="radio" name="q3" value="0" data-grund="Richtig, weil semantische Tags sagen, was etwas ist (z. B. nav, article), nicht wie es aussieht."> Tags beschreiben die Bedeutung des Inhalts</label>
+        <label><input type="radio" name="q3" value="1" data-grund="Falsch, weil Farben die Aufgabe von CSS sind, nicht von HTML-Tags."> Tags steuern die Farben der Seite</label>
+        <label><input type="radio" name="q3" value="2" data-grund="Falsch, weil HTML-Tags die Ladezeit nicht messen; Semantik beschreibt die Bedeutung."> Tags messen die Ladezeit der Seite</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: Semantik sagt, <em>was</em> etwas ist (Navigation, Beitrag) — nicht, wie es aussieht.</p>
-        <p class="hinweis">Nicht ganz: Farben macht CSS; Semantik beschreibt Bedeutung.</p>
     </div>
 
     <div class="quiz" data-loesung="1">
         <p class="frage">4. Wozu braucht <code>img</code> ein <code>alt</code>?</p>
-        <label><input type="radio" name="q4" value="0"> für schnellere Ladezeiten des Bildes</label>
-        <label><input type="radio" name="q4" value="1"> für eine barrierefreie Beschreibung</label>
-        <label><input type="radio" name="q4" value="2"> für eine größere Darstellung des Bildes</label>
+        <label><input type="radio" name="q4" value="0" data-grund="Falsch, weil alt die Ladezeit nicht beeinflusst, sondern das Bild beschreibt."> für schnellere Ladezeiten des Bildes</label>
+        <label><input type="radio" name="q4" value="1" data-grund="Richtig, weil alt das Bild für Screenreader beschreibt und erscheint, wenn das Bild nicht lädt."> für eine barrierefreie Beschreibung</label>
+        <label><input type="radio" name="q4" value="2" data-grund="Falsch, weil alt Text ist und keine Größe steuert."> für eine größere Darstellung des Bildes</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Genau: <code>alt</code> beschreibt das Bild für Screenreader und bei Ladefehlern.</p>
-        <p class="hinweis">Nicht ganz: <code>alt</code> ist Text, keine Größen- oder Ladeoption.</p>
     </div>
 
     <div class="quiz" data-loesung="2">
         <p class="frage">5. Warum setzt man das <code>viewport</code>-Meta?</p>
-        <label><input type="radio" name="q5" value="0"> für bessere Suchmaschinenwerbung</label>
-        <label><input type="radio" name="q5" value="1"> für schnellere Serverantworten</label>
-        <label><input type="radio" name="q5" value="2"> für ein korrektes Mobile-Layout</label>
+        <label><input type="radio" name="q5" value="0" data-grund="Falsch, weil das viewport-Meta nichts mit Werbung zu tun hat."> für bessere Suchmaschinenwerbung</label>
+        <label><input type="radio" name="q5" value="1" data-grund="Falsch, weil das Meta die Serverantworten nicht beeinflusst."> für schnellere Serverantworten</label>
+        <label><input type="radio" name="q5" value="2" data-grund="Richtig, weil ohne viewport-Meta das Handy die Desktop-Seite skaliert; mit ihm stimmt das Layout."> für ein korrektes Mobile-Layout</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: Ohne Viewport-Meta skaliert das Handy die Desktop-Seite — mit ihm wird das Layout korrekt.</p>
-        <p class="hinweis">Nicht ganz: Das Meta hat nichts mit Werbung oder Server zu tun.</p>
     </div>
 
     <h2>10 · Aufgabe</h2>

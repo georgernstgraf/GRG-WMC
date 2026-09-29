@@ -230,14 +230,6 @@ th { background: var(--panel2); }
 .quiz .feedback.richtig { color: var(--ok); }
 .quiz .feedback.falsch { color: var(--err); }
 
-.quiz .erklaerung,
-.quiz .hinweis {
-    display: none;
-    margin-top: 0.5rem;
-    font-size: 0.92rem;
-    color: var(--muted);
-}
-
 .aufgabe {
     background: var(--panel2);
     border: 1px solid var(--line);

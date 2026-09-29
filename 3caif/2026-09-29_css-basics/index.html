@@ -186,52 +186,42 @@ h1   { font-size: 2rem; }       /* 32px */
 
     <div class="quiz" data-loesung="1">
         <p class="frage">1. Welcher Weg bindet ein Stylesheet für <em>alle</em> Seiten ein?</p>
-        <label><input type="radio" name="q1" value="0"> das <code>style</code>-Attribut am Element</label>
-        <label><input type="radio" name="q1" value="1"> <code>&lt;link rel="stylesheet"&gt;</code> im <code>head</code></label>
-        <label><input type="radio" name="q1" value="2"> ein <code>&lt;style&gt;</code>-Block im <code>body</code></label>
+        <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil das style-Attribut nur ein einzelnes Element formatiert."> das <code>style</code>-Attribut am Element</label>
+        <label><input type="radio" name="q1" value="1" data-grund="Richtig, weil das verlinkte Stylesheet im head für alle Seiten gilt, die es einbinden."> <code>&lt;link rel="stylesheet"&gt;</code> im <code>head</code></label>
+        <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil ein style-Block nur für diese eine Datei gilt."> ein <code>&lt;style&gt;</code>-Block im <code>body</code></label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: Das verlinkte Stylesheet im <code>head</code> gilt für alle Seiten, die es einbinden.</p>
-        <p class="hinweis">Nicht ganz: <code>style</code>-Attribut und <code>&lt;style&gt;</code>-Block gelten nur lokal bzw. für eine Datei.</p>
     </div>
 
     <div class="quiz" data-loesung="2">
         <p class="frage">2. Was bewirkt <code>box-sizing: border-box</code>?</p>
-        <label><input type="radio" name="q2" value="0"> Es blendet Rahmen und Abstände aus</label>
-        <label><input type="radio" name="q2" value="1"> Es entfernt alle Innenabstände ganz</label>
-        <label><input type="radio" name="q2" value="2"> Es zählt Padding und Border in die Breite</label>
+        <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil border-box Rahmen und Padding nicht ausblendet, sondern in die Breite einrechnet."> Es blendet Rahmen und Abstände aus</label>
+        <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil Padding erhalten bleibt; border-box zählt es nur in die Breite hinein."> Es entfernt alle Innenabstände ganz</label>
+        <label><input type="radio" name="q2" value="2" data-grund="Richtig, weil width dann auch Padding und Border umfasst und die Box gleich breit bleibt."> Es zählt Padding und Border in die Breite</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Genau: <code>width</code> umfasst dann auch Padding und Border — die Box bleibt gleich breit.</p>
-        <p class="hinweis">Nicht ganz: Es zählt Padding und Border <em>hinein</em>, statt sie zu addieren.</p>
     </div>
 
     <div class="quiz" data-loesung="0">
         <p class="frage">3. Was bedeutet das <code>a</code> in <code>rgba()</code>?</p>
-        <label><input type="radio" name="q3" value="0"> die Deckkraft der Farbe</label>
-        <label><input type="radio" name="q3" value="1"> die Sättigung der Farbe</label>
-        <label><input type="radio" name="q3" value="2"> die Helligkeit der Farbe</label>
+        <label><input type="radio" name="q3" value="0" data-grund="Richtig, weil Alpha die Deckkraft von 0 (unsichtbar) bis 1 (deckend) angibt."> die Deckkraft der Farbe</label>
+        <label><input type="radio" name="q3" value="1" data-grund="Falsch, weil Alpha die Deckkraft meint, nicht die Sättigung."> die Sättigung der Farbe</label>
+        <label><input type="radio" name="q3" value="2" data-grund="Falsch, weil Alpha die Deckkraft meint, nicht die Helligkeit."> die Helligkeit der Farbe</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: Alpha = Deckkraft von 0 (unsichtbar) bis 1 (deckend).</p>
-        <p class="hinweis">Nicht ganz: Sättigung/Helligkeit stecken nicht im Alpha-Wert.</p>
     </div>
 
     <div class="quiz" data-loesung="1">
         <p class="frage">4. Reihenfolge des Box-Models von innen nach außen?</p>
-        <label><input type="radio" name="q4" value="0"> Margin, Border, Padding, Content</label>
-        <label><input type="radio" name="q4" value="1"> Content, Padding, Border, Margin</label>
-        <label><input type="radio" name="q4" value="2"> Border, Content, Margin, Padding</label>
+        <label><input type="radio" name="q4" value="0" data-grund="Falsch, weil das die Reihenfolge von außen nach innen wäre, nicht von innen nach außen."> Margin, Border, Padding, Content</label>
+        <label><input type="radio" name="q4" value="1" data-grund="Richtig, weil das Box-Model von innen nach außen Content, Padding, Border und Margin heißt."> Content, Padding, Border, Margin</label>
+        <label><input type="radio" name="q4" value="2" data-grund="Falsch, weil Content innen liegt und Padding vor Border und Margin kommt."> Border, Content, Margin, Padding</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Genau: erst der Inhalt, dann Innenabstand, Rahmen, Außenabstand.</p>
-        <p class="hinweis">Nicht ganz: von innen nach außen — Content, Padding, Border, Margin.</p>
     </div>
 
     <div class="quiz" data-loesung="2">
         <p class="frage">5. Wofür nutzt du eine <em>Klasse</em> statt einer ID?</p>
-        <label><input type="radio" name="q5" value="0"> für einmalige Ankerziele in der Seite</label>
-        <label><input type="radio" name="q5" value="1"> für serverseitige Logik im Browser</label>
-        <label><input type="radio" name="q5" value="2"> für wiederverwendbares Styling</label>
+        <label><input type="radio" name="q5" value="0" data-grund="Falsch, weil Ankerziele IDs nutzen; Klassen sind für Styling da."> für einmalige Ankerziele in der Seite</label>
+        <label><input type="radio" name="q5" value="1" data-grund="Falsch, weil CSS-Klassen keine serverseitige Logik ausführen."> für serverseitige Logik im Browser</label>
+        <label><input type="radio" name="q5" value="2" data-grund="Richtig, weil Klassen mehrfach vorkommen dürfen und viele Elemente gleich stylen."> für wiederverwendbares Styling</label>
         <p class="feedback" aria-live="polite"></p>
-        <p class="erklaerung">Richtig: Klassen dürfen mehrfach vorkommen und stylen viele Elemente gleich.</p>
-        <p class="hinweis">Nicht ganz: IDs sind einmalig (Anker, JS); Styling macht man mit Klassen.</p>
     </div>
 
     <h2>12 · Aufgabe</h2>
