@@ -33,8 +33,16 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function start() {
     var quizzes = document.querySelectorAll(".quiz");
     for (var i = 0; i < quizzes.length; i++) { initialisieren(quizzes[i]); }
-  });
+  }
+
+  // Wird über assets/loader.js asynchron injiziert — dann ist DOMContentLoaded
+  // oft schon vorbei. Deshalb sofort starten, wenn das Dokument nicht mehr lädt.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
 })();
