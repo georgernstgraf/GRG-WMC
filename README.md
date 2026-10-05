@@ -9,6 +9,10 @@ an der HTL Spengergasse (Aufbaulehrgang & Kolleg für Berufstätige für Informa
 > (`jg1-einheiten.md`, `jg2-einheiten.md`).
 > In der Tagesschule werden die Web-Inhalte im Fach POS abgedeckt (Kolleg:innen) —
 > dieses Repo betrifft **nur die Abendform**.
+>
+> **Lernplattform (GitHub Pages):** <https://georgernstgraf.github.io/GRG-WMC/> —
+> veröffentlicht werden nur die vorbereiteten Lektionen aus
+> [`unterricht/prepared-lessons/`](./unterricht/prepared-lessons/).
 
 ---
 

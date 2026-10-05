@@ -14,7 +14,7 @@ Follow these without question. Do not deviate unless explicitly told.
 - Curriculum: `lehrplan/LEHRPLAN.md` (3-layer single source: ① official ② school-adaption ③ didactics/stack), `lehrplan/RIS.md` + `lehrplan/RIS/` (PDFs), block folders `lehrplan/wmc-aif/` / `wmc-kif/` / `wmc-cif/`, shared `kompetenzmodule/` — LEHRPLAN/RIS/kompetenzmodule stay in the lehrplan root as documented exception (DECISIONS 2026-09-10). Semester plans live in `unterricht/WMC/jg<N>-einheiten.md` (repo root).
 - Knowledge files: `docs/ai/` (this directory) — read HANDOFF.md first.
 - Teaching materials by topic: `Unterlagen/`; demos: `Beispielprojekte/`; assignments: `Übungen/`.
-- Root README.md is rendered by index.html (GitHub Pages) — keep its markdown links valid.
+- **GitHub Pages = Lernplattform:** publishes only `index.html`, `assets/` and `unterricht/` (`.github/workflows/pages.yml`, rsync). Class folders, `archiv/`, `lehrplan/`, `Unterlagen/` are **not** deployed. The root `index.html` is a static navigator that links only `unterricht/prepared-lessons/` — add new lessons there in the same commit.
 
 ## Planning
 - UE tables: `UE | Thema | KM-Bezug | Inhalt/HÜ`; ~13 echte UE + 2 PLF per semester; Bonus-UE + reservierte Slots listed separately.

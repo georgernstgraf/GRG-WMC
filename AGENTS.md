@@ -24,6 +24,7 @@ any new work unless the user explicitly says otherwise.
 - **GLOSSAR.md** - Domain abbreviations and terms (Root, nachschlagen vor Namensfragen)
 - **`unterricht/prepared-lessons/`** - Prepared (undatierte) Lessons als Master: `NN-slug.html` + Tages-README-Vorlage `NN-slug.md`; Semesterpläne daneben in `unterricht/WMC/`. Klassenübernahme per Hand in `<klasse>/YYYY-MM-DD_topic/` (`index.html` + `README.md`).
 - **`assets/` + `serve.sh`** - Zentrales, repo-weites Lesson-Fundament: `loader.js` (generischer Inline-Bootstrap über Ahnen-Verzeichnisse), `site.js`, `github-pages-link.js` (Badge), `theme.js` (Hell/Dunkel), `quiz.js`, `lesson.css` (helle, beamer-taugliche Code-Boxen). Nutzung über den Live-Server (`./serve.sh`), nie `file://`.
+- **GitHub Pages (Lernplattform)** - `.github/workflows/pages.yml` veröffentlicht **nur** `index.html`, `assets/` und `unterricht/`; Klassen-, `archiv/`-, `lehrplan/`- und `Unterlagen/`-Ordner bleiben offline. Der Root-`index.html` ist ein statischer Navigator, der ausschließlich die Prepared Lessons unter `unterricht/prepared-lessons/` verlinkt — bei jeder neuen Lesson mitpflegen.
 - **Unterlagen/** - Teaching materials (HTML, CSS, JS, HTTP, POSIX)
 - **Beispielprojekte/** - Example projects for demonstration
 - **Übungen/** - Exercises and assignments

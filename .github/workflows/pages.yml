@@ -1,0 +1,51 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Site zusammenstellen
+        # Lernplattform: nur index.html, assets/ und unterricht/ veröffentlichen.
+        # Kohorten-Ordner (3aaif, 3baif, 3caif, 5akif), archiv/, lehrplan/,
+        # Unterlagen/ usw. sind nicht Teil der Lernplattform und bleiben außen vor.
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='*.db' \
+            --exclude='*.sqlite' \
+            index.html assets unterricht \
+            _site/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

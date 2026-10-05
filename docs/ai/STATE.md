@@ -3,9 +3,12 @@
 Current status as of 2026-09-25.
 
 ## Current Focus
+**Lernplattform (#7):** Der Markdown-SPA-Viewer ist durch einen **statischen Navigator** `index.html` ersetzt; GitHub Pages veröffentlicht nur `index.html`, `assets/` und `unterricht/` (`.github/workflows/pages.yml`, `build_type: workflow`). Der Navigator verlinkt ausschließlich die Prepared Lessons `01–03`.
+
 Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
+- [x] #7 CLOSED 2026-10-05 — GitHub Pages als Lernplattform: statischer Navigator `index.html` (nur `unterricht/prepared-lessons/`, repo-weite Assets, kein CDN), `pages.yml` (rsync `index.html assets unterricht`), `build_type: workflow`; AGENTS/CONVENTIONS/PITFALLS nachgezogen
 - [x] Mini-Hono-Referenz (#3, Teil 1): `Beispielprojekte/hono_on_deno/` von Mini-Demo zum Referenzrumpf ausgebaut — Deno 2.9/Hono 4.13 (JSR), In-Memory-Musikgeschäft-API (Produkte/Bestellungen/10%-Rabatt/Storno/Stats), `/static`+Bilder, SPA-Fallback, Echtzeit-TS→JS-Transpilation via `@deno/emit` (mit Path-Traversal-Guard), 7-Punkte-TS-Client `client/shop.ts`, `hono/logger`, 9 Deno-Tests; `deno check`/`lint`/`test` grün
 - [x] Lesson 03 async/await für 5akif (#4): mehrstufige Bestell-Pipeline mit je eigenem Error-Typ, Variante A (instanceof) und B (granular + Re-Throw), `demo.ts` per `deno check`/`deno run` verifiziert
 - [x] Runtime-Festlegung: WMC-Demos/Lektionen laufen mit **Deno** (nicht Node) — AGENTS.md + docs/ai/CONVENTIONS.md
