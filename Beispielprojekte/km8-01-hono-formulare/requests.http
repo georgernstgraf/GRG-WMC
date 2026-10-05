@@ -1,0 +1,41 @@
+### Viel Spaß mit REST Client (VS Code) — jede Anfrage mit „Send Request".
+
+### 1) Das Formular (Browser-Flow) — liefert HTML
+GET http://localhost:8000/
+
+### 2) Formular absenden — genau das, was der Browser schickt
+###    Content-Type: application/x-www-form-urlencoded
+POST http://localhost:8000/anmeldung
+Content-Type: application/x-www-form-urlencoded
+
+name=Ada+Lovelace&email=ada%40example.org&kurs=typescript&agb=on&nachricht=Ich+kann+es+kaum+erwarten.
+
+### 3) Derselbe Endpunkt als JSON-Client — Content-Type entscheidet:
+###    Antwort 201 Created mit JSON statt 303-Redirect
+POST http://localhost:8000/anmeldung
+Content-Type: application/json
+
+{
+  "name": "Grace Hopper",
+  "email": "grace@example.org",
+  "kurs": "react",
+  "agb": true,
+  "nachricht": "Bitte um Bestätigung."
+}
+
+### 4) Prüfen, was tatsächlich gespeichert wurde
+GET http://localhost:8000/api/anmeldungen
+
+### 5) GET-Formular: Der Suchbegriff steht im Query-String
+GET http://localhost:8000/suche?q=typescript
+
+### 6) Ungültige Anmeldung — der Server antwortet mit 400
+POST http://localhost:8000/anmeldung
+Content-Type: application/json
+
+{
+  "name": "A",
+  "email": "keine-mail",
+  "kurs": "react",
+  "agb": false
+}

@@ -1,0 +1,112 @@
+:root {
+    color-scheme: light dark;
+    --bg: #f7f8fc;
+    --panel: #ffffff;
+    --line: #d7dcea;
+    --text: #14181f;
+    --muted: #5b6478;
+    --accent: #6d28d9;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f1220;
+        --panel: #171b2e;
+        --line: #2a3050;
+        --text: #e8eaf6;
+        --muted: #9aa1c0;
+        --accent: #b79bff;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.page {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+}
+
+h2 {
+    font-size: 1.15rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.6rem;
+}
+
+.lead {
+    color: var(--muted);
+}
+
+section {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.5rem 1.1rem 1.1rem;
+    margin: 1.25rem 0;
+}
+
+label {
+    display: block;
+    margin-top: 0.8rem;
+    font-weight: 600;
+}
+
+label.check {
+    font-weight: 400;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.6rem;
+    font: inherit;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+label.check input {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.1rem;
+    min-height: 44px;
+    font: inherit;
+    border: 0;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+code {
+    background: rgba(127, 127, 127, 0.15);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+
+.fehler {
+    color: #b3261e;
+}

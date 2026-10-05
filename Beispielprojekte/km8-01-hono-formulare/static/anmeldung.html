@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kursanmeldung — HTML-Formulare</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <main class="page">
+        <h1>Kursanmeldung</h1>
+        <p class="lead">Zwei Formulare, zwei Methoden: Die Suche liest (GET), die
+            Anmeldung verändert (POST). Öffne die DevTools (F12) → Netzwerk und
+            beobachte, was beim Absenden passiert.</p>
+
+        <section>
+            <h2>1 · GET — Suche (nichts wird verändert)</h2>
+            <form action="/suche" method="get">
+                <label for="q">Suchbegriff</label>
+                <input type="search" id="q" name="q" placeholder="z. B. typescript">
+                <button type="submit">Suchen</button>
+            </form>
+            <p class="hint">Der Begriff landet als <code>?q=…</code> in der URL —
+                deshalb ist das Ergebnis teilbar und wiederholbar.</p>
+        </section>
+
+        <section>
+            <h2>2 · POST — Anmeldung (verändert etwas)</h2>
+            <form action="/anmeldung" method="post">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required minlength="2"
+                    autocomplete="name">
+
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" required
+                    autocomplete="email">
+
+                <label for="kurs">Kurs</label>
+                <select id="kurs" name="kurs" required>
+                    <option value="">— bitte wählen —</option>
+                    <option value="html-css">HTML &amp; CSS</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="react">React</option>
+                </select>
+
+                <label for="nachricht">Nachricht (optional)</label>
+                <textarea id="nachricht" name="nachricht" rows="3"></textarea>
+
+                <label class="check">
+                    <input type="checkbox" name="agb" required>
+                    Ich stimme den Bedingungen zu.
+                </label>
+
+                <button type="submit">Anmelden</button>
+            </form>
+            <p class="hint">Jedes Feld mit <code>name</code> wird mitgeschickt —
+                ein Feld <em>ohne</em> <code>name</code> kommt am Server nie an.</p>
+        </section>
+    </main>
+</body>
+
+</html>

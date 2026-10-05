@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion KM8-01 · HTML-Formulare &amp; HTTP-POST</title>
+    <script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","theme.js,quiz.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+<main>
+    <header class="lektion">
+        <div>
+            <div class="baustein">Lektion KM8-01 · HTML-Formulare &amp; HTTP-POST</div>
+            <h1>Vom Formular zum Server — <code>action</code>, <code>method</code> und der Request dahinter</h1>
+            <p class="meta">KM8 · Erstkontakt: Formulare → HTTP → REST</p>
+        </div>
+        <button class="theme-toggle no-print" type="button" id="theme-toggle">Dunkel</button>
+    </header>
+
+    <div class="box pflicht">
+        <strong>Lektüre (Pflicht, vor dem Weiterlesen):</strong>
+        <ul>
+            <li><a href="https://github.com/georgernstgraf/GRG-WMC/blob/main/Unterlagen/HTTP-Folie.md">Unterlage: Das HTTP-Protokoll</a> — Verben (GET/POST), Content-Type, Statuscodes</li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data">MDN: Sending form data</a> — was beim Absenden wirklich passiert</li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form">MDN: &lt;form&gt;</a> — die Attribute im Überblick</li>
+        </ul>
+    </div>
+
+    <h2>1 · Einstiegsfrage</h2>
+    <div class="box">
+        <p><em>Du füllst ein Anmeldeformular aus und klickst „Absenden". Die Seite
+        lädt neu — und deine Eingaben sind plötzlich Teil einer Anfrage. Was genau
+        hat der Browser in diesem Moment getan?</em></p>
+        <ul>
+            <li>Wohin gehen die Daten — und in welcher Form?</li>
+            <li>Warum steht bei einer Suche der Begriff in der URL, bei einem Passwort aber nicht?</li>
+            <li>Und was passiert beim Drücken von <strong>F5</strong> nach dem Absenden?</li>
+        </ul>
+        <p>Nach dieser UE liest du in den DevTools genau ab, was ein Formular
+        abschickt — und du weißt, was der Server davon zu sehen bekommt.</p>
+    </div>
+
+    <h2>2 · Ziel-Artefakt: der Netzwerk-Tab, den wir lesen können</h2>
+    <div class="box ziel">
+        <p>Am Ende steht kein hübsches Formular, sondern <strong>Verständnis</strong>:
+        Du öffnest die DevTools (F12) → <em>Netzwerk</em>, sendest ab und liest den Request.</p>
+        <pre><code>Anfrage (Browser → Server)
+POST /anmeldung HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 68
+
+name=Ada+Lovelace&amp;email=ada%40example.org&amp;kurs=typescript&amp;agb=on
+
+Antwort (Server → Browser)
+HTTP/1.1 303 See Other
+Location: /danke</code></pre>
+        <p>Der Server <em>verarbeitet</em> die Anmeldung und schickt den Browser per
+        <strong>303</strong> auf die Danke-Seite. Ein Reload lädt dann nur die
+        Bestätigung — nicht die Anmeldung erneut.</p>
+    </div>
+
+    <h2>3 · Das Grundgerüst: <code>&lt;form&gt;</code></h2>
+    <p>Ein Formular ist der bequeme Weg, eine <strong>HTTP-Anfrage zusammenzuklicken</strong>.
+    Zwei Attribute steuern das Ziel:</p>
+    <pre><code>&lt;form action="/anmeldung" method="post"&gt;
+    … Felder …
+&lt;/form&gt;</code></pre>
+    <table>
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+            <tr><td><code>action</code></td><td><strong>Wohin</strong> die Daten gehen (URL). Fehlt es, geht die Anfrage an die eigene Seite.</td></tr>
+            <tr><td><code>method</code></td><td><strong>Wie</strong>: <code>get</code> (Standard, in die URL) oder <code>post</code> (im Body).</td></tr>
+            <tr><td><code>enctype</code></td><td>Kodierung des Bodys (Abschnitt 7). Standard: <code>application/x-www-form-urlencoded</code>.</td></tr>
+        </tbody>
+    </table>
+    <p class="klein">Ein Formular ohne <code>action</code> schickt an die eigene URL —
+    praktisch zum Ausprobieren, gefährlich beim versehentlichen Reload.</p>
+
+    <h2>4 · <code>name</code> ist der Schlüssel</h2>
+    <p>Jedes Steuerelement mit einem <code>name</code> geht als Paar
+    <code>name=wert</code> an den Server. <strong>Ohne <code>name</code> wird
+    nichts gesendet</strong> — das Feld existiert für den Server nicht.</p>
+    <pre><code>&lt;input type="text" name="name"&gt;       &lt;!-- kommt an: name=…   --&gt;
+&lt;input type="text" name="email"&gt;      &lt;!-- kommt an: email=…  --&gt;
+&lt;input type="text"&gt;                    &lt;!-- KEIN name → wird NICHT gesendet --&gt;</code></pre>
+    <p><code>name</code> ist also <em>der Schlüssel</em> — nicht zu verwechseln mit
+    <code>id</code> (für <code>&lt;label for&gt;</code> und CSS) oder mit dem
+    Beschriftungstext. Ein Feld braucht oft beides: <code>id</code> zum Verknüpfen,
+    <code>name</code> zum Senden.</p>
+
+    <h2>5 · Die Steuerelemente</h2>
+    <table>
+        <thead><tr><th>Element</th><th>Wofür</th></tr></thead>
+        <tbody>
+            <tr><td><code>&lt;input&gt;</code></td><td>Feld; das <code>type</code> bestimmt die Art: <code>text</code>, <code>email</code>, <code>password</code>, <code>number</code>, <code>date</code>, <code>search</code>, <code>checkbox</code>, <code>radio</code>, <code>file</code>, <code>hidden</code>, <code>submit</code> …</td></tr>
+            <tr><td><code>&lt;label for="id"&gt;</code></td><td>Beschriftung, klickbar mit dem Feld verbunden — hilft Maus <em>und</em> Screenreader.</td></tr>
+            <tr><td><code>&lt;textarea&gt;</code></td><td>mehrzeiliger Text (Wert steht <em>zwischen</em> den Tags)</td></tr>
+            <tr><td><code>&lt;select&gt;</code> + <code>&lt;option&gt;</code></td><td>Auswahlliste; gesendet wird der <code>value</code> der gewählten Option</td></tr>
+            <tr><td><code>&lt;button type="…"&gt;</code></td><td><code>submit</code> (Standard!), <code>reset</code> oder <code>button</code></td></tr>
+            <tr><td><code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code></td><td>gruppiert zusammengehörige Felder (z. B. eine Optionsgruppe)</td></tr>
+        </tbody>
+    </table>
+    <pre><code>&lt;label for="kurs"&gt;Kurs&lt;/label&gt;
+&lt;select id="kurs" name="kurs"&gt;
+    &lt;option value="html-css"&gt;HTML &amp;amp; CSS&lt;/option&gt;
+    &lt;option value="typescript"&gt;TypeScript&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;textarea id="nachricht" name="nachricht" rows="3"&gt;&lt;/textarea&gt;</code></pre>
+    <p>Ein Button darf das Formular auch <em>überstimmen</em>:
+    <code>formaction</code> und <code>formmethod</code> am Button überschreiben
+    die Angaben des Formulars — nützlich für „Speichern" und „Löschen" mit
+    derselben Feldsammlung.</p>
+
+    <h2>6 · GET oder POST?</h2>
+    <table>
+        <thead><tr><th></th><th>GET</th><th>POST</th></tr></thead>
+        <tbody>
+            <tr><td>Wo?</td><td>im <strong>Query-String</strong> der URL (<code>?q=…</code>)</td><td>im <strong>Body</strong> der Anfrage</td></tr>
+            <tr><td>Sichtbar?</td><td>ja — in URL, Verlauf, Lesezeichen</td><td>nein — nicht in der URL</td></tr>
+            <tr><td>Für was?</td><td><strong>Lesen</strong>: suchen, filtern, teilen</td><td><strong>Verändern</strong>: anlegen, senden, löschen</td></tr>
+            <tr><td>Wiederholbar?</td><td>ja (idempotent)</td><td>nein — zweimal absenden = zweimal anlegen</td></tr>
+        </tbody>
+    </table>
+    <p>Merksatz: <strong>GET liest, POST verändert.</strong> Passwörter oder
+    große Datenmengen gehören nie in eine GET-URL.</p>
+
+    <h2>7 · <code>enctype</code> — was für ein Body wird das?</h2>
+    <ul>
+        <li><code>application/x-www-form-urlencoded</code> — <strong>Standard</strong>; Paare werden als <code>schlüssel=wert</code> mit <code>&amp;</code> verbunden.</li>
+        <li><code>multipart/form-data</code> — <strong>Pflicht für Datei-Uploads</strong>; der Body zerfällt in mehrere Teile (Datei + Textfelder).</li>
+        <li><code>text/plain</code> — nur zum Debuggen.</li>
+    </ul>
+    <pre><code>&lt;form action="/upload" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="foto"&gt;
+    &lt;button&gt;Hochladen&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <p>Ohne <code>multipart/form-data</code> schickt ein Datei-Feld nur den
+    <em>Dateinamen</em>, nicht den Inhalt.</p>
+
+    <h2>8 · Was der Browser wirklich schickt</h2>
+    <p><strong>URL-Encoding:</strong> Im Body sind nur bestimmte Zeichen erlaubt.
+    Reservierte Zeichen werden kodiert — Leerzeichen zu <code>+</code> (oder
+    <code>%20</code>), <code>@</code> zu <code>%40</code>, Umlaute zu <code>%C3%BC</code> usw.</p>
+    <pre><code>&lt;!-- Eingaben im Formular --&gt;
+name = Ada Lovelace
+email = ada@example.org
+kurs = typescript
+
+&lt;!-- tatsächlicher Request-Body (eine Zeile) --&gt;
+name=Ada+Lovelace&amp;email=ada%40example.org&amp;kurs=typescript&amp;agb=on</code></pre>
+    <p>Der Browser sendet <strong>eine</strong> Anfrage, lädt dann die Antwort
+    und zeigt sie an. Am Ende bleibt der Server <em>zustandslos</em>: Er merkt
+    sich nichts von der vorigen Anfrage.</p>
+    <table>
+        <thead><tr><th>Status</th><th>Bedeutung hier</th></tr></thead>
+        <tbody>
+            <tr><td><code>200 OK</code></td><td>Antwort geliefert (z. B. das Formular selbst)</td></tr>
+            <tr><td><code>303 See Other</code></td><td>Redirect-after-POST → Browser lädt das Ziel per GET</td></tr>
+            <tr><td><code>400 Bad Request</code></td><td>Eingaben ungültig — der Server weist die Anfrage ab</td></tr>
+            <tr><td><code>404</code> / <code>500</code></td><td>falsche URL / Fehler im Server</td></tr>
+        </tbody>
+    </table>
+    <p class="klein"><strong>Reload-Falle:</strong> Ohne Redirect schickt F5 das
+    Formular <em>erneut</em> — bei einer Bestellung wäre das eine zweite
+    Bestellung. Deshalb endet ein POST auf Erfolg mit <code>303</code>.</p>
+
+    <h2>9 · Native Validierung — und ihre Grenze</h2>
+    <p>Der Browser prüft vor dem Senden, wenn Sie ihm Regeln geben:</p>
+    <pre><code>&lt;input type="email" name="email" required&gt;
+&lt;input type="text" name="name" required minlength="2"&gt;
+&lt;input type="text" name="plz" pattern="[0-9]{4}"&gt;
+&lt;input type="checkbox" name="agb" required&gt;
+
+&lt;!-- novalidate schaltet die Prüfung des Browsers komplett ab --&gt;
+&lt;form action="/anmeldung" method="post" novalidate&gt; … &lt;/form&gt;</code></pre>
+    <p><strong>Nie dem Client vertrauen:</strong> Wer die DevTools öffnet oder
+    einen REST-Client nutzt, umgeht jede Browser-Prüfung. Die Prüfung im Browser
+    ist Komfort — die <strong>echte</strong> Prüfung passiert am Server.</p>
+
+    <h2>10 · Parallelkonzept: ein Endpunkt, zwei Clients</h2>
+    <div class="box">
+        <p>Dieselbe URL <code>/anmeldung</code> wird auf zwei Weisen angesprochen.
+        Welcher Weg gilt, entscheidet der <code>Content-Type</code>:</p>
+        <table>
+            <thead><tr><th>Client</th><th>Content-Type</th><th>Antwort</th></tr></thead>
+            <tbody>
+                <tr><td>Browser-Formular</td><td><code>application/x-www-form-urlencoded</code></td><td><strong>303</strong> → <code>/danke</code></td></tr>
+                <tr><td>REST-Client / <code>fetch</code></td><td><code>application/json</code></td><td><strong>201</strong> + JSON</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p>In <strong>VS Code</strong> sendest du die zweite Variante mit der Extension
+    <em>REST Client</em> aus einer <code>.http</code>-Datei — jede Anfrage mit
+    <code>###</code> getrennt, per „Send Request" abgeschickt:</p>
+    <pre><code>### Formular absenden — wie der Browser
+POST http://localhost:8000/anmeldung
+Content-Type: application/x-www-form-urlencoded
+
+name=Ada+Lovelace&amp;email=ada%40example.org&amp;kurs=typescript&amp;agb=on
+
+### Derselbe Endpunkt als JSON — 201 statt 303
+POST http://localhost:8000/anmeldung
+Content-Type: application/json
+
+{ "name": "Grace Hopper", "email": "grace@example.org",
+  "kurs": "react", "agb": true }</code></pre>
+    <p>Das lauffähige Beispiel findest du im Begleitprojekt
+    <a href="https://github.com/georgernstgraf/GRG-WMC/tree/main/Beispielprojekte/km8-01-hono-formulare">km8-01-hono-formulare (Deno + Hono)</a>
+    — es liefert das Formular, den Endpunkt und die fertige
+    <code>requests.http</code>. Der Weg zum Server ist dort derselbe wie hier
+    beschrieben; das Backend selbst ist POS-Stoff.</p>
+
+    <h2>11 · Jetzt du! (im Unterricht)</h2>
+    <div class="box">
+        <p><strong>Vorhersage zuerst — dann ausführen und vergleichen:</strong></p>
+        <ol>
+            <li>Ein Formular hat <code>&lt;input name="titel" value="Hello World"&gt;</code>
+                und eine angehakte Checkbox <code>&lt;input type="checkbox" name="news"&gt;</code>.
+                <em>Wie lautet der Request-Body?</em> Notiere ihn, dann prüfe im
+                Netzwerk-Tab (Payload).</li>
+            <li>Was antwortet <code>POST /anmeldung</code> bei gültigen, was bei
+                ungültigen Eingaben? <em>Erst schätzen</em>, dann mit dem
+                REST-Client prüfen (303 gegen 400).</li>
+            <li>Nimm dem E-Mail-Feld das <code>name</code>. <em>Was sieht der
+                Server jetzt?</em> Prüfe im Payload.</li>
+        </ol>
+    </div>
+
+    <h2>12 · Typische Fehler</h2>
+    <ul>
+        <li><strong>Kein <code>name</code></strong> — das Feld wird nie gesendet.
+        Anti-Beispiel: <code>&lt;input type="email"&gt;</code></li>
+        <li><strong><code>method="get"</code> für eine Änderung</strong> — die Daten
+        landen sichtbar in der URL und im Verlauf: <code>&lt;form action="/anmeldung" method="get"&gt;</code></li>
+        <li><strong><code>&lt;button&gt;</code> ohne <code>type</code></strong> —
+        der Standard ist <code>submit</code>: <code>&lt;button&gt;Abbrechen&lt;/button&gt;</code>
+        schickt das Formular ab. Richtig: <code>&lt;button type="button"&gt;</code>.</li>
+        <li><strong>Datei ohne <code>multipart</code></strong> — <code>&lt;input type="file"&gt;</code>
+        ohne <code>enctype="multipart/form-data"</code> überträgt nur den Dateinamen.</li>
+        <li><strong>Nur im Browser validieren</strong> — der REST-Client umgeht das.
+        Der Server muss selbst prüfen.</li>
+    </ul>
+
+    <h2>13 · Quiz: Formulare &amp; HTTP-POST</h2>
+
+    <div class="quiz" data-loesung="0">
+        <p class="frage">1. Welches Attribut am <code>&lt;form&gt;</code> bestimmt, <strong>wohin</strong> die Daten gehen?</p>
+        <label><input type="radio" name="q1" value="0" data-grund="Richtig: action nennt die Ziel-URL, an die der Browser die Formulardaten schickt."> <code>action</code></label>
+        <label><input type="radio" name="q1" value="1" data-grund="Falsch: method legt nur fest, ob GET oder POST verwendet wird — nicht die Ziel-URL."> <code>method</code></label>
+        <label><input type="radio" name="q1" value="2" data-grund="Falsch: enctype legt die Kodierung des Bodys fest, nicht das Ziel."> <code>enctype</code></label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="1">
+        <p class="frage">2. Wozu dient das <code>name</code>-Attribut eines Eingabefelds?</p>
+        <label><input type="radio" name="q2" value="0" data-grund="Falsch: die Beschriftung ist Aufgabe von label, nicht von name."> Es beschriftet das Feld für den Screenreader.</label>
+        <label><input type="radio" name="q2" value="1" data-grund="Richtig: über name landet der Wert als Schlüssel=Wert im Request; ohne name wird gar nichts gesendet."> Es wird zum Schlüssel des gesendeten Werts.</label>
+        <label><input type="radio" name="q2" value="2" data-grund="Falsch: die Validierung übernehmen Attribute wie required oder type, nicht name."> Es reserviert den Wert für die Validierung.</label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="2">
+        <p class="frage">3. Welche Methode gehört zu einer Anmeldung, die Daten verändert?</p>
+        <label><input type="radio" name="q3" value="0" data-grund="Falsch: GET liest nur; sichtbare Werte in der URL sind für Änderungen ungeeignet."> GET, weil der Wert dann sichtbar ist.</label>
+        <label><input type="radio" name="q3" value="1" data-grund="Falsch: HEAD liefert nur die Header und ist fürs Senden von Daten nicht gedacht."> HEAD, weil der Body dabei leer bleibt.</label>
+        <label><input type="radio" name="q3" value="2" data-grund="Richtig: POST schickt die Daten im Request-Body — passend für alles, was etwas verändert."> POST, weil der Wert im Body mitgeht.</label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="0">
+        <p class="frage">4. Wo landen die Werte eines GET-Formulars?</p>
+        <label><input type="radio" name="q4" value="0" data-grund="Richtig: GET hängt die Werte als ?name=wert an die URL — teilbar und wiederholbar."> im Query-String der URL</label>
+        <label><input type="radio" name="q4" value="1" data-grund="Falsch: einen Body verwendet POST, nicht GET."> im Body der Anfrage</label>
+        <label><input type="radio" name="q4" value="2" data-grund="Falsch: Cookies sind ein eigener Kopf; GET-Formulare nutzen den Query-String."> in einem Cookie des Browsers</label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="1">
+        <p class="frage">5. Welche <code>enctype</code> verwendet ein Formular standardmäßig?</p>
+        <label><input type="radio" name="q5" value="0" data-grund="Falsch: multipart/form-data muss für Datei-Uploads extra gesetzt werden."> <code>multipart/form-data</code></label>
+        <label><input type="radio" name="q5" value="1" data-grund="Richtig: das ist der Standard; Paare werden als schlüssel=wert mit &amp; verbunden."> <code>application/x-www-form-urlencoded</code></label>
+        <label><input type="radio" name="q5" value="2" data-grund="Falsch: application/json ist kein Formular-enctype; das setzt ein fetch-Client."> <code>application/json</code></label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="2">
+        <p class="frage">6. Was bewirkt die Antwort <code>303 See Other</code> nach einem POST?</p>
+        <label><input type="radio" name="q6" value="0" data-grund="Falsch: 303 sagt nichts über das Speichern; es lenkt nur die nächste Anfrage um."> Der Server speichert die Daten nicht.</label>
+        <label><input type="radio" name="q6" value="1" data-grund="Falsch: eine Verweigerung wäre ein 4xx-Code, nicht 303."> Der Server verweigert die Anfrage komplett.</label>
+        <label><input type="radio" name="q6" value="2" data-grund="Richtig: Redirect-after-POST — der Browser holt die Zielseite mit GET, ein Reload schickt das Formular nicht erneut."> Der Browser lädt das Ziel per GET.</label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="0">
+        <p class="frage">7. Wie lautet der Body für <code>name</code> mit dem Wert <code>Ada Lovelace</code> kodiert?</p>
+        <label><input type="radio" name="q7" value="0" data-grund="Richtig: urlencoded wird das Leerzeichen zu + (bzw. %20)."> <code>name=Ada+Lovelace</code></label>
+        <label><input type="radio" name="q7" value="1" data-grund="Falsch: ein Leerzeichen ist im Body nicht erlaubt und wird kodiert."> <code>name=Ada Lovelace</code></label>
+        <label><input type="radio" name="q7" value="2" data-grund="Falsch: im urlencoded-Format trennt = Schlüssel und Wert, ein Doppelpunkt kommt nicht vor."> <code>name:Ada Lovelace</code></label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="quiz" data-loesung="1">
+        <p class="frage">8. Was passiert mit einem <code>&lt;button&gt;</code> ohne <code>type</code> in einem Formular?</p>
+        <label><input type="radio" name="q8" value="0" data-grund="Falsch: ohne type ist der Standard submit — der Button löst das Absenden aus."> Er tut nichts und bleibt wirkungslos.</label>
+        <label><input type="radio" name="q8" value="1" data-grund="Richtig: der Standard-Typ eines Buttons im Formular ist submit."> Er schickt das Formular ab.</label>
+        <label><input type="radio" name="q8" value="2" data-grund="Falsch: das Leeren übernimmt type=reset, nicht der Standard."> Er leert alle Felder des Formulars.</label>
+        <p class="feedback" aria-live="polite"></p>
+    </div>
+
+    <h2>14 · Zusammenfassung &amp; Ausblick</h2>
+    <table>
+        <thead><tr><th>Baustein</th><th>Merksatz</th></tr></thead>
+        <tbody>
+            <tr><td><code>action</code></td><td>wohin gesendet wird</td></tr>
+            <tr><td><code>method</code></td><td>GET liest (URL), POST verändert (Body)</td></tr>
+            <tr><td><code>name</code></td><td>der Schlüssel — ohne name wird nichts gesendet</td></tr>
+            <tr><td><code>enctype</code></td><td>urlencoded (Standard) · multipart für Dateien</td></tr>
+            <tr><td>Request</td><td>Content-Type + urlencoded Body</td></tr>
+            <tr><td>Antwort</td><td>303-Redirect-after-POST · 400 bei ungültig</td></tr>
+            <tr><td>Prüfen</td><td>DevTools-Netzwerk · VS-Code-REST-Client (<code>.http</code>)</td></tr>
+        </tbody>
+    </table>
+    <p><strong>Ausblick:</strong> Dasselbe Senden übernimmt später der
+    <code>fetch</code>-Aufruf in React — statt eines Browser-Redirects liest die
+    App die JSON-Antwort selbst. Genau dort knüpft der REST-Konsum an, den wir in
+    dieser Lektion schon mit dem VS-Code-Client vorweggenommen haben.</p>
+
+    <h2>15 · Aufgabe</h2>
+    <div class="aufgabe">
+        <p><strong>Vorhersage zuerst:</strong> Notiere, welchen Body dein Formular
+        absenden wird und welchen Statuscode du erwartest — <em>bevor</em> du
+        absendest.</p>
+        <ol>
+            <li>Baue eine Seite <code>anmeldung.html</code> mit einem Formular
+                (<code>action="/anmeldung" method="post"</code>) und den Feldern
+                <code>name</code>, <code>email</code>, einem <code>&lt;select name="kurs"&gt;</code>,
+                einer <code>&lt;textarea name="nachricht"&gt;</code> und einer
+                Pflicht-Checkbox <code>name="agb"</code>.</li>
+            <li>Starte das Begleitprojekt <code>Beispielprojekte/km8-01-hono-formulare</code>
+                (<code>deno task start</code>) und trage im Netzwerk-Tab den
+                gesendeten Body wörtlich ab.</li>
+            <li>Lege eine <code>requests.http</code> an und sende dieselbe Anmeldung
+                einmal mit <code>Content-Type: application/x-www-form-urlencoded</code>
+                und einmal mit <code>application/json</code>. Notiere beide
+                Statuscodes.</li>
+            <li>Bonus: Füge ein Feld <em>ohne</em> <code>name</code> hinzu und
+                erkläre, was der Server davon sieht.</li>
+        </ol>
+        <p><strong>Abgabe:</strong> Push bis zur nächsten UE 00:00 — bzw. nach
+        Vorgabe deiner Lehrperson.</p>
+    </div>
+
+    <footer class="ausblick">
+        <p>KM8 · Formulare → HTTP → REST. Begleitprojekt:
+        <a href="https://github.com/georgernstgraf/GRG-WMC/tree/main/Beispielprojekte/km8-01-hono-formulare">km8-01-hono-formulare</a>
+        (Deno + Hono).</p>
+    </footer>
+</main>
+</body>
+</html>
