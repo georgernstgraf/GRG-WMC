@@ -4,15 +4,15 @@
 an der HTL Spengergasse (Aufbaulehrgang & Kolleg für Berufstätige für Informatik, Abendform).**
 
 > Lehrplan & Semesterplanung: [`lehrplan/`](./lehrplan/) —
-> dort [`LEHRPLAN.md`](./lehrplan/LEHRPLAN.md) (dreischichtlich, form-übergreifend),
-> Semesterpläne unter [`unterricht/WMC/`](./unterricht/WMC/)
-> (`jg1-einheiten.md`, `jg2-einheiten.md`).
+> dort [`LEHRPLAN.md`](./lehrplan/LEHRPLAN.md) (dreischichtlich, form-übergreifend) und
+> die Semesterpläne [`jg1-einheiten.md`](./lehrplan/jg1-einheiten.md) /
+> [`jg2-einheiten.md`](./lehrplan/jg2-einheiten.md).
 > In der Tagesschule werden die Web-Inhalte im Fach POS abgedeckt (Kolleg:innen) —
 > dieses Repo betrifft **nur die Abendform**.
 >
 > **Lernplattform (GitHub Pages):** <https://georgernstgraf.github.io/GRG-WMC/> —
 > veröffentlicht werden nur die vorbereiteten Lektionen aus
-> [`unterricht/prepared-lessons/`](./unterricht/prepared-lessons/).
+> [`unterricht/`](./unterricht/) (flache Ordner `KM<#>-<NN>-<slug>/` mit `lesson.html`).
 
 ---
 
@@ -74,7 +74,8 @@ Beispielprojekte, Übungen und Lösungen. WMC wird in zwei Blöcken unterrichtet
 
 | Verzeichnis | Inhalt |
 |---|---|
-| `3aaif/`, `5akif/` … | Unterrichtsordner der **laufenden** Klassen (semestriert: WS `3AAIF` → SS `4AAIF`; datierte Einträge `YYYY-MM-DD_thema`) — entstehen zu Semesterbeginn |
+| `3aaif/`, `5akif/` … | Unterrichtsordner der **laufenden** Klassen (semestriert: WS `3AAIF` → SS `4AAIF`; datierte Einträge `YYYY-MM-DD__thema`) — entstehen zu Semesterbeginn |
+| [`unterricht/`](./unterricht/) | **Prepared Lessons** der Lernplattform: flache Ordner `<PREFIX>-<NN>-<slug>/` mit `lesson.html` (+ Tages-README-Vorlage); Root-[`index.html`](./index.html) ist der Navigator |
 | [`archiv/`](./archiv/) | Archiv vergangener Schuljahre (`YYYY-YY-<klasse>/`, z. B. `archiv/2025-26-4aaif/`) |
 | [`Unterlagen/`](./Unterlagen/) | Thematische Referenzmaterialien zu HTML, CSS, JS, HTTP, POSIX |
 | [`Beispielprojekte/`](./Beispielprojekte/) | Demo-Projekte (Ticketautomat, Hono + Prisma + HTMX, Deno-Transpilation, Code-Gists) |

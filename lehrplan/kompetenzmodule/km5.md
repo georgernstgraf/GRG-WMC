@@ -6,7 +6,7 @@
 auf 2 Semester), Ordner `lehrplan/wmc-kif/56KIF/`
 **Zeitmodell:** 3 h-Block/W (Abendeinheit) → ~13 UE + 2 PLF pro Semester
 **Anl.-1.9-Haken:** NvSdS (Architektur und Entwicklung verteilter Systeme), PSE KM2 web-nah
-**Semesterplan:** `unterricht/WMC/jg2-einheiten.md` — WS UE 1–7
+**Semesterplan:** `../jg2-einheiten.md` — WS UE 1–7
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

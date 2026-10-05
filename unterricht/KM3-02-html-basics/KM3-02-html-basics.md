@@ -16,7 +16,7 @@ Struktur statt Deko; die eigene „Über mich"-Seite.
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md` · `unterricht/WMC/jg1-einheiten.md` (UE 2)
-- KM-Bezug: KM3 · Auszeichnungssprachen (Anl. 1.9 Basis-Webtechniken) · UE 2 · Anschluss an UE 3 (CSS)
+- Lehrplan: `lehrplan/LEHRPLAN.md` · `lehrplan/jg1-einheiten.md`
+- KM-Bezug: KM3 · Auszeichnungssprachen (Anl. 1.9 Basis-Webtechniken)
 - Unterlage: `Unterlagen/HTML-Grundlagen.md`
 - Runtime: Browser, Live Server

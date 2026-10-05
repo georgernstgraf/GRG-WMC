@@ -16,14 +16,14 @@ Generischer Ordner für die Jahr-1-Blöcke des schulautonomen Fachs
 
 - **Klassen-Extrakt:** [`34KIF.lehrplan.md`](34KIF.lehrplan.md) — offizieller Lehrstoff
   (Basis-Webtechniken, Anl. 1.10 KM3/KM4 als Referenz)
-- **Semesterplan:** [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) — Block-Einheitenplan
+- **Semesterplan:** [`../../jg1-einheiten.md`](../../jg1-einheiten.md) — Block-Einheitenplan
   (Rückpflege SJ 2025/26; deckt alle Jahr-1-Kohorten, inhaltlich identisch)
-- **Kompetenzmodule:** [`../kompetenzmodule/`](../kompetenzmodule/) — Sem 3 = **KM3**,
+- **Kompetenzmodule:** [`../../kompetenzmodule/`](../../kompetenzmodule/) — Sem 3 = **KM3**,
   Sem 4 = **KM4**
-- **Rechtsstand/Novellen:** [`../RIS.md`](../RIS.md)
+- **Rechtsstand/Novellen:** [`../../RIS.md`](../../RIS.md)
 
 ## Konventionen
 
-- UE-Ordner hier: `YYYY-MM-DD_thema/`, solange unterminiert `NN-slug/`
-  (Konvention root-Klassenordner, archiviert unter `archiv/2026-27-4aaif/`-Schema).
+- Dieser Ordner hält den **Lehrplan-Extrakt** des Blocks (`<BLOCK>.lehrplan.md`) — keine UE-/Stundenordner.
+- Terminierte Lektionen liegen in den **root-Kohortenordnern** (`<klasse>/YYYY-MM-DD__thema/`), am Schuljahresende archiviert unter `archiv/YYYY-YY-<klasse>/`.
 - Klassen heißen im WS `3AIF`, im SS `4AIF` (semestrierte Namensführung).

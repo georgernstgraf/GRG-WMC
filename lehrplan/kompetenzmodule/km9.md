@@ -5,7 +5,7 @@
 **Zuordnung in diesem Repo:** Jahr 2, Sem 6 (SS) — **Anteil-KM** (Komprimierung), Ordner `lehrplan/wmc-kif/56KIF/`
 **Zeitmodell:** 3 h-Block/W → ~13 UE + 2 PLF pro Semester
 **Anl.-1.9-Haken:** NvSdS KM4 (SOA, Web-Services, EAA, Cloud Computing, Middleware, Multi-Tier)
-**Semesterplan:** `unterricht/WMC/jg2-einheiten.md` — SS UE 5, 9
+**Semesterplan:** `../jg2-einheiten.md` — SS UE 5, 9
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

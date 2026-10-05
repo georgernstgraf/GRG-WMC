@@ -26,8 +26,8 @@ jobs:
 
       - name: Site zusammenstellen
         # Lernplattform: nur index.html, assets/ und unterricht/ veröffentlichen.
-        # Kohorten-Ordner (3aaif, 3baif, 3caif, 5akif), archiv/, lehrplan/,
-        # Unterlagen/ usw. sind nicht Teil der Lernplattform und bleiben außen vor.
+        # Kohorten-Ordner (3aaif/, 3caif/, 5akif/), archiv/, lehrplan/, Unterlagen/,
+        # Beispielprojekte/, Übungen/ und docs/ sind nicht Teil der Lernplattform.
         run: |
           mkdir -p _site
           rsync -a \

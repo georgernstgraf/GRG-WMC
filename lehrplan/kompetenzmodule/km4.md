@@ -5,7 +5,7 @@
 **Zuordnung in diesem Repo:** Jahr 1, Sem 4 (SS) — Ordner `lehrplan/wmc-aif/34AIF/` · `lehrplan/wmc-kif/34KIF/` · `lehrplan/wmc-cif/34CIF/`
 **Zeitmodell:** 2 h/W (schulautonom; lt. Stundentafel 1 h) → ~13 UE + 2 PLF
 **Anl.-1.9-Haken:** „Netzwerke und verteilte Systeme" (1. Semester), Bereich Basis-Webtechniken
-**Semesterplan:** `unterricht/WMC/jg1-einheiten.md` — SS-Tabelle (Rückpflege SJ 2025/26)
+**Semesterplan:** `../jg1-einheiten.md` — SS-Tabelle (Rückpflege SJ 2025/26)
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

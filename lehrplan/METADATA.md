@@ -86,8 +86,9 @@ Nicht-Georg-Semester (unten).
 **Semestrierte Namensführung:** `3AIF` = WS, `4AIF` = SS; `5KIF` = WS, `6KIF` = SS.
 Repo-Praxis (seit Retrofit 2026-09-10): **ein Block-Ordner pro Georg-Block** unter
 `lehrplan/wmc-<form>/` (`wmc-aif/34AIF`, `wmc-kif/34KIF` + `wmc-kif/56KIF`,
-`wmc-cif/34CIF`); UE-/Semesterpläne unter `unterricht/WMC/` am Repo-Root
-(form-übergreifend — WMC unterrichtet die Formen gemeinsam). UE-Material pro
+`wmc-cif/34CIF`); UE-/Semesterpläne im `lehrplan/`-Root
+(`jg1-einheiten.md` + `jg2-einheiten.md`, form-übergreifend — WMC unterrichtet die
+Formen gemeinsam). UE-Material pro
 Schuljahr in root-Klassenordnern (beim Semesterwechsel Umbenennung 3→4 bzw. 5→6,
 vgl. Commit „neues semester", Feb 2026).
 
@@ -101,8 +102,8 @@ vgl. Commit „neues semester", Feb 2026).
 ## Planungskonvention
 
 - **Dokumente:** [`LEHRPLAN.md`](LEHRPLAN.md) (dreischichtig, die QUELLE) +
-  [`../unterricht/WMC/jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md) (Rückpflege) +
-  [`../unterricht/WMC/jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md) (Plan).
+  [`jg1-einheiten.md`](jg1-einheiten.md) (Rückpflege) +
+  [`jg2-einheiten.md`](jg2-einheiten.md) (Plan).
 - **Archiv:** vergangene Schuljahre unter [`archiv/`](../archiv/) im Schema
   `YYYY-YY-<klasse>` (z. B. `archiv/2025-26-4aaif/`).
 - **UE-Tabellen:** `UE | Thema | KM-Bezug | Inhalt/HÜ`; KM-Bezug = Referenz-Raster
@@ -137,15 +138,20 @@ vgl. Commit „neues semester", Feb 2026).
 | `wmc-aif/34AIF/` · `wmc-kif/34KIF/` · `wmc-cif/34CIF/` | Jahr-1-Block-Ordner (AIF/KIF/CIF): README + `<BLOCK>.lehrplan.md` |
 | `wmc-kif/56KIF/` | Jahr-2-Block-Ordner (KIF): README + `56KIF.lehrplan.md` |
 | `kompetenzmodule/` | Didaktische KM-Steckbriefe km3–km10 + Semester↔Klasse↔KM-Übersicht — **form-übergreifend** (KM-Nummerierung identisch über alle Formen), daher im `lehrplan/`-Root |
-| `unterricht/WMC/jg1-einheiten.md` | Jahr 1 (Sem 3+4) – Block-Einheitenplan, Rückpflege aus SJ 2025/26 (ehem. `jahr1-einheiten.md`) |
-| `unterricht/WMC/jg2-einheiten.md` | Jahr 2 (Sem 5+6) – Block-Einheitenplan SJ 2026/27 (ehem. `jahr2-einheiten.md`) |
+| `jg1-einheiten.md` | Jahr 1 (Sem 3+4) – Block-Einheitenplan, Rückpflege aus SJ 2025/26 (ehem. `jahr1-einheiten.md`) |
+| `jg2-einheiten.md` | Jahr 2 (Sem 5+6) – Block-Einheitenplan SJ 2026/27 (ehem. `jahr2-einheiten.md`) |
 
 > **Layout-Retrofit 2026-09-10** (lehrplan-Skill v2): Block-Ordner unter
 > `lehrplan/wmc-<form>/` zusammengeführt (wmc-aif / wmc-kif / wmc-cif), RIS-PDFs
-> in `RIS/` verschoben, Einheitenpläne nach `unterricht/WMC/` (kleines
-> `jg<N>`-Präfix statt `jahr<N>`). `LEHRPLAN.md`, `RIS.md` und
-> `kompetenzmodule/` bleiben als form-übergreifende Shared-Dateien bewusst im
-> `lehrplan/`-Root — dokumentierte Ausnahme (DECISIONS 2026-09-10).
+> in `RIS/` verschoben, Einheitenpläne auf das kleine `jg<N>`-Präfix statt
+> `jahr<N>` umbenannt. `LEHRPLAN.md`, `RIS.md` und `kompetenzmodule/` bleiben als
+> form-übergreifende Shared-Dateien bewusst im `lehrplan/`-Root — dokumentierte
+> Ausnahme (DECISIONS 2026-09-10).
+>
+> **Korrektur 2026-10-05:** Die Einheitenpläne liegen jetzt im `lehrplan/`-Root
+> (`jg1-einheiten.md`, `jg2-einheiten.md`) statt unter `unterricht/WMC/`; damit
+> folgt die Planungs-Ablage der Skill-Regel „`unterricht/` = nur Prepared
+> Lessons" (DECISIONS 2026-10-05).
 
 > **Außerhalb:** [`../skriptum.md`](../docs/skriptum.md) (JS/TS-Skriptum), [`../wmc_ss_projekt_webapp.md`](../docs/wmc_ss_projekt_webapp.md)
 > (Jahr-1-SS-Projektangabe), [`../../PROJEKT.md`](../PROJEKT.md) + [`../../PEER_REVIEW.md`](../PEER_REVIEW.md)

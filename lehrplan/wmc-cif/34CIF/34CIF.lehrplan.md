@@ -6,7 +6,7 @@
 > der Anlage; schulautonomes Fach der HTL Spengergasse (Fußnote 1 der Stundentafeln + § 3 VO).
 > **Referenz-Raster:** Anlage 1.10, BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021 —
 > Fach „5. Webprogrammierung und Mobile Computing", KM3–KM10.
-> **Quelle (Volltext, dreischichtig):** [`../LEHRPLAN.md`](../LEHRPLAN.md) ①
+> **Quelle (Volltext, dreischichtig):** [`../../LEHRPLAN.md`](../../LEHRPLAN.md) ①
 > · Extrakt-Datum: 2026-09-06
 
 ## Anl. 1.9 — „Netzwerke und verteilte Systeme", 1. Semester — Bereich Basis-Webtechniken
@@ -33,7 +33,7 @@ dynamische Elemente, Gestaltungsvorlagen.
 
 **Umsetzung (Ist):** HTML5 („HTML ist ein Graph", semantische Tags), CSS3
 (Box-Model, Selektoren, Position, Flexbox, Grid, Nesting, Responsive, Bootstrap),
-Git/VS-Code-Tooling — Details: [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) WS-Tabelle.
+Git/VS-Code-Tooling — Details: [`../../jg1-einheiten.md`](../../jg1-einheiten.md) WS-Tabelle.
 
 ### KM4 (Jg II SS) → Sem 4 (SS)
 
@@ -42,7 +42,7 @@ entwickeln.
 
 **Umsetzung (Ist):** JavaScript (Datentypen, Funktionen, Arrays funktional, Klassen mit
 `#`, DOM, Events, Promises/`async`/`await`, Fetch, 7-Punkte-Struktur), TS-Intro mit
-Deno-Transpilation — Details: [`../../../unterricht/WMC/jg1-einheiten.md`](../../../unterricht/WMC/jg1-einheiten.md) SS-Tabelle.
+Deno-Transpilation — Details: [`../../jg1-einheiten.md`](../../jg1-einheiten.md) SS-Tabelle.
 
 ## Vorleistungen für Jahr 2
 

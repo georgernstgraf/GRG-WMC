@@ -16,7 +16,7 @@ W3C CSS- und HTML-Validator 0 Errors. — Abgabe per Push bis zur nächsten UE 0
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md` · `unterricht/WMC/jg1-einheiten.md` (UE 3)
-- KM-Bezug: KM3 · Formatierungstechniken (Anl. 1.9 Basis-Webtechniken) · UE 3 · Anschluss an UE 4 (Selektoren)
+- Lehrplan: `lehrplan/LEHRPLAN.md` · `lehrplan/jg1-einheiten.md`
+- KM-Bezug: KM3 · Formatierungstechniken (Anl. 1.9 Basis-Webtechniken)
 - Unterlage: `Unterlagen/css/CSS-Basics.pptx`
 - Runtime: Browser, Live Server

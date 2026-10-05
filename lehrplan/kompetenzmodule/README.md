@@ -57,4 +57,4 @@ Kolleg-Ablauf ist um ein Semester versetzt, Georg unterrichtet Blöcke, nicht Ei
 
 - `GLOSSAR.md` (Root) — Abkürzungen & Fachbegriffe mit Repo-Kontext
 - [`../LEHRPLAN.md`](../LEHRPLAN.md) ① — getreue Rechts-Extrakte aller KM/Haken
-- [`../unterricht/WMC/jg1-einheiten.md`](../unterricht/WMC/jg1-einheiten.md) · [`../unterricht/WMC/jg2-einheiten.md`](../unterricht/WMC/jg2-einheiten.md) — Block-Einheitenpläne
+- [`../jg1-einheiten.md`](../jg1-einheiten.md) · [`../jg2-einheiten.md`](../jg2-einheiten.md) — Block-Einheitenpläne

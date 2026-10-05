@@ -16,6 +16,6 @@ GitHub-Repo `WMC` (public) verbinden; `index.html` per Dreiklang pushen; Repo-Li
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md` · `unterricht/WMC/jg1-einheiten.md` (UE 1)
-- KM-Bezug: KM3 (Anl. 1.9 Basis-Webtechniken) · UE 1 · Anschluss an UE 2 (HTML)
+- Lehrplan: `lehrplan/LEHRPLAN.md` · `lehrplan/jg1-einheiten.md`
+- KM-Bezug: KM3 · Tooling/Git-Workflow (Anl. 1.9 Basis-Webtechniken)
 - Runtime: Browser, VS Code + Live Server, Git

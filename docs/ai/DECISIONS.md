@@ -3,8 +3,15 @@
 Active architectural and technical decisions still in force.
 Superseded decisions are relocated to HISTORY.md.
 
+## 2026-10-05: Layout-Retrofit auf create-lesson v2 + lehrplan v2 (Ordner-/Dateinamen)
+- **Choice**: (1) Prepared Lessons liegen **flach** unter `unterricht/<PREFIX>-<NN>-<slug>/` (`KM<#>`/`SA`) mit `lesson.html` + Tages-README-Vorlage `.md` (vorher `unterricht/prepared-lessons/NN-slug.html`). (2) Die Planungsdateien `jg1-/jg2-einheiten.md` liegen im **`lehrplan/`-Root** (vorher `unterricht/WMC/`). (3) Root-`index.html` ist der **Navigator** der Lernplattform (vorher README-Renderer via CDN); der neue Workflow `.github/workflows/pages.yml` deployt nur `index.html` + `assets/` + `unterricht/`. (4) Lesson-Header sind kohortenagnostisch (`Lektion KM3-01 · Thema`; keine Klasse/Semester/UE).
+- **Reason**: Skill-Konformität — der lehrplan-Skill wertet Planung unter `unterricht/` als Migrationsbefund; der create-lesson-Skill verlangt flache `<PREFIX>-<NN>-<slug>/`-Ordner, einen Navigator statt des README-Renderers und ein `__`-Datumsmuster. Die vormalige Ausnahme (2) aus 2026-09-10 fußte auf einem älteren Skill-Wortlaut.
+- **Considered**: Beibehaltung von `unterricht/prepared-lessons/` + README-Renderer (verworfen — widerspricht beiden Skills); per-Form-Planungsdateien (verworfen — drift-gefährdete Duplikate).
+- **Tradeoff**: Kohortenordner (`3aaif/`, `3caif/`, `5akif/`) wurden bewusst **nicht** migriert (Lehrperson-Handarbeit); ihre READMEs zeigen noch auf `unterricht/WMC/…` und die Tagesordner nutzen teils `_`/`index.html` — als offene Aufgabe in HANDOFF vermerkt.
+- **Issue**: —
+
 ## 2026-09-10: lehrplan-Retrofit — WMC-Layout-Ausnahmen (Skill v2)
-- **Choice**: Beim Retrofit auf das lehrplan-Skill-v2-Layout gilt für GRG-WMC zwei dokumentierte Ausnahmen: (1) `LEHRPLAN.md`, `RIS.md` und `kompetenzmodule/` bleiben **form-übergreifend im `lehrplan/`-Root** statt pro `wmc-<form>`-Ordner; (2) die Semesterpläne liegen unter **`unterricht/WMC/`** (form-übergreifend, ohne `<ZWEIG>-`-Präfix) statt `unterricht/<FORM>-WMC/`.
+- **Choice**: Beim Retrofit auf das lehrplan-Skill-v2-Layout gilt für GRG-WMC zwei dokumentierte Ausnahmen: (1) `LEHRPLAN.md`, `RIS.md` und `kompetenzmodule/` bleiben **form-übergreifend im `lehrplan/`-Root** statt pro `wmc-<form>`-Ordner; (2) die Semesterpläne bleiben **form-übergreifend an EINEM Ort** statt pro Form — Ablageort **`lehrplan/`-Root**, korrigiert am 2026-10-05 (s. dort; frühere Fassung `unterricht/WMC/` ist superseded).
 - **Reason**: WMC unterrichtet AIF/KIF/CIF **gemeinsam** (dieselbe Anlage 1.9, dieselben KM, gemischte Kohorten `3AAIF/3AKIF/3BKIF/3CAIF` bzw. `5AKIF`). Pro-Form-Duplikate würden drift-gefährdete Kopien erzeugen; die Einheiten-Dateien (`jg1`/`jg2`) decken bewusst alle Formen eines Jahrgangs ab.
 - **Considered**: Form-Ordner `wmc-aif/kif/cif` mit je eigener LEHRPLAN.md/RIS.md/Kompetenzmodulkopie — rejected (Duplizierung, Sync-Aufwand ohne inhaltlichen Mehrwert, da ①/②/③ identisch sind).
 - **Tradeoff**: Der generische Konformitäts-Check des Skills meldet die Root-Lage dieser drei Dateien als Befund; die Ausnahme ist hiermit explizit dokumentiert und gilt als gerechtfertigt.

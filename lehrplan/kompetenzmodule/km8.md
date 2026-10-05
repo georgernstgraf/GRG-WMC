@@ -5,7 +5,7 @@
 **Zuordnung in diesem Repo:** Jahr 2, **Sem 5 (WS) + Sem 6 (SS), Anteil-KM** (Komprimierung), Ordner `lehrplan/wmc-kif/56KIF/`
 **Zeitmodell:** 3 h-Block/W → ~13 UE + 2 PLF pro Semester
 **Anl.-1.9-Haken:** NvSdS KM4 (Synchronisationsmethoden, Einbindung in das Anwendungssystem)
-**Semesterplan:** `unterricht/WMC/jg2-einheiten.md` — WS UE 6, 10 · SS UE 1–5, 8
+**Semesterplan:** `../jg2-einheiten.md` — WS UE 6, 10 · SS UE 1–5, 8
 
 ## Bildungs- und Lehraufgabe (Wortlaut Anl. 1.10)
 

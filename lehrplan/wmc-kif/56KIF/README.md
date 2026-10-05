@@ -16,13 +16,13 @@ Generischer Ordner für die Jahr-2-Blöcke des schulautonomen Fachs
 ## Lehrplan-Bezug
 
 - **Klassen-Extrakt:** [`56KIF.lehrplan.md`](56KIF.lehrplan.md)
-- **Semesterplan:** [`../../../unterricht/WMC/jg2-einheiten.md`](../../../unterricht/WMC/jg2-einheiten.md) — 13 UE + 2 PLF
+- **Semesterplan:** [`../../jg2-einheiten.md`](../../jg2-einheiten.md) — 13 UE + 2 PLF
   je Semester, mit KM-Bezug pro UE
-- **Kompetenzmodule:** [`../kompetenzmodule/`](../kompetenzmodule/) — KM5–KM10
-- **Rechtsstand/Novellen:** [`../RIS.md`](../RIS.md)
+- **Kompetenzmodule:** [`../../kompetenzmodule/`](../../kompetenzmodule/) — KM5–KM10
+- **Rechtsstand/Novellen:** [`../../RIS.md`](../../RIS.md)
 
 ## Konventionen
 
-- UE-Ordner hier: `YYYY-MM-DD_thema/`, solange unterminiert `NN-slug/`
-  (Konvention root-Klassenordner, archiviert unter `archiv/YYYY-YY-<klasse>/`-Schema).
+- Dieser Ordner hält den **Lehrplan-Extrakt** des Blocks (`<BLOCK>.lehrplan.md`) — keine UE-/Stundenordner.
+- Terminierte Lektionen liegen in den **root-Kohortenordnern** (`<klasse>/YYYY-MM-DD__thema/`), am Schuljahresende archiviert unter `archiv/YYYY-YY-<klasse>/`.
 - Klassen heißen im WS `5KIF`, im SS `6KIF` (semestrierte Namensführung).

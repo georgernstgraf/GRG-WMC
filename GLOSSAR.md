@@ -9,7 +9,7 @@ Klammern wo relevant. Spalte 3 gibt Kontext: wo der Begriff im Repo bzw.
 Unterricht vorkommt. **UE-Verweise immer vollqualifiziert** als
 `UE n (KMx, Block WS/SS)` — UE-Nummern sind nur innerhalb eines
 Block-Einheitenplans eindeutig (UE 5 in Jahr 1 ≠ UE 5 in Jahr 2).
-Block-Pläne: `unterricht/WMC/jg1-einheiten.md`, `unterricht/WMC/jg2-einheiten.md`.
+Block-Pläne: `lehrplan/jg1-einheiten.md`, `lehrplan/jg2-einheiten.md`.
 
 ---
 
@@ -74,7 +74,7 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | Nachreichung | 75-%-Regel für HÜ-Nachschieben (Root-README) |
 | Peer-Review | Gegenseitige Review-Runde beim WS-Jahr-1-Projekt (`PEER_REVIEW.md`) |
 | PLF R1/R2 | Reservierte Slots: PLF 1 (nach UE 7), PLF 2 (Semesterende) |
-| Prepared Lesson | Undatierte, vorbereitete Lektion als Master in `unterricht/prepared-lessons/NN-slug.html` (+ Tages-README-Vorlage `NN-slug.md`); Übernahme in den Klassenordner per Hand |
+| Prepared Lesson | Undatierte, vorbereitete Lektion als Master in `unterricht/<PREFIX>-<NN>-<slug>/lesson.html` (+ Tages-README-Vorlage `<PREFIX>-<NN>-<slug>.md`); Übernahme in den Kohortenordner per Hand |
 | UE | Unterrichtseinheit; Konvention: `UE \| Thema \| KM-Bezug \| Inhalt/HÜ` |
 | WS-/SS-Projekt | Blockübergreifendes Projekt (Website bzw. Webapp); Angaben: `PROJEKT.md`, `docs/wmc_ss_projekt_webapp.md` |
 | 7-Punkte-Struktur | App-Grundgerüst: State → DOM-Refs → Node-Erzeugung → Render → Events → Bindings → Initial Render |
