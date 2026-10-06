@@ -1,5 +1,11 @@
 # Willkommen beim WMC Unterricht
 
+## 2026-10-06__css
+
+- Folien: unterricht/KM3-03-css-basics
+- Erwähnung picocss: <https://picocss.com/>
+- Aufgabe: unterricht/KM3-03-css-basics -> Aufgaben ganz unten "jetzt Du"
+
 ## 2026-09-29
 
 HTML Basics mit Aufgabe, siehe "3aaif/2026-09-29_html-basics"
