@@ -1,0 +1,27 @@
+### fallback 
+GET http://localhost:8000/schluribumbi
+### Alle Items abrufen
+GET http://localhost:8000/api/items
+
+### Einzelnes Item abrufen
+GET http://localhost:8000/api/items?id=2
+
+### Neues Item erstellen
+POST http://localhost:8000/api/items
+Content-Type: application/json
+
+{
+  "name": "Monitor",
+  "description": "Dell UltraSharp 27"
+}
+
+### Item aktualisieren (PATCH)
+PATCH http://localhost:8000/api/items?id=4
+Content-Type: application/json
+
+{
+  "description": "Logitech MX Master Monitor-Maus 3S"
+}
+
+### Item löschen
+DELETE http://localhost:8000/api/items?id=1
