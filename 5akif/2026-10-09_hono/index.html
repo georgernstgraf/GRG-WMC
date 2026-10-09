@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>backend-demo</title>
+</head>
+
+<body>
+    <h1>backend-demo</h1>
+    <button id="btn">click me</button>
+    <ul id="item-list"></ul>
+    <script>
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click", async () => {
+            const res = await fetch("/api/items");
+            const data = await res.json();
+            console.log(data);
+            window.data = data;
+        });
+    </script>
+</body>
+
+</html>

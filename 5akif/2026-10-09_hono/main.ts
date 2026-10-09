@@ -38,7 +38,7 @@ function handleGet(url: URL): Response {
   return json(items);
 }
 
-function handlePost(req: Request): Response {
+function handlePost(req: Request): Promise<Response> {
   return req.json().then((body: Partial<Item>) => {
     if (!body.name) {
       return json({ error: "Name ist erforderlich" }, 400);
@@ -55,7 +55,7 @@ function handlePost(req: Request): Response {
   });
 }
 
-function handlePatch(req: Request, url: URL): Response {
+function handlePatch(req: Request, url: URL): Promise<Response> | Response {
   const idParam = url.searchParams.get("id");
   if (!idParam) return json({ error: "id als Query-Param erforderlich" }, 400);
 
@@ -82,9 +82,13 @@ function handleDelete(url: URL): Response {
 
 // ─── Router ──────────────────────────────────────────────────────────────────
 
-export function handler(req: Request): Response {
+export function handler(req: Request): Response | Promise<Response> {
   const url = new URL(req.url);
 
+  if (url.pathname === "/") {
+    // return index.html from disk
+    return fetch(new URL("./index.html", import.meta.url));
+  }
   if (url.pathname === "/api") {
     return json({
       message: "Hello, world!",
