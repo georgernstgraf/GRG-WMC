@@ -1,5 +1,13 @@
 # Willkommen beim WMC Unterricht
 
+## Aufgaben
+
+Kanonische Liste aller Aufgaben — Details im jeweiligen Tagesordner bzw. der verlinkten Lesson.
+
+- 2026-09-15: Setup lauffähig präsentieren & Repo-Link mailen → [2026-09-15_tooling-git/](./2026-09-15_tooling-git/)
+- 2026-09-22: „Über mich"-Seite (HTML) → [2026-09-29_html-basics/](./2026-09-29_html-basics/)
+- 2026-10-06: Seite dekorieren (CSS) → [unterricht/KM3-03-css-basics/](../unterricht/KM3-03-css-basics/)
+
 ## 2026-10-06__css
 
 - Folien: unterricht/KM3-03-css-basics
