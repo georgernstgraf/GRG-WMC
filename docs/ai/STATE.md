@@ -8,6 +8,14 @@ Current status as of 2026-10-05.
 Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
+- [x] 2026-10-12 — Homework-Discovery WMC (WMC_1): `3caif/2026-10-06_html-formulare/Aufgabe.md`
+      erzeugt (Formular fertigstellen, Mailclient-Versand, Bonus
+      Pflichtfelder/Pattern, Abgabe 13.10. 00:00 — Textquelle: Tages-README
+      `## Aufgabe`); README `## Aufgaben` als erste Sektion mit 3 Evidenz-Einträgen
+      (15.9. Setup/Repo-Link, 29.9. „Über mich", 6.10. Formular).
+      `3aaif/` verifiziert: README bereits konform (Sektion + 3 Einträge,
+      10.6.-Eintrag matcht KM3-03-Aufgabe „Seite dekorieren") — keine Änderung.
+      Generierte Dateien bewusst **uncommitted** zur Review.
 - [x] #7 CLOSED 2026-10-05 — GitHub Pages als Lernplattform: statischer Navigator `index.html` (repo-weite Assets, kein CDN), `pages.yml` (rsync `index.html assets unterricht`), `build_type: workflow`; AGENTS/CONVENTIONS/PITFALLS nachgezogen
 - [x] Layout-Retrofit 2026-10-05 (create-lesson v2 + lehrplan v2): Prepared Lessons flach nach `unterricht/KM3-<NN>-<slug>/` (`lesson.html` + Tages-README-Vorlage), Planung nach `lehrplan/jg{1,2}-einheiten.md`, Navigator auf die neuen Pfade gezogen; Lesson-Header entkohortisiert, Querverweise/Docs aktualisiert (Kohorten bewusst unangetastet)
 - [x] Mini-Hono-Referenz (#3, Teil 1): `Beispielprojekte/hono_on_deno/` von Mini-Demo zum Referenzrumpf ausgebaut — Deno 2.9/Hono 4.13 (JSR), In-Memory-Musikgeschäft-API (Produkte/Bestellungen/10%-Rabatt/Storno/Stats), `/static`+Bilder, SPA-Fallback, Echtzeit-TS→JS-Transpilation via `@deno/emit` (mit Path-Traversal-Guard), 7-Punkte-TS-Client `client/shop.ts`, `hono/logger`, 9 Deno-Tests; `deno check`/`lint`/`test` grün
