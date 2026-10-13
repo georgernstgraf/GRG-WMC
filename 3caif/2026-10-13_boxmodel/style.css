@@ -1,0 +1,14 @@
+nav li:hover {
+    background-color: #9d2d2d;
+    color: white;
+    cursor: pointer;
+    transition: all 1s ease;
+}
+
+a {
+    transition: all 1s ease;
+}
+
+a:hover {
+    color: white;
+}
