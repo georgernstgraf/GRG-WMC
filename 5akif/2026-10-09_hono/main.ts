@@ -82,7 +82,7 @@ function handleDelete(url: URL): Response {
 
 // ─── Router ──────────────────────────────────────────────────────────────────
 
-export function handler(req: Request): Response | Promise<Response> {
+export async function handler(req: Request): Promise<Response> {
   const url = new URL(req.url);
 
   if (url.pathname === "/") {
