@@ -1,0 +1,11 @@
+{
+  "nodeModulesDir": "none",
+  "tasks": {
+    "demo": "deno run --allow-read --allow-write demo.ts",
+    "test": "deno test"
+  },
+  "imports": {
+    "drizzle-orm": "npm:drizzle-orm@1.0.0-rc.4",
+    "@std/assert": "jsr:@std/assert@1"
+  }
+}
