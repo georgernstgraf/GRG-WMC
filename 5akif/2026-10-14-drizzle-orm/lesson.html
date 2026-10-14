@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM5-05 · Drizzle ORM — typsicherer Datenbankzugriff</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","theme.js,quiz.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+<header class="meta">
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM5-05 · Datenbanken · ORM-Einstieg (Drizzle)</span>
+  <h1>Drizzle ORM — typsicherer Datenbankzugriff</h1>
+  <p class="subtitle">Ein ORM erzeugt dein SQL, es ersetzt es nicht — und TypeScript
+  findet die Fehler, <strong>bevor</strong> die Datenbank es tut.</p>
+</header>
+
+<nav class="breadcrumb">Prepared Lesson KM5-05 · Musik-Streaming &amp; Katalog · Deno + SQLite</nav>
+
+<div class="callout">
+  <span class="label">Pflichtlektüre (vor der Stunde)</span>
+  <ul>
+    <li>Drizzle-Doku: <a href="https://orm.drizzle.team/docs/get-started-sqlite">Get started — SQLite</a>
+    (Treiber-Auswahl: wir nehmen <code>node:sqlite</code>)</li>
+    <li>Drizzle-Doku: <a href="https://orm.drizzle.team/docs/select">Select — Query Data</a>
+    (Query-Builder + das erzeugte SQL)</li>
+    <li>Deno-Beispiel: <a href="https://docs.deno.com/examples/drizzle_tutorial/">Drizzle ORM + Deno</a>
+    (das gleiche Setup in einem anderen Dialekt)</li>
+    <li>Referenzbegriffe: <a href="../../GLOSSAR.md">GLOSSAR.md</a> (ORM, Schema-first,
+    Parametrisierung) · KM-Bezug: <a href="../../lehrplan/kompetenzmodule/km5.md">KM5-Steckbrief</a></li>
+  </ul>
+</div>
+
+<h2>1. Die Einstiegsfrage</h2>
+<p>Du kennst <code>node:sqlite</code> — so haben wir bisher mit SQLite aus TypeScript
+gesprochen. Drei Zeilen, drei Fehlerquellen:</p>
+<pre><code>const rows = db.prepare(
+  `SELECT titel, dauer_sek FROM track WHERE album_id = ?`
+).all(albumId);</code></pre>
+<p>Frage: <strong>Wer schreit — und wann —, wenn in dieser Zeile „track“ mit „tracks“
+verwechselt wurde, die Spalte „dauer_sek“ falsch getippt ist oder das <code>?</code> am
+Ende vergessen ging?</strong> Antwort: die <em>Datenbank</em>, <em>zur Laufzeit</em> —
+möglichst im Demo-Kunde vor Publikum. TypeScript sieht in dem Template-String nur
+eine Zeichenkette. Genau hier setzt Drizzle an.</p>
+
+<h2>2. Das Ziel: dieselbe Frage, aber mit Rückgrat</h2>
+<p>Nach der Lektion sieht dieselbe Frage so aus — und zwei der drei Fehler von
+eben wären schon beim Schreiben unmöglich geworden:</p>
+<pre><code>const zeilen = await db.select({
+    titel: track.titel, dauer: track.dauerSek,
+  })
+  .from(track)
+  .where(eq(track.albumId, albumId));</code></pre>
+<pre><code><span class="out">// erzeugtes SQL (toSQL()):
+//   select "titel", "dauer_sek" from "track" where "track"."album_id" = ?
+//   params: [ albumId ]</span></code></pre>
+<p>Der Tabellenname kommt aus dem Schema, die Spalte aus dem Schema, das Ergebnis
+ist ein typisiertes Objekt. Falsch getippte Namen schreien bei der
+<strong>Typ-Prüfung</strong>, nicht im Demo-Kunde.</p>
+
+<h2>3. Was ein ORM tut — und was nicht</h2>
+<p><strong>ORM</strong> = Object-Relational Mapping: Zeilen aus relationalen Tabellen
+werden zu Objekten in der Programmiersprache hin und her gemappt. Drizzle ist dabei
+sehr SQL-nah — der Query-Builder liest sich fast wie SQL, und man kann sich das
+erzeugte SQL jederzeit ansehen.</p>
+<div class="callout">
+  <span class="label">Merke</span>
+  Ein ORM <strong>ersetzt SQL nicht, es erzeugt es</strong>. Wer den Query-Builder
+  versteht, aber das erzeugte SQL nicht lesen kann, versteht nichts — wer SQL kann,
+  liest Drizzle-Queries wie Prosakommentare.
+</div>
+<p>Drei Schmerzen löst Drizzle konkret: Tippfehler wandern zur Typ-Prüfung, Werte
+sind <em>immer</em> parametrisiert (kein Injection-Handwerk), und Zeilen kommen als
+typisierte Objekte an statt als lose Spaltenwerte.</p>
+
+<div class="quiz" data-loesung="2">
+<p class="frage">1. Was ist der Kernvorteil eines ORMs wie Drizzle?</p>
+<label><input type="radio" name="q1" value="0" data-grund="Falsch, weil SQL nicht verschwindet — Drizzle erzeugt weiterhin SQL, und wer es nicht lesen kann, versteht seine Queries nicht."> Man muss nie wieder SQL schreiben oder lesen</label>
+<label><input type="radio" name="q1" value="1" data-grund="Falsch, weil Drizzle die Datenbank nicht schneller macht — Geschwindigkeit bleibt eine Frage von Schema, Index und Abfrage."> Die Datenbank wird automatisch schneller</label>
+<label><input type="radio" name="q1" value="2" data-grund="Richtig, weil das Schema in TypeScript liegt: falsche Namen und Typen schreien bei der Typ-Prüfung, nicht erst zur Laufzeit der Datenbank."> Typfehler werden zur Typ-Prüfung statt zur Laufzeit gefunden</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>4. Schritt 1 — das Schema in TypeScript</h2>
+<p>Das Herzstück von Drizzle: die Tabellen stehen als TypeScript-Objekte im Code.
+Wir modellieren unseren Musik-Katalog:</p>
+<pre><code>import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+
+export const artist = sqliteTable("artist", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  gruendungsjahr: integer("gruendungsjahr"),
+});
+
+export const album = sqliteTable("album", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  titel: text("titel").notNull(),
+  jahr: integer("jahr"),
+  artistId: integer("artist_id").notNull().references(() =&gt; artist.id),
+});</code></pre>
+<p>Jede Spalte hat <strong>zwei Namen</strong>: den TypeScript-Namen (aus dem Code
+spricht man <code>album.artistId</code>) und den Datenbank-Spaltennamen
+(<code>artist_id</code>, snake_case wie gewohnt). Der Typ der Spalte
+(<code>integer</code>, <code>text</code>) bestimmt, welchen TypeScript-Typ das
+Ergebnis später hat — <code>gruendungsjahr</code> ohne <code>.notNull()</code> ist
+<code>number | null</code>.</p>
+<div class="callout">
+  <span class="label">Wichtig</span>
+  <code>sqliteTable(...)</code> erzeugt <strong>keine</strong> Tabelle in der
+  Datenbank! Es definiert nur, wie Tabellen und Zeilen in TypeScript aussehen.
+  Die Tabellen selbst legt unser <code>db.ts</code> mit DDL an — Migrationen mit
+  <code>drizzle-kit</code> sind Stoff der KM6-Vertiefung.
+</div>
+
+<div class="quiz" data-loesung="0">
+<p class="frage">2. Was passiert beim Ausführen von <code>sqliteTable("album", ...)</code> in der Datenbank?</p>
+<label><input type="radio" name="q2" value="0" data-grund="Richtig, weil sqliteTable nur eine TypeScript-Definition baut — Tabellen entstehen durch DDL (oder Migrationen), nicht durch das Schema-Objekt."> Gar nichts — es definiert nur die TypeScript-Sicht</label>
+<label><input type="radio" name="q2" value="1" data-grund="Falsch, weil CREATE TABLE in Drizzle nicht im Query-Builder steckt — die Tabellen-Anlage ist Sache der DDL bzw. Migrationen."> Die Tabelle wird sofort mit CREATE TABLE angelegt</label>
+<label><input type="radio" name="q2" value="2" data-grund="Falsch, weil die Datenbank den TypeScript-Code gar nicht sieht — das Schema lebt nur im Programm."> Die Tabelle wird beim ersten insert erzeugt</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>5. Schritt 2 — die Verbindung</h2>
+<p>Drizzle braucht einen <strong>Treiber</strong>, der SQLite spricht. Wir nehmen
+<code>node:sqlite</code> — derselbe eingebaute Treiber wie bisher, Deno bleibt die
+Runtime, es kommt kein Node-Zwang dazu:</p>
+<pre><code>import { DatabaseSync } from "node:sqlite";
+import { drizzle } from "drizzle-orm/node-sqlite";
+
+const client = new DatabaseSync(pfad);
+const db = drizzle({ client });</code></pre>
+<div class="callout">
+  <span class="label">Stolperfalle aus der Praxis</span>
+  <code>drizzle(client)</code> ohne geschweifte Klammern ruft den
+  <em>Pfad-Overload</em> auf — Drizzle baut intern eine <strong>eigene</strong>
+  Verbindung und findet deine Tabellen nicht („no such table“). Immer
+  <code>drizzle({ client })</code>.
+</div>
+
+<div class="quiz" data-loesung="1">
+<p class="frage">3. Welcher Treiber verbindet Drizzle mit SQLite in unserem Setup?</p>
+<label><input type="radio" name="q3" value="0" data-grund="Falsch, weil besser-sqlite3 ein natives npm-Paket mit Build-Aufwand ist — wir nutzen stattdessen den eingebauten node:sqlite-Treiber."> better-sqlite3 aus npm</label>
+<label><input type="radio" name="q3" value="1" data-grund="Richtig, weil node:sqlite in Deno eingebaut ist (DatabaseSync) und Drizzle dafür den Adapter drizzle-orm/node-sqlite mitbringt."> node:sqlite (DatabaseSync) über drizzle-orm/node-sqlite</label>
+<label><input type="radio" name="q3" value="2" data-grund="Falsch, weil Drizzle selbst nur die Query-Schicht ist — ohne Treiber redet es mit gar keiner Datenbank."> gar keiner — Drizzle spricht SQLite direkt</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>6. Schritt 3 — Lesen: select, where, orderBy</h2>
+<pre><code>import { eq, desc } from "drizzle-orm";
+
+// alle Alben eines Artists, neueste zuerst:
+const alben = await db.select()
+  .from(album)
+  .where(eq(album.artistId, 1))
+  .orderBy(desc(album.jahr))
+  .limit(3);</code></pre>
+<p>Der Query-Builder liest sich von innen nach außen wie SQL — und genau dieses SQL
+erzeugt er. Ansehen mit <code>.toSQL()</code>:</p>
+<pre><code>db.select().from(album).where(eq(album.artistId, 1)).toSQL();
+<span class="out">// { sql:    'select "id", "titel", "jahr", "artist_id"
+//             from "album" where "album"."artist_id" = ?',
+//   params: [ 1 ] }</span></code></pre>
+<p>Zwei Beobachtungen: Drizzle listet die Spalten <strong>explizit</strong> auf
+(selbst wo du <code>select()</code> ohne Argumente schreibst), und der Wert
+<code>1</code> steht <em>nicht</em> im SQL-Text, sondern im <code>params</code>-Array
+— Parametrisierung by default.</p>
+<p>Das Ergebnis sind typisierte Objekte: <code>alben[0].titel</code> ist ein
+<code>string</code>, <code>alben[0].artistId</code> der TypeScript-Name — die Spalte
+heißt in der DB trotzdem <code>artist_id</code>.</p>
+
+<div class="quiz" data-loesung="0">
+<p class="frage">4. Wann führt eine Drizzle-Query wie <code>db.select()...from(album)</code> das SQL tatsächlich aus?</p>
+<label><input type="radio" name="q4" value="0" data-grund="Richtig, weil der Query-Builder nur ein Query-Objekt (Promise) aufbaut — ausgeführt wird erst bei await, erst dann redet die Datenbank."> Erst beim await der Query</label>
+<label><input type="radio" name="q4" value="1" data-grund="Falsch, weil der Aufbau der Query-Kette reines Objekt-Zusammensetzen ist — dabei läuft noch kein SQL."> Schon beim ersten Aufruf von db.select()</label>
+<label><input type="radio" name="q4" value="2" data-grund="Falsch, weil .toSQL() nur den SQL-Text erzeugt und anzeigt — ausgeführt wird die Query dadurch noch lange nicht."> Beim Aufruf von .toSQL()</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<div class="quiz" data-loesung="2">
+<p class="frage">5. Was produziert Drizzle für <code>.where(eq(album.artistId, 1))</code>?</p>
+<label><input type="radio" name="q5" value="0" data-grund="Falsch, weil eq() zwei Argumente braucht — Spalte und Wert — und eine where-Klausel ohne Bedingung gar nicht existiert."> Ein where ohne Bedingung, weil eq nur die Spalte wählt</label>
+<label><input type="radio" name="q5" value="1" data-grund="Falsch, weil der Wert gerade nicht in den SQL-Text interpoliert, sondern als Parameter getrennt übergeben wird."> SQL-Text mit dem Wert direkt im String: where artist_id = 1</label>
+<label><input type="radio" name="q5" value="2" data-grund="Richtig, weil Drizzle einen Platzhalter ? ins SQL schreibt und den Wert ins params-Array legt — Daten und Code bleiben getrennt."> SQL mit Platzhalter ? und dem Wert im params-Array</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>7. Schritt 4 — Schreiben: insert, update, delete</h2>
+<pre><code>// einfügen — und die neue Zeile inkl. vergebener id zurückbekommen:
+const neu = await db.insert(album)
+  .values({ titel: "Silent Lines", jahr: 2015, artistId: 1 })
+  .returning();
+<span class="out">// [ { id: 1, titel: "Silent Lines", jahr: 2015, artistId: 1 } ]</span>
+
+// ändern — gezielt, mit where:
+await db.update(track)
+  .set({ dauerSek: 220 })
+  .where(and(eq(track.albumId, 1), like(track.titel, "Silent%")));
+
+// löschen — ebenso gezielt:
+await db.delete(track).where(eq(track.titel, "Echo Room"));</code></pre>
+<p>Die <strong>Regeln aus SQL bleiben dieselben</strong>: Ein <code>update</code>
+oder <code>delete</code> ohne <code>where</code> trifft alle Zeilen — Drizzle
+hindert dich nicht daran, nur ersetzt es die Zeichenketten durchschaubaren Code.
+Und die Fremdschlüssel aus dem Schema lebt die Datenbank: Ein Album mit
+<code>artistId</code> 99, ohne Artist 99, stirbt mit <code>FOREIGN KEY constraint
+failed</code> — die DB schützt die Konsistenz, nicht das ORM.</p>
+
+<div class="quiz" data-loesung="1">
+<p class="frage">6. Im Schema heißt die Spalte <code>artistId</code>, in der Datenbank <code>artist_id</code>. Warum?</p>
+<label><input type="radio" name="q6" value="0" data-grund="Falsch, weil Drizzle keine Spalten automatisch umbenennt — die DB-Spalte heißt exakt so, wie du sie im Schema benannt hast."> Drizzle benennt alle Spalten automatisch um</label>
+<label><input type="radio" name="q6" value="1" data-grund="Richtig, weil die beiden Namen im Schema getrennt angegeben werden: camelCase für TypeScript-Code, snake_case für die DB-Spalte."> Der TypeScript-Name und der DB-Spaltenname werden getrennt angegeben</label>
+<label><input type="radio" name="q6" value="2" data-grund="Falsch, weil nur der erste Name (hier artistId) im Code zählt — für die DB-Spalte zählt der zweite Name in der Klammer."> Nur der Name in der DB zählt, artistId ist nur ein Kommentar</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<div class="quiz" data-loesung="0">
+<p class="frage">7. <code>db.insert(album).values({ titel: "Demo", artistId: 99 })</code> — Artist 99 existiert nicht. Was passiert?</p>
+<label><input type="radio" name="q7" value="0" data-grund="Richtig, weil die references()-Definition als Fremdschlüssel in die DB geht — die Datenbank verweigert das Einfügen (FOREIGN KEY constraint failed)."> Die Datenbank lehnt das Einfügen ab</label>
+<label><input type="radio" name="q7" value="1" data-grund="Falsch, weil Drizzle Werte nicht auf Existenz prüft — Validierung gegen die DB ist Aufgabe der Constraints."> Drizzle erzeugt stillschweigend den Artist 99</label>
+<label><input type="radio" name="q7" value="2" data-grund="Falsch, weil die Zeile mit artistId 99 gerade durch die Fremdschlüssel-Regel verboten ist — der Typ allein schützt nicht vor broken references."> Es funktioniert, weil artistId nur ein number ist</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<div class="quiz" data-loesung="2">
+<p class="frage">8. <code>db.update(track).set({ dauerSek: 0 })</code> — ohne <code>.where()</code>. Was passiert?</p>
+<label><input type="radio" name="q8" value="0" data-grund="Falsch, weil Drizzle ein where im update nicht verlangt — es erlaubt das Statement, wie SQL es auch tut."> Drizzle verweigert ein update ohne where</label>
+<label><input type="radio" name="q8" value="1" data-grund="Falsch, weil ohne where keine Zeile besonders markiert ist — update trifft dann nicht nur eine Zeile."> Nur die erste Zeile der Tabelle wird geändert</label>
+<label><input type="radio" name="q8" value="2" data-grund="Richtig, weil update ohne where alle Zeilen trifft — dieselbe Regel wie in SQL, nur jetzt im typisierten Code."> Alle Zeilen bekommen dauerSek = 0</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>8. Schritt 5 — Auswerten: join, count, groupBy</h2>
+<pre><code>import { count } from "drizzle-orm";
+
+// Wie viele Tracks hat jedes Album?
+const auswertung = await db.select({
+    titel: album.titel, tracks: count(),
+  })
+  .from(track)
+  .innerJoin(album, eq(track.albumId, album.id))
+  .groupBy(album.id);
+
+<span class="out">// [ { titel: "Silent Lines", tracks: 2 } ]</span></code></pre>
+<p>Der <code>innerJoin</code> nimmt die Verbindungsbedingung explizit
+(<code>eq(track.albumId, album.id)</code>) — du siehst dieselbe JOIN-Logik wie in
+SQL, nur getippt statt geschrieben. Aggregationen (<code>count</code>, auch
+<code>sum</code>/<code>avg</code>) kombinieren mit <code>groupBy</code> genau wie
+im SQL-Kern von KM5.</p>
+
+<div class="quiz" data-loesung="1">
+<p class="frage">9. Was braucht der <code>innerJoin(album, ...)</code> als zweites Argument?</p>
+<label><input type="radio" name="q9" value="0" data-grund="Falsch, weil der Join-Typ allein keine Verbindung stiftet — Drizzle rät keine Beziehungen, die Bedingung kommt von dir."> nichts — Drizzle erkennt die Beziehung automatisch</label>
+<label><input type="radio" name="q9" value="1" data-grund="Richtig, weil die Join-Bedingung explizit angegeben wird — hier eq(track.albumId, album.id), dieselbe ON-Bedingung wie in SQL."> die Verbindungsbedingung, z. B. eq(track.albumId, album.id)</label>
+<label><input type="radio" name="q9" value="2" data-grund="Falsch, weil das Auswahl-Objekt steuert, welche Spalten im Ergebnis landen — es definiert nicht die Join-Bedingung."> das Objekt mit den Ergebnisspalten</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<div class="quiz" data-loesung="0">
+<p class="frage">10. <code>db.select({ n: count() }).from(track)</code> — welches SQL steckt dahinter?</p>
+<label><input type="radio" name="q10" value="0" data-grund="Richtig, weil count() ohne Spalten-Argument auf count(*) hinausläuft — dieselbe Aggregation wie im SQL-Kern."> select count(*) from "track"</label>
+<label><input type="radio" name="q10" value="1" data-grund="Falsch, weil count() zählt — ohne groupBy gibt es aber keine Gruppenspalten, und zählen will die Query ja gerade."> select * from "track" group by "id"</label>
+<label><input type="radio" name="q10" value="2" data-grund="Falsch, weil Drizzle Spalten explizit auflistet und die Aggregation als Ausdrucks-Name (hier n) erscheint, nicht als Stern."> select "n" from "track"</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>9. Unter die Haube: erzeugtes SQL lesen</h2>
+<p><code>.toSQL()</code> ist euer Röntgenblick — ohne Ausführung, nur Text:</p>
+<pre><code>import { gt } from "drizzle-orm";
+
+const q = db.select().from(track)
+  .where(and(eq(track.albumId, 1), gt(track.dauerSek, 180)))
+  .limit(3);
+
+console.log(q.toSQL().sql);
+console.log(q.toSQL().params);</code></pre>
+<pre><code><span class="out">// select "id", "titel", "dauer_sek", "album_id"
+//   from "track"
+//   where (("track"."album_id" = ?) and ("track"."dauer_sek" &gt; ?))
+//   limit ?
+// params: [ 1, 180, 3 ]</span></code></pre>
+<p>Drei Werte, drei Parameter, kein einziger Wert im SQL-Text. Das ist dieselbe
+<strong>Parametrisierung</strong>, die ihr aus <code>db.prepare(...).run(?)</code>
+kennt — Drizzle macht sie zur Norm, statt sie zur Disziplin zu erklären.</p>
+
+<div class="quiz" data-loesung="1">
+<p class="frage">11. Warum stehen die Werte in <code>toSQL().params</code> und nicht im SQL-Text?</p>
+<label><input type="radio" name="q11" value="0" data-grund="Falsch, weil die Werte im Text nicht verschwunden, sondern getrennt sind — das Format entspricht genau dem, was an die DB geht."> Weil toSQL() die Werte sonst zu lang machen würde</label>
+<label><input type="radio" name="q11" value="1" data-grund="Richtig, weil SQL-Text (Code) und Werte (Daten) getrennt übergeben werden — Parametrisierung verhindert strukturell, dass Daten als Code ausgeführt werden."> Weil Daten und Code getrennt bleiben — Parametrisierung</label>
+<label><input type="radio" name="q11" value="2" data-grund="Falsch, weil .toSQL() exakt wiedergibt, was die DB bekommt — die Trennung ist echte Übertragungsform, keine Anzeige-Konvention."> Weil das nur eine Anzeige-Vereinfachung von toSQL() ist</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>10. Wann trotzdem Raw SQL?</h2>
+<p>Drizzle ist Werkzeug, nicht Dogma. Weiter <strong>Raw SQL</strong>
+(<code>node:sqlite</code> direkt) ist die richtige Wahl, wenn:</p>
+<ul>
+  <li>die Auswertung <strong>SQL-spezifische Mächtigkeit</strong> braucht:
+  Unterabfragen/CTEs aus KM5-03 — Drizzle kann vieles, aber SQL bleibt mächtiger;</li>
+  <li>du <strong>messen</strong> willst: <code>EXPLAIN QUERY PLAN</code> ist
+  SQL-CLI-Territorium, kein Query-Builder;</li>
+  <li>es um <strong>Betrieb</strong> geht: <code>.import</code>, <code>VACUUM
+  INTO</code>, Backup-Skripte — Werkzeugkette statt Programmcode.</li>
+</ul>
+<div class="callout">
+  <span class="label">Merke</span>
+  Die SQL-Kompetenz aus KM5-02 bis KM5-04 ist <strong>der</strong> Kern — Drizzle
+  ist der Typsicherheits-Layer <em>obendrauf</em>. Wer das erzeugte SQL nicht
+  lesen kann, baut blind.
+</div>
+
+<div class="quiz" data-loesung="2">
+<p class="frage">12. In welchem Fall ist Raw SQL über node:sqlite die bessere Wahl?</p>
+<label><input type="radio" name="q12" value="0" data-grund="Falsch, weil CRUD-Inserts genau der Brot-und-Butter-Fall für den Query-Builder sind — typsicher und parametrisiert."> Beim Einfügen einzelner Zeilen</label>
+<label><input type="radio" name="q12" value="1" data-grund="Falsch, weil Drizzle ORM nichts gegen die Sicherheit ändert — es parametrisiert by default und ist damit kein Sicherheitsrisiko."> Weil Raw SQL sicherer gegen Injection ist</label>
+<label><input type="radio" name="q12" value="2" data-grund="Richtig, weil EXPLAIN QUERY PLAN, CLI-Import und Backup-Skripte SQL-Toolbox-Themen sind — dort gibt es nichts für ein ORM zu mappen."> Bei Messung, CLI-Import und Backup-Skripten</label>
+<p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>11. Typische Fehler</h2>
+<ul>
+  <li><strong><code>await</code> vergessen:</strong> Der Query-Builder ist lazy —
+  ohne <code>await</code> passiert schlicht nichts (das Query-Objekt liegt herum).</li>
+  <li><strong><code>drizzle(client)</code> statt <code>drizzle({ client })</code>:</strong>
+  Drizzle baut eine eigene Verbindung und meldet „no such table“ — Falle war real,
+  beim Bau dieses Projekts.</li>
+  <li><strong>Erwartung, <code>sqliteTable</code> lege Tabellen an:</strong> Das
+  Schema ist Definition, keine DDL — die Tabellen-Anlage läuft über DDL/Migrationen.</li>
+  <li><strong>Namen vertauscht:</strong> <code>album.artistId</code> im Code,
+  <code>artist_id</code> in der DB — wer den DB-Namen im Code sucht, sucht vergebens,
+  und wer den TS-Namen im SQL-Text sucht, auch.</li>
+  <li><strong>update/delete ohne where:</strong> trifft alle Zeilen — im Code wie
+  in SQL eine der teuersten Flüchtigkeitsfehler überhaupt.</li>
+  <li><strong>Werte per String-Interpolation in Raw-SQL:</strong>
+  <code>`... WHERE titel = '${x}'`</code> ist Injection-Futter — im Query-Builder
+  parametrisiert Drizzle, bei Raw-SQL parametrisierst du.</li>
+</ul>
+
+<hr>
+
+<h2>12. Jetzt du!</h2>
+<ol>
+  <li><strong>Vorhersage (zuerst notieren!):</strong> Welche Spalten listet Drizzle
+  für <code>db.select().from(track)</code> auf — und in welcher Reihenfolge, wenn
+  du die Spalten im Schema in anderer Reihenfolge definierst?</li>
+  <li><strong>Ausführen:</strong> Öffne das
+  <a href="../../Beispielprojekte/km5-05-drizzle-orm/">Beispielprojekt km5-05-drizzle-orm</a>
+  und lasse <code>deno task demo</code>. Vergleiche die Ausgaben mit deiner
+  Vorhersage.</li>
+  <li><strong>Zurück zu SQL (Interleaving):</strong> Schreibe die Query „Tracks pro
+  Album“ (Abschnitt 8) als reines SQL — und vergleiche sie mit dem, was Drizzle
+  erzeugt.</li>
+</ol>
+<div class="callout">
+  <span class="label">Anfassen</span>
+  Das Beispielprojekt <a href="../../Beispielprojekte/km5-05-drizzle-orm/">Beispielprojekte/km5-05-drizzle-orm/</a>
+  zeigt den kompletten Ablauf live: <code>deno task demo</code> und <code>deno task test</code>
+  (9 Tests, unter anderem zum FK-Verstoß und zur Parametrisierung).
+</div>
+
+<hr>
+
+<h2>13. Zusammenfassung</h2>
+<table>
+  <tr><th>Baustein</th><th>Drizzle</th><th>Entsprechung in SQL</th></tr>
+  <tr><td><strong>Schema</strong></td><td><code>sqliteTable()</code>, Spalten mit Typ</td><td>Tabelle + Spaltendefinition (nur Definition, keine DDL!)</td></tr>
+  <tr><td><strong>Verbindung</strong></td><td><code>drizzle({ client })</code> über <code>node:sqlite</code></td><td>Verbindung öffnen</td></tr>
+  <tr><td><strong>Lesen</strong></td><td><code>select().from().where().orderBy().limit()</code></td><td><code>SELECT ... WHERE ... ORDER BY ... LIMIT</code></td></tr>
+  <tr><td><strong>Schreiben</strong></td><td><code>insert().values().returning()</code> · <code>update().set().where()</code> · <code>delete().where()</code></td><td><code>INSERT/UPDATE/DELETE</code> (+ <code>RETURNING</code>)</td></tr>
+  <tr><td><strong>Auswerten</strong></td><td><code>innerJoin(..., eq(...))</code> · <code>count()</code> · <code>groupBy()</code></td><td><code>JOIN ... ON</code> · <code>COUNT</code> · <code>GROUP BY</code></td></tr>
+  <tr><td><strong>Röntgenblick</strong></td><td><code>.toSQL()</code> → <code>sql</code> + <code>params</code></td><td>das Statement, das die DB tatsächlich erhält</td></tr>
+</table>
+<p><strong>Eselsbrücke:</strong> „Drizzle tippt dein SQL, parametrisiert dein SQL,
+zeigt dein SQL — aber dein SQL bleibt <em>dein</em> SQL.“</p>
+<p><strong>Ausblick:</strong> Die SQL-n-Linie geht weiter mit <em>Unterabfragen</em>
+(KM5-03) — und genau dort zeigt sich, wie viel SQL ein ORM übersetzen kann und wo
+Raw SQL mächtiger bleibt. Die KM6-Vertiefung baut darauf Migrations-Werkzeuge und
+eine REST-Schnittstelle.</p>
+
+<hr>
+
+<h2>Aufgabe</h2>
+<ol>
+  <li><strong>Vorhersage:</strong> Notiere <em>vor</em> dem Ausführen, welches SQL
+  diese zwei Queries erzeugen (Spaltenliste, WHERE-Klausel, Parameter):<br>
+  <code>a)</code> <code>db.select().from(artist).where(eq(artist.gruendungsjahr, 1999))</code><br>
+  <code>b)</code> <code>db.select({ n: count() }).from(album).where(eq(album.artistId, 1))</code></li>
+  <li><strong>Beispielprojekt erweitern:</strong> Ergänze in
+  <a href="../../Beispielprojekte/km5-05-drizzle-orm/demo.ts">demo.ts</a> drei Queries:
+  das älteste Album (<code>orderBy</code> + <code>limit</code>), alle Tracks eines
+  Albums, deren Titel mit „Echo“ beginnt (<code>and</code> + <code>eq</code> +
+  <code>like</code>), und die Anzahl Tracks je Album (<code>count</code> +
+  <code>groupBy</code>).</li>
+  <li><strong>SQL-Vergleich (Interleaving):</strong> Schreibe die Query „Tracks pro
+  Album“ aus Abschnitt 8 als reines SQL und markiere, wo Drizzle dieselben
+  Bausteine (JOIN, GROUP BY, COUNT) erzeugt.</li>
+  <li><strong>Nachweis:</strong> <code>deno task demo</code> und <code>deno task test</code>
+  im Beispielprojekt laufen lassen; Nachweis der Konsolenausgaben bzw. der grünen
+  Tests.</li>
+</ol>
+<p>Abgabe nach Vorgabe deiner Lehrperson (Markdown + den geänderten <code>demo.ts</code>).</p>
+
+<footer class="lesson-foot">
+  <p>Weiter: <a href="../KM5-03-unterabfragen-eins/lesson.html">KM5-03 — Unterabfragen I</a> ·
+  Referenz: <a href="../../GLOSSAR.md">Glossar</a> · Beispielprojekt:
+  <a href="../../Beispielprojekte/km5-05-drizzle-orm/">km5-05-drizzle-orm</a>.</p>
+</footer>
+</body>
+</html>
