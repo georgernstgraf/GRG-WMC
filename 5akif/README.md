@@ -1,5 +1,11 @@
 # 5akif WMC SJ2627
 
+## unangekündigte Stunden-Wiederholung am 21.10.
+
+- Wiederholung: `async/await` (23.9.) und Promises (18.9.)
+- KI und Coding
+- ORM und typescript
+
 ## 2026-10-16_drizzle
 
 - weitere queries einbauen (besonders: update)
