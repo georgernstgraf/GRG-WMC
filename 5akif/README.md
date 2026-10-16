@@ -1,13 +1,11 @@
 # 5akif WMC SJ2627
 
-## Lessons-Übersicht
+## 2026-10-16_drizzle
 
-| Nr | Ziel-UE | Thema | Quelle | Typ | Quiz-Richtige | Status |
-|----|---------|-------|--------|-----|---------------|--------|
-| 01 | UE 1 (Diagnostik-Rep) | JS-Refresher: Lambdas (`filter`, `sort`, `scramble`) | Anl.-1.10 KM5 (Referenz) | `.ts`-Übung (kein Lesson-HTML) | — | erledigt |
-| 02 | UE 1 (Diagnostik-Rep) | Promises: Zustände, `.then()`-Kette | Anl.-1.10 KM7/KM8 (Referenz) | Notizen + Demo (`.ts`) | — | erledigt |
-| 03 | UE 1–2 | async/await mit individuellen Exceptions | Anl. 1.9 NvSdS KM3 · Anl. 1.10 KM7/KM8 | Lesson-HTML + Quiz + Aufgabe | B · A · C · D · B | erledigt |
-
+- weitere queries einbauen (besonders: update)
+- Recherche: Schema Migration
+- Implementierung (add column, weiteres Model, ...)
+  
 ## Asynchronität II: async/await 23.9.2026
 
 Wiederholung/Ausbau zu Promises vom 18.9. — Lesson: [`2026-09-23__async-await/lesson.html`](./2026-09-23__async-await/lesson.html)
