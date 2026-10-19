@@ -10,7 +10,7 @@ Die vollständige Aufgabe steht am Ende von `lesson.html`. Kurzfassung:
 3. **SQL-Vergleich (Interleaving):** die Query „Tracks pro Album“ als reines SQL
    hinschreiben und mit dem von Drizzle erzeugten SQL vergleichen.
 4. **Nachweis:** `deno task demo` und `deno task test` im Beispielprojekt
-   [`Beispielprojekte/km5-05-drizzle-orm/`](../../Beispielprojekte/km5-05-drizzle-orm/)
+   [`demoprojekt/`](demoprojekt/)
    laufen lassen (Konsolenausgaben bzw. grüne Tests).
 
 Abgabe nach Vorgabe deiner Lehrperson (Markdown + den geänderten `demo.ts`).

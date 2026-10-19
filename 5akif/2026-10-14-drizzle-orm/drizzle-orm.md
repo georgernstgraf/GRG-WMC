@@ -1,10 +1,10 @@
-# Drizzle ORM — typsicherer Datenbankzugriff (<Datum>)
+# Drizzle ORM — typsicherer Datenbankzugriff (2026-10-14)
 
 Lesson: `lesson.html` im selben Ordner — Drizzle als TypeScript-Schema über
 SQLite: Schema-first, typsichere Queries, erzeugtes SQL lesen (toSQL()).
 
 - Erklärung · 12 Quizze · „Jetzt du!“ · Aufgabe am Lesson-Ende
-- Lauffähiges Beispielprojekt: [`Beispielprojekte/km5-05-drizzle-orm/`](../../Beispielprojekte/km5-05-drizzle-orm/)
+- Lauffähiges Beispielprojekt: [`demoprojekt/`](demoprojekt/)
   (`deno task demo`, `deno task test` — 9 Tests)
 
 ## Aufgabe

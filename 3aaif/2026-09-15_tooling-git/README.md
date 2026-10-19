@@ -20,6 +20,6 @@ verbinden, `index.html` per Dreiklang pushen, Repo-Link an `grafg@spengergasse.a
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md` · `unterricht/WMC/jg1-einheiten.md` (UE 1)
+- Lehrplan: `lehrplan/LEHRPLAN.md` · `lehrplan/jg1-einheiten.md` (UE 1)
 - KM-Bezug: KM3 (Anl. 1.9 Basis-Webtechniken) · UE 1 · Anschluss an UE 2 (HTML)
 - Runtime: Browser, VS Code + Live Server, Git

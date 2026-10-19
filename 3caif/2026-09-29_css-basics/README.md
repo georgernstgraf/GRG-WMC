@@ -17,7 +17,7 @@ nächsten UE 00:00.
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md` · `unterricht/WMC/jg1-einheiten.md` (UE 3)
+- Lehrplan: `lehrplan/LEHRPLAN.md` · `lehrplan/jg1-einheiten.md` (UE 3)
 - KM-Bezug: KM3 · Formatierungstechniken (Anl. 1.9 Basis-Webtechniken) · UE 3 · Anschluss an UE 4 (Selektoren)
 - Unterlage: `Unterlagen/css/CSS-Basics.pptx`
 - Runtime: Browser, Live Server

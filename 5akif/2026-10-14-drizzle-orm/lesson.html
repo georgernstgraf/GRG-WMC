@@ -343,7 +343,7 @@ kennt — Drizzle macht sie zur Norm, statt sie zur Disziplin zu erklären.</p>
   für <code>db.select().from(track)</code> auf — und in welcher Reihenfolge, wenn
   du die Spalten im Schema in anderer Reihenfolge definierst?</li>
   <li><strong>Ausführen:</strong> Öffne das
-  <a href="../../Beispielprojekte/km5-05-drizzle-orm/">Beispielprojekt km5-05-drizzle-orm</a>
+  <a href="demoprojekt/">Beispielprojekt km5-05-drizzle-orm</a>
   und lasse <code>deno task demo</code>. Vergleiche die Ausgaben mit deiner
   Vorhersage.</li>
   <li><strong>Zurück zu SQL (Interleaving):</strong> Schreibe die Query „Tracks pro
@@ -352,7 +352,7 @@ kennt — Drizzle macht sie zur Norm, statt sie zur Disziplin zu erklären.</p>
 </ol>
 <div class="callout">
   <span class="label">Anfassen</span>
-  Das Beispielprojekt <a href="../../Beispielprojekte/km5-05-drizzle-orm/">Beispielprojekte/km5-05-drizzle-orm/</a>
+  Das Beispielprojekt <a href="demoprojekt/">demoprojekt/</a>
   zeigt den kompletten Ablauf live: <code>deno task demo</code> und <code>deno task test</code>
   (9 Tests, unter anderem zum FK-Verstoß und zur Parametrisierung).
 </div>
@@ -385,7 +385,7 @@ eine REST-Schnittstelle.</p>
   <code>a)</code> <code>db.select().from(artist).where(eq(artist.gruendungsjahr, 1999))</code><br>
   <code>b)</code> <code>db.select({ n: count() }).from(album).where(eq(album.artistId, 1))</code></li>
   <li><strong>Beispielprojekt erweitern:</strong> Ergänze in
-  <a href="../../Beispielprojekte/km5-05-drizzle-orm/demo.ts">demo.ts</a> drei Queries:
+  <a href="demoprojekt/demo.ts">demo.ts</a> drei Queries:
   das älteste Album (<code>orderBy</code> + <code>limit</code>), alle Tracks eines
   Albums, deren Titel mit „Echo“ beginnt (<code>and</code> + <code>eq</code> +
   <code>like</code>), und die Anzahl Tracks je Album (<code>count</code> +
@@ -400,9 +400,9 @@ eine REST-Schnittstelle.</p>
 <p>Abgabe nach Vorgabe deiner Lehrperson (Markdown + den geänderten <code>demo.ts</code>).</p>
 
 <footer class="lesson-foot">
-  <p>Weiter: <a href="../KM5-03-unterabfragen-eins/lesson.html">KM5-03 — Unterabfragen I</a> ·
+  <p>Weiter: die nächste UE (Datenbank-Queries mit Drizzle, Teil 2) ·
   Referenz: <a href="../../GLOSSAR.md">Glossar</a> · Beispielprojekt:
-  <a href="../../Beispielprojekte/km5-05-drizzle-orm/">km5-05-drizzle-orm</a>.</p>
+  <a href="demoprojekt/">km5-05-drizzle-orm</a>.</p>
 </footer>
 </body>
 </html>

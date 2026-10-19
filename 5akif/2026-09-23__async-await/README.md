@@ -14,6 +14,6 @@ Lesson: [`lesson.html`](./lesson.html) im selben Ordner — mehrstufige Promise-
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md`, `lehrplan/kompetenzmodule/km7.md`, `unterricht/WMC/jg2-einheiten.md` (WS UE 1–2)
+- Lehrplan: `lehrplan/LEHRPLAN.md`, `lehrplan/kompetenzmodule/km7.md`, `lehrplan/jg2-einheiten.md` (WS UE 1–2)
 - KM-Bezug: Anl. 1.9 NvSdS KM3 · Anl. 1.10 KM7/KM8-Konsum — Diagnostik-Rep async; Anschluss an Promise-Recap vom 18.9.
 - Runtime: Deno (`deno run`, `deno check`) — nicht Node

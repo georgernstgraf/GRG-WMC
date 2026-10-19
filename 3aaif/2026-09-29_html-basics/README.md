@@ -16,7 +16,7 @@ Lesson: `index.html` im selben Ordner — Grundgerüst, Pflichtelemente, semanti
 
 ## Housekeeping
 
-- Lehrplan: `lehrplan/LEHRPLAN.md` · `unterricht/WMC/jg1-einheiten.md` (UE 2)
+- Lehrplan: `lehrplan/LEHRPLAN.md` · `lehrplan/jg1-einheiten.md` (UE 2)
 - KM-Bezug: KM3 · Auszeichnungssprachen (Anl. 1.9 Basis-Webtechniken) · UE 2 · Anschluss an UE 3 (CSS)
 - Unterlage: `Unterlagen/HTML-Grundlagen.md`
 - Runtime: Browser, Live Server
