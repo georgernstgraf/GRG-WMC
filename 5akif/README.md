@@ -1,17 +1,16 @@
 # 5akif WMC SJ2627
 
-## unangekündigte Stunden-Wiederholung am 21.10.
+## 2026-10-23 drizzle again
 
-- Wiederholung: `async/await` (23.9.) und Promises (18.9.)
-- KI und Coding
-- ORM und typescript
+Folgen Sie den tutorials auf `drizzle.team` und legen Sie in Ihrem persönlichen Repo ein Musterprojekt an: Ein Commit zum Stundenende (Schulübung) sowie weitere Forschungen mit diesem
+Projekt über die Ferien. Schöne Ferien!
 
-## 2026-10-16_drizzle
+## 2026-10-16_drizzle - Aufgaben:
 
 - weitere queries einbauen (besonders: update)
 - Recherche: Schema Migration
 - Implementierung (add column, weiteres Model, ...)
-  
+
 ## Asynchronität II: async/await 23.9.2026
 
 Wiederholung/Ausbau zu Promises vom 18.9. — Lesson: [`2026-09-23__async-await/lesson.html`](./2026-09-23__async-await/lesson.html)
