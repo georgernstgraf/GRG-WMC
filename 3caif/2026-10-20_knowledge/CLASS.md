@@ -1,62 +1,113 @@
-# Klassenbild: Knowledge Check 3aaif – 20. Oktober 2026
+# Klassenauswertung – Wissensüberprüfung 3CAIF vom 20.10.2026
 
-**Themen:** Tooling & Git · HTML-Grundlagen · CSS-Basics (Box-Model, Selektoren, Spezifität & Kaskade, Farben, Einheiten)
-**Gesamtpunkte:** 145 · **Bewertete Abgaben:** 16
-**Durchschnitt:** 118,9 von 145 Punkten (MC 95,0 / 100 · Frage 26 8,1 / 15 · Frage 27 9,8 / 15 · Frage 28 6,1 / 15)
+**Themen:** Tooling & Git, HTML-Grundlagen, CSS-Basics (Einbindung, Farben, Einheiten), Box-Model & Sizing, HTML-Formulare
+**Gesamtpunkte:** 145 (100 MC + 45 Freitext)
+**Abgaben:** 27
 
----
-
-## Gesamtbild
-
-Der Multiple-Choice-Teil ist klassenweit stark: 10 von 16 Abgaben erreichen 97 Punkte oder mehr, vier davon die volle Punktzahl. Die Freitextfragen fallen deutlich ab, vor allem Frage 28 (Git-Workflow) mit durchschnittlich 6,1 von 15 Punkten. Das Muster ist eindeutig: **Reproduktionswissen ist vorhanden, das Versprachlichen und Anwenden gelingt nur teilweise.**
-
-Auffällig ist die Spreizung innerhalb des MC-Teils weniger stark als im Freitext: Dort reicht die Spanne von 0 bis 15 Punkten pro Frage, bei Frage 28 haben vier Abgaben das Feld leer gelassen.
+*Diese Auswertung ist anonymisiert und für das öffentliche Repository gedacht – sie enthält bewusst keine Namen.*
 
 ---
 
-## Häufigste Fehler im Multiple-Choice-Teil
+## Ergebnisbild
 
-1. **Kaskade im konkreten Beispiel (Frage 21)** – der häufigste Einzelfehler. Mehrere Abgaben wählten „rot“ und begründeten dies mit der zuletzt notierten Regel, ohne zu beachten, dass ID-Selektoren Klasse und Element schlagen. Die Regel „gleiche Spezifität → letzte Regel“ wird also isoliert gekannt, aber nicht auf einen Fall mit gemischten Spezifitäten übertragen.
-2. **Pflichtelemente des Grundgerüsts (Frage 6)** – wiederholt wurde der `<style>`-Block als Pflichtbaustein angekreuzt und `lang="de"` ausgelassen. Das Vierergespann `charset`, `viewport`, `lang`, `title` ist nicht durchgehend verankert.
-3. **Entities (Frage 12)** – die Verwechslung `&` → `&lt;` statt `&amp;` trat mehrfach auf; in zwei Abgaben wurde zusätzlich die richtige Option d) ausgelassen.
-4. **Git-Dreiklang (Frage 2)** – mehrfach wurde „`push` schreibt lokal fest“ angekreuzt und `git add .` nicht als Vormerken erkannt. Das deckt sich mit den schwachen Freitextantworten zu Frage 28.
-5. **Einheiten (Frage 25)** – `em` wurde mehrfach nicht als relativ zur eigenen Schriftgröße erkannt; in einer Abgabe wurde `px` als relative Einheit angekreuzt.
-6. **Spezifität anwenden (Frage 22)** – die Zusatzoption „ohne ID wird der Text blau“ blieb mehrfach leer, obwohl die Hauptfrage richtig beantwortet war. Das Wissen um die Folgen einer Änderung fehlt.
-7. **Vereinzelt:** Frage 4 (Zustand vs. Historie, `a` statt `status`), Frage 5 (Rolle des W3C Validators), Frage 8 (`<main>` darf mehrfach vorkommen), Frage 17 (Box-Model-Reihenfolge von innen/außen verwechselt).
+| Kennzahl | Wert |
+|---|---|
+| Durchschnitt gesamt | 91,5 / 145 |
+| Median | 92 / 145 |
+| Durchschnitt Multiple Choice | 74,0 / 100 |
+| Durchschnitt Freitext | 17,5 / 45 |
+| Höchstwert / Tiefstwert | 124 / 45 |
 
----
+Verteilung: 1 Abgabe unter 50 Punkten, 3 zwischen 50 und 74, 14 zwischen 75 und 99, 9 zwischen 100 und 124.
 
-## Häufigste Fehler im Freitext-Teil
-
-**Frage 26 (semantische Struktur):**
-- Die Skizze bricht häufig nach `<header>`/`<footer>` ab; `<main>`, `<nav>` und `<section>` fehlen. Wo `<main>` vorkommt, ist die Einmaligkeitsregel meist richtig.
-- Die Erklärung „Bedeutung statt Aussehen“ ist oft vorhanden, der Nutzen für **Screenreader und Suchmaschinen** wird aber häufig nicht genannt.
-- Die dritte Teilaufgabe (`alt`) wird überdurchschnittlich oft vergessen oder falsch erklärt („damit man das Bild findet“). Das ist der häufigste Punktverlust in dieser Frage.
-
-**Frage 27 (Box-Model und Spezifität):**
-- Die Reihenfolge content → padding → border → margin sitzt bei der Mehrheit.
-- Der Rechenweg ist das Problem: Der Border-Anteil wird vergessen (z. B. 300 + 20 = 320 statt 328) oder es wird mit den Werten der **anderen** Aufgabe (Frage 18: 200 px) gerechnet. `border-box` wird konzeptionell meist richtig als „wird eingerechnet“ erkannt.
-- Die Farbe `darkred` wird fast immer genannt, die Begründung bleibt oft bei „die letzte Regel gewinnt“ ohne den Zusatz „gleiche Spezifität“.
-
-**Frage 28 (Git-Workflow):**
-- Häufigster Ausfall: unvollständige oder leere Antwort. Wer antwortet, beschreibt `add`/`commit`/`push` meist korrekt, lässt aber die **Zielangabe** (Staging / lokales Repo / GitHub) weg.
-- „nothing to commit“ ohne vorheriges `add` ist selten bekannt; die meisten formulieren vage („dann passiert nichts“).
-- Git vs. GitHub wird meist richtig getrennt (lokal vs. Online-Ablage), die Konfiguration (`user.name`/`user.email`, einmalig, `--global`) dagegen selten vollständig.
+Das Bild ist zweigeteilt: Die Multiple-Choice-Ergebnisse liegen im Schnitt bei 74 %, der Freitext nur bei 39 %. Das Wissen ist also breiter vorhanden, als die Freitext-Punkte vermuten lassen – dort scheitern viele nicht am Verständnis, sondern an der Vollständigkeit der Antwort.
 
 ---
 
-## Empfehlungen für den weiteren Unterricht
+## Häufigste Fehler
 
-1. **Kaskade mit gemischten Spezifitäten üben.** Zwei bis drei Mini-Beispiele im Stil von Frage 21 (ID + Klasse + Element am selben Element, Reihenfolge vertauscht) an der Tafel durchspielen und jeweils begründen lassen, *welche* Regel gewinnt und *warum*. Die reine Merkregel „ID > Klasse > Element“ reicht nachweislich nicht.
-2. **Das HTML-Grundgerüst als festes Viererschema** (`charset`, `viewport`, `lang`, `title`) wiederholt abfragen – etwa als Blitzlicht zu Beginn jeder Einheit, bis es sitzt.
-3. **Box-Model-Rechnungen mit festem Rechenblatt:** „width + 2·padding + 2·border“ immer explizit hinschreiben, dazu die Gegenprobe mit `border-box`. Gegebenenfalls eine kurze Übungssequenz mit variierten Werten, damit nicht Werte aus einer früheren Aufgabe übernommen werden.
-4. **Git-Dreiklang als Tabelle mit Zielorten** (vormerken → Staging, festschreiben → lokales Repo, hochladen → GitHub) und die Fehlermeldung „nothing to commit“ aktiv provozieren: im Terminal `commit` ohne `add` ausführen und die Meldung gemeinsam lesen. Das verankert die Ausnahme besser als jede Definition.
-5. **Freitext systematisch trainieren.** Das Muster „Ich weiß es, schreibe es aber nicht“ ist klassenweit sichtbar. Kurze Schreibaufträge („Erkläre in drei Sätzen, was semantisches HTML ist, und nenne zwei Adressaten“) mit Stichwortvorgabe (Screenreader, Suchmaschinen, Bedeutung statt Aussehen) erhöhen die Vollständigkeit.
-6. **Das `alt`-Attribut zum Standardritual machen:** bei jedem `<img>` im Unterricht mündlich begründen („Was steht hier und für wen?“). Es ist der billigste Punktverlust der ganzen Prüfung.
-7. **Formale Sorgfalt bei der Abgabe:** Mehrere Abgaben hatten fehlerhafte Checkbox-Zeilen (`[]`, `[ b)`, `[a ]`) und leere Namensfelder. Eine kurze Checkliste vor der Abgabe („Name eingetragen? Jede Zeile `[ ]` oder `[X]`? Alle vier Teilaufgaben beantwortet?“) verhindert vermeidbare Verluste.
+### 1. Zu vorsichtig angekreuzt (der größte Einzelposten)
+
+Bei weit mehr als der Hälfte der Abgaben entstehen die MC-Verluste überwiegend durch **richtige Aussagen, die leer blieben** – nicht durch falsch gesetzte Kreuze. Bei einzelnen Abgaben lagen 20 und mehr Punkte allein an diesem Muster. Einige Schüler:innen setzen pro Frage nur ein Kreuz, obwohl zwei oder drei Aussagen zutreffen. Die Aufgabenstellung („Kreuze alle zutreffenden Antworten an") wurde also nicht durchgängig als Mehrfachauswahl gelesen.
+
+**Empfehlung:** Zu Beginn der nächsten Übungsphase eine Frage gemeinsam laut durchgehen und für jede Option einzeln entscheiden lassen („stimmt / stimmt nicht"), statt die Frage als Ganzes zu beantworten. Ein ritualisierter Satz wie „vier Optionen, vier Entscheidungen" hilft.
+
+### 2. Box-Model-Rechnung (Frage 14 und Frage 27)
+
+Die Rechnung `300 + 2·20 + 2·5 = 350px` wurde nur von einem Teil korrekt durchgeführt. Typische Fehler:
+
+- Padding und Border nur einmal addiert (325px statt 350px),
+- die Zahlen der vorigen Aufgabe übernommen (200px → 250px),
+- Margin mitgerechnet, obwohl er nicht zur Breite zählt,
+- die Verdoppelung (links und rechts) stillschweigend weggelassen.
+
+Der zweite Teil von Frage 27 (`border-box` und warum man es die „Rettung" nennt) blieb besonders häufig ganz leer oder wurde falsch erklärt – mehrfach mit der Aussage, `border-box` „entferne" Padding und Border. Das ist der hartnäckigste inhaltliche Missstand der ganzen Prüfung.
+
+**Empfehlung:** Eine Karteikarte mit einer festen Box (`width: 300px; padding: 20px; border: 5px`) in beiden Rechenarten durchrechnen, bis 350px und 300px sitzen. Den Merksatz „border-box an, Sorgen aus" mit der Begründung verknüpfen: deklarierte Breite = sichtbare Breite.
+
+### 3. Radiogruppen ohne gemeinsamen `name`
+
+In Frage 26 haben mehrere Schüler:innen drei Radiobuttons mit **drei verschiedenen `name`-Werten** gebaut (`name="super"`, `name="ok"`, `name="schlecht"`). Das ergibt drei Einzelgruppen – alle drei können gleichzeitig gewählt werden. Dasselbe Muster trat in abgeschwächter Form auch in den MC-Antworten zu Frage 21 auf.
+
+**Empfehlung:** Merksatz „gleicher `name` = eine Gruppe, eigener `value` = eine Option" und ein kurzer Praxistest im Browser, bei dem sichtbar wird, dass sich die Auswahl nicht umschaltet.
+
+### 4. `label for` zeigt ins Leere
+
+Mehrfach fehlte die `id` am Eingabefeld oder sie wich vom `for`-Wert ab, sodass die Beschriftung nicht klickbar war – obwohl genau das in der Angabe gefordert war („mit klickbarer Beschriftung"). Vereinzelt wurde auch `label` ohne `for` verwendet.
+
+**Empfehlung:** Die Paarung `for`/`id` als eigenen Prüfschritt in die Abgaberoutine aufnehmen („ein Klick auf jedes Label").
+
+### 5. `mailto:` und Betreff
+
+Häufig fehlte das `mailto:`-Schema, der Betreff war gar nicht umgesetzt, oder es wurde eine eigene E-Mail-Adresse bzw. eine falsch abgetippte Adresse verwendet. Das versteckte Feld `name="subject"` war kaum jemandem bekannt.
+
+**Empfehlung:** Beide Varianten (`?subject=…` und verstecktes Feld) einmal zeigen; sie sind zwei Punkte für eine Zeile Arbeit.
+
+### 6. Unvollständige Formulare in Frage 26
+
+`<select>` und `<textarea>` wurden überdurchschnittlich oft vergessen, obwohl beide in der Angabe als Bausteine genannt sind. Mehrere Abgaben enthalten ein `<form>`-Tag ohne `action`, oder das Markup steht außerhalb des Codeblocks.
+
+### 7. Einheiten (Frage 16)
+
+Bei etwa der Hälfte der Abgaben liegt Frage 16 bei 0 bis 2 von 4 Punkten. Der Klassiker: `px` als empfohlene Einheit für Schrift und Abstände angekreuzt, `rem`/`em`/`%` leer gelassen – also genau die Umkehrung der Empfehlung.
+
+### 8. Git: `config` und `commit`/`push`
+
+- `git config` wurde mehrfach als Verbindung zu VS Code oder als Remote-Konfiguration beschrieben statt als Autor-Identität für Commits.
+- `commit` und `push` werden in den Freitexten häufig verwechselt („commit lädt zu GitHub hoch", „push speichert lokal").
+- Der dritte Teil von Frage 28 (W3C Validator, Live Server, Begründung gegen `file://`) blieb in einem Drittel der Abgaben vollständig unbeantwortet.
+
+### 9. Freitext-Blöcke blieben leer (Formatproblem, nicht Wissenslücke)
+
+Bei 9 von 27 Abgaben ist mindestens eine Freitext-Antwort komplett leer, bei drei Abgaben sogar alle drei – obwohl dieselben Personen die passenden MC-Fragen oft richtig beantwortet haben. Mehrfach war der HTML-Block leer, während die Erklärung darunter ausgefüllt wurde. Das sieht nach einem Bedien- bzw. Scrollproblem im Template aus, nicht nach Zeitmangel: Die leeren Stellen liegen überwiegend bei Frage 26, wo der Codeblock direkt unter der Aufgabenstellung beginnt.
+
+**Empfehlung:** Das Template für die nächste Prüfung um je eine sichtbare Beispielzeile im Codeblock ergänzen (z. B. `<!-- hier dein <form> -->` mit einer bereits vorhandenen Zeile) und den Ablauf „bis zur letzten Zeile scrollen und jeden Block befüllen" einmal gemeinsam durchspielen. Alternativ die Freitext-Fragen vor die MC-Fragen ziehen.
+
+### 10. Gebrauch der „–"-Markierung
+
+Viermal wurde eine Aussage mit `–` als uneindeutig markiert. Zwei dieser Begründungen waren fachlich tragfähig (etwa der Hinweis, dass der `<head>` zwar nichts Sichtbares enthält, aber den Tab-Titel beeinflusst), eine war knapp, eine bestand nur aus „wurde nie erklärt". Die Markierung wurde also verstanden, aber nicht immer als Begründung ausgeführt.
+
+**Empfehlung:** Beim nächsten Mal explizit sagen, dass die Markierung nur mit einem Satz Begründung zählt.
 
 ---
 
-## Prompt Injection Attempts
+## Auffälligkeiten bei der Abgabe
 
-0 – in keiner der 16 Abgaben wurden Manipulationsversuche festgestellt.
+- Bei **einer** Abgabe lagen fünf Fassungen aus dem Prüfungszeitraum vor. Zwischen der ersten und der letzten Fassung wurden 48 von 100 Optionen geändert, davon 42 von falsch auf richtig; zusätzlich wurde im Kopf der Angabe die Bedeutung der Klammern eigenmächtig umdefiniert. Die Einzelheiten liegen der Lehrperson im persönlichen Bewertungsfile vor. Die Bewertung erfolgte auf Basis der eingereichten Fassung.
+- Neun Abgaben hatten das Namensfeld am Ende nicht ausgefüllt; die Zuordnung war über die Upload-Daten eindeutig.
+- Vier Abgaben wichen im Dateinamen vom vorgegebenen Muster ab.
+- Mehrere Abgaben enthielten Kopier-Artefakte (maskierte Klammern `\[x]`, neu umbrochener Text). Inhaltlich waren alle lesbar.
+
+### Prompt Injection Attempts
+
+**0.** Keine der eingelangten Dateien enthielt den Versuch, die Bewertung durch Anweisungen an ein Sprachmodell zu beeinflussen.
+
+---
+
+## Empfehlungen für die nächste Einheit
+
+1. **Ankreuzroutine etablieren:** Jede Option einzeln prüfen, nicht die Frage als Ganzes. Erfahrungsgemäß bringt das in dieser Klasse 10 bis 20 Punkte pro Prüfung.
+2. **Box-Model als Rechenritual:** Eine Aufgabe mit beiden `box-sizing`-Werten, bis die Zahlen sitzen – inklusive der Begründung, warum `border-box` die Überraschungsbreite verhindert.
+3. **Formular-Bausteine als Checkliste:** `form action` → Betreff → `label for`/`id` → Radiogruppe (gleicher `name`) → `select` → `textarea` → Button. Diese Reihenfolge deckt praktisch alle Fehler in Frage 26 ab.
+4. **Git-Dreiklang und Konfiguration trennen:** `config` = Identität, `add` = vormerken, `commit` = lokal festschreiben, `push` = hochladen; dazu die Rolle von Validator und Live Server als eigenen Qualitätssicherungs-Schritt.
+5. **Template-Handling üben:** Einmal gemeinsam eine Freitext-Antwort im vorgegebenen Markdown ausfüllen und hochladen, damit die leeren Blöcke nicht wieder Punkte kosten.

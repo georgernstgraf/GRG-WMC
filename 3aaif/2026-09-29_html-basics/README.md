@@ -1,4 +1,4 @@
-# HTML-Grundlagen (2026-09-22)
+# HTML-Grundlagen (2026-09-29)
 
 Lesson: `index.html` im selben Ordner — Grundgerüst, Pflichtelemente, semantische Tags
 („Struktur statt Deko"); Grundlage für die eigene „Über mich"-Seite.

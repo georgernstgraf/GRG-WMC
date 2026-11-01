@@ -8,7 +8,7 @@ sowie [KM8-01 — HTML-Formulare & HTTP-POST](../../unterricht/KM8-01-html-formu
    eigener Wahl.
 2. **Versand:** Beim Abschicken soll der Mailclient aufgerufen werden und die
    eingegebenen Daten an deine eMail-Adresse übermittelt werden; das Formular
-   verseht die Mail mit einem Betreff.
+   versieht die Mail mit einem Betreff.
 3. **Bonus:** Pflichtfelder, Pattern-Matching.
 
 **Abgabe:** Push per Dreiklang bis **2026-10-13 00:00**.

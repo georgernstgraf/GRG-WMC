@@ -2,9 +2,10 @@
 
 ## Aufgaben
 
-- 2026-10-20: Unterlagen/css/SELECTORS ANSEHEN
+- 2026-10-20: Unterlagen/css/SELECTORS ANSEHEN → [Unterlagen/css/SELECTORS/](../Unterlagen/css/SELECTORS/)
+- 2026-10-13: „Über mich"-Seite mit Box-Model/`box-sizing`/Einheiten erweitern → [2026-10-13_border_box/](./2026-10-13_border_box/)
 - 2026-10-06: Seite dekorieren (CSS) → [unterricht/KM3-03-css-basics/](../unterricht/KM3-03-css-basics/)
-- 2026-09-22: „Über mich"-Seite (HTML) → [2026-09-29_html-basics/](./2026-09-29_html-basics/)
+- 2026-09-29: „Über mich"-Seite (HTML) → [2026-09-29_html-basics/](./2026-09-29_html-basics/)
 - 2026-09-15: Setup lauffähig präsentieren & Repo-Link mailen → [2026-09-15_tooling-git/](./2026-09-15_tooling-git/)
 
 ## 2026-10-06__css
