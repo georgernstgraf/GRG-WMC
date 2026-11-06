@@ -29,3 +29,4 @@ Branch: main
 - Lehrplan-Grundlage liegt fertig in `lehrplan/` (Root, Skill-Konvention: LEHRPLAN/METADATA/RIS + Block-Ordner wmc-aif/wmc-kif/wmc-cif + kompetenzmodule/km3–km10 + RIS/-PDFs); Semesterpläne im `lehrplan/`-Root (`jg1-einheiten.md`, `jg2-einheiten.md`). Jahr-2-Plan hat 3 offene Punkte (s. Dateiende `lehrplan/jg2-einheiten.md`).
 - Archivierung SJ 2025/26 ist committed-fertig vorbereitet (git mv, 162 Renames).
 - RIS-Recherche-Stand: 2026-07-26; nächster Check Sommer 2027.
+- **React-Referenzshop 2026-11-06:** `Beispielprojekte/react_deno_hono/` (lean: Katalog + Warenkorb + Checkout) läuft mit Deno statt Node; `deno task api` startet die Hono-Referenz, `deno task dev` den Vite-Server mit HMR, `deno task verify` ist der lokale Gate. Nächste Ausbaustufen (Router/Produktdetail, Bestellungen/Stats, JWT, Hono-Static-Deployment) stehen in der Projekt-README.

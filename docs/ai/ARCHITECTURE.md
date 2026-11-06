@@ -12,7 +12,7 @@ GRG-WMC is a static educational content repository (no build system) for the WMC
 | `<N><zug>/` | Active class folders (semester-numbered) | created at semester start; renamed at semester break |
 | `archiv/YYYY-YY-<klasse>/` | Archived classes per school year | populated SJ 2025/26 (4 folders) |
 | `Unterlagen/` | Topic reference materials (HTML, CSS, JS, HTTP, POSIX) | |
-| `Beispielprojekte/` | Demo projects (hono_on_deno, hono-prisma-htmx, deno_transpile, gists) | `hono_on_deno` = Mini-Hono-Referenzrumpf (Deno/Hono, in-memory Musikgeschäft-API, `/static`, SPA-Fallback, TS-Transpilation) |
+| `Beispielprojekte/` | Demo projects (hono_on_deno, react_deno_hono, hono-prisma-htmx, deno_transpile, gists) | `hono_on_deno` = Mini-Hono-Referenzrumpf (Deno/Hono, in-memory Musikgeschäft-API, `/static`, SPA-Fallback, TS-Transpilation); `react_deno_hono` = React-19-Referenzshop (Vite 8 auf Deno, Pico CSS, `deno test` + RTL) gegen diese API |
 | `Übungen/` | Assignments | |
 | `docs/` | skriptum.md, wmc_ss_projekt_webapp.md, PDFs | Lehrinhalte_SS.md removed (absorbed into lehrplan/jg1-einheiten.md) |
 | `unterricht/` | Prepared Lessons (Lernplattform), flat `<PREFIX>-<NN>-<slug>/` (`KM<#>`/`SA`) with `lesson.html` + Tages-README-Vorlage | no runnable project code; cohort copying is manual |

@@ -5,7 +5,7 @@ Current status as of 2026-11-10.
 ## Current Focus
 **Lernplattform (#7):** Der Markdown-SPA-Viewer ist durch einen **statischen Navigator** `index.html` ersetzt; GitHub Pages veröffentlicht nur `index.html`, `assets/` und `unterricht/` (`.github/workflows/pages.yml`, `build_type: workflow`). Der Navigator verlinkt die Prepared Lessons `KM3-01–03` unter `unterricht/KM3-<NN>-<slug>/` (Retrofit 2026-10-05).
 
-Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
+Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; der React-Referenzshop `Beispielprojekte/react_deno_hono/` konsumiert diese API (React 19, Pico CSS, Vite 8 auf Deno, `deno test`). Nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
 - [x] 2026-11-10 — #11 Quizzes der Alt-Lessons auf Format 2.1 umgestellt
@@ -27,6 +27,7 @@ Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_
       Pseudoklasse, Pseudoelement, Attribut-Selektor, Spezifität).
       Demo im Browser verifiziert (Trefferzahlen, berechnete Stile, Quiz-Interaktion
       inkl. Shuffle/Zurücksetzen, Pages-Basis `/GRG-WMC/`).
+- [x] 2026-11-06 — React-Referenzshop `Beispielprojekte/react_deno_hono/` gebootstrappt: React 19 + Vite 8 auf Deno (kein Node/kein `package.json`), Pico CSS, Katalog + Warenkorb-Drawer (native `<dialog>`) + Checkout gegen die Hono-API, Light/Dark, Skeletons/Error-Boundary/Toast; 19 `deno test`-Tests (RTL + happy-dom), 93 % Line-Coverage, `deno task verify`, CI-Workflow, Lockfile; als **Referenz** dokumentiert (unterrichtlicher Pfad bleibt Node/Vite + Vitest).
 - [x] 2026-10-12 — Homework-Discovery WMC (WMC_1): `3caif/2026-10-06_html-formulare/Aufgabe.md`
       erzeugt (Formular fertigstellen, Mailclient-Versand, Bonus
       Pflichtfelder/Pattern, Abgabe 13.10. 00:00 — Textquelle: Tages-README

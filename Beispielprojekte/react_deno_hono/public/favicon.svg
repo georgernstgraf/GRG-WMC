@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="klang" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb454"/>
+      <stop offset="1" stop-color="#7ee0c3"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0b0d12"/>
+  <path d="M20 14h9v15l13-15h11L38 31l16 19H42L29 34v16h-9z" fill="url(#klang)"/>
+</svg>

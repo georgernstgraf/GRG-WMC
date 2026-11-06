@@ -8,6 +8,12 @@ Webprogrammierung und Mobile Computing (WMC) — React + TypeScript
 (Netto nach Ferien/Terminen; bei Glücksfall Bonus-UE, s. unten).
 **Werkzeug:** TypeScript · React + Vite (Node/npm) · Mini-Hono-Referenz (Deno) als
 Übungs-API · PWA · Vitest + React Testing Library.
+
+> **Referenz-App:** [`Beispielprojekte/react_deno_hono/`](../Beispielprojekte/react_deno_hono/)
+> zeigt dieselben Jahr-2-Inhalte mit der Deno-Toolchain (Vite via Deno,
+> `deno test` + RTL statt Vitest, Pico CSS); der unterrichtliche Pfad bleibt
+> Node/npm + Vitest.
+
 **Backend:** **kein Stoff** — serverseitige Umsetzung = POS (C#, Kolleg:innen); die
 Hono-Referenz dient nur als Konsum-Ziel und Deployment-Demonstration.
 

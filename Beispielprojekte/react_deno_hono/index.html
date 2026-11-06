@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Klangraum – React-Referenzshop für Instrumente und Studio-Equipment, gebaut mit React, Vite und Deno.">
+    <meta name="theme-color"
+          content="#0b0d12">
+    <title>Klangraum · Instrumente &amp; Studio</title>
+    <link rel="icon"
+          href="/favicon.svg"
+          type="image/svg+xml">
+    <script>
+        // Theme vor dem ersten Paint setzen (kein Flash).
+        let stored = null;
+        try {
+            stored = localStorage.getItem("klangraum-theme");
+        } catch {
+            // localStorage kann gesperrt sein – dann entscheidet das System.
+        }
+        const system = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.dataset.theme =
+            stored === "light" || stored === "dark" ? stored : system;
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module"
+            src="/src/main.tsx"></script>
+</body>
+</html>

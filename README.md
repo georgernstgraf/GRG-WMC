@@ -78,7 +78,7 @@ Beispielprojekte, Übungen und Lösungen. WMC wird in zwei Blöcken unterrichtet
 | [`unterricht/`](./unterricht/) | **Prepared Lessons** der Lernplattform: flache Ordner `<PREFIX>-<NN>-<slug>/` mit `lesson.html` (+ Tages-README-Vorlage); Root-[`index.html`](./index.html) ist der Navigator |
 | [`archiv/`](./archiv/) | Archiv vergangener Schuljahre (`YYYY-YY-<klasse>/`, z. B. `archiv/2025-26-4aaif/`) |
 | [`Unterlagen/`](./Unterlagen/) | Thematische Referenzmaterialien zu HTML, CSS, JS, HTTP, POSIX |
-| [`Beispielprojekte/`](./Beispielprojekte/) | Demo-Projekte (Ticketautomat, Hono + Prisma + HTMX, Deno-Transpilation, Code-Gists) |
+| [`Beispielprojekte/`](./Beispielprojekte/) | Demo-Projekte (Ticketautomat, Hono-Referenz, React-Referenzshop, Hono + Prisma + HTMX, Deno-Transpilation, Code-Gists) |
 | [`Übungen/`](./Übungen/) | Aufgabenstellungen für Einzel- und Gruppenübungen |
 | [`docs/`](./docs/) | Zentrale Dokumente (Skriptum, Projektangaben) |
 | [`lehrplan/`](./lehrplan/) | **Lehrplan dreischichtig** (LEHRPLAN, METADATA, RIS/ + RIS.md, wmc-aif/kif/cif Block-Ordner, kompetenzmodule/) |

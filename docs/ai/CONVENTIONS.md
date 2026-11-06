@@ -30,6 +30,7 @@ Follow these without question. Do not deviate unless explicitly told.
 
 ## Testing
 - Jahr 2: Vitest + React Testing Library; test role/query not implementation; API mocks via MSW or fetch stub.
+- Referenz-App `react_deno_hono`: Deno-Toolchain (`deno test` + RTL + happy-dom, `deno check/lint/fmt`, Vite via `deno run`); der unterrichtliche Jahr-2-Pfad bleibt Node/npm + Vitest.
 - Repo itself: no build/test system (static educational content); validate HTML via W3C Validator.
 
 ## Classroom Material (create-lesson)

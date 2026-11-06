@@ -66,4 +66,11 @@ Superseded decisions are relocated to HISTORY.md.
 - **Tradeoff**: Issue #3 bleibt **teilweise offen** (JWT, RFC-7807, WS) und ist in HANDOFF/STATE als Rest vermerkt. `@deno/emit` ist offiziell, aber seit 2 Jahren (0.46.0) unverändert; der Transpile-Endpoint hat einen Path-Traversal-Guard, der im Ursprungsbeispiel fehlte.
 - **Issue**: #3
 
+## 2026-11-06: React-Referenz-App `react_deno_hono` — Deno-Toolchain, Referenz only
+- **Choice**: `Beispielprojekte/react_deno_hono/` ist ein leaner React-19-Referenzshop (Pico CSS, Katalog + Warenkorb-Drawer + Checkout) gegen die bestehende Hono-API. Die Toolchain läuft vollständig unter **Deno**: `deno run -A npm:vite` für Dev/Build, `deno test` + React Testing Library + happy-dom, `deno check/lint/fmt`, `deno install` mit `nodeModulesDir: "auto"`. Kein `package.json`, kein Node, kein Vitest in diesem Projekt.
+- **Reason**: Der User will die React-Referenz mit der im Repo etablierten Deno-Runtime (DECISIONS 2026-09-23) statt mit Node/npm; `deno test`/`deno lint` liefern die Sicherungen ohne zusätzliche Toolchain. Pico CSS ist als schlankes Framework bereits Jahr-1-Thema.
+- **Considered**: `@deno/vite-plugin` (verworfen — Peer-Dependency nur Vite 5–7, Build bricht mit Vite 8); Tailwind (verworfen — Pico ist klassenlos und näher am bestehenden CSS-Unterricht); Vitest (verworfen — der User will `deno test`); Mock-API (verworfen — die Hono-Referenz ist das eine Backend für alle).
+- **Tradeoff**: Es existieren zwei dokumentierte Toolchains: unterrichtlicher Jahr-2-Pfad bleibt **Node/npm + Vite + Vitest**, die Referenz-App zeigt die **Deno-Variante**. `deno.lock` wird für dieses Projekt versioniert (Ausnahme in der Root-`.gitignore`).
+- **Issue**: —
+
 
