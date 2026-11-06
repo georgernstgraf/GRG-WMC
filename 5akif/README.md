@@ -1,11 +1,18 @@
 # 5akif WMC SJ2627
 
+## REACT
+
+- Schulungsunterlagen-Repo: <https://hoa-spg.github.io/react/>
+- Teil der Benotung: Ihr Webprojekt im WMC Repo. Für eine positive Note auf das abgegebene Projekt ist eine kontinuierliche Commit‑Praxis über das gesamte restliche Semester hindurch Voraussetzung.
+
 ## Aufgaben
 
 - 2026-10-23: Drizzle-Tutorials auf `drizzle.team` durcharbeiten, Musterprojekt im eigenen Repo anlegen (Commit zum Stundenende + Recherche über die Ferien) → [2026-10-14-drizzle-orm/](./2026-10-14-drizzle-orm/)
 - 2026-10-16: Drizzle — weitere Queries (bes. `update`), Recherche Schema-Migration, Implementierung (add column, weiteres Model) → [2026-10-14-drizzle-orm/](./2026-10-14-drizzle-orm/)
 - 2026-10-09: Hono — JSON im Browser in die Liste rendern → [2026-10-09_hono/](./2026-10-09_hono/)
 - 2026-09-23: async/await — vierte Stufe `reclamieren` mit `ClaimError`, `finally`, Bonus → [2026-09-23__async-await/](./2026-09-23__async-await/)
+
+## 2026-11-04: Vorstellung react-Kurs, Motivation: Warum SPA
 
 ## 2026-10-23 drizzle again
 
