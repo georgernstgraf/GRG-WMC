@@ -8,6 +8,10 @@ Current status as of 2026-11-10.
 Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
+- [x] 2026-11-10 — #11 Quizzes der Alt-Lessons auf Format 2.1 umgestellt
+      (KM3-01..03, KM8-01: 22 Fragen, je 4 Optionen mit `data-grund`, eine
+      vierte Ablenkungsoption ergänzt; KM8-01 in zwei Quizze geteilt).
+      Kein `data-loesung`/Radio mehr im Lesson-Bestand.
 - [x] 2026-11-10 — Assets aus GRG-PMM übernommen (Quiz **2.1**: Checkboxen,
       `data-richtig` je Option, Fisher-Yates-Shuffle, Überprüfen-Button,
       Infokugeln; `tables.js` Tabellen-Querscroll; PMM-`lesson.css` auf

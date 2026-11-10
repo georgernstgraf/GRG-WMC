@@ -6,9 +6,9 @@ Branch: main
 1. [x] Klassenkürzel verifiziert 2026-09-06 (Georg + Schul-Seite): Form-Serien AIF/KIF/CIF, ungerade=WS/gerade=SS, Zug-Präfixe A/B/C, **C = 17:10-Zweig** → Decoder in `lehrplan/METADATA.md` + `docs/ai/DOMAIN.md` gepflegt. **Rest:** Besetzung Nicht-Georg-WMC-Semester (Kolleg Sem 1–4, AL Sem 2/5/7).
 2. [ ] Node-LTS-Verfügbarkeit auf den Abendform-Rechnern prüfen (Jahr-2-Voraussetzung fürs Vite-Tooling; WMC-Demos selbst laufen mit Deno).
 3. [x] Klassenordner `3aaif/` + `5akif/` angelegt (2026-09) — datierte Unterordner `YYYY-MM-DD_topic` (5akif nutzt `YYYY-MM-DD__thema`).
-4. [ ] Alt-Quizzes auf Format 2.1 umstellen (KM3-01..03, KM8-01: 22 Radio-Fragen
-   mit `data-loesung`; `quiz.js` unterstützt den Altmodus weiter, daher nicht
-   dringend — Umschreiben braucht je Frage vier begründete Optionen).
+4. [x] Alt-Quizzes auf Format 2.1 umstellen (#11, 2026-11-10): 22 Radio-Fragen
+   in KM3-01..03 und KM8-01 auf Checkboxen mit `data-richtig`, je Frage eine
+   begründete vierte Option; Fragen je Thema zu einem Quiz zusammengefasst.
 5. [ ] Kohorten-READMEs zeigen noch auf `unterricht/WMC/…` (bewusst nicht migriert, Scope-Entscheid): bei nächster Gelegenheit auf `lehrplan/jgN-einheiten.md` umstellen; Tagesordnernamen `YYYY-MM-DD__thema` + `lesson.html` angleichen (Altbestand nutzt `_`/`index.html`).
 
 ## Größere Vorhaben (→ GitHub Issues)
@@ -22,7 +22,8 @@ Branch: main
   (`unterricht/KM3-04-css-selektoren/demo.html` + `demo.css`): eigenständige,
   asset-freie Seite als Übungsobjekt. Zentrales `assets/` wurde aus GRG-PMM
   nachgezogen (quiz.js 2.1, tables.js, lesson.css, theme.js); Alt-Lessons sind
-  markup-migriert.
+  markup-migriert. Alle fünf Lessons laufen jetzt durchgehend auf Quiz 2.1
+  (kein `data-loesung` mehr im Bestand).
 - **Layout-Retrofit 2026-10-05 (create-lesson v2 + lehrplan v2):** Prepared Lessons liegen **flach** unter `unterricht/KM3-<NN>-<slug>/` (`lesson.html` + Tages-README-Vorlage); Root-`index.html` ist der **Navigator** (kein README-Renderer mehr), Deployment über `.github/workflows/pages.yml`. Planung `jg1-/jg2-einheiten.md` liegt im **`lehrplan/`-Root** (nicht mehr `unterricht/WMC/`).
 - 5akif-Jahr-2-Unterricht läuft: Lessons 01 (Lambdas, 11.9.), 02 (Promises, 18.9.), 03 (async/await, 23.9., Issue #4). Ab Lesson 03: gemeinsames Theme-Asset `5akif/assets/` (Hell/Dunkel-Toggle) — neue Lessons binden es ein statt eigenem Inline-Style. **Hinweis:** 5akif-Kohortenordner wurden beim Retrofit bewusst nicht angefasst.
 - Lehrplan-Grundlage liegt fertig in `lehrplan/` (Root, Skill-Konvention: LEHRPLAN/METADATA/RIS + Block-Ordner wmc-aif/wmc-kif/wmc-cif + kompetenzmodule/km3–km10 + RIS/-PDFs); Semesterpläne im `lehrplan/`-Root (`jg1-einheiten.md`, `jg2-einheiten.md`). Jahr-2-Plan hat 3 offene Punkte (s. Dateiende `lehrplan/jg2-einheiten.md`).
