@@ -272,6 +272,10 @@ pre code {
 .callout.tipp { border-left-color: var(--ok); }
 .callout.achtung { border-left-color: var(--accent); }
 
+/* Absätze im Callout enger setzen, damit Label und Text zusammenbleiben */
+.callout p { margin: 0.3rem 0; }
+.callout .label + p { margin-top: 0.15rem; }
+
 .baustein {
     font-family: "Cascadia Code", Consolas, monospace;
     font-size: 0.75rem;
