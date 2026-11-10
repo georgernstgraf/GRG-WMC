@@ -99,7 +99,7 @@
                 <td>1</td>
                 <td><code>tbody tr:nth-child(odd)</code></td>
                 <td>heller Zebra-Streifen</td>
-                <td>1, 3, 5, 7</td>
+                <td>1, 3, 5, 7, 9</td>
             </tr>
             <tr>
                 <td>2</td>
@@ -117,7 +117,7 @@
                 <td>4</td>
                 <td><code>tbody tr:nth-child(2n+1)</code></td>
                 <td>dasselbe wie <code>odd</code></td>
-                <td>1, 3, 5, 7</td>
+                <td>1, 3, 5, 7, 9</td>
             </tr>
             <tr>
                 <td>5</td>
@@ -338,11 +338,13 @@
         <code>!important</code> schlägt alles.
     </p>
 
-    <p class="tacho" id="tacho" style="color: #b3261e;">
-        Ich werde von <code>p</code>, <code>.tacho</code>, <code>#tacho</code>
-        und einem <code>style</code>-Attribut angesprochen. Sichtbar ist das
-        <code>style</code>-Attribut.
-    </p>
+    <div class="tacho-demo">
+        <p class="tacho" id="tacho" style="color: #b3261e;">
+            Ich werde von <code>.tacho-demo p</code>, <code>.tacho-demo .tacho</code>,
+            <code>.tacho-demo #tacho</code> und einem <code>style</code>-Attribut
+            angesprochen. Sichtbar ist das <code>style</code>-Attribut.
+        </p>
+    </div>
 
     <table class="gewichte">
         <caption>Gewichte im Vergleich</caption>

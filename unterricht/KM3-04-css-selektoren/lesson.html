@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM3-04 · CSS-Selektoren</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle"
+          aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM3-04 · CSS-Selektoren</span>
+  <h1>Der Selektor ist eine Adresse</h1>
+  <p class="subtitle">Wie du ein Element triffst, ohne es anzufassen —
+  und warum dieselbe Adresse zwei verschiedene Elemente meinen kann.</p>
+</header>
+
+<div class="callout tipp">
+  <span class="label">Lektüre</span>
+  <p>Pflicht, vor dem Weiterlesen:
+     <a href="https://developer.mozilla.org/de/docs/Web/CSS/CSS_selectors">MDN
+     — CSS-Selektoren</a> (Übersicht mit allen Familien).
+     Dazu zum Spielen:
+     <a href="https://flukeout.github.io/">CSS Diner</a> — 32 Levels,
+     jede Aufgabe ist ein Selektor.</p>
+</div>
+
+<section>
+  <div class="baustein">Einstiegsfrage</div>
+  <p>Am Freitag soll die Speisekarte fertig sein. Die Tabelle soll
+  Zebra-Streifen haben, der letzte Eintrag der Getränkeliste soll anders
+  aussehen, und der Bestellknopf soll erst reagieren, wenn das Häkchen
+  „AGB gelesen" gesetzt ist.</p>
+  <p>Der naheliegende Weg: jede Zeile einzeln ansprechen. Bei zehn Zeilen
+  geht das. Bei vierzig Zeilen hast du vierzig <code>class</code>-Namen im
+  HTML — und beim nächsten neuen Gericht schreibst du sie wieder.</p>
+  <p><strong>Geht das auch ohne Anfassen?</strong> Ja: Ein Selektor ist eine
+  Adresse, die auf ein Element zeigt. Wer die Adresse richtig schreibt,
+  muss das HTML nicht anfassen.</p>
+</section>
+
+<section>
+  <div class="baustein">Ziel-Artefakt</div>
+  <p>Das ist dein Übungsobjekt für die nächsten 90 Minuten:
+  <a href="demo.html">das Selektoren-Labor</a> (öffnet im selben Tab).
+  Eine Seite mit Tabelle, Listen, Formular und Links — jede Regel im
+  Stylesheet nennt den Selektor, den sie verwendet.</p>
+<pre>
+/* So sieht eine Regel im Labor aus — Kommentar = Selektor */
+table.labor tbody tr:nth-child(odd) {
+    background: #f1f3fb;     /* Zeilen 1, 3, 5, 7, 9 */
+}
+</pre>
+  <p>Arbeitsweise: Seite im Browser öffnen, <kbd>F12</kbd> drücken,
+  <em>Elements</em> wählen, ein Element anklicken — rechts unter
+  <em>Styles</em> steht, welche Regel greift und welche von einer
+  stärkeren verdrängt wird (durchgestrichen).</p>
+  <p>Danach änderst du in <code>demo.css</code> einen Selektor, lädst neu
+  und siehst den Unterschied. Genau das ist die Übung.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 1 — Die fünf Grundformen</h2>
+  <p>Jeder Selektor beginnt mit einem von fünf Mustern. Alles Weitere in
+  dieser Lektion ist eine Verfeinerung davon.</p>
+
+  <table>
+    <tr><th>Form</th><th>Beispiel</th><th>Trifft</th></tr>
+    <tr><td>Element</td><td><code>p</code></td><td>alle Absätze</td></tr>
+    <tr><td>Klasse</td><td><code>.hinweis</code></td><td>alle Elemente mit <code>class="hinweis"</code></td></tr>
+    <tr><td>ID</td><td><code>#intro</code></td><td>das Element mit <code>id="intro"</code></td></tr>
+    <tr><td>Universal</td><td><code>*</code></td><td>jedes Element</td></tr>
+    <tr><td>Gruppe</td><td><code>h1, h2</code></td><td>alle <code>h1</code> <em>und</em> alle <code>h2</code></td></tr>
+  </table>
+
+  <p>Die Klasse ist der Normalfall: Sie darf mehrfach vorkommen und ist
+  für Styling gedacht. Die ID ist für einmalige Ankerziele gedacht — und
+  sie wiegt in der Rangordnung (Schritt 7) am schwersten.</p>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p>Das Komma ist ein <strong>ODER</strong>, kein UND. <code>h2, p</code>
+    heißt: jedes <code>h2</code> und jeder <code>p</code> — nicht „p in h2".
+    Die Reihenfolge im Komma ändert nichts.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: grundformen">
+    <fieldset class="frage">
+      <legend class="frage-text">Eine Regel soll genau die Absätze mit der
+      Klasse <code>hinweis</code> formatieren — und sonst nichts. Welche
+      Selektoren tun das?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q1" value="0" data-grund="Richtig — Element und Klasse kombiniert: nur p mit dieser Klasse."> <code>p.hinweis</code></label>
+        <label><input type="checkbox" name="km3-04-q1" value="1" data-grund="Falsch — ohne p trifft es jedes Element mit dieser Klasse, etwa auch ein div."> <code>.hinweis</code></label>
+        <label><input type="checkbox" name="km3-04-q1" value="2" data-grund="Falsch — # ist die ID, nicht die Klasse; das trifft nur id=&quot;hinweis&quot;."> <code>#hinweis</code></label>
+        <label><input type="checkbox" name="km3-04-q1" value="3" data-grund="Falsch — das Leerzeichen verlangt ein Element mit id hinweis IN einem p."> <code>p #hinweis</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Selektoren treffen das Element
+      <code>&lt;p class="hinweis gross" id="intro"&gt;</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q2" value="0" data-grund="Richtig — der Elementname p passt."> <code>p</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q2" value="1" data-grund="Richtig — gross steht in der Klassenliste."> <code>.gross</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q2" value="2" data-grund="Richtig — die ID des Elements ist intro."> <code>#intro</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q2" value="3" data-grund="Richtig — das Element hat überhaupt ein class-Attribut, mehr prüft diese Form nicht."> <code>[class]</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was stimmt über die Gruppe
+      <code>h2, p { … }</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" name="km3-04-q3" value="0" data-grund="Falsch — das wäre h2 p, also ein Absatz IN einer Überschrift."> Sie gilt nur für ein p innerhalb einer h2</label>
+        <label><input type="checkbox" name="km3-04-q3" value="1" data-grund="Falsch — das Komma ist ein ODER, nicht ein UND."> Das Komma verlangt, dass beide Elemente vorkommen</label>
+        <label><input type="checkbox" name="km3-04-q3" value="2" data-grund="Falsch — die Reihenfolge im Komma hat keine Bedeutung für die Priorität."> Der erste Eintrag bestimmt die Priorität der Gruppe</label>
+        <label><input type="checkbox" name="km3-04-q3" value="3" data-grund="Falsch — die Gruppe hat keine eigene Spezifität; jeder Eintrag zählt für sich."> Die Gruppe zählt insgesamt als ein Selektor</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Spezifität bringt der Universal-
+      Selektor <code>*</code> in eine Regel?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q4" value="0" data-grund="Richtig — * zählt wie ein Elementname, nämlich gar nicht: 0-0-0."> gar keine, also 0-0-0</label>
+        <label><input type="checkbox" name="km3-04-q4" value="1" data-grund="Falsch — * ist kein Elementname und zählt darum nicht als 0-0-1."> so viel wie ein Elementname, 0-0-1</label>
+        <label><input type="checkbox" name="km3-04-q4" value="2" data-grund="Falsch — * ist schwächer als jede Klasse."> mehr als eine Klasse, weil es alles trifft</label>
+        <label><input type="checkbox" name="km3-04-q4" value="3" data-grund="Falsch — die Spezifität hängt nicht vom getroffenen Element ab."> je nach getroffenem Element verschieden</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 2 — Kombinatoren: vier Wege nach innen und zur Seite</h2>
+  <p>Ein Selektor allein trifft oft zu viel. Kombinatoren verfeinern die
+  Adresse — drei davon zeigen nach innen (Nachfahre, Kind), zwei zur
+  Seite (Nachbar, Geschwister).</p>
+
+  <table>
+    <tr><th>Zeichen</th><th>Name</th><th>Bedeutung am Beispiel</th></tr>
+    <tr><td>Leerzeichen</td><td>Nachfahre</td><td><code>article p</code> — jeder p irgendwo in article</td></tr>
+    <tr><td><code>&gt;</code></td><td>Kind</td><td><code>article &gt; p</code> — nur direkte Kinder</td></tr>
+    <tr><td><code>+</code></td><td>direkter Nachbar</td><td><code>h2 + p</code> — der eine p direkt danach</td></tr>
+    <tr><td><code>~</code></td><td>allgemeiner Geschwister</td><td><code>h2 ~ p</code> — alle p danach, gleiche Ebene</td></tr>
+  </table>
+
+  <p><strong>Der Klassiker:</strong> <code>.a .b</code> und <code>.a.b</code>
+  sehen ähnlich aus, meinen aber Verschiedenes. Das Leerzeichen sucht ein
+  Element <em>in</em> einem anderen; der Punkt ohne Leerzeichen verlangt
+  <em>zwei Klassen am selben Element</em>.</p>
+
+<pre>
+.karte .marke   /* ein Element .marke IRGENDWO in .karte */
+.karte.marke    /* EIN Element, das beide Klassen trägt */
+.karte > .marke /* .marke als direktes Kind von .karte */
+</pre>
+
+  <div class="quiz" data-titel="Quiz: kombinatoren">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein <code>&lt;p&gt;</code> steckt zwei
+      Ebenen tief in einem <code>&lt;article&gt;</code>, in einem
+      <code>&lt;div&gt;</code>. Welche Selektoren treffen ihn?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q5" value="0" data-grund="Richtig — der Nachfahre zählt keine Ebenen, er trifft jede Tiefe."> <code>article p</code></label>
+        <label><input type="checkbox" name="km3-04-q5" value="1" data-grund="Falsch — das Kind-Zeichen verlangt den p direkt im article, hier liegt ein div dazwischen."> <code>article &gt; p</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q5" value="2" data-grund="Richtig — div p trifft den Absatz im div, und das div liegt im article."> <code>div p</code></label>
+        <label><input type="checkbox" name="km3-04-q5" value="3" data-grund="Falsch — dieses Zeichen sucht Geschwister, nicht Nachfahren."> <code>article ~ p</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Drei Absätze stehen unter einer
+      <code>h2</code>. Was trifft <code>h2 + p</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q6" value="0" data-grund="Richtig — + nimmt genau den einen direkten Nachfolger."> nur den ersten Absatz danach</label>
+        <label><input type="checkbox" name="km3-04-q6" value="1" data-grund="Falsch — alle drei trifft h2 ~ p, nicht h2 + p."> alle drei Absätze danach</label>
+        <label><input type="checkbox" name="km3-04-q6" value="2" data-grund="Falsch — Kombinatoren zeigen nach vorn oder zur Seite, nicht rückwärts."> den Absatz davor</label>
+        <label><input type="checkbox" name="km3-04-q6" value="3" data-grund="Falsch — ein Absatz in der h2 wäre h2 p; hier geht es um Geschwister."> den Absatz innerhalb der h2</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">In einer Liste trägt der zweite Eintrag
+      die Klasse <code>marke</code>. Was trifft
+      <code>li.marke ~ li</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q7" value="0" data-grund="Richtig — ~ nimmt alle folgenden Geschwister derselben Ebene."> alle Einträge nach der Marke</label>
+        <label><input type="checkbox" name="km3-04-q7" value="1" data-grund="Falsch — nur den direkten Nachfolger trifft li.marke + li."> nur den Eintrag direkt nach der Marke</label>
+        <label><input type="checkbox" name="km3-04-q7" value="2" data-grund="Falsch — die Marke selbst ist nicht Geschwister von sich."> den markierten Eintrag selbst</label>
+        <label><input type="checkbox" name="km3-04-q7" value="3" data-grund="Falsch — Kombinatoren dieser Art zählen nur nachfolgende Geschwister."> alle Einträge vor der Marke</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche zwei Schreibweisen meinen dasselbe
+      Element?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" name="km3-04-q8" value="0" data-grund="Falsch — das Leerzeichen sucht das marke-Element IN karte."> <code>.karte .marke</code> und <code>.karte.marke</code></label>
+        <label><input type="checkbox" name="km3-04-q8" value="1" data-grund="Falsch — &gt; verlangt direkte Kindschaft, das Leerzeichen erlaubt jede Tiefe."> <code>.karte .marke</code> und <code>.karte &gt; .marke</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q8" value="2" data-grund="Richtig — mit oder ohne Leerzeichen um &gt; bleibt der Kombinator derselbe."> <code>.karte &gt; .marke</code> und <code>.karte&gt;.marke</code></label>
+        <label><input type="checkbox" name="km3-04-q8" value="3" data-grund="Falsch — + nimmt nur den direkten Nachbarn, ~ alle folgenden Geschwister."> <code>.karte + .marke</code> und <code>.karte ~ .marke</code></label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 3 — Struktur: zählen statt Klassen vergeben</h2>
+  <p>Diese Familie fragt nach der <em>Position</em> eines Elements in
+  seinem Elternelement. Du brauchst dafür kein einziges zusätzliches
+  Attribut im HTML.</p>
+
+  <table>
+    <tr><th>Pseudoklasse</th><th>Fragt nach</th></tr>
+    <tr><td><code>:first-child</code></td><td>erstes Kind des Elternelements</td></tr>
+    <tr><td><code>:last-child</code></td><td>letztes Kind</td></tr>
+    <tr><td><code>:only-child</code></td><td>einziges Kind (keine Geschwister)</td></tr>
+    <tr><td><code>:nth-child(An+B)</code></td><td>Position von vorn, z. B. <code>2n+1</code>, <code>-n+3</code></td></tr>
+    <tr><td><code>:nth-last-child(n)</code></td><td>Position von hinten</td></tr>
+    <tr><td><code>:first-of-type</code> …</td><td>wie oben, aber nur unter Geschwistern desselben Tags</td></tr>
+    <tr><td><code>:empty</code></td><td>Element ohne jeden Inhalt</td></tr>
+  </table>
+
+  <p><code>:nth-child(2n)</code> trifft die geraden Positionen
+  (2, 4, 6 …), <code>2n+1</code> die ungeraden.
+  <code>-n+3</code> liest sich „bis drei": 1, 2, 3. Und
+  <code>:nth-child(0)</code> trifft nie etwas — die Zählung beginnt bei 1.</p>
+
+  <div class="callout">
+    <span class="label">Merke</span>
+    <p><code>:nth-child</code> zählt <strong>alle</strong> Kinder, nicht nur
+    die des eigenen Tags. Steht in einem Container zuerst eine
+    <code>h3</code>, ist der erste <code>p</code> das zweite Kind. Wer nur
+    die Absätze zählen will, nimmt <code>:nth-of-type</code>.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: struktur">
+    <fieldset class="frage">
+      <legend class="frage-text">Eine Liste hat fünf Einträge. Welche
+      trifft <code>li:nth-child(2n)</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q9" value="0" data-grund="Richtig — 2n ergibt 2, 4, 6 … also die geraden Positionen."> den zweiten und den vierten</label>
+        <label><input type="checkbox" name="km3-04-q9" value="1" data-grund="Falsch — 2n beginnt bei 2; die 1 wäre 2n+1."> den ersten, dritten und fünften</label>
+        <label><input type="checkbox" name="km3-04-q9" value="2" data-grund="Falsch — gezählt wird ab 1, eine Position 0 gibt es nicht."> den nullten und den zweiten</label>
+        <label><input type="checkbox" name="km3-04-q9" value="3" data-grund="Falsch — der fünfte ist ungerade und gehört zu 2n+1."> den zweiten, vierten und fünften</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was trifft
+      <code>tr:nth-child(-n+3)</code> in einer Tabelle mit acht
+      Zeilen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q10" value="0" data-grund="Richtig — -n+3 zählt von 3 rückwärts: 3, 2, 1."> die ersten drei Zeilen</label>
+        <label><input type="checkbox" name="km3-04-q10" value="1" data-grund="Falsch — die letzten drei wären -n+3 nicht; von hinten zählt nth-last-child."> die letzten drei Zeilen</label>
+        <label><input type="checkbox" name="km3-04-q10" value="2" data-grund="Falsch — die Formel beginnt bei der ersten Zeile, nicht danach."> alle Zeilen außer den ersten drei</label>
+        <label><input type="checkbox" name="km3-04-q10" value="3" data-grund="Falsch — die Schreibweise ist gültig; negative An+B-Werte sind erlaubt."> keine, weil der Wert negativ ist</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Container enthält zuerst eine
+      <code>&lt;h3&gt;</code>, dann zwei <code>&lt;p&gt;</code>. Was trifft
+      <code>p:first-of-type</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q11" value="0" data-grund="Richtig — of-type zählt nur unter den Absätzen, die h3 stört nicht."> den ersten Absatz</label>
+        <label><input type="checkbox" name="km3-04-q11" value="1" data-grund="Falsch — die h3 ist kein p, also für p:first-of-type unsichtbar."> die h3, weil sie erstes Kind ist</label>
+        <label><input type="checkbox" name="km3-04-q11" value="2" data-grund="Falsch — genau dafür gibt es of-type; ohne of-type träfe es zu."> gar nichts, weil die h3 zuerst kommt</label>
+        <label><input type="checkbox" name="km3-04-q11" value="3" data-grund="Falsch — beide Absätze trifft p, nicht p:first-of-type."> beide Absätze</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über die
+      Struktur-Pseudoklassen stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q12" value="0" data-grund="Richtig — last-child meint das letzte Kind seines Elternelements."> <code>:last-child</code> trifft das letzte Kind des Elternelements</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q12" value="1" data-grund="Richtig — nth-last-child zählt die Position von hinten."> <code>:nth-last-child(2)</code> zählt von hinten</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q12" value="2" data-grund="Richtig — only-child verlangt, dass es keine Geschwister gibt."> <code>:only-child</code> trifft ein Element ohne Geschwister</label>
+        <label><input type="checkbox" name="km3-04-q12" value="3" data-grund="Falsch — :first-child prüft die Position, nicht den Tag; dafür gibt es of-type."> <code>:first-child</code> prüft zusätzlich den Tag-Typ</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 4 — Zustand: was der Benutzer gerade tut</h2>
+  <p>Diese Pseudoklassen fragen nicht nach dem Aufbau, sondern nach dem
+  <em>Moment</em>: Ist das Häkchen gesetzt? Hat das Feld den Fokus? Ist
+  der Link gerade das Sprungziel?</p>
+
+  <table>
+    <tr><th>Pseudoklasse</th><th>Gilt, wenn …</th></tr>
+    <tr><td><code>:hover</code></td><td>der Zeiger darüber ist (nur mit Maus)</td></tr>
+    <tr><td><code>:focus-visible</code></td><td>der Fokus per Tastatur dorthin kam</td></tr>
+    <tr><td><code>:checked</code></td><td>Häkchen oder Radiobutton gesetzt ist</td></tr>
+    <tr><td><code>:disabled</code> / <code>:required</code></td><td>das Feld gesperrt bzw. Pflicht ist</td></tr>
+    <tr><td><code>:invalid</code> / <code>:placeholder-shown</code></td><td>der Wert ungültig ist bzw. noch der Platzhalter steht</td></tr>
+    <tr><td><code>:target</code></td><td>das Element ist das Ziel des aktuellen Sprungmarken-Ankers</td></tr>
+  </table>
+
+  <p>Der stärkste Fall ist <code>:checked + label</code>: Das Häkchen
+  selbst bleibt unsichtbar klein, aber das Label daneben wird fett und
+  grün. Kein JavaScript, keine zusätzliche Klasse — der Zustand des
+  Inputs steuert die Darstellung seines Nachbarn.</p>
+
+  <p>Dazu kommen vier <strong>Logik</strong>-Pseudoklassen, die Selektoren
+  kombinieren:</p>
+
+<pre>
+:not(.aktiv)        /* alles außer den Elementen mit .aktiv */
+:is(h2, h3)         /* h2 oder h3 — Gewicht zählt wie der schwerste Teil */
+:where(h2, h3)      /* dasselbe, aber mit Gewicht 0 */
+.kasten:has(img)    /* ein .kasten, der ein img ENTHÄLT */
+</pre>
+
+  <p><code>:is()</code> und <code>:where()</code> unterscheiden sich nur in
+  der Rangordnung. <code>:where()</code> ist die höfliche Variante für
+  Bibliotheken: Sie lässt sich später leicht überschreiben.</p>
+
+  <div class="quiz" data-titel="Quiz: zustand">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Häkchen soll das Label direkt daneben
+      hervorheben. Welcher Selektor tut das?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q13" value="0" data-grund="Richtig — checked am Input plus direkter Nachbar label."> <code>input:checked + label</code></label>
+        <label><input type="checkbox" name="km3-04-q13" value="1" data-grund="Falsch — das Leerzeichen verlangt ein label IM input, das gibt es nicht."> <code>input:checked label</code></label>
+        <label><input type="checkbox" name="km3-04-q13" value="2" data-grund="Falsch — das label wird nicht angeklickt, sondern der Input ist gesetzt."> <code>label:checked</code></label>
+        <label><input type="checkbox" name="km3-04-q13" value="3" data-grund="Falsch — hover reagiert auf den Zeiger, nicht auf den Haken."> <code>input:hover + label</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Worin unterscheiden sich
+      <code>:focus</code> und <code>:focus-visible</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q14" value="0" data-grund="Richtig — focus-visible zeigt den Ring nur bei Tastaturbedienung, nicht nach jedem Klick."> <code>:focus-visible</code> reagiert nur auf Tastaturfokus</label>
+        <label><input type="checkbox" name="km3-04-q14" value="1" data-grund="Falsch — genau dieser Unterschied ist der Grund für die zweite Pseudoklasse."> Sie verhalten sich immer gleich</label>
+        <label><input type="checkbox" name="km3-04-q14" value="2" data-grund="Falsch — beide gelten für jedes fokussierbare Element."> <code>:focus-visible</code> gilt nur für Links</label>
+        <label><input type="checkbox" name="km3-04-q14" value="3" data-grund="Falsch — der Fokusring ist kein Formular-Thema, sondern eine Bedienhilfe."> <code>:focus</code> gilt nur in Formularen</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was macht
+      <code>.kasten:has(img)</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q15" value="0" data-grund="Richtig — has prüft die Kinder und formatiert das Elternelement."> Es formatiert jeden Kasten, der ein Bild enthält</label>
+        <label><input type="checkbox" name="km3-04-q15" value="1" data-grund="Falsch — das wäre .kasten img, also der Nachfahre."> Es formatiert die Bilder in jedem Kasten</label>
+        <label><input type="checkbox" name="km3-04-q15" value="2" data-grund="Falsch — has ist keine Abkürzung für is; is gruppiert Selektoren."> Es ist eine Kurzform von <code>:is()</code></label>
+        <label><input type="checkbox" name="km3-04-q15" value="3" data-grund="Falsch — has gilt für jedes Element, nicht nur für Links."> Es funktioniert nur bei Links</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>:not</code>, <code>:is</code> und <code>:where</code>
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q16" value="0" data-grund="Richtig — not schließt die genannten Elemente aus."> <code>:not(.aktiv)</code> schließt Elemente mit dieser Klasse aus</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q16" value="1" data-grund="Richtig — is fasst mehrere Selektoren in einer Regel zusammen."> <code>:is(h2, h3)</code> fasst beide Überschriften zusammen</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q16" value="2" data-grund="Richtig — where trägt nichts zur Rangordnung bei."> <code>:where()</code> hat die Spezifität 0</label>
+        <label><input type="checkbox" name="km3-04-q16" value="3" data-grund="Falsch — not nimmt heute eine ganze Liste von Selektoren."> <code>:not()</code> erlaubt nur einen Selektor</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 5 — Attribute: Daten am Element auswerten</h2>
+  <p>Jedes Element trägt Attribute: <code>href</code>, <code>type</code>,
+  <code>lang</code>, <code>id</code>, <code>class</code> — und eigene
+  <code>data-*</code>. Selektoren können sie prüfen, ohne dass du eine
+  Klasse vergeben musst.</p>
+
+  <table>
+    <tr><th>Schreibweise</th><th>Prüft</th><th>Beispiel</th></tr>
+    <tr><td><code>[attr]</code></td><td>Attribut ist vorhanden</td><td><code>[data-status]</code></td></tr>
+    <tr><td><code>[attr="wert"]</code></td><td>genauer Wert</td><td><code>[data-status="offen"]</code></td></tr>
+    <tr><td><code>[attr^="…"]</code></td><td>Wert beginnt damit</td><td><code>[href^="https"]</code></td></tr>
+    <tr><td><code>[attr$="…"]</code></td><td>Wert endet damit</td><td><code>[href$=".pdf"]</code></td></tr>
+    <tr><td><code>[attr*="…"]</code></td><td>Wert enthält es irgendwo</td><td><code>[class*="karte"]</code></td></tr>
+    <tr><td><code>[attr~="…"]</code></td><td>es ist ein ganzes Wort im Wert</td><td><code>[class~="karte"]</code></td></tr>
+    <tr><td><code>[attr|="…"]</code></td><td>Wert ist es oder beginnt mit „es-"</td><td><code>[lang|="de"]</code></td></tr>
+  </table>
+
+  <p><code>[class~="karte"]</code> und <code>[class*="karte"]</code> sind
+  der häufigste Verwechslungspunkt: Die Tilde verlangt das Wort
+  <em>ganz</em>, der Stern begnügt sich mit einem Teilstück. Aus
+  <code>class="karte-extragross"</code> wird also nur mit dem Stern ein
+  Treffer.</p>
+
+  <div class="quiz" data-titel="Quiz: attribute">
+    <fieldset class="frage">
+      <legend class="frage-text">Was trifft
+      <code>a[href$=".pdf"]</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q17" value="0" data-grund="Richtig — $= prüft das Ende des Attributwerts."> Links, deren Ziel auf .pdf endet</label>
+        <label><input type="checkbox" name="km3-04-q17" value="1" data-grund="Falsch — der Stern prüft irgendwo im Wert, nicht das Ende."> Links, die irgendwo pdf enthalten</label>
+        <label><input type="checkbox" name="km3-04-q17" value="2" data-grund="Falsch — CSS formatiert Elemente, keine Dateien."> die PDF-Datei selbst</label>
+        <label><input type="checkbox" name="km3-04-q17" value="3" data-grund="Falsch — das wäre das Zirkumflex ^=."> Links, deren Ziel mit .pdf beginnt</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>[class~="karte"]</code> und <code>[class*="karte"]</code>
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q18" value="0" data-grund="Richtig — ~= verlangt karte als ganzes Wort der Klassenliste."> Die Tilde trifft nur ein ganzes Wort</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q18" value="1" data-grund="Richtig — *= genügt sich mit einem Teilstück des Werts."> Der Stern trifft auch einen Teilstring</label>
+        <label><input type="checkbox" name="km3-04-q18" value="2" data-grund="Falsch — genau der Unterschied zwischen Wort und Teilstück trennt die beiden."> Beide treffen immer dieselben Elemente</label>
+        <label><input type="checkbox" name="km3-04-q18" value="3" data-grund="Falsch — das Zirkumflex ^= prüft den Anfang."> Die Tilde prüft den Anfang des Werts</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>[data-status]</code> und <code>[data-status="offen"]</code>
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q19" value="0" data-grund="Richtig — ohne Wert prüft der Selektor nur die Existenz."> <code>[data-status]</code> prüft nur, ob das Attribut da ist</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q19" value="1" data-grund="Richtig — mit Wert muss der Inhalt exakt passen."> <code>[data-status="offen"]</code> verlangt genau diesen Wert</label>
+        <label><input type="checkbox" name="km3-04-q19" value="2" data-grund="Falsch — der Unterschied ist die Existenz- gegen die Wertprüfung."> Beide prüfen ausschließlich den Wert</label>
+        <label><input type="checkbox" name="km3-04-q19" value="3" data-grund="Falsch — Attributselektoren funktionieren mit jedem Attribut."> Attributselektoren funktionieren nur mit id</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Schreibweise prüft den
+      <em>Anfang</em> eines Attributwerts?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q20" value="0" data-grund="Richtig — ^= heißt: beginnt mit."> <code>[href^="http"]</code></label>
+        <label><input type="checkbox" name="km3-04-q20" value="1" data-grund="Falsch — $= prüft das Ende des Werts."> <code>[href$="http"]</code></label>
+        <label><input type="checkbox" name="km3-04-q20" value="2" data-grund="Falsch — *= sucht die Zeichenfolge irgendwo im Wert."> <code>[href*="http"]</code></label>
+        <label><input type="checkbox" name="km3-04-q20" value="3" data-grund="Falsch — ~= verlangt ein ganzes Wort, nicht einen Anfang."> <code>[href~="http"]</code></label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 6 — Pseudoelemente: Teile, die es im HTML nicht gibt</h2>
+  <p>Pseudoelemente schreibst du mit zwei Doppelpunkten. Sie adressieren
+  einen Teil eines Elements — oder erzeugen einen, der nicht im Quelltext
+  steht.</p>
+
+  <table>
+    <tr><th>Pseudoelement</th><th>Ziel</th></tr>
+    <tr><td><code>::before</code> / <code>::after</code></td><td>erzeugter Inhalt vor bzw. nach dem Elementinhalt</td></tr>
+    <tr><td><code>::first-letter</code></td><td>der erste Buchstabe</td></tr>
+    <tr><td><code>::first-line</code></td><td>die erste Zeile, wie sie gerade umbrochen wird</td></tr>
+    <tr><td><code>::marker</code></td><td>das Aufzählungszeichen einer Liste</td></tr>
+    <tr><td><code>::selection</code></td><td>der mit der Maus markierte Text</td></tr>
+    <tr><td><code>::placeholder</code></td><td>der Platzhaltertext eines Eingabefelds</td></tr>
+  </table>
+
+  <p><code>::before</code> und <code>::after</code> brauchen
+  <code>content</code>. Ohne diese Eigenschaft existiert das Pseudoelement
+  nicht — es erscheint nichts, und das ist der häufigste
+  „warum sehe ich nichts"-Fall.</p>
+
+<pre>
+.zaehler::before {
+    content: "Station " counter(zaehler) ": ";  /* Text entsteht im CSS */
+}
+</pre>
+
+  <p>Der erzeugte Text steht <em>nicht</em> im HTML-Quelltext. Für
+  Bildschirmleser ist er deshalb heikel: Was inhaltlich zählt, gehört ins
+  HTML; was nur Dekoration ist, darf ins CSS.</p>
+
+  <div class="quiz" data-titel="Quiz: pseudoelemente">
+    <fieldset class="frage">
+      <legend class="frage-text">Du schreibst
+      <code>.karte::before { color: red; }</code> — und siehst nichts.
+      Woran liegt es?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q21" value="0" data-grund="Richtig — ohne content erzeugt das Pseudoelement keinen Inhalt."> Es fehlt die Eigenschaft <code>content</code></label>
+        <label><input type="checkbox" name="km3-04-q21" value="1" data-grund="Falsch — display ist hier nicht die Ursache; der Inhalt fehlt."> Es fehlt <code>display: block</code></label>
+        <label><input type="checkbox" name="km3-04-q21" value="2" data-grund="Falsch — Pseudoelemente brauchen keine ID."> Es fehlt eine <code>id</code> am Element</label>
+        <label><input type="checkbox" name="km3-04-q21" value="3" data-grund="Falsch — ::before funktioniert bei fast jedem Element, nicht nur bei Links."> Es funktioniert nur bei Links</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche der folgenden sind echte
+      Pseudoelemente?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q22" value="0" data-grund="Richtig — first-letter adressiert den ersten Buchstaben."> <code>::first-letter</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q22" value="1" data-grund="Richtig — marker adressiert das Aufzählungszeichen."> <code>::marker</code></label>
+        <label><input type="checkbox" data-richtig name="km3-04-q22" value="2" data-grund="Richtig — selection adressiert den markierten Text."> <code>::selection</code></label>
+        <label><input type="checkbox" name="km3-04-q22" value="3" data-grund="Falsch — ::sibling gibt es nicht; Geschwister wählt man mit + und ~."> <code>::sibling</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Warum schreibt man
+      <code>::before</code> mit zwei Doppelpunkten?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q23" value="0" data-grund="Richtig — die doppelte Form kennzeichnet Pseudoelemente, die einfache die Pseudoklassen."> Die doppelte Form kennzeichnet Pseudoelemente</label>
+        <label><input type="checkbox" name="km3-04-q23" value="1" data-grund="Falsch — die einfache Form ist die alte Schreibweise, nicht die aktuelle."> Die einfache Form ist die aktuelle Schreibweise</label>
+        <label><input type="checkbox" name="km3-04-q23" value="2" data-grund="Falsch — beide Formen meinen dasselbe, die doppelte ist nur eindeutig."> Mit zwei Doppelpunkten entsteht anderer Inhalt</label>
+        <label><input type="checkbox" name="km3-04-q23" value="3" data-grund="Falsch — ::before ist gültig und wird von allen Browsern unterstützt."> Die doppelte Form ist ungültiges CSS</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über Pseudoelemente
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q24" value="0" data-grund="Richtig — der Text aus content existiert nur in der Darstellung."> Der Text aus <code>content</code> steht nicht im Quelltext</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q24" value="1" data-grund="Richtig — first-line folgt dem tatsächlichen Umbruch."> <code>::first-line</code> formatiert die erste Zeile des Blocks</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q24" value="2" data-grund="Richtig — marker ist genau für das Aufzählungszeichen da."> <code>::marker</code> färbt das Aufzählungszeichen</label>
+        <label><input type="checkbox" name="km3-04-q24" value="3" data-grund="Falsch — content nimmt Text, Zähler, Zitate und auch Bilder."> <code>content</code> funktioniert ausschließlich mit Bildern</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 7 — Wer gewinnt? Spezifität und Kaskade</h2>
+  <p>Mehrere Regeln treffen dasselbe Element — welche gilt? Die Antwort
+  steht in drei Stufen: Rangordnung, Reihenfolge, <code>!important</code>.</p>
+
+  <table>
+    <tr><th>Schreibweise</th><th>Gewicht</th><th>Beispiel</th></tr>
+    <tr><td>Element, Pseudoelement</td><td>0-0-1</td><td><code>p</code>, <code>::before</code></td></tr>
+    <tr><td>Klasse, Attribut, Pseudoklasse</td><td>0-1-0</td><td><code>.tacho</code>, <code>[lang]</code>, <code>:hover</code></td></tr>
+    <tr><td>ID</td><td>1-0-0</td><td><code>#tacho</code></td></tr>
+    <tr><td><code>style</code>-Attribut</td><td>höher als jede ID</td><td><code>style="color: red"</code></td></tr>
+  </table>
+
+  <p>Die drei Zahlen werden von links nach rechts verglichen: Eine ID
+  schlägt beliebig viele Klassen. Bei <em>gleichem</em> Gewicht gewinnt
+  die später notierte Regel — und <code>!important</code> schlägt beides.</p>
+
+  <p>Deshalb ist <code>!important</code> die Ausnahme: Es hebelt die
+  Rangordnung aus, und danach hilft nur noch mehr <code>!important</code>.
+  Für Kurs-CSS gilt: erst gar nicht anfangen.</p>
+
+  <div class="callout">
+    <span class="label">Merke</span>
+    <p>Die DevTools zeigen die Rangordnung: Verdrängte Deklarationen stehen
+    durchgestrichen da, die stärkste Regel steht oben. Wer streitet, schaut
+    zuerst dorthin.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: spezifitaet">
+    <fieldset class="frage">
+      <legend class="frage-text">Zwei Regeln treffen denselben Absatz:
+      <code>#tacho { color: orange; }</code> und
+      <code>.tacho { color: blue; }</code>. Welche Farbe gewinnt?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q25" value="0" data-grund="Richtig — die ID wiegt 1-0-0 und schlägt die Klasse 0-1-0."> orange, wegen der ID</label>
+        <label><input type="checkbox" name="km3-04-q25" value="1" data-grund="Falsch — die Reihenfolge entscheidet nur bei gleichem Gewicht."> blau, weil die Klasse kürzer ist</label>
+        <label><input type="checkbox" name="km3-04-q25" value="2" data-grund="Falsch — bei ungleichem Gewicht zählt die Rangordnung, nicht die Position."> die später notierte Regel</label>
+        <label><input type="checkbox" name="km3-04-q25" value="3" data-grund="Falsch — der Browser entscheidet nach Gewicht, nicht zufällig."> der Browser entscheidet zufällig</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Zwei Regeln haben genau dasselbe Gewicht
+      und treffen dasselbe Element. Was gilt?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q26" value="0" data-grund="Richtig — bei Gleichstand gewinnt die später notierte Regel."> die später notierte Regel</label>
+        <label><input type="checkbox" name="km3-04-q26" value="1" data-grund="Falsch — bei Gleichstand gewinnt die spätere, nicht die frühere."> die früher notierte Regel</label>
+        <label><input type="checkbox" name="km3-04-q26" value="2" data-grund="Falsch — eine der beiden gilt immer; CSS kennt keinen Streit um Gleichstand."> keine von beiden</label>
+        <label><input type="checkbox" name="km3-04-q26" value="3" data-grund="Falsch — die Reihenfolge im Stylesheet entscheidet, nichts anderes."> die Regel mit mehr Eigenschaften</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Gewichte stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q27" value="0" data-grund="Richtig — ein Elementname zählt einmal in der dritten Stelle."> <code>p</code> hat 0-0-1</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q27" value="1" data-grund="Richtig — eine Klasse zählt in der zweiten Stelle."> <code>.tacho</code> hat 0-1-0</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q27" value="2" data-grund="Richtig — eine ID zählt in der ersten Stelle."> <code>#tacho</code> hat 1-0-0</label>
+        <label><input type="checkbox" name="km3-04-q27" value="3" data-grund="Falsch — das style-Attribut steht über jeder ID, nicht auf Elementniveau."> <code>style="…"</code> hat 0-0-1</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was stimmt über
+      <code>!important</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-04-q28" value="0" data-grund="Richtig — es schlägt normale Deklarationen unabhängig vom Gewicht."> Es schlägt normale Deklarationen unabhängig vom Gewicht</label>
+        <label><input type="checkbox" name="km3-04-q28" value="1" data-grund="Falsch — es ändert nur die Auswertung, nicht das Gewicht des Selektors."> Es erhöht die Spezifität des Selektors</label>
+        <label><input type="checkbox" name="km3-04-q28" value="2" data-grund="Falsch — genau umgekehrt: Es macht spätere Änderungen mühsam."> Es macht Stylesheets leichter wartbar</label>
+        <label><input type="checkbox" name="km3-04-q28" value="3" data-grund="Falsch — important gilt für jede Eigenschaft, nicht nur bei IDs."> Es wirkt ausschließlich bei ID-Selektoren</label>
+      </div>
+    </fieldset>
+  </div>
+
+  <p><strong>Ausprobieren:</strong> Im Labor steht derselbe Absatz unter
+  vier Regeln. Lösche im HTML das <code>style</code>-Attribut, dann die
+  ID-Regel, dann die Klassenregel — die Farbe wandert Stufe für Stufe.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <div class="baustein">Jetzt du!</div>
+  <p>Erst vorhersagen, dann ausführen. Schreib deine Vermutung auf, bevor
+  du die Datei öffnest — die Abweichung ist der Lernstoff.</p>
+
+  <h3>1 · Vorhersage: welche Zeilen?</h3>
+  <p>Eine Tabelle hat sechs Zeilen im <code>tbody</code>. Es gelten
+  <code>tbody tr:nth-child(2n)</code> (grauer Grund) und
+  <code>tbody tr:nth-last-child(1)</code> (dicker Rahmen). Welche Zeilen
+  sind grau, welche hat den Rahmen?</p>
+
+  <h3>2 · Vorhersage: welcher Absatz?</h3>
+  <p>Im Labor gibt es <code>article.karte p</code> und
+  <code>article.karte &gt; p</code>. Der verschachtelte Absatz in
+  <code>.innen</code> — welcher der beiden Selektoren trifft ihn, und
+  woran erkennt man das im Browser?</p>
+
+  <h3>3 · Umbau: aus Klassen werden Adressen</h3>
+  <p>Im Labor färbt <code>.marke + p</code> den Absatz nach der Marke.
+  Schreibe die Regel so um, dass sie <em>ohne</em> die Klasse
+  <code>marke</code> funktioniert — mit <code>:nth-of-type</code> oder
+  <code>:first-of-type</code>. Welche Variante ist stabiler, wenn später
+  ein Absatz davor eingefügt wird?</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <div class="baustein">Typische Fehler</div>
+
+  <h3>Fehler 1 — <code>:nth-child</code> mit <code>:nth-of-type</code> verwechselt</h3>
+<pre>
+/* Container: h3, p, p — der erste p ist das ZWEITE Kind */
+p:nth-child(1) { }   /* trifft nichts: Kind 1 ist die h3 */
+p:nth-of-type(1) { } /* trifft den ersten p */
+</pre>
+
+  <h3>Fehler 2 — Leerzeichen, wo keines hingehört</h3>
+<pre>
+li .marke { }  /* .marke IRGENDWO in einem li */
+li.marke  { }  /* ein li, das selbst .marke ist */
+</pre>
+
+  <h3>Fehler 3 — <code>+</code> und <code>~</code> vertauscht</h3>
+<pre>
+h2 + p { }  /* genau der nächste Absatz */
+h2 ~ p { }  /* alle Absätze danach */
+</pre>
+
+  <h3>Fehler 4 — <code>::before</code> ohne <code>content</code></h3>
+<pre>
+.karte::before { color: red; }          /* unsichtbar */
+.karte::before { content: "→"; }        /* sichtbar */
+</pre>
+
+  <h3>Fehler 5 — <code>[class*=…]</code> statt <code>[class~=…]</code></h3>
+<pre>
+[class~="karte"] { }  /* trifft class="karte" — nicht "karte-gross" */
+[class*="karte"] { }  /* trifft beides */
+</pre>
+
+  <h3>Fehler 6 — ID als Styling-Werkzeug</h3>
+<pre>
+#bestellknopf { background: teal; }  /* 1-0-0: kaum überschreibbar */
+.bestellknopf { background: teal; }  /* 0-1-0: wartbar */
+</pre>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Zusammenfassung</h2>
+  <table>
+    <tr><th>Baustein</th><th>Wofür</th></tr>
+    <tr><td>Element, Klasse, ID</td><td>Grundadresse; Klasse für Wiederholung, ID für Einmaliges</td></tr>
+    <tr><td>Gruppe <code>a, b</code></td><td>dieselben Regeln für mehrere Selektoren (ODER)</td></tr>
+    <tr><td>Kombinatoren</td><td>Nachfahre, Kind, Nachbar, Geschwister — Tiefe und Ebene</td></tr>
+    <tr><td>Struktur</td><td><code>:first-child</code>, <code>:nth-child(An+B)</code>, <code>:nth-of-type</code>, <code>:empty</code></td></tr>
+    <tr><td>Zustand</td><td><code>:hover</code>, <code>:focus-visible</code>, <code>:checked</code>, <code>:invalid</code></td></tr>
+    <tr><td>Logik</td><td><code>:not()</code>, <code>:is()</code>, <code>:where()</code>, <code>:has()</code></td></tr>
+    <tr><td>Attribute</td><td><code>[attr]</code>, <code>[attr="…"]</code>, <code>^=</code>, <code>$=</code>, <code>*=</code>, <code>~=</code>, <code>|=</code></td></tr>
+    <tr><td>Pseudoelemente</td><td><code>::before</code>/<code>::after</code> (mit <code>content</code>), <code>::marker</code>, <code>::selection</code></td></tr>
+    <tr><td>Spezifität</td><td>ID &gt; Klasse/Attribut/Pseudoklasse &gt; Element; Gleichstand → später gewinnt</td></tr>
+  </table>
+  <p><strong>Ausblick:</strong> Mit diesen Adressen wird das Layout zum
+  nächsten Thema: Positionierung (<code>position</code>, <code>z-index</code>)
+  und danach Flexbox und Grid. Dort brauchst du die Selektoren ständig —
+  etwa <code>.karte:last-child</code> oder
+  <code>input:checked ~ .panel</code>. Zurück zur
+  <a href="../KM3-03-css-basics/lesson.html">Lektion KM3-03 — CSS-Grundlagen</a>
+  oder direkt zum <a href="demo.html">Selektoren-Labor</a>.</p>
+</section>
+
+<section>
+  <div class="baustein">Aufgabe</div>
+  <p>Drei Beispiele, aufsteigend: das Labor erweitern, ein Selbsttest im
+  Prüfungsformat und eine Transferaufgabe im Stil der CSS-PLF.
+  Details: <a href="aufgabe.md">Aufgabe KM3-04 — CSS-Selektoren</a>. —
+  <strong>Abgabe:</strong> nach Vorgabe deiner Lehrperson.</p>
+</section>
+
+<details class="lehrplan">
+  <summary>Lehrplan &amp; Einordnung</summary>
+  <ul>
+    <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile
+      Computing", Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr.
+      383/2021), Kompetenzmodul 3 — „Formatierungstechniken"</li>
+    <li><strong>KM-Bezug:</strong> KM3, Thema CSS-Selektoren
+      (Semesterplan UE 4) — baut auf KM3-03 (Einbindungswege, Box-Model)
+      auf und ist Grundlage für Position, Flexbox, Grid und Bootstrap</li>
+    <li><strong>Runtime:</strong> Browser + DevTools, <code>demo.html</code>
+      mit <code>demo.css</code>; kein Build, kein Server nötig</li>
+  </ul>
+</details>
+
+<footer class="navi">
+  <p><strong>Quelle zum Weiterlesen:</strong> MDN,
+  <a href="https://developer.mozilla.org/de/docs/Web/CSS/CSS_selectors">CSS-Selektoren</a>
+  · <a href="https://developer.mozilla.org/de/docs/Web/CSS/Specificity">Spezifität</a>
+  · Übung: <a href="https://flukeout.github.io/">CSS Diner</a>.</p>
+  <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a> ·
+    Zurück: <a href="../KM3-03-css-basics/lesson.html">KM3-03 — CSS-Grundlagen</a> ·
+    Labor: <a href="demo.html">Selektoren-Labor</a></p>
+</footer>
+
+</body>
+</html>

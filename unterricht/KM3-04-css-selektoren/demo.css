@@ -304,8 +304,8 @@ table.labor tbody tr:nth-child(-n+3) {
     border-left: 4px solid var(--accent);
 }
 
-/* tbody tr:nth-last-child(2) — die vorletzte Zeile, von hinten gezählt */
-tbody tr:nth-last-child(2) {
+/* table.labor tbody tr:nth-last-child(2) — die vorletzte Zeile, von hinten gezählt */
+table.labor tbody tr:nth-last-child(2) {
     border-right: 4px solid var(--warn);
 }
 
@@ -614,22 +614,31 @@ input::placeholder {
 
 /* Dieselbe Regelkette, drei Gewichte — sichtbar wird die schwerste.
    Reihenfolge zum Ausprobieren:
-   1. style-Attribut im HTML löschen  → #tacho gewinnt (orange)
-   2. #spezifitaet #tacho löschen     → .tacho gewinnt (blau)
-   3. #spezifitaet .tacho löschen     → p gewinnt (grün) */
+   1. style-Attribut im HTML löschen  → .tacho-demo #tacho gewinnt (orange)
+   2. .tacho-demo #tacho löschen      → .tacho gewinnt (blau)
+   3. .tacho-demo .tacho löschen      → p gewinnt (grün) */
 
-/* #spezifitaet p — Gewicht 1-0-1 */
-#spezifitaet p {
+/* .tacho-demo — Container, damit nur dieser eine Absatz die Kette zeigt */
+.tacho-demo {
+    margin: 1rem 0;
+    padding: 0.6rem 1rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+/* .tacho-demo p — Gewicht 0-1-1 (Klasse + Element) */
+.tacho-demo p {
     color: var(--ok);
 }
 
-/* #spezifitaet .tacho — Gewicht 1-1-0, schlägt 1-0-1 */
-#spezifitaet .tacho {
+/* .tacho-demo .tacho — Gewicht 0-2-0, schlägt 0-1-1 */
+.tacho-demo .tacho {
     color: #1f5fbf;
 }
 
-/* #spezifitaet #tacho — Gewicht 2-0-0, schlägt 1-1-0 */
-#spezifitaet #tacho {
+/* .tacho-demo #tacho — Gewicht 1-1-0, schlägt 0-2-0 */
+.tacho-demo #tacho {
     color: var(--warn);
 }
 
