@@ -50,5 +50,6 @@
 
   // Konfiguration zuerst, danach der Badge.
   js("site.js");
+  js("tables.js");
   js("github-pages-link.js");
 })();

@@ -1,7 +1,11 @@
 /* Hell/Dunkel-Umschalter für GRG-WMC-Lektionen.
    Default folgt dem Betriebssystem (prefers-color-scheme),
    die Wahl wird in localStorage ("wmc-theme") gemerkt.
-   Print bleibt über lesson.css immer hell. Kein CDN. */
+   Print bleibt über lesson.css immer hell. Kein CDN.
+
+   Wird über assets/loader.js asynchron injiziert; der Knopf wird erst
+   verdrahtet, wenn er existiert (readyState-Guard), damit die Reihenfolge
+   von Skript- und DOM-Aufbau keine Rolle spielt. */
 
 (function () {
   "use strict";
@@ -17,8 +21,9 @@
     return "light";
   }
 
-  function anwenden(theme, knopf) {
+  function anwenden(theme) {
     wurzel.setAttribute("data-theme", theme);
+    var knopf = document.getElementById("theme-toggle");
     if (knopf) {
       knopf.textContent = theme === "dark" ? "Hell" : "Dunkel";
       knopf.setAttribute("aria-pressed",
@@ -26,25 +31,29 @@
     }
   }
 
-  // Theme sofort setzen (kein Aufblitzen), Knopf erst nach dem Parsen binden.
+  // Theme sofort setzen (documentElement existiert immer), gegen Aufblitzen.
   var gespeichert = null;
   try { gespeichert = window.localStorage.getItem(SPEICHER); } catch (e) {}
-  anwenden(
-    (gespeichert === "dark" || gespeichert === "light")
-      ? gespeichert : systemTheme(),
-    null
-  );
+  if (gespeichert === "dark" || gespeichert === "light") {
+    anwenden(gespeichert);
+  } else {
+    anwenden(systemTheme());
+  }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function verdrahten() {
     var knopf = document.getElementById("theme-toggle");
-    anwenden(wurzel.getAttribute("data-theme"), knopf);
-    if (knopf) {
-      knopf.addEventListener("click", function () {
-        var neu = wurzel.getAttribute("data-theme") === "dark"
-          ? "light" : "dark";
-        anwenden(neu, knopf);
-        try { window.localStorage.setItem(SPEICHER, neu); } catch (e) {}
-      });
-    }
-  });
+    if (!knopf) { return; }
+    knopf.addEventListener("click", function () {
+      var neu = wurzel.getAttribute("data-theme") === "dark"
+        ? "light" : "dark";
+      anwenden(neu);
+      try { window.localStorage.setItem(SPEICHER, neu); } catch (e) {}
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", verdrahten);
+  } else {
+    verdrahten();
+  }
 })();
