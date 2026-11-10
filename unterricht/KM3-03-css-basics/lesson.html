@@ -8,17 +8,15 @@
 </head>
 <body>
 <main>
-    <header class="lektion">
-        <div>
-            <div class="baustein">Lektion KM3-03 · CSS-Basics</div>
-            <h1>CSS: drei Wege zur Formatierung — und das Box-Model</h1>
-            <p class="meta">KM3 · Erstkontakt</p>
-        </div>
-        <button class="theme-toggle no-print" type="button" id="theme-toggle">Dunkel</button>
+    <header class="meta">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+        <span class="kicker">Lektion KM3-03 · CSS-Basics</span>
+        <h1>CSS: drei Wege zur Formatierung — und das Box-Model</h1>
+        <p class="subtitle">KM3 · Erstkontakt</p>
     </header>
 
-    <div class="box pflicht">
-        <strong>Lektüre (Pflicht, vor dem Weiterlesen):</strong>
+    <div class="callout tipp">
+        <span class="label">Lektüre</span>
         <ul>
             <li><a href="../../Unterlagen/css/CSS-Basics.pptx">Unterlage: CSS-Basics (Box-Model, Block/Inline)</a></li>
             <li><a href="https://developer.mozilla.org/de/docs/Learn_web_development/Core/Styling_basics">MDN: Styling-Basics</a></li>
@@ -26,8 +24,8 @@
         </ul>
     </div>
 
-    <h2>1 · Einstiegsfrage</h2>
-    <div class="box">
+    <h2>Einstiegsfrage</h2>
+    <div class="callout">
         <p><em>Deine HTML-Seite ist fertig — aber sie sieht aus „wie ein Word-Dokument von 1998".
         Und dann hat deine Kollegin dieselbe Seite, will aber einen anderen Hintergrund.</em></p>
         <ul>
@@ -39,8 +37,9 @@
         Stile einzubinden</strong>, und verstehst das <strong>Box-Model</strong>.</p>
     </div>
 
-    <h2>2 · Ziel-Artefakt: das „Box-Model-Diagramm"</h2>
-    <div class="box ziel">
+    <h2>Ziel-Artefakt: das „Box-Model-Diagramm"</h2>
+    <div class="callout">
+        <span class="label">Ziel-Artefakt</span>
         <p>Jedes Element ist ein <strong>Kastl</strong>. Von innen nach außen:</p>
 <pre><code>┌─ margin ───────────────────────────────┐
 │  ┌─ border ──────────────────────────┐ │
@@ -54,7 +53,7 @@
         der Klassiker. Die Antwort heißt <code>box-sizing</code>.</p>
     </div>
 
-    <h2>3 · Die drei Wege, CSS einzubinden</h2>
+    <h2>Die drei Wege, CSS einzubinden</h2>
     <p>CSS kannst du auf drei Arten mit HTML verbinden. Alle drei sind erlaubt — sie haben
     aber unterschiedliche Rollen:</p>
 
@@ -90,7 +89,7 @@ body { font-family: system-ui, sans-serif; background: #fafaf7; }
     </table>
     <p>Merksatz: <strong>Inline zum Probieren, verlinkt zum Arbeiten.</strong></p>
 
-    <h2>4 · Selektoren: wen trifft die Regel?</h2>
+    <h2>Selektoren: wen trifft die Regel?</h2>
     <p>Für heute genügen drei Selektoren. (Vertiefung folgt in der nächsten UE.)</p>
 <pre><code>p { … }             /* Element: alle p auf der Seite */
 .wichtig { … }      /* Klasse: alle mit class="wichtig" (wiederverwendbar) */
@@ -101,7 +100,7 @@ body { font-family: system-ui, sans-serif; background: #fafaf7; }
         <li>Namen klein + Bindestrich: <code>main-container</code>, nicht <code>MainContainer</code>.</li>
     </ul>
 
-    <h2>5 · Das Box-Model &amp; <code>box-sizing</code></h2>
+    <h2>Das Box-Model &amp; <code>box-sizing</code></h2>
     <p>Vier Flächen: <strong>content · padding · border · margin</strong>. Standardmäßig gilt
     <code>content-box</code>: <code>width</code> zählt <em>nur</em> den Inhalt — Padding und
     Border kommen obendrauf.</p>
@@ -118,7 +117,7 @@ body { font-family: system-ui, sans-serif; background: #fafaf7; }
     <p><strong>Merksatz: <code>border-box</code> an, Sorgen aus.</strong> Im Browser unter
     <em>DevTools → Elements</em> siehst du das Box-Model-Diagramm live.</p>
 
-    <h2>6 · Farben &amp; Deckkraft</h2>
+    <h2>Farben &amp; Deckkraft</h2>
     <p>Farben schreibt man hexadezimal oder als <code>rgb</code>/<code>rgba</code>.
     Das <code>a</code> in <code>rgba()</code> ist die <strong>Deckkraft</strong> (Alpha) von
     0 (unsichtbar) bis 1 (deckend).</p>
@@ -130,7 +129,7 @@ body { font-family: system-ui, sans-serif; background: #fafaf7; }
         <li><code>rgba(…, 0.15)</code> eignet sich für Overlays und dezente Flächen, ohne den Text darunter zu verlieren.</li>
     </ul>
 
-    <h2>7 · Einheiten: px, rem, em, %</h2>
+    <h2>Einheiten: px, rem, em, %</h2>
     <table>
         <thead><tr><th>Einheit</th><th>Bezug</th><th>Wann</th></tr></thead>
         <tbody>
@@ -144,7 +143,7 @@ body { font-family: system-ui, sans-serif; background: #fafaf7; }
 h1   { font-size: 2rem; }       /* 32px */
 .karte { padding: 1rem 1.25rem; margin: 1rem 0; }</code></pre>
 
-    <h2>8 · Bonus: <code>&lt;details&gt;</code> — Aufklappen ohne JavaScript</h2>
+    <h2>Bonus: <code>&lt;details&gt;</code> — Aufklappen ohne JavaScript</h2>
     <p>Ein natives Aufklapp-Element, praktisch für FAQs:</p>
 <pre><code>&lt;details&gt;
     &lt;summary&gt;Was ist das Box-Model?&lt;/summary&gt;
@@ -155,7 +154,7 @@ h1   { font-size: 2rem; }       /* 32px */
         <p>content, padding, border, margin — von innen nach außen.</p>
     </details>
 
-    <h2>9 · Typische Fehler</h2>
+    <h2>Typische Fehler</h2>
     <ul>
         <li><strong>Mehrere <code>&lt;link&gt;</code> zum selben Stylesheet</strong> oder CSS im
             <code>body</code> — genau <em>einmal</em> im <code>head</code> verlinken.</li>
@@ -167,8 +166,8 @@ h1   { font-size: 2rem; }       /* 32px */
         <li><strong><code>rgba(…, 15)</code> statt <code>0.15</code>:</strong> Alpha läuft von 0–1, nicht 0–100.</li>
     </ul>
 
-    <h2>10 · Jetzt du! (im Unterricht)</h2>
-    <div class="box">
+    <h2>Jetzt du! (im Unterricht)</h2>
+    <div class="callout">
         <p><strong>Vorhersage zuerst — dann ausführen und vergleichen:</strong></p>
         <ol>
             <li>Binde <code>style.css</code> ein, färbe <code>body</code> und eine Klasse.
@@ -182,7 +181,7 @@ h1   { font-size: 2rem; }       /* 32px */
         </ol>
     </div>
 
-    <h2>11 · Quiz: CSS sitzt?</h2>
+    <h2>Quiz: CSS sitzt?</h2>
 
     <div class="quiz" data-loesung="1">
         <p class="frage">1. Welcher Weg bindet ein Stylesheet für <em>alle</em> Seiten ein?</p>
@@ -224,7 +223,7 @@ h1   { font-size: 2rem; }       /* 32px */
         <p class="feedback" aria-live="polite"></p>
     </div>
 
-    <h2>12 · Aufgabe</h2>
+    <h2>Aufgabe</h2>
     <div class="aufgabe">
         <p><strong>Vorhersage zuerst:</strong> Notiere, wie breit deine <code>.karte</code>
         mit <code>width: 20rem; padding: 1rem; border: 2px solid</code> <em>ohne</em>
@@ -240,7 +239,7 @@ h1   { font-size: 2rem; }       /* 32px */
         <p><strong>Abgabe:</strong> Push per Dreiklang bis zur nächsten UE 00:00.</p>
     </div>
 
-    <h2>13 · Zusammenfassung &amp; Ausblick</h2>
+    <h2>Zusammenfassung &amp; Ausblick</h2>
     <table>
         <thead><tr><th>Thema</th><th>Kern</th></tr></thead>
         <tbody>
@@ -256,8 +255,20 @@ h1   { font-size: 2rem; }       /* 32px */
     (Nachfahren, Kombinatoren, Pseudo-Klassen) mit der Übung <em>flukeout.github.io</em> —
     heute nur treffen, nicht versenken.</p>
 
-    <footer class="ausblick">
-        <p>WMC 3AAIF/3CAIF · Lektion 03 (UE 3) · Zurück: UE 2 HTML-Grundlagen · Weiter: UE 4 CSS-Selektoren.</p>
+    <details class="lehrplan">
+        <summary>Lehrplan &amp; Einordnung</summary>
+        <ul>
+            <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile Computing",
+            Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Kompetenzmodul 3 —
+            „Kommunikation zwischen Browser und Server, Komponenten von Webseiten,
+            Auszeichnungssprachen, Formatierungstechniken"</li>
+            <li><strong>KM-Bezug:</strong> KM3 — Formatierungstechniken (Anl. 1.9 Basis-Webtechniken); baut auf dem HTML-Grundgerüst aus KM3-02 auf und wird in der Selektor-Lektion vertieft</li>
+            <li><strong>Runtime:</strong> Browser, Live Server, W3C CSS- und HTML-Validator, DevTools (Box-Model)</li>
+        </ul>
+    </details>
+
+    <footer class="navi">
+        <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a> · Zurück: <a href="../KM3-02-html-basics/lesson.html">KM3-02 — HTML-Grundlagen</a></p>
     </footer>
 </main>
 </body>

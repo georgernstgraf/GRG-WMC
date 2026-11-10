@@ -8,25 +8,23 @@
 </head>
 <body>
 <main>
-    <header class="lektion">
-        <div>
-            <div class="baustein">Lektion KM3-02 · HTML-Grundlagen</div>
-            <h1>HTML: Struktur statt Deko — die „Über mich"-Seite</h1>
-            <p class="meta">KM3 · Erstkontakt</p>
-        </div>
-        <button class="theme-toggle no-print" type="button" id="theme-toggle">Dunkel</button>
+    <header class="meta">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+        <span class="kicker">Lektion KM3-02 · HTML-Grundlagen</span>
+        <h1>HTML: Struktur statt Deko — die „Über mich"-Seite</h1>
+        <p class="subtitle">KM3 · Erstkontakt</p>
     </header>
 
-    <div class="box pflicht">
-        <strong>Lektüre (Pflicht, vor dem Weiterlesen):</strong>
+    <div class="callout tipp">
+        <span class="label">Lektüre</span>
         <ul>
             <li><a href="../../Unterlagen/HTML-Grundlagen.md">Unterlage: HTML-Grundlagen</a> (Abschnitte 4–8)</li>
             <li><a href="https://developer.mozilla.org/de/docs/Learn_web_development/Core/Structuring_content">MDN: Strukturierung von Inhalten</a></li>
         </ul>
     </div>
 
-    <h2>1 · Einstiegsfrage</h2>
-    <div class="box">
+    <h2>Einstiegsfrage</h2>
+    <div class="callout">
         <p><em>Deine „Über mich"-Seite hat eine Überschrift, einen Absatz und ein Bild.
         Warum nennen wir das <strong>Struktur</strong> und nicht <strong>Aussehen</strong>?</em></p>
         <ul>
@@ -39,8 +37,9 @@
         erledigt (CSS, nächste UE).</p>
     </div>
 
-    <h2>2 · Ziel-Artefakt: so sieht es am Ende aus</h2>
-    <div class="box ziel">
+    <h2>Ziel-Artefakt: so sieht es am Ende aus</h2>
+    <div class="callout">
+        <span class="label">Ziel-Artefakt</span>
         <p>Eine in sich logisch aufgebaute Seite — noch ohne einen einzigen Farbwert:</p>
 <pre><code>&lt;header&gt;   Logo / Titel
 &lt;nav&gt;      Navigation (nur wichtige Links)
@@ -52,7 +51,7 @@
         was zusammengehört — nicht, wie es aussieht.</p>
     </div>
 
-    <h2>3 · Grundgerüst &amp; Pflichtelemente</h2>
+    <h2>Grundgerüst &amp; Pflichtelemente</h2>
     <p>Jede Seite beginnt mit demselben Gerüst. Vier Bausteine sind <strong>Pflicht</strong>:
     <code>charset</code>, <code>viewport</code>, <code>lang</code> und ein
     <code>&lt;title&gt;</code>.</p>
@@ -82,7 +81,7 @@
     <p>Der <code>&lt;head&gt;</code> enthält <strong>Metadaten</strong> (nichts Sichtbares);
     alles Sichtbare steht im <code>&lt;body&gt;</code>.</p>
 
-    <h2>4 · Semantik: die Tags, die etwas bedeuten</h2>
+    <h2>Semantik: die Tags, die etwas bedeuten</h2>
     <p>Semantische Tags beschreiben die <strong>Bedeutung</strong> ihres Inhalts. Genau diese
     sieben genügen für den Anfang:</p>
     <table>
@@ -113,7 +112,7 @@
     <p>Faustregel: <strong>Das richtige Element für den Zweck.</strong> Kein <code>h1</code>
     nur, um Text groß zu machen; dafür ist später CSS da.</p>
 
-    <h2>5 · Text, Listen, Links &amp; Bilder</h2>
+    <h2>Text, Listen, Links &amp; Bilder</h2>
     <h3>Listen</h3>
 <pre><code>&lt;ul&gt;                 &lt;!-- ungeordnet (Punkte) --&gt;
     &lt;li&gt;Fotografieren&lt;/li&gt;
@@ -130,7 +129,7 @@
     <p>Der <code>alt</code>-Text ist <strong>Pflicht</strong>: Er beschreibt das Bild für
     Screenreader und erscheint, wenn das Bild nicht lädt.</p>
 
-    <h2>6 · Sonderzeichen (Entities)</h2>
+    <h2>Sonderzeichen (Entities)</h2>
     <p>Spitze Klammern werden als Tags gelesen und dürfen nicht direkt als Text stehen.
     Man schreibt sie als <strong>Entity</strong>:</p>
     <table>
@@ -143,7 +142,7 @@
     <p>Mit <code>charset="UTF-8"</code> brauchst du Umlaute (ä, ö, ü, ß) <em>nicht</em> mehr
     als Entity zu schreiben.</p>
 
-    <h2>7 · Typische Fehler</h2>
+    <h2>Typische Fehler</h2>
     <ul>
         <li><code>main</code> mehrfach oder gar nicht — es darf <strong>genau einmal</strong> vorkommen.</li>
         <li>Inhalt im <code>&lt;head&gt;</code>, z. B. ein <code>&lt;p&gt;</code> — dort gehören nur Metadaten hin.</li>
@@ -152,8 +151,8 @@
         <li><code>&lt;</code> direkt im Text statt <code>&amp;lt;</code>.</li>
     </ul>
 
-    <h2>8 · Jetzt du! (im Unterricht)</h2>
-    <div class="box">
+    <h2>Jetzt du! (im Unterricht)</h2>
+    <div class="callout">
         <p><strong>Vorhersage zuerst — dann ausführen und vergleichen:</strong></p>
         <ol>
             <li>Öffne die Seite im Browser und drücke F12. <em>Welche Boxen siehst du bei
@@ -163,7 +162,7 @@
         </ol>
     </div>
 
-    <h2>9 · Quiz: HTML sitzt?</h2>
+    <h2>Quiz: HTML sitzt?</h2>
 
     <div class="quiz" data-loesung="1">
         <p class="frage">1. Was gehört in den <code>head</code>?</p>
@@ -205,7 +204,7 @@
         <p class="feedback" aria-live="polite"></p>
     </div>
 
-    <h2>10 · Aufgabe</h2>
+    <h2>Aufgabe</h2>
     <div class="aufgabe">
         <p><strong>Vorhersage zuerst:</strong> Notiere, welche Semantik-Tags deine Seite braucht,
         <em>bevor</em> du sie schreibst.</p>
@@ -219,7 +218,7 @@
         <p><strong>Abgabe:</strong> Push per Dreiklang bis zur nächsten UE 00:00.</p>
     </div>
 
-    <h2>11 · Zusammenfassung &amp; Ausblick</h2>
+    <h2>Zusammenfassung &amp; Ausblick</h2>
     <table>
         <thead><tr><th>Pflicht</th><th>Bedeutung</th></tr></thead>
         <tbody>
@@ -233,8 +232,20 @@
     <p><strong>Ausblick:</strong> Nächstes Mal dekorieren wir genau diese Seite — mit
     <em>CSS-Basics: drei Wege, Stile einzubinden</em>. Die Struktur bleibt, das Aussehen kommt.</p>
 
-    <footer class="ausblick">
-        <p>WMC 3AAIF/3CAIF · Lektion 02 (UE 2) · Zurück: UE 1 Tooling &amp; Git · Weiter: UE 3 CSS-Basics.</p>
+    <details class="lehrplan">
+        <summary>Lehrplan &amp; Einordnung</summary>
+        <ul>
+            <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile Computing",
+            Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Kompetenzmodul 3 —
+            „Kommunikation zwischen Browser und Server, Komponenten von Webseiten,
+            Auszeichnungssprachen, Formatierungstechniken"</li>
+            <li><strong>KM-Bezug:</strong> KM3 — Auszeichnungssprachen (Anl. 1.9 Basis-Webtechniken); semantisches HTML als Struktur, auf der die Formatierung (KM3-03) aufsetzt</li>
+            <li><strong>Runtime:</strong> Browser, Live Server, W3C Web Validator</li>
+        </ul>
+    </details>
+
+    <footer class="navi">
+        <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a> · Zurück: <a href="../KM3-01-tooling-git/lesson.html">KM3-01 — Werkzeuge &amp; Git</a> · Weiter: <a href="../KM3-03-css-basics/lesson.html">KM3-03 — CSS-Grundlagen</a></p>
     </footer>
 </main>
 </body>

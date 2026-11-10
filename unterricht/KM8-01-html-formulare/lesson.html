@@ -8,17 +8,15 @@
 </head>
 <body>
 <main>
-    <header class="lektion">
-        <div>
-            <div class="baustein">Lektion KM8-01 · HTML-Formulare &amp; HTTP-POST</div>
-            <h1>Vom Formular zum Server — <code>action</code>, <code>method</code> und der Request dahinter</h1>
-            <p class="meta">KM8 · Erstkontakt: Formulare → HTTP → REST</p>
-        </div>
-        <button class="theme-toggle no-print" type="button" id="theme-toggle">Dunkel</button>
+    <header class="meta">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+        <span class="kicker">Lektion KM8-01 · HTML-Formulare &amp; HTTP-POST</span>
+        <h1>Vom Formular zum Server — <code>action</code>, <code>method</code> und der Request dahinter</h1>
+        <p class="subtitle">KM8 · Erstkontakt: Formulare → HTTP → REST</p>
     </header>
 
-    <div class="box pflicht">
-        <strong>Lektüre (Pflicht, vor dem Weiterlesen):</strong>
+    <div class="callout tipp">
+        <span class="label">Lektüre</span>
         <ul>
             <li><a href="https://github.com/georgernstgraf/GRG-WMC/blob/main/Unterlagen/HTTP-Folie.md">Unterlage: Das HTTP-Protokoll</a> — Verben (GET/POST), Content-Type, Statuscodes</li>
             <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data">MDN: Sending form data</a> — was beim Absenden wirklich passiert</li>
@@ -26,8 +24,8 @@
         </ul>
     </div>
 
-    <h2>1 · Einstiegsfrage</h2>
-    <div class="box">
+    <h2>Einstiegsfrage</h2>
+    <div class="callout">
         <p><em>Du füllst ein Anmeldeformular aus und klickst „Absenden". Die Seite
         lädt neu — und deine Eingaben sind plötzlich Teil einer Anfrage. Was genau
         hat der Browser in diesem Moment getan?</em></p>
@@ -40,8 +38,9 @@
         abschickt — und du weißt, was der Server davon zu sehen bekommt.</p>
     </div>
 
-    <h2>2 · Ziel-Artefakt: der Netzwerk-Tab, den wir lesen können</h2>
-    <div class="box ziel">
+    <h2>Ziel-Artefakt: der Netzwerk-Tab, den wir lesen können</h2>
+    <div class="callout">
+        <span class="label">Ziel-Artefakt</span>
         <p>Am Ende steht kein hübsches Formular, sondern <strong>Verständnis</strong>:
         Du öffnest die DevTools (F12) → <em>Netzwerk</em>, sendest ab und liest den Request.</p>
         <pre><code>Anfrage (Browser → Server)
@@ -59,7 +58,7 @@ Location: /danke</code></pre>
         Bestätigung — nicht die Anmeldung erneut.</p>
     </div>
 
-    <h2>3 · Das Grundgerüst: <code>&lt;form&gt;</code></h2>
+    <h2>Das Grundgerüst: <code>&lt;form&gt;</code></h2>
     <p>Ein Formular ist der bequeme Weg, eine <strong>HTTP-Anfrage zusammenzuklicken</strong>.
     Zwei Attribute steuern das Ziel:</p>
     <pre><code>&lt;form action="/anmeldung" method="post"&gt;
@@ -73,10 +72,10 @@ Location: /danke</code></pre>
             <tr><td><code>enctype</code></td><td>Kodierung des Bodys (Abschnitt 7). Standard: <code>application/x-www-form-urlencoded</code>.</td></tr>
         </tbody>
     </table>
-    <p class="klein">Ein Formular ohne <code>action</code> schickt an die eigene URL —
+    <p class="fussnote">Ein Formular ohne <code>action</code> schickt an die eigene URL —
     praktisch zum Ausprobieren, gefährlich beim versehentlichen Reload.</p>
 
-    <h2>4 · <code>name</code> ist der Schlüssel</h2>
+    <h2><code>name</code> ist der Schlüssel</h2>
     <p>Jedes Steuerelement mit einem <code>name</code> geht als Paar
     <code>name=wert</code> an den Server. <strong>Ohne <code>name</code> wird
     nichts gesendet</strong> — das Feld existiert für den Server nicht.</p>
@@ -88,7 +87,7 @@ Location: /danke</code></pre>
     Beschriftungstext. Ein Feld braucht oft beides: <code>id</code> zum Verknüpfen,
     <code>name</code> zum Senden.</p>
 
-    <h2>5 · Die Steuerelemente</h2>
+    <h2>Die Steuerelemente</h2>
     <table>
         <thead><tr><th>Element</th><th>Wofür</th></tr></thead>
         <tbody>
@@ -102,7 +101,7 @@ Location: /danke</code></pre>
     </table>
     <pre><code>&lt;label for="kurs"&gt;Kurs&lt;/label&gt;
 &lt;select id="kurs" name="kurs"&gt;
-    &lt;option value="html-css"&gt;HTML &amp;amp; CSS&lt;/option&gt;
+    &lt;option value="html-css"&gt;HTML &amp; CSS&lt;/option&gt;
     &lt;option value="typescript"&gt;TypeScript&lt;/option&gt;
 &lt;/select&gt;
 
@@ -112,7 +111,7 @@ Location: /danke</code></pre>
     die Angaben des Formulars — nützlich für „Speichern" und „Löschen" mit
     derselben Feldsammlung.</p>
 
-    <h2>6 · GET oder POST?</h2>
+    <h2>GET oder POST?</h2>
     <table>
         <thead><tr><th></th><th>GET</th><th>POST</th></tr></thead>
         <tbody>
@@ -125,7 +124,7 @@ Location: /danke</code></pre>
     <p>Merksatz: <strong>GET liest, POST verändert.</strong> Passwörter oder
     große Datenmengen gehören nie in eine GET-URL.</p>
 
-    <h2>7 · <code>enctype</code> — was für ein Body wird das?</h2>
+    <h2><code>enctype</code> — was für ein Body wird das?</h2>
     <ul>
         <li><code>application/x-www-form-urlencoded</code> — <strong>Standard</strong>; Paare werden als <code>schlüssel=wert</code> mit <code>&amp;</code> verbunden.</li>
         <li><code>multipart/form-data</code> — <strong>Pflicht für Datei-Uploads</strong>; der Body zerfällt in mehrere Teile (Datei + Textfelder).</li>
@@ -138,7 +137,7 @@ Location: /danke</code></pre>
     <p>Ohne <code>multipart/form-data</code> schickt ein Datei-Feld nur den
     <em>Dateinamen</em>, nicht den Inhalt.</p>
 
-    <h2>8 · Was der Browser wirklich schickt</h2>
+    <h2>Was der Browser wirklich schickt</h2>
     <p><strong>URL-Encoding:</strong> Im Body sind nur bestimmte Zeichen erlaubt.
     Reservierte Zeichen werden kodiert — Leerzeichen zu <code>+</code> (oder
     <code>%20</code>), <code>@</code> zu <code>%40</code>, Umlaute zu <code>%C3%BC</code> usw.</p>
@@ -161,12 +160,12 @@ name=Ada+Lovelace&amp;email=ada%40example.org&amp;kurs=typescript&amp;agb=on</co
             <tr><td><code>404</code> / <code>500</code></td><td>falsche URL / Fehler im Server</td></tr>
         </tbody>
     </table>
-    <p class="klein"><strong>Reload-Falle:</strong> Ohne Redirect schickt F5 das
+    <p class="fussnote"><strong>Reload-Falle:</strong> Ohne Redirect schickt F5 das
     Formular <em>erneut</em> — bei einer Bestellung wäre das eine zweite
     Bestellung. Deshalb endet ein POST auf Erfolg mit <code>303</code>.</p>
 
-    <h2>9 · Native Validierung — und ihre Grenze</h2>
-    <p>Der Browser prüft vor dem Senden, wenn Sie ihm Regeln geben:</p>
+    <h2>Native Validierung — und ihre Grenze</h2>
+    <p>Der Browser prüft vor dem Senden, wenn du ihm Regeln gibst:</p>
     <pre><code>&lt;input type="email" name="email" required&gt;
 &lt;input type="text" name="name" required minlength="2"&gt;
 &lt;input type="text" name="plz" pattern="[0-9]{4}"&gt;
@@ -178,8 +177,8 @@ name=Ada+Lovelace&amp;email=ada%40example.org&amp;kurs=typescript&amp;agb=on</co
     einen REST-Client nutzt, umgeht jede Browser-Prüfung. Die Prüfung im Browser
     ist Komfort — die <strong>echte</strong> Prüfung passiert am Server.</p>
 
-    <h2>10 · Parallelkonzept: ein Endpunkt, zwei Clients</h2>
-    <div class="box">
+    <h2>Parallelkonzept: ein Endpunkt, zwei Clients</h2>
+    <div class="callout">
         <p>Dieselbe URL <code>/anmeldung</code> wird auf zwei Weisen angesprochen.
         Welcher Weg gilt, entscheidet der <code>Content-Type</code>:</p>
         <table>
@@ -211,8 +210,8 @@ Content-Type: application/json
     <code>requests.http</code>. Der Weg zum Server ist dort derselbe wie hier
     beschrieben; das Backend selbst ist POS-Stoff.</p>
 
-    <h2>11 · Jetzt du! (im Unterricht)</h2>
-    <div class="box">
+    <h2>Jetzt du! (im Unterricht)</h2>
+    <div class="callout">
         <p><strong>Vorhersage zuerst — dann ausführen und vergleichen:</strong></p>
         <ol>
             <li>Ein Formular hat <code>&lt;input name="titel" value="Hello World"&gt;</code>
@@ -227,7 +226,7 @@ Content-Type: application/json
         </ol>
     </div>
 
-    <h2>12 · Typische Fehler</h2>
+    <h2>Typische Fehler</h2>
     <ul>
         <li><strong>Kein <code>name</code></strong> — das Feld wird nie gesendet.
         Anti-Beispiel: <code>&lt;input type="email"&gt;</code></li>
@@ -242,7 +241,7 @@ Content-Type: application/json
         Der Server muss selbst prüfen.</li>
     </ul>
 
-    <h2>13 · Quiz: Formulare &amp; HTTP-POST</h2>
+    <h2>Quiz: Formulare &amp; HTTP-POST</h2>
 
     <div class="quiz" data-loesung="0">
         <p class="frage">1. Welches Attribut am <code>&lt;form&gt;</code> bestimmt, <strong>wohin</strong> die Daten gehen?</p>
@@ -308,7 +307,7 @@ Content-Type: application/json
         <p class="feedback" aria-live="polite"></p>
     </div>
 
-    <h2>14 · Zusammenfassung &amp; Ausblick</h2>
+    <h2>Zusammenfassung &amp; Ausblick</h2>
     <table>
         <thead><tr><th>Baustein</th><th>Merksatz</th></tr></thead>
         <tbody>
@@ -326,7 +325,7 @@ Content-Type: application/json
     App die JSON-Antwort selbst. Genau dort knüpft der REST-Konsum an, den wir in
     dieser Lektion schon mit dem VS-Code-Client vorweggenommen haben.</p>
 
-    <h2>15 · Aufgabe</h2>
+    <h2>Aufgabe</h2>
     <div class="aufgabe">
         <p><strong>Vorhersage zuerst:</strong> Notiere, welchen Body dein Formular
         absenden wird und welchen Statuscode du erwartest — <em>bevor</em> du
@@ -351,10 +350,24 @@ Content-Type: application/json
         Vorgabe deiner Lehrperson.</p>
     </div>
 
-    <footer class="ausblick">
+    <details class="lehrplan">
+        <summary>Lehrplan &amp; Einordnung</summary>
+        <ul>
+            <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile Computing",
+            Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Kompetenzmodul 8 —
+            „Mobile Applications, Entwicklungsumgebungen, Einbindung in das
+            Anwendungssystem. Authentifizierung, Webservices, REST"; hier der Haken
+            Webservices/REST (Formular → HTTP-POST)</li>
+            <li><strong>KM-Bezug:</strong> KM8 — Webservices/REST; HTTP-POST und Formular-<code>action</code> als Einstieg, Querverweis KM5 (Frontend/Backend-Kommunikation), bereitet den REST-Konsum gegen die Mini-Hono-Referenz vor</li>
+            <li><strong>Runtime:</strong> Browser + DevTools, VS Code (REST Client, <code>.http</code>), Begleitprojekt Deno + Hono</li>
+        </ul>
+    </details>
+
+    <footer class="navi">
         <p>KM8 · Formulare → HTTP → REST. Begleitprojekt:
         <a href="https://github.com/georgernstgraf/GRG-WMC/tree/main/Beispielprojekte/km8-01-hono-formulare">km8-01-hono-formulare</a>
         (Deno + Hono).</p>
+        <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a></p>
     </footer>
 </main>
 </body>

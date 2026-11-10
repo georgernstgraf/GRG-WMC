@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selektoren-Labor — jede Regel trifft genau, was sie soll</title>
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+<!-- ===================================================================
+     Diese Seite ist das Übungsobjekt: lauter Strukturen, an denen sich
+     jede Selektoren-Art zeigen lässt. demo.css daneben enthält zu jeder
+     Regel einen Kommentar mit dem Selektor und seiner Wirkung.
+     Vorgehen: DevTools öffnen (F12) → Elements → Element anklicken →
+     rechts unter „Styles" sieht man, welche Regel greift. Regel in
+     demo.css auskommentieren → Effekt verschwindet.
+     =================================================================== -->
+
+<header class="seite">
+    <p class="kicker">KM3 · Selektoren</p>
+    <h1>Selektoren-Labor</h1>
+    <p class="intro">
+        Eine Seite, viele Strukturen: Geschwister, Tabellenzeilen, Formulare,
+        Attribute, leere Elemente. Jede Regel in <code>demo.css</code> nennt
+        den Selektor, den sie verwendet — der Effekt daneben zeigt, wen sie
+        getroffen hat.
+    </p>
+    <nav class="wegweiser" aria-label="Abschnitte">
+        <a href="#kombinatoren">Kombinatoren</a>
+        <a href="#struktur">Struktur</a>
+        <a href="#typ">Typ</a>
+        <a href="#zustand">Zustand</a>
+        <a href="#attribute">Attribute</a>
+        <a href="#pseudo">Pseudoelemente</a>
+        <a href="#spezifitaet">Spezifität</a>
+    </nav>
+</header>
+
+<main>
+
+<!-- ------------------------------------------------------ Kombinatoren -->
+<section id="kombinatoren">
+    <h2>1 · Kombinatoren</h2>
+    <p class="hinweis">
+        Vier Wege, ein Ziel zu verfeinern: Nachfahre (Leerzeichen),
+        Kind (<code>&gt;</code>), direkter Nachbar (<code>+</code>) und
+        allgemeiner Geschwister (<code>~</code>).
+    </p>
+
+    <article class="karte">
+        <h3>Karte A — Nachfahren und Kind</h3>
+        <p>Erster Absatz: <code>.karte p</code> trifft ihn, <code>.karte &gt; p</code> auch.</p>
+        <div class="innen">
+            <p>Zweiter Absatz, tiefer verschachtelt: nur <code>.karte p</code> trifft ihn,
+                <code>.karte &gt; p</code> nicht.</p>
+        </div>
+    </article>
+
+    <article class="karte">
+        <h3>Karte B — direkter Nachbar</h3>
+        <p class="marke">Dieser Absatz trägt <code>class="marke"</code>.</p>
+        <p>Der Absatz direkt danach: getroffen von <code>.marke + p</code>.</p>
+        <p>Der übernächste Absatz: nicht mehr von <code>+</code> getroffen.</p>
+    </article>
+
+    <h3>Geschwister in einer Liste</h3>
+    <ul class="liste">
+        <li>Eintrag 1 — vor der Marke</li>
+        <li class="marke">Eintrag 2 — die Marke</li>
+        <li>Eintrag 3 — <code>+</code> und <code>~</code></li>
+        <li>Eintrag 4 — nur <code>~</code></li>
+        <li>Eintrag 5 — nur <code>~</code></li>
+    </ul>
+</section>
+
+<!-- ---------------------------------------------------------- Struktur -->
+<section id="struktur">
+    <h2>2 · Struktur-Pseudoklassen</h2>
+    <p class="hinweis">
+        Die Tabelle ist das Labor: jede Zeile nennt eine Regel, die Spalte
+        <em>Trifft</em> sagt, auf welchen Zeilen ihre Wirkung landet — dort
+        ist sie zu sehen. Gezählt wird immer innerhalb des Elternelements,
+        hier <code>tbody</code>.
+    </p>
+
+    <table class="labor">
+        <caption>Selektor-Labor — neun Zeilen, neun Regeln</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Selektor</th>
+                <th scope="col">Wirkung</th>
+                <th scope="col">Trifft</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><code>tbody tr:nth-child(odd)</code></td>
+                <td>heller Zebra-Streifen</td>
+                <td>1, 3, 5, 7</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><code>tbody tr:nth-child(even)</code></td>
+                <td>weißer Grund</td>
+                <td>2, 4, 6, 8</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><code>tbody tr:nth-child(3)</code></td>
+                <td>fetten Text</td>
+                <td>nur Zeile 3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><code>tbody tr:nth-child(2n+1)</code></td>
+                <td>dasselbe wie <code>odd</code></td>
+                <td>1, 3, 5, 7</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><code>tbody tr:nth-child(-n+3)</code></td>
+                <td>linker Rand, dick</td>
+                <td>1, 2, 3</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><code>tbody tr:nth-last-child(2)</code></td>
+                <td>rechter Rand, orange</td>
+                <td>Zeile 8 (von hinten gezählt)</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><code>tbody tr:last-child</code></td>
+                <td>gestrichelte Umrandung</td>
+                <td>die Notizzeile darunter</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><code>tbody td:only-child</code></td>
+                <td>zentriert, kursiv</td>
+                <td>Zelle der Notizzeile</td>
+            </tr>
+            <tr>
+                <td colspan="4">Diese Notizzeile hat genau eine <code>&lt;td&gt;</code> (<code>colspan="4"</code>) — darum greifen hier <code>:last-child</code> und <code>td:only-child</code>.</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"><code>tfoot tr</code></td>
+                <td colspan="2">Fußzeile: eigener Abschnitt der Tabelle, nicht <code>tbody</code></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p class="hinweis">
+        <code>td:first-child</code> macht die Nummernspalte rechtsbündig,
+        <code>td:last-child</code> zentriert die Trefferspalte.
+    </p>
+
+    <h3>Leere und einzige Elemente</h3>
+    <ul class="liste">
+        <li>Ein Eintrag mit Inhalt</li>
+        <li class="leer"></li>
+        <li>Ein Eintrag nach dem leeren: <code>li:empty</code> traf nur den mittleren</li>
+    </ul>
+    <div class="einzel">
+        <p>Das einzige Kind dieses Containers: <code>.einzel &gt; :only-child</code>.</p>
+    </div>
+</section>
+
+<!-- --------------------------------------------------------------- Typ -->
+<section id="typ">
+    <h2>3 · Typ-Selektoren: <code>*-of-type</code></h2>
+    <p class="hinweis">
+        <code>:first-child</code> zählt alle Kinder, <code>:first-of-type</code>
+        nur die desselben Tags. Der Unterschied wird hier sichtbar:
+    </p>
+
+    <article class="gemischt">
+        <h3>Überschrift (h3)</h3>
+        <p>Absatz 1 (p) — <code>p:first-of-type</code>.</p>
+        <p>Absatz 2 (p) — <code>p:nth-of-type(2)</code>.</p>
+        <blockquote>Zitat (blockquote) — das einzige seiner Art: <code>:only-of-type</code>.</blockquote>
+        <p>Absatz 3 (p) — <code>p:last-of-type</code>.</p>
+    </article>
+
+    <p class="hinweis">
+        In <code>.gemischt</code> ist das <code>h3</code> das
+        <em>erste Kind</em>, aber nicht der erste Absatz. Genau darum gibt es
+        <code>*-of-type</code>.
+    </p>
+</section>
+
+<!-- ----------------------------------------------------------- Zustand -->
+<section id="zustand">
+    <h2>4 · Zustands-Pseudoklassen</h2>
+
+    <h3>Formular: <code>:checked</code>, <code>:disabled</code>, <code>:required</code></h3>
+    <form class="formular">
+        <p class="feld">
+            <input type="checkbox" id="demo-haken" checked>
+            <label for="demo-haken">Haken gesetzt — <code>:checked + label</code> färbt mich</label>
+        </p>
+        <p class="feld">
+            <input type="checkbox" id="demo-haken-2">
+            <label for="demo-haken-2">Haken offen — dieselbe Regel greift nicht</label>
+        </p>
+        <p class="feld">
+            <label for="demo-text">Pflichtfeld (<code>:required</code>):</label>
+            <input type="text" id="demo-text" required placeholder="leer = :invalid">
+        </p>
+        <p class="feld">
+            <label for="demo-text-2">Feld mit Platzhalter (<code>:placeholder-shown</code>):</label>
+            <input type="text" id="demo-text-2" placeholder="hier steht noch nichts">
+        </p>
+        <p class="feld">
+            <label for="demo-gesperrt">Gesperrt (<code>:disabled</code>):</label>
+            <input type="text" id="demo-gesperrt" value="nicht editierbar" disabled>
+        </p>
+        <p class="feld">
+            <button type="button">Knopf — <code>:hover</code> und <code>:focus-visible</code></button>
+        </p>
+    </form>
+
+    <h3>Links: <code>:hover</code>, <code>:focus-visible</code>, <code>:target</code></h3>
+    <p>
+        <a href="#struktur">Sprung zur Tabelle</a> —
+        <a href="#zustand">Sprung hierher</a>: nach dem Klick trägt das Ziel
+        <code>:target</code>.
+    </p>
+
+    <h3>Verneinen und gruppieren: <code>:not</code>, <code>:is</code>, <code>:where</code></h3>
+    <ul class="liste auswahl">
+        <li class="aktiv">aktiv — <code>:not(.aktiv)</code> trifft mich nicht</li>
+        <li>normal — alle anderen bekommen den Rahmen</li>
+        <li>normal — auch ich</li>
+    </ul>
+    <p class="hinweis">
+        <code>:is(h2, h3)</code> fasst Überschriften zusammen,
+        <code>:where(...)</code> tut dasselbe mit Spezifität 0.
+    </p>
+
+    <h3>Eltern-Abfrage: <code>:has()</code></h3>
+    <div class="kasten">
+        <p>Dieser Kasten enthält ein <code>img</code> — darum <code>.kasten:has(img)</code>.</p>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='32'%3E%3Crect width='48' height='32' fill='%236d28d9'/%3E%3C/svg%3E"
+             alt="Platzhalterbild" width="48" height="32">
+    </div>
+    <div class="kasten">
+        <p>Dieser Kasten enthält kein Bild — <code>:has(img)</code> trifft ihn nicht.</p>
+    </div>
+</section>
+
+<!-- -------------------------------------------------------- Attribute -->
+<section id="attribute">
+    <h2>5 · Attribut-Selektoren</h2>
+    <p class="hinweis">
+        Attribute sind Daten am Element: <code>href</code>, <code>type</code>,
+        <code>lang</code>, <code>data-*</code>. Selektoren prüfen ihre
+        Existenz, ihren genauen Wert oder Teile davon.
+    </p>
+
+    <ul class="links">
+        <li><a href="demo.css">Stylesheet (endet auf .css) — <code>[href$=".css"]</code></a></li>
+        <li><a href="https://example.org/handbuch.pdf">Handbuch (endet auf .pdf) — <code>[href$=".pdf"]</code></a></li>
+        <li><a href="https://example.org/">Externer Link — <code>[href^="https"]</code></a></li>
+        <li><a href="#attribute" lang="de-AT">Deutsch (Österreich) — <code>[lang|="de"]</code></a></li>
+        <li><a href="#attribute" lang="en">English — <code>[lang|="de"]</code> trifft mich nicht</a></li>
+    </ul>
+
+    <p class="daten" data-status="offen" data-rolle="beispiel" data-notiz="wird geprüft">
+        Dieser Absatz trägt <code>data-status="offen"</code>,
+        <code>data-rolle="beispiel"</code> und
+        <code>data-notiz="wird geprüft"</code>.
+    </p>
+
+    <div class="klassen karte">
+        <p>Dieses <code>div</code> hat <code>class="klassen karte"</code> —
+            <code>[class~="karte"]</code> trifft es, weil <code>karte</code>
+            ein ganzes Wort der Liste ist.</p>
+    </div>
+    <div class="klassen karte-extragross">
+        <p>Dieses <code>div</code> hat <code>class="klassen karte-extragross"</code> —
+            <code>[class~="karte"]</code> trifft es <strong>nicht</strong>,
+            <code>[class*="karte"]</code> schon.</p>
+    </div>
+
+    <p class="hinweis">
+        <code>[data-status]</code> prüft nur die Existenz,
+        <code>[data-status="offen"]</code> den genauen Wert.
+    </p>
+</section>
+
+<!-- ---------------------------------------------------- Pseudoelemente -->
+<section id="pseudo">
+    <h2>6 · Pseudoelemente</h2>
+    <p class="hinweis">
+        Pseudoelemente erzeugen oder adressieren einen Teil, der nicht im HTML
+        steht: <code>::before</code>, <code>::after</code>, <code>::first-letter</code>,
+        <code>::first-line</code>, <code>::marker</code>, <code>::selection</code>,
+        <code>::placeholder</code>.
+    </p>
+
+    <blockquote class="zitat">
+        Selektoren sind keine Zaubersprüche, sondern Adressen. Wer die Adresse
+        kennt, muss das Element nicht anfassen — und wer sie falsch schreibt,
+        trifft niemanden. Das ist der ganze Trick, und gleichzeitig der ganze
+        Ärger.
+    </blockquote>
+    <p class="hinweis">
+        <code>::first-letter</code> macht das <code>S</code> zum Initial,
+        <code>::first-line</code> setzt die erste Zeile in Kapitälchen.
+    </p>
+
+    <ol class="schritte">
+        <li>Erster Schritt — <code>::marker</code> färbt die Nummer</li>
+        <li>Zweiter Schritt</li>
+        <li>Dritter Schritt</li>
+    </ol>
+
+    <p class="zaehler">Automatisch nummeriert über <code>::before</code> mit <code>counter()</code></p>
+    <p class="zaehler">Zweiter Absatz — der Zähler läuft weiter</p>
+
+    <p class="hinweis">
+        Text markieren zeigt <code>::selection</code>; in das Platzhalterfeld
+        von Abschnitt 4 schauen zeigt <code>::placeholder</code>.
+    </p>
+</section>
+
+<!-- -------------------------------------------------------- Spezifität -->
+<section id="spezifitaet">
+    <h2>7 · Wer gewinnt? Spezifität</h2>
+    <p class="hinweis">
+        Derselbe Absatz, vier Regeln. Die schwerste gewinnt — und
+        <code>!important</code> schlägt alles.
+    </p>
+
+    <p class="tacho" id="tacho" style="color: #b3261e;">
+        Ich werde von <code>p</code>, <code>.tacho</code>, <code>#tacho</code>
+        und einem <code>style</code>-Attribut angesprochen. Sichtbar ist das
+        <code>style</code>-Attribut.
+    </p>
+
+    <table class="gewichte">
+        <caption>Gewichte im Vergleich</caption>
+        <thead>
+            <tr><th scope="col">Schreibweise</th><th scope="col">Gewicht</th><th scope="col">Beispiel</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Element</td><td>0-0-1</td><td><code>p</code></td></tr>
+            <tr><td>Klasse, Attribut, Pseudoklasse</td><td>0-1-0</td><td><code>.tacho</code>, <code>[lang]</code>, <code>:hover</code></td></tr>
+            <tr><td>ID</td><td>1-0-0</td><td><code>#tacho</code></td></tr>
+            <tr><td>style-Attribut</td><td>höher als jede ID</td><td><code>style="…"</code></td></tr>
+        </tbody>
+    </table>
+    <p class="fussnote">
+        Bei Gleichstand gewinnt die später notierte Regel. <code>!important</code>
+        hebelt beides aus — deshalb bleibt es die Ausnahme.
+    </p>
+</section>
+
+</main>
+
+<footer class="seite">
+    <p>
+        <strong>Übungsobjekt</strong> — Datei kopieren, Regeln auskommentieren,
+        Selektoren umschreiben. Jede Änderung ist sofort sichtbar:
+        Seite neu laden, fertig.
+    </p>
+    <p><a href="../../index.html">Zurück zur Lernplattform</a></p>
+</footer>
+
+</body>
+</html>

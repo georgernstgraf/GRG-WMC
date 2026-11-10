@@ -8,25 +8,23 @@
 </head>
 <body>
 <main>
-    <header class="lektion">
-        <div>
-            <div class="baustein">Lektion KM3-01 · Tooling &amp; Git</div>
-            <h1>Werkzeuge &amp; Git: vom leeren Ordner ins Repository</h1>
-            <p class="meta">KM3 · Erstkontakt</p>
-        </div>
-        <button class="theme-toggle no-print" type="button" id="theme-toggle">Dunkel</button>
+    <header class="meta">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+        <span class="kicker">Lektion KM3-01 · Tooling &amp; Git</span>
+        <h1>Werkzeuge &amp; Git: vom leeren Ordner ins Repository</h1>
+        <p class="subtitle">KM3 · Erstkontakt</p>
     </header>
 
-    <div class="box pflicht">
-        <strong>Lektüre (Pflicht, vor dem Weiterlesen):</strong>
+    <div class="callout tipp">
+        <span class="label">Lektüre</span>
         <ul>
             <li><a href="https://git-scm.com/book/de/v2/Erste-Schritte-Was-ist-Versionsverwaltung">Pro Git (de) — Kap. 1: Was ist Versionsverwaltung?</a></li>
             <li><a href="https://code.visualstudio.com/docs/getstarted/getting-started">VS Code Docs — Getting Started</a></li>
         </ul>
     </div>
 
-    <h2>1 · Einstiegsfrage</h2>
-    <div class="box">
+    <h2>Einstiegsfrage</h2>
+    <div class="callout">
         <p><em>Du hast deine erste Seite <code>index.html</code> geschrieben. Wie kommt sie auf
         GitHub — und wie zeigst du sie am Abend deiner Kollegin, ohne sie per Mail zu
         schicken?</em></p>
@@ -39,8 +37,8 @@
         (den <strong>Dreiklang</strong>), mit dem du jede Änderung sicher speicherst.</p>
     </div>
 
-    <h2>2 · Ziel-Artefakt: so sieht es am Ende aus</h2>
-    <div class="box ziel">
+    <h2>Ziel-Artefakt: so sieht es am Ende aus</h2>
+    <div class="callout">
         <p>Dein eigenes Repository heißt <code>WMC</code> und enthält <code>index.html</code>.
         Nach jeder Änderung läuft derselbe Dreiklang — hier die Kurzfassung, die wir
         gleich Schritt für Schritt aufbauen:</p>
@@ -55,7 +53,7 @@ git push
         <code>http://127.0.0.1:5500</code> — und lädt sie bei jedem Speichern neu.</p>
     </div>
 
-    <h2>3 · Die Werkzeuge: VS Code als Werkstatt</h2>
+    <h2>Die Werkzeuge: VS Code als Werkstatt</h2>
     <p>Programmiert wird nicht in Word. Wir arbeiten in <strong>Visual Studio Code</strong>
     (VS Code), einem kostenlosen Editor, und erweitern ihn um drei Extensions:</p>
     <table>
@@ -75,11 +73,11 @@ git push
     <pre><code># In VS Code: Ansicht → Erweiterungen (Strg/Cmd + Shift + X)
 # Suche „Live Server"          → Install
 # Suche „W3C Web Validator"    → Install</code></pre>
-    <p class="box">Merksatz: <strong>Installieren, dann prüfen.</strong> Eine Extension, die
+    <p class="callout">Merksatz: <strong>Installieren, dann prüfen.</strong> Eine Extension, die
     nicht aktiv ist, hilft niemandem — öffne die Palette (<code>Strg/Cmd + Shift + P</code>)
     und suche den Befehl, um sie zu testen.</p>
 
-    <h2>4 · Git: der Dreiklang</h2>
+    <h2>Git: der Dreiklang</h2>
     <p><strong>Git</strong> ist die Versionsverwaltung. Es merkt sich jeden Stand
     (“Commit”). <strong>GitHub</strong> ist nur die <em>Online-Ablage</em> dafür — Git
     funktioniert auch ohne Netz. Eine Änderung wandert in drei Stufen:</p>
@@ -106,7 +104,7 @@ git log --oneline</code></pre>
     <pre><code>git clone https://github.com/georgernstgraf/GRG-WMC.git
 cd GRG-WMC</code></pre>
 
-    <h2>5 · Ein eigenes Repository auf GitHub</h2>
+    <h2>Ein eigenes Repository auf GitHub</h2>
     <ol>
         <li>Bei <a href="https://github.com/">github.com</a> mit der Schul-E-Mail registrieren.</li>
         <li><strong>New repository</strong> → Name <code>WMC</code>, Sichtbarkeit <strong>public</strong>, ohne README.</li>
@@ -120,7 +118,7 @@ git push -u origin main
 # -u merkt sich origin/main – danach genügt: git push</code></pre>
     <p>Den Link zum Repository schickst du an <code>grafg@spengergasse.at</code>.</p>
 
-    <h2>6 · Typische Fehler (und wie du sie vermeidest)</h2>
+    <h2>Typische Fehler (und wie du sie vermeidest)</h2>
     <ul>
         <li><strong>Committen ohne <code>add</code>:</strong> „nothing to commit” — erst vormerken, dann committen.</li>
         <li><strong><code>push</code> ohne <code>remote</code>:</strong> „No configured push destination” — <code>git remote add origin …</code> fehlt.</li>
@@ -129,8 +127,8 @@ git push -u origin main
         <li><strong><code>file://</code> statt Server:</strong> manche Funktionen (später fetch, Assets) brauchen einen Server. Immer Live Server.</li>
     </ul>
 
-    <h2>7 · Jetzt du! (im Unterricht)</h2>
-    <div class="box">
+    <h2>Jetzt du! (im Unterricht)</h2>
+    <div class="callout">
         <p><strong>Vorhersage zuerst — dann ausführen und vergleichen:</strong></p>
         <ol>
             <li>Was gibt <code>git status</code> direkt nach einem frischen <code>git init</code> aus? <em>Rate, dann führe es aus.</em></li>
@@ -139,7 +137,7 @@ git push -u origin main
         </ol>
     </div>
 
-    <h2>8 · Quiz: sitzt der Dreiklang?</h2>
+    <h2>Quiz: sitzt der Dreiklang?</h2>
 
     <div class="quiz" data-loesung="1">
         <p class="frage">1. Welcher Befehl schreibt einen Stand <em>lokal</em> fest?</p>
@@ -173,7 +171,7 @@ git push -u origin main
         <p class="feedback" aria-live="polite"></p>
     </div>
 
-    <h2>9 · Aufgabe</h2>
+    <h2>Aufgabe</h2>
     <div class="aufgabe">
         <p><strong>Vorhersage zuerst:</strong> Schreibe in zwei Sätzen auf, was <code>git status</code>
         nach dem ersten <code>commit</code> ausgibt — <em>bevor</em> du es ausführst.</p>
@@ -187,7 +185,7 @@ git push -u origin main
         <p><strong>Abgabe:</strong> Push im Schüler-Repo + Mail bis zur nächsten UE 00:00.</p>
     </div>
 
-    <h2>10 · Zusammenfassung &amp; Ausblick</h2>
+    <h2>Zusammenfassung &amp; Ausblick</h2>
     <table>
         <thead><tr><th>Begriff</th><th>Kurz</th></tr></thead>
         <tbody>
@@ -200,8 +198,20 @@ git push -u origin main
     <p><strong>Ausblick:</strong> Beim nächsten Mal schreiben wir in diesem Repository die erste
     richtige Seite — <em>HTML-Grundlagen: Struktur statt Deko</em>. Bis dahin: Setup läuft.</p>
 
-    <footer class="ausblick">
-        <p>WMC 3AAIF/3CAIF · Lektion 01 (UE 1) · Zurück: — · Weiter: UE 2 HTML-Grundlagen.</p>
+    <details class="lehrplan">
+        <summary>Lehrplan &amp; Einordnung</summary>
+        <ul>
+            <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile Computing",
+            Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr. 383/2021), Kompetenzmodul 3 —
+            „Kommunikation zwischen Browser und Server, Komponenten von Webseiten,
+            Auszeichnungssprachen, Formatierungstechniken"</li>
+            <li><strong>KM-Bezug:</strong> KM3 — Tooling/Git-Workflow (Anl. 1.9 Basis-Webtechniken); legt Repository, Live Server und den Git-Dreiklang an, auf denen alle folgenden Lektionen aufbauen</li>
+            <li><strong>Runtime:</strong> Browser, VS Code + Live-Server-Extension, W3C Web Validator, DevTools, Git/GitHub</li>
+        </ul>
+    </details>
+
+    <footer class="navi">
+        <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a> · Weiter: <a href="../KM3-02-html-basics/lesson.html">KM3-02 — HTML-Grundlagen</a></p>
     </footer>
 </main>
 </body>

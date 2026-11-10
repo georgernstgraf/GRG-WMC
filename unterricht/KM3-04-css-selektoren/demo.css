@@ -1,0 +1,676 @@
+/* ===================================================================
+   Selektoren-Labor — Stylesheet zur Demo-Seite.
+
+   Aufbau: Abschnitte in derselben Reihenfolge wie demo.html. Über jeder
+   Regel steht der Selektor, der hier etwas zeigt, und was er bewirkt.
+   Alle Effekte sind absichtlich grob sichtbar: farbige Ränder, Flächen,
+   Fettschrift. Wer eine Regel auskommentiert, sieht sofort, wen sie
+   getroffen hat.
+
+   Kein Framework, keine externen Dateien: nur diese eine CSS-Datei.
+   =================================================================== */
+
+:root {
+    --text: #14181f;
+    --muted: #5b6478;
+    --line: #d7dcea;
+    --bg: #f7f8fc;
+    --panel: #ffffff;
+    --tint: #eef1f8;
+    --zebra: #f1f3fb;
+    --accent: #6d28d9;
+    --ok: #1c7c46;
+    --warn: #9a6700;
+    --err: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+/* body — Grundlesbarkeit; die Demo ist bewusst hell (Projektion + Ausdruck) */
+body {
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+}
+
+/* code — Monospace auf hellem Grund, damit Selektoren ins Auge fallen */
+code {
+    font-family: "Cascadia Code", Consolas, "DejaVu Sans Mono", monospace;
+    font-size: 0.9em;
+    background: var(--tint);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+
+/* ------------------------------------------------------------- Grundriss */
+
+/* h2 — Abschnittsüberschriften mit Akzentkante */
+h2 {
+    margin-top: 2.75rem;
+    padding-left: 0.6rem;
+    border-left: 4px solid var(--accent);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+/* h3 — Zwischenüberschriften */
+h3 {
+    margin: 1.6rem 0 0.4rem;
+    font-size: 1.05rem;
+}
+
+/* .kicker — kleine Vorzeile im Seitenkopf */
+.kicker {
+    margin: 0;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+/* header.seite, footer.seite — Kopf und Fuß der Seite */
+header.seite {
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+footer.seite {
+    margin-top: 3rem;
+    border-top: 2px solid var(--line);
+    padding-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* h1 — nur eine Hauptüberschrift, groß genug für den Beamer */
+h1 {
+    margin: 0.3rem 0 0.4rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* .intro — Einleitungssatz */
+.intro {
+    max-width: 44rem;
+    margin: 0 0 1rem;
+    color: var(--muted);
+}
+
+/* .hinweis — graue Erklärzeile unter einem Beispiel */
+.hinweis {
+    color: var(--muted);
+    font-size: 0.93rem;
+}
+
+/* .fussnote — Kleingedrucktes */
+.fussnote {
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+/* section:target — die angesprungene Sektion bekommt einen Farbstreifen */
+section:target {
+    background: linear-gradient(90deg, var(--tint), transparent 70%);
+    outline: 1px dashed var(--line);
+}
+
+/* -------------------------------------------------- Navigation (Kopf) */
+
+/* nav.wegweiser — Sprungmarken als Chips */
+.wegweiser {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* nav.wegweiser a — jeder Chip */
+.wegweiser a {
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+/* nav.wegweiser a:hover, a:focus-visible — Rückmeldung für Maus und Tastatur */
+.wegweiser a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.wegweiser a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* nav.wegweiser a:last-child — der letzte Chip hebt sich ab */
+.wegweiser a:last-child {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+/* ------------------------------------------------ 1 · Kombinatoren */
+
+/* .karte — Container der Beispiele */
+article.karte {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+}
+
+/* .karte h3 — Nachfahre: jede h3 irgendwo in der Karte */
+article.karte h3 {
+    margin-top: 0;
+    color: var(--accent);
+}
+
+/* .karte p — Nachfahre: JEDER Absatz, egal wie tief */
+article.karte p {
+    margin: 0.4rem 0;
+    padding-left: 0.6rem;
+    border-left: 3px solid var(--line);
+}
+
+/* .karte > p — Kind: nur Absätze, die direkt in der Karte liegen.
+   Der verschachtelte Absatz in .innen behält darum den grauen Rand. */
+article.karte > p {
+    border-left-color: var(--accent);
+}
+
+/* .innen — der Verschachtelungs-Kasten */
+.innen {
+    margin-left: 0.6rem;
+    padding-left: 0.6rem;
+    border-left: 1px dashed var(--line);
+}
+
+/* .marke — das markierte Element, von dem aus Geschwister zählen */
+.marke {
+    background: #fff4cc;
+}
+
+/* .marke + p — direkter Nachbar: nur der EINE Absatz danach */
+.marke + p {
+    background: #e8f5ec;
+    border-left-color: var(--ok);
+}
+
+/* .marke ~ p — allgemeiner Geschwister: ALLE Absätze danach */
+.marke ~ p {
+    outline: 1px dashed var(--ok);
+    outline-offset: 2px;
+}
+
+/* .liste — Ausgangsliste für die Geschwister-Regeln */
+.liste {
+    list-style: none;
+    margin: 0.8rem 0;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+}
+
+/* .liste li — jeder Eintrag */
+.liste li {
+    padding: 0.4rem 0.8rem;
+}
+
+/* .liste li + li — jeder Eintrag, der einen Vorgänger hat */
+.liste li + li {
+    border-top: 1px solid var(--line);
+}
+
+/* .liste li.marke + li — nur der direkte Nachfolger der Marke */
+.liste li.marke + li {
+    font-weight: 700;
+}
+
+/* .liste li.marke ~ li — alle Nachfolger der Marke */
+.liste li.marke ~ li {
+    color: var(--ok);
+}
+
+/* --------------------------------------------------- 2 · Struktur */
+
+/* table.labor — die Tabelle als Zielscheibe; volle Breite, klares Gitter */
+table.labor {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+    background: var(--panel);
+    font-size: 0.95rem;
+}
+
+/* caption — Tabellenbeschriftung, links über der Tabelle */
+table.labor caption {
+    caption-side: top;
+    text-align: left;
+    padding-bottom: 0.4rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+/* table.labor th, table.labor td — Zellenraster */
+table.labor th,
+table.labor td {
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.6rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+/* table.labor th — Kopfzellen */
+table.labor th {
+    background: var(--tint);
+}
+
+/* table.labor tbody tr:nth-child(odd) — jede ungerade Zeile im tbody */
+table.labor tbody tr:nth-child(odd) {
+    background: var(--zebra);
+}
+
+/* table.labor tbody tr:nth-child(even) — jede gerade Zeile im tbody */
+table.labor tbody tr:nth-child(even) {
+    background: var(--panel);
+}
+
+/* table.labor tbody tr:nth-child(3) — die dritte Zeile, fetter Text */
+table.labor tbody tr:nth-child(3) {
+    font-weight: 700;
+}
+
+/* table.labor tbody tr:nth-child(2n+1) — dasselbe wie "odd": 2n+1 = 1, 3, 5, 7 …
+   Die Regel steht hier, damit man die Schreibweisen vergleichen kann. */
+table.labor tbody tr:nth-child(2n+1) {
+    background: var(--zebra);
+}
+
+/* table.labor tbody tr:nth-child(-n+3) — die ersten drei Zeilen (3, 2, 1) */
+table.labor tbody tr:nth-child(-n+3) {
+    border-left: 4px solid var(--accent);
+}
+
+/* tbody tr:nth-last-child(2) — die vorletzte Zeile, von hinten gezählt */
+tbody tr:nth-last-child(2) {
+    border-right: 4px solid var(--warn);
+}
+
+/* tbody tr:last-child — die letzte Zeile im tbody */
+table.labor tbody tr:last-child {
+    outline: 2px dashed var(--muted);
+    outline-offset: -4px;
+}
+
+/* tbody td:only-child — eine Zelle, die das einzige Kind ihrer Zeile ist
+   (die Zeile mit colspan="4"). Steht vor den Spaltenregeln, damit
+   td:last-child die Ausrichtung danach überschreiben kann. */
+table.labor tbody td:only-child {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+}
+
+/* td:first-child — die erste Zelle jeder Zeile: Nummernspalte, rechtsbündig */
+table.labor td:first-child {
+    text-align: right;
+    color: var(--muted);
+    width: 2.5rem;
+}
+
+/* td:last-child — die letzte Zelle jeder Zeile: Trefferspalte, zentriert */
+table.labor td:last-child {
+    text-align: center;
+}
+
+/* tfoot tr — die Fußzeile der Tabelle, eigener Abschnitt */
+table.labor tfoot tr {
+    background: var(--tint);
+    font-size: 0.9rem;
+}
+
+/* li.leer:empty — ein Element ohne jeden Inhalt (auch ohne Leerzeichen) */
+li.leer:empty {
+    min-height: 1.6rem;
+    background: repeating-linear-gradient(45deg, var(--tint), var(--tint) 6px, var(--panel) 6px, var(--panel) 12px);
+}
+
+/* li.leer:empty::after — Beschriftung nur über CSS, das Element bleibt leer */
+li.leer:empty::after {
+    content: "li:empty";
+    margin-left: 0.8rem;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+/* .einzel > :only-child — das einzige Kind seines Containers */
+.einzel {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    background: var(--panel);
+}
+
+.einzel > :only-child {
+    margin: 0;
+    color: var(--ok);
+}
+
+/* -------------------------------------------------------- 3 · Typ */
+
+/* .gemischt — Container für die *-of-type-Demo */
+.gemischt {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+}
+
+/* .gemischt p:first-of-type — der erste Absatz, obwohl oben eine h3 steht */
+.gemischt p:first-of-type {
+    border-left: 4px solid var(--accent);
+    padding-left: 0.6rem;
+}
+
+/* .gemischt p:nth-of-type(2) — der zweite Absatz */
+.gemischt p:nth-of-type(2) {
+    background: var(--tint);
+}
+
+/* .gemischt p:last-of-type — der letzte Absatz */
+.gemischt p:last-of-type {
+    border-left: 4px solid var(--ok);
+    padding-left: 0.6rem;
+}
+
+/* .gemischt blockquote:only-of-type — das einzige blockquote im Container */
+.gemischt blockquote:only-of-type {
+    margin: 0.6rem 0;
+    padding: 0.4rem 0.8rem;
+    border-left: 4px solid var(--warn);
+    background: #fff8e1;
+}
+
+/* ---------------------------------------------------- 4 · Zustand */
+
+/* .formular — Formularblock */
+.formular {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+}
+
+/* .feld — eine Zeile im Formular */
+.feld {
+    margin: 0.5rem 0;
+}
+
+/* .formular input:checked + label — nur das Label des gesetzten Hakens */
+.formular input:checked + label {
+    color: var(--ok);
+    font-weight: 700;
+}
+
+/* input:disabled — gesperrte Felder sind grau und gestrichelt */
+input:disabled {
+    background: var(--tint);
+    border: 1px dashed var(--muted);
+    color: var(--muted);
+    cursor: not-allowed;
+}
+
+/* input:required — Pflichtfelder tragen eine rote Kante */
+input:required {
+    border-left: 4px solid var(--err);
+}
+
+/* input:invalid — ein leeres Pflichtfeld ist sofort ungültig */
+input:invalid {
+    border-color: var(--err);
+    background: #fdecea;
+}
+
+/* input:placeholder-shown — Feld zeigt noch seinen Platzhalter */
+input:placeholder-shown {
+    border-style: dashed;
+}
+
+/* button:hover — Rückmeldung auf Mauszeiger */
+button:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+/* button:focus-visible — Tastaturfokus, klar sichtbar */
+button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* .auswahl li:not(.aktiv) — alle Einträge außer dem aktiven */
+.auswahl li:not(.aktiv) {
+    border-left: 4px solid var(--accent);
+}
+
+/* .auswahl li.aktiv — der aktive Eintrag bleibt unmarkiert */
+.auswahl li.aktiv {
+    color: var(--muted);
+}
+
+/* .kasten — Container für die :has()-Demo */
+.kasten {
+    margin: 0.8rem 0;
+    padding: 0.6rem 1rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+/* .kasten:has(img) — Kasten MIT Bild bekommt die Akzentkante */
+.kasten:has(img) {
+    border-left: 4px solid var(--accent);
+}
+
+/* .kasten img — Bild im Kasten */
+.kasten img {
+    display: block;
+    margin-top: 0.4rem;
+}
+
+/* -------------------------------------------------- 5 · Attribute */
+
+/* .links — Liste der Link-Beispiele */
+.links {
+    padding-left: 1.2rem;
+}
+
+/* a[href$=".css"] — Link, dessen Ziel auf .css endet */
+a[href$=".css"] {
+    font-weight: 700;
+    color: var(--ok);
+}
+
+/* a[href$=".pdf"]::after — Zusatz nur über CSS, das HTML bleibt unverändert */
+a[href$=".pdf"]::after {
+    content: " (PDF)";
+    font-size: 0.8em;
+    color: var(--err);
+}
+
+/* a[href^="https"]::before — externe Links bekommen einen Pfeil */
+a[href^="https"]::before {
+    content: "↗ ";
+    color: var(--muted);
+}
+
+/* a[lang|="de"] — Sprachcode "de" oder "de-…" (z. B. de-AT) */
+a[lang|="de"] {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* p[data-status] — Attribut vorhanden, Wert egal */
+p[data-status] {
+    padding-left: 0.6rem;
+    border-left: 4px solid var(--ok);
+}
+
+/* p[data-status="offen"] — Attribut mit genau diesem Wert */
+p[data-status="offen"] {
+    background: #e8f5ec;
+}
+
+/* #attribute [class~="karte"] — "karte" muss ein ganzes Wort der Klassenliste sein */
+#attribute [class~="karte"] {
+    border: 2px solid var(--ok);
+}
+
+/* #attribute [class*="karte"] — "karte" darf irgendwo im Wert stecken */
+#attribute [class*="karte"] {
+    outline: 2px dotted var(--warn);
+    outline-offset: 3px;
+}
+
+/* ----------------------------------------------- 6 · Pseudoelemente */
+
+/* .zitat::first-letter — Initial des ersten Buchstabens */
+.zitat::first-letter {
+    float: left;
+    font-size: 2.8rem;
+    line-height: 0.9;
+    padding: 0.1rem 0.4rem 0 0;
+    color: var(--accent);
+}
+
+/* .zitat::first-line — die erste Zeile, hier in Kapitälchen */
+.zitat::first-line {
+    font-variant: small-caps;
+    letter-spacing: 0.02em;
+}
+
+/* .zitat — der Zitatblock selbst */
+.zitat {
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+    background: var(--panel);
+    border-left: 4px solid var(--line);
+    font-style: italic;
+}
+
+/* .schritte li::marker — Nummer oder Punkt der Liste */
+.schritte li::marker {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* #pseudo — Zähler für die .zaehler-Absätze */
+#pseudo {
+    counter-reset: zaehler;
+}
+
+/* .zaehler — jeder Absatz zählt eins weiter */
+.zaehler {
+    counter-increment: zaehler;
+    margin: 0.4rem 0;
+}
+
+/* .zaehler::before — die Nummer kommt aus dem Zähler, nicht aus dem HTML */
+.zaehler::before {
+    content: "Station " counter(zaehler) ": ";
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 0.85em;
+    color: var(--accent);
+}
+
+/* ::selection — Text, den man mit der Maus markiert */
+::selection {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+/* input::placeholder — der Platzhaltertext im Feld */
+input::placeholder {
+    color: var(--accent);
+    font-style: italic;
+}
+
+/* ------------------------------------------------- 7 · Spezifität */
+
+/* Dieselbe Regelkette, drei Gewichte — sichtbar wird die schwerste.
+   Reihenfolge zum Ausprobieren:
+   1. style-Attribut im HTML löschen  → #tacho gewinnt (orange)
+   2. #spezifitaet #tacho löschen     → .tacho gewinnt (blau)
+   3. #spezifitaet .tacho löschen     → p gewinnt (grün) */
+
+/* #spezifitaet p — Gewicht 1-0-1 */
+#spezifitaet p {
+    color: var(--ok);
+}
+
+/* #spezifitaet .tacho — Gewicht 1-1-0, schlägt 1-0-1 */
+#spezifitaet .tacho {
+    color: #1f5fbf;
+}
+
+/* #spezifitaet #tacho — Gewicht 2-0-0, schlägt 1-1-0 */
+#spezifitaet #tacho {
+    color: var(--warn);
+}
+
+/* table.gewichte — die Gewichtstabelle */
+table.gewichte {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: var(--panel);
+    font-size: 0.95rem;
+}
+
+table.gewichte caption {
+    caption-side: top;
+    text-align: left;
+    padding-bottom: 0.4rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+table.gewichte th,
+table.gewichte td {
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.6rem;
+    text-align: left;
+}
+
+table.gewichte th {
+    background: var(--tint);
+}
+
+/* main :is(h2, h3) — beide Überschriftentypen in EINEM Selektor;
+   Gewicht 0-0-2 (main + der schwerste :is-Parameter). */
+main :is(h2, h3) {
+    border-bottom: 1px dotted var(--line);
+}
+
+/* :where(main) :where(h3) — gleiche Auswahl, aber Gewicht 0-0-0.
+   Diese Regel steht später und verliert trotzdem: :where zählt nichts.
+   Probier es: ersetze sie durch "main h3" — dann verschwindet die
+   gepunktete Linie unter den h3. */
+:where(main) :where(h3) {
+    border-bottom: none;
+}
