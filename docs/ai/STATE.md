@@ -1,6 +1,6 @@
 # Project State
 
-Current status as of 2026-10-05.
+Current status as of 2026-11-10.
 
 ## Current Focus
 **Lernplattform (#7):** Der Markdown-SPA-Viewer ist durch einen **statischen Navigator** `index.html` ersetzt; GitHub Pages veröffentlicht nur `index.html`, `assets/` und `unterricht/` (`.github/workflows/pages.yml`, `build_type: workflow`). Der Navigator verlinkt die Prepared Lessons `KM3-01–03` unter `unterricht/KM3-<NN>-<slug>/` (Retrofit 2026-10-05).
@@ -8,6 +8,21 @@ Current status as of 2026-10-05.
 Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
+- [x] 2026-11-10 — Assets aus GRG-PMM übernommen (Quiz **2.1**: Checkboxen,
+      `data-richtig` je Option, Fisher-Yates-Shuffle, Überprüfen-Button,
+      Infokugeln; `tables.js` Tabellen-Querscroll; PMM-`lesson.css` auf
+      WMC-Palette/Beamer/Print; `theme.js` mit readyState-Guard). Altklassen
+      (`.box`, `header.lektion`, `.aufgabe`, `footer.ausblick`) bleiben gültig,
+      Radio-Altmodus von `quiz.js` läuft weiter; die vier Alt-Lessons
+      (KM3-01..03, KM8-01) wurden auf `header.meta`/`.callout`/`details.lehrplan`/
+      `footer.navi` umgestellt.
+- [x] 2026-11-10 — #10 Lesson **KM3-04 CSS-Selektoren** + **Selektoren-Labor**
+      (`unterricht/KM3-04-css-selektoren/`: `lesson.html`, `demo.html`, `demo.css`,
+      `aufgabe.md`): 7 Schritte, 7 Lernquizzes (28 Fragen, Lösungsmengen 0–4),
+      3 abzugebende Beispiele, Navigator-Eintrag, Glossar (Selektor, Kombinator,
+      Pseudoklasse, Pseudoelement, Attribut-Selektor, Spezifität).
+      Demo im Browser verifiziert (Trefferzahlen, berechnete Stile, Quiz-Interaktion
+      inkl. Shuffle/Zurücksetzen, Pages-Basis `/GRG-WMC/`).
 - [x] 2026-10-12 — Homework-Discovery WMC (WMC_1): `3caif/2026-10-06_html-formulare/Aufgabe.md`
       erzeugt (Formular fertigstellen, Mailclient-Versand, Bonus
       Pflichtfelder/Pattern, Abgabe 13.10. 00:00 — Textquelle: Tages-README
