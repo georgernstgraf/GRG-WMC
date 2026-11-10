@@ -181,46 +181,54 @@ h1   { font-size: 2rem; }       /* 32px */
         </ol>
     </div>
 
-    <h2>Quiz: CSS sitzt?</h2>
+    <h2>Sitzt CSS?</h2>
 
-    <div class="quiz" data-loesung="1">
-        <p class="frage">1. Welcher Weg bindet ein Stylesheet für <em>alle</em> Seiten ein?</p>
-        <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil das style-Attribut nur ein einzelnes Element formatiert."> das <code>style</code>-Attribut am Element</label>
-        <label><input type="radio" name="q1" value="1" data-grund="Richtig, weil das verlinkte Stylesheet im head für alle Seiten gilt, die es einbinden."> <code>&lt;link rel="stylesheet"&gt;</code> im <code>head</code></label>
-        <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil ein style-Block nur für diese eine Datei gilt."> ein <code>&lt;style&gt;</code>-Block im <code>body</code></label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="2">
-        <p class="frage">2. Was bewirkt <code>box-sizing: border-box</code>?</p>
-        <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil border-box Rahmen und Padding nicht ausblendet, sondern in die Breite einrechnet."> Es blendet Rahmen und Abstände aus</label>
-        <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil Padding erhalten bleibt; border-box zählt es nur in die Breite hinein."> Es entfernt alle Innenabstände ganz</label>
-        <label><input type="radio" name="q2" value="2" data-grund="Richtig, weil width dann auch Padding und Border umfasst und die Box gleich breit bleibt."> Es zählt Padding und Border in die Breite</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="0">
-        <p class="frage">3. Was bedeutet das <code>a</code> in <code>rgba()</code>?</p>
-        <label><input type="radio" name="q3" value="0" data-grund="Richtig, weil Alpha die Deckkraft von 0 (unsichtbar) bis 1 (deckend) angibt."> die Deckkraft der Farbe</label>
-        <label><input type="radio" name="q3" value="1" data-grund="Falsch, weil Alpha die Deckkraft meint, nicht die Sättigung."> die Sättigung der Farbe</label>
-        <label><input type="radio" name="q3" value="2" data-grund="Falsch, weil Alpha die Deckkraft meint, nicht die Helligkeit."> die Helligkeit der Farbe</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="1">
-        <p class="frage">4. Reihenfolge des Box-Models von innen nach außen?</p>
-        <label><input type="radio" name="q4" value="0" data-grund="Falsch, weil das die Reihenfolge von außen nach innen wäre, nicht von innen nach außen."> Margin, Border, Padding, Content</label>
-        <label><input type="radio" name="q4" value="1" data-grund="Richtig, weil das Box-Model von innen nach außen Content, Padding, Border und Margin heißt."> Content, Padding, Border, Margin</label>
-        <label><input type="radio" name="q4" value="2" data-grund="Falsch, weil Content innen liegt und Padding vor Border und Margin kommt."> Border, Content, Margin, Padding</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="2">
-        <p class="frage">5. Wofür nutzt du eine <em>Klasse</em> statt einer ID?</p>
-        <label><input type="radio" name="q5" value="0" data-grund="Falsch, weil Ankerziele IDs nutzen; Klassen sind für Styling da."> für einmalige Ankerziele in der Seite</label>
-        <label><input type="radio" name="q5" value="1" data-grund="Falsch, weil CSS-Klassen keine serverseitige Logik ausführen."> für serverseitige Logik im Browser</label>
-        <label><input type="radio" name="q5" value="2" data-grund="Richtig, weil Klassen mehrfach vorkommen dürfen und viele Elemente gleich stylen."> für wiederverwendbares Styling</label>
-        <p class="feedback" aria-live="polite"></p>
+    <div class="quiz" data-titel="Quiz: css-basics">
+        <fieldset class="frage">
+            <legend class="frage-text">Welcher Weg bindet ein Stylesheet für <em>alle</em> Seiten ein?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km3-03-q1" value="0" data-grund="Falsch, weil das style-Attribut nur ein einzelnes Element formatiert."> das <code>style</code>-Attribut am Element</label>
+                <label><input type="checkbox" data-richtig name="km3-03-q1" value="1" data-grund="Richtig, weil das verlinkte Stylesheet im head für alle Seiten gilt, die es einbinden."> <code>&lt;link rel="stylesheet"&gt;</code> im <code>head</code></label>
+                <label><input type="checkbox" name="km3-03-q1" value="2" data-grund="Falsch, weil ein style-Block nur für diese eine Datei gilt."> ein <code>&lt;style&gt;</code>-Block im <code>body</code></label>
+                <label><input type="checkbox" name="km3-03-q1" value="3" data-grund="Falsch, weil ein style-Attribut nur das eine Element formatiert, nicht alle Seiten."> ein <code>style</code>-Attribut am <code>body</code></label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Was bewirkt <code>box-sizing: border-box</code>?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km3-03-q2" value="0" data-grund="Falsch, weil border-box Rahmen und Padding nicht ausblendet, sondern in die Breite einrechnet."> Es blendet Rahmen und Abstände aus</label>
+                <label><input type="checkbox" name="km3-03-q2" value="1" data-grund="Falsch, weil Padding erhalten bleibt; border-box zählt es nur in die Breite hinein."> Es entfernt alle Innenabstände ganz</label>
+                <label><input type="checkbox" data-richtig name="km3-03-q2" value="2" data-grund="Richtig, weil width dann auch Padding und Border umfasst und die Box gleich breit bleibt."> Es zählt Padding und Border in die Breite</label>
+                <label><input type="checkbox" name="km3-03-q2" value="3" data-grund="Falsch, weil border-box die Breite nicht verdoppelt, sondern Padding und Border einrechnet."> Es verdoppelt die angegebene Breite</label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Was bedeutet das <code>a</code> in <code>rgba()</code>?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" data-richtig name="km3-03-q3" value="0" data-grund="Richtig, weil Alpha die Deckkraft von 0 (unsichtbar) bis 1 (deckend) angibt."> die Deckkraft der Farbe</label>
+                <label><input type="checkbox" name="km3-03-q3" value="1" data-grund="Falsch, weil Alpha die Deckkraft meint, nicht die Sättigung."> die Sättigung der Farbe</label>
+                <label><input type="checkbox" name="km3-03-q3" value="2" data-grund="Falsch, weil Alpha die Deckkraft meint, nicht die Helligkeit."> die Helligkeit der Farbe</label>
+                <label><input type="checkbox" name="km3-03-q3" value="3" data-grund="Falsch, weil das vierte Argument in rgba() die Deckkraft ist, nicht die Reihenfolge."> die Reihenfolge im Farbverlauf</label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Reihenfolge des Box-Models von innen nach außen?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km3-03-q4" value="0" data-grund="Falsch, weil das die Reihenfolge von außen nach innen wäre, nicht von innen nach außen."> Margin, Border, Padding, Content</label>
+                <label><input type="checkbox" data-richtig name="km3-03-q4" value="1" data-grund="Richtig, weil das Box-Model von innen nach außen Content, Padding, Border und Margin heißt."> Content, Padding, Border, Margin</label>
+                <label><input type="checkbox" name="km3-03-q4" value="2" data-grund="Falsch, weil Content innen liegt und Padding vor Border und Margin kommt."> Border, Content, Margin, Padding</label>
+                <label><input type="checkbox" name="km3-03-q4" value="3" data-grund="Falsch, weil Content innen liegt und Padding darum herum; Padding kann nicht außen stehen."> Padding, Content, Border, Margin</label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Wofür nutzt du eine <em>Klasse</em> statt einer ID?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km3-03-q5" value="0" data-grund="Falsch, weil Ankerziele IDs nutzen; Klassen sind für Styling da."> für einmalige Ankerziele in der Seite</label>
+                <label><input type="checkbox" name="km3-03-q5" value="1" data-grund="Falsch, weil CSS-Klassen keine serverseitige Logik ausführen."> für serverseitige Logik im Browser</label>
+                <label><input type="checkbox" data-richtig name="km3-03-q5" value="2" data-grund="Richtig, weil Klassen mehrfach vorkommen dürfen und viele Elemente gleich stylen."> für wiederverwendbares Styling</label>
+                <label><input type="checkbox" name="km3-03-q5" value="3" data-grund="Falsch, weil eine Klasse mehrfach vorkommen darf; die höchste Spezifität hat die ID."> für die höchste Spezifität im Stylesheet</label>
+            </div>
+        </fieldset>
     </div>
 
     <h2>Aufgabe</h2>

@@ -241,70 +241,84 @@ Content-Type: application/json
         Der Server muss selbst prüfen.</li>
     </ul>
 
-    <h2>Quiz: Formulare &amp; HTTP-POST</h2>
+    <h2>Sitzen Formulare und HTTP-POST?</h2>
 
-    <div class="quiz" data-loesung="0">
-        <p class="frage">1. Welches Attribut am <code>&lt;form&gt;</code> bestimmt, <strong>wohin</strong> die Daten gehen?</p>
-        <label><input type="radio" name="q1" value="0" data-grund="Richtig: action nennt die Ziel-URL, an die der Browser die Formulardaten schickt."> <code>action</code></label>
-        <label><input type="radio" name="q1" value="1" data-grund="Falsch: method legt nur fest, ob GET oder POST verwendet wird — nicht die Ziel-URL."> <code>method</code></label>
-        <label><input type="radio" name="q1" value="2" data-grund="Falsch: enctype legt die Kodierung des Bodys fest, nicht das Ziel."> <code>enctype</code></label>
-        <p class="feedback" aria-live="polite"></p>
+    <div class="quiz" data-titel="Quiz: formular-grundlagen">
+        <fieldset class="frage">
+            <legend class="frage-text">Welches Attribut am <code>&lt;form&gt;</code> bestimmt, <strong>wohin</strong> die Daten gehen?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" data-richtig name="km8-01-q1" value="0" data-grund="Richtig: action nennt die Ziel-URL, an die der Browser die Formulardaten schickt."> <code>action</code></label>
+                <label><input type="checkbox" name="km8-01-q1" value="1" data-grund="Falsch: method legt nur fest, ob GET oder POST verwendet wird — nicht die Ziel-URL."> <code>method</code></label>
+                <label><input type="checkbox" name="km8-01-q1" value="2" data-grund="Falsch: enctype legt die Kodierung des Bodys fest, nicht das Ziel."> <code>enctype</code></label>
+                <label><input type="checkbox" name="km8-01-q1" value="3" data-grund="Falsch, weil target nur bestimmt, in welchem Fenster die Antwort erscheint."> <code>target</code></label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Wozu dient das <code>name</code>-Attribut eines Eingabefelds?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km8-01-q2" value="0" data-grund="Falsch: die Beschriftung ist Aufgabe von label, nicht von name."> Es beschriftet das Feld für den Screenreader.</label>
+                <label><input type="checkbox" data-richtig name="km8-01-q2" value="1" data-grund="Richtig: über name landet der Wert als Schlüssel=Wert im Request; ohne name wird gar nichts gesendet."> Es wird zum Schlüssel des gesendeten Werts.</label>
+                <label><input type="checkbox" name="km8-01-q2" value="2" data-grund="Falsch: die Validierung übernehmen Attribute wie required oder type, nicht name."> Es reserviert den Wert für die Validierung.</label>
+                <label><input type="checkbox" name="km8-01-q2" value="3" data-grund="Falsch, weil der Eingabetyp im Attribut type steht, nicht in name."> Es legt den Eingabetyp des Felds fest</label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Welche Methode gehört zu einer Anmeldung, die Daten verändert?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km8-01-q3" value="0" data-grund="Falsch: GET liest nur; sichtbare Werte in der URL sind für Änderungen ungeeignet."> GET, weil der Wert dann sichtbar ist.</label>
+                <label><input type="checkbox" name="km8-01-q3" value="1" data-grund="Falsch: HEAD liefert nur die Header und ist fürs Senden von Daten nicht gedacht."> HEAD, weil der Body dabei leer bleibt.</label>
+                <label><input type="checkbox" data-richtig name="km8-01-q3" value="2" data-grund="Richtig: POST schickt die Daten im Request-Body — passend für alles, was etwas verändert."> POST, weil der Wert im Body mitgeht.</label>
+                <label><input type="checkbox" name="km8-01-q3" value="3" data-grund="Falsch, weil ein HTML-Formular nur GET und POST sendet; PUT kennt es nicht."> <code>PUT</code>, weil er Daten ersetzt</label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Wo landen die Werte eines GET-Formulars?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" data-richtig name="km8-01-q4" value="0" data-grund="Richtig: GET hängt die Werte als ?name=wert an die URL — teilbar und wiederholbar."> im Query-String der URL</label>
+                <label><input type="checkbox" name="km8-01-q4" value="1" data-grund="Falsch: einen Body verwendet POST, nicht GET."> im Body der Anfrage</label>
+                <label><input type="checkbox" name="km8-01-q4" value="2" data-grund="Falsch: Cookies sind ein eigener Kopf; GET-Formulare nutzen den Query-String."> in einem Cookie des Browsers</label>
+                <label><input type="checkbox" name="km8-01-q4" value="3" data-grund="Falsch, weil GET die Werte an die URL hängt und nicht in einen Header schreibt."> im <code>Accept</code>-Header der Anfrage</label>
+            </div>
+        </fieldset>
     </div>
 
-    <div class="quiz" data-loesung="1">
-        <p class="frage">2. Wozu dient das <code>name</code>-Attribut eines Eingabefelds?</p>
-        <label><input type="radio" name="q2" value="0" data-grund="Falsch: die Beschriftung ist Aufgabe von label, nicht von name."> Es beschriftet das Feld für den Screenreader.</label>
-        <label><input type="radio" name="q2" value="1" data-grund="Richtig: über name landet der Wert als Schlüssel=Wert im Request; ohne name wird gar nichts gesendet."> Es wird zum Schlüssel des gesendeten Werts.</label>
-        <label><input type="radio" name="q2" value="2" data-grund="Falsch: die Validierung übernehmen Attribute wie required oder type, nicht name."> Es reserviert den Wert für die Validierung.</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="2">
-        <p class="frage">3. Welche Methode gehört zu einer Anmeldung, die Daten verändert?</p>
-        <label><input type="radio" name="q3" value="0" data-grund="Falsch: GET liest nur; sichtbare Werte in der URL sind für Änderungen ungeeignet."> GET, weil der Wert dann sichtbar ist.</label>
-        <label><input type="radio" name="q3" value="1" data-grund="Falsch: HEAD liefert nur die Header und ist fürs Senden von Daten nicht gedacht."> HEAD, weil der Body dabei leer bleibt.</label>
-        <label><input type="radio" name="q3" value="2" data-grund="Richtig: POST schickt die Daten im Request-Body — passend für alles, was etwas verändert."> POST, weil der Wert im Body mitgeht.</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="0">
-        <p class="frage">4. Wo landen die Werte eines GET-Formulars?</p>
-        <label><input type="radio" name="q4" value="0" data-grund="Richtig: GET hängt die Werte als ?name=wert an die URL — teilbar und wiederholbar."> im Query-String der URL</label>
-        <label><input type="radio" name="q4" value="1" data-grund="Falsch: einen Body verwendet POST, nicht GET."> im Body der Anfrage</label>
-        <label><input type="radio" name="q4" value="2" data-grund="Falsch: Cookies sind ein eigener Kopf; GET-Formulare nutzen den Query-String."> in einem Cookie des Browsers</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="1">
-        <p class="frage">5. Welche <code>enctype</code> verwendet ein Formular standardmäßig?</p>
-        <label><input type="radio" name="q5" value="0" data-grund="Falsch: multipart/form-data muss für Datei-Uploads extra gesetzt werden."> <code>multipart/form-data</code></label>
-        <label><input type="radio" name="q5" value="1" data-grund="Richtig: das ist der Standard; Paare werden als schlüssel=wert mit &amp; verbunden."> <code>application/x-www-form-urlencoded</code></label>
-        <label><input type="radio" name="q5" value="2" data-grund="Falsch: application/json ist kein Formular-enctype; das setzt ein fetch-Client."> <code>application/json</code></label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="2">
-        <p class="frage">6. Was bewirkt die Antwort <code>303 See Other</code> nach einem POST?</p>
-        <label><input type="radio" name="q6" value="0" data-grund="Falsch: 303 sagt nichts über das Speichern; es lenkt nur die nächste Anfrage um."> Der Server speichert die Daten nicht.</label>
-        <label><input type="radio" name="q6" value="1" data-grund="Falsch: eine Verweigerung wäre ein 4xx-Code, nicht 303."> Der Server verweigert die Anfrage komplett.</label>
-        <label><input type="radio" name="q6" value="2" data-grund="Richtig: Redirect-after-POST — der Browser holt die Zielseite mit GET, ein Reload schickt das Formular nicht erneut."> Der Browser lädt das Ziel per GET.</label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="0">
-        <p class="frage">7. Wie lautet der Body für <code>name</code> mit dem Wert <code>Ada Lovelace</code> kodiert?</p>
-        <label><input type="radio" name="q7" value="0" data-grund="Richtig: urlencoded wird das Leerzeichen zu + (bzw. %20)."> <code>name=Ada+Lovelace</code></label>
-        <label><input type="radio" name="q7" value="1" data-grund="Falsch: ein Leerzeichen ist im Body nicht erlaubt und wird kodiert."> <code>name=Ada Lovelace</code></label>
-        <label><input type="radio" name="q7" value="2" data-grund="Falsch: im urlencoded-Format trennt = Schlüssel und Wert, ein Doppelpunkt kommt nicht vor."> <code>name:Ada Lovelace</code></label>
-        <p class="feedback" aria-live="polite"></p>
-    </div>
-
-    <div class="quiz" data-loesung="1">
-        <p class="frage">8. Was passiert mit einem <code>&lt;button&gt;</code> ohne <code>type</code> in einem Formular?</p>
-        <label><input type="radio" name="q8" value="0" data-grund="Falsch: ohne type ist der Standard submit — der Button löst das Absenden aus."> Er tut nichts und bleibt wirkungslos.</label>
-        <label><input type="radio" name="q8" value="1" data-grund="Richtig: der Standard-Typ eines Buttons im Formular ist submit."> Er schickt das Formular ab.</label>
-        <label><input type="radio" name="q8" value="2" data-grund="Falsch: das Leeren übernimmt type=reset, nicht der Standard."> Er leert alle Felder des Formulars.</label>
-        <p class="feedback" aria-live="polite"></p>
+    <div class="quiz" data-titel="Quiz: http-post">
+        <fieldset class="frage">
+            <legend class="frage-text">Welche <code>enctype</code> verwendet ein Formular standardmäßig?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km8-01-q5" value="0" data-grund="Falsch: multipart/form-data muss für Datei-Uploads extra gesetzt werden."> <code>multipart/form-data</code></label>
+                <label><input type="checkbox" data-richtig name="km8-01-q5" value="1" data-grund="Richtig: das ist der Standard; Paare werden als schlüssel=wert mit &amp; verbunden."> <code>application/x-www-form-urlencoded</code></label>
+                <label><input type="checkbox" name="km8-01-q5" value="2" data-grund="Falsch: application/json ist kein Formular-enctype; das setzt ein fetch-Client."> <code>application/json</code></label>
+                <label><input type="checkbox" name="km8-01-q5" value="3" data-grund="Falsch, weil text/plain erlaubt ist, aber nicht der Standardwert von enctype."> <code>text/plain</code></label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Was bewirkt die Antwort <code>303 See Other</code> nach einem POST?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km8-01-q6" value="0" data-grund="Falsch: 303 sagt nichts über das Speichern; es lenkt nur die nächste Anfrage um."> Der Server speichert die Daten nicht.</label>
+                <label><input type="checkbox" name="km8-01-q6" value="1" data-grund="Falsch: eine Verweigerung wäre ein 4xx-Code, nicht 303."> Der Server verweigert die Anfrage komplett.</label>
+                <label><input type="checkbox" data-richtig name="km8-01-q6" value="2" data-grund="Richtig: Redirect-after-POST — der Browser holt die Zielseite mit GET, ein Reload schickt das Formular nicht erneut."> Der Browser lädt das Ziel per GET.</label>
+                <label><input type="checkbox" name="km8-01-q6" value="3" data-grund="Falsch, weil 303 gerade verhindert, dass ein Reload den POST erneut sendet."> Der Browser wiederholt den POST automatisch</label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Wie lautet der Body für <code>name</code> mit dem Wert <code>Ada Lovelace</code> kodiert?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" data-richtig name="km8-01-q7" value="0" data-grund="Richtig: urlencoded wird das Leerzeichen zu + (bzw. %20)."> <code>name=Ada+Lovelace</code></label>
+                <label><input type="checkbox" name="km8-01-q7" value="1" data-grund="Falsch: ein Leerzeichen ist im Body nicht erlaubt und wird kodiert."> <code>name=Ada Lovelace</code></label>
+                <label><input type="checkbox" name="km8-01-q7" value="2" data-grund="Falsch: im urlencoded-Format trennt = Schlüssel und Wert, ein Doppelpunkt kommt nicht vor."> <code>name:Ada Lovelace</code></label>
+                <label><input type="checkbox" name="km8-01-q7" value="3" data-grund="Falsch, weil &amp; die Paare trennt; das Leerzeichen im Wert wird zu +."> <code>name=Ada&amp;Lovelace</code></label>
+            </div>
+        </fieldset>
+        <fieldset class="frage">
+            <legend class="frage-text">Was passiert mit einem <code>&lt;button&gt;</code> ohne <code>type</code> in einem Formular?</legend>
+            <div class="optionen">
+                <label><input type="checkbox" name="km8-01-q8" value="0" data-grund="Falsch: ohne type ist der Standard submit — der Button löst das Absenden aus."> Er tut nichts und bleibt wirkungslos.</label>
+                <label><input type="checkbox" data-richtig name="km8-01-q8" value="1" data-grund="Richtig: der Standard-Typ eines Buttons im Formular ist submit."> Er schickt das Formular ab.</label>
+                <label><input type="checkbox" name="km8-01-q8" value="2" data-grund="Falsch: das Leeren übernimmt type=reset, nicht der Standard."> Er leert alle Felder des Formulars.</label>
+                <label><input type="checkbox" name="km8-01-q8" value="3" data-grund="Falsch, weil ohne type der Standard submit gilt; ein Link ist ein a-Element."> Er wird zu einem Link</label>
+            </div>
+        </fieldset>
     </div>
 
     <h2>Zusammenfassung &amp; Ausblick</h2>
