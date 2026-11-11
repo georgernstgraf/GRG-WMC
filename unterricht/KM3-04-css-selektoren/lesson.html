@@ -126,7 +126,7 @@ table.labor tbody tr:nth-child(odd) {
       <legend class="frage-text">Welche Spezifität bringt der Universal-
       Selektor <code>*</code> in eine Regel?</legend>
       <div class="optionen">
-        <label><input type="checkbox" data-richtig name="km3-04-q4" value="0" data-grund="Richtig — * zählt wie ein Elementname, nämlich gar nicht: 0-0-0."> gar keine, also 0-0-0</label>
+        <label><input type="checkbox" data-richtig name="km3-04-q4" value="0" data-grund="Richtig — * hat kein Gewicht in der Rangordnung: 0-0-0."> gar keine, also 0-0-0</label>
         <label><input type="checkbox" name="km3-04-q4" value="1" data-grund="Falsch — * ist kein Elementname und zählt darum nicht als 0-0-1."> so viel wie ein Elementname, 0-0-1</label>
         <label><input type="checkbox" name="km3-04-q4" value="2" data-grund="Falsch — * ist schwächer als jede Klasse."> mehr als eine Klasse, weil es alles trifft</label>
         <label><input type="checkbox" name="km3-04-q4" value="3" data-grund="Falsch — die Spezifität hängt nicht vom getroffenen Element ab."> je nach getroffenem Element verschieden</label>
@@ -509,9 +509,9 @@ table.labor tbody tr:nth-child(odd) {
       <code>::before</code> mit zwei Doppelpunkten?</legend>
       <div class="optionen">
         <label><input type="checkbox" data-richtig name="km3-04-q23" value="0" data-grund="Richtig — die doppelte Form kennzeichnet Pseudoelemente, die einfache die Pseudoklassen."> Die doppelte Form kennzeichnet Pseudoelemente</label>
-        <label><input type="checkbox" name="km3-04-q23" value="1" data-grund="Falsch — die einfache Form ist die alte Schreibweise, nicht die aktuelle."> Die einfache Form ist die aktuelle Schreibweise</label>
-        <label><input type="checkbox" name="km3-04-q23" value="2" data-grund="Falsch — beide Formen meinen dasselbe, die doppelte ist nur eindeutig."> Mit zwei Doppelpunkten entsteht anderer Inhalt</label>
-        <label><input type="checkbox" name="km3-04-q23" value="3" data-grund="Falsch — ::before ist gültig und wird von allen Browsern unterstützt."> Die doppelte Form ist ungültiges CSS</label>
+        <label><input type="checkbox" name="km3-04-q23" value="1" data-grund="Falsch — Pseudoelemente schreibt man mit zwei Doppelpunkten; die einfache Form allein kennzeichnet keine Pseudoelemente."> Die einfache Form ist die aktuelle Schreibweise</label>
+        <label><input type="checkbox" name="km3-04-q23" value="2" data-grund="Falsch — die zwei Doppelpunkte erzeugen keinen anderen Inhalt; sie kennzeichnen nur die Art des Selektors."> Mit zwei Doppelpunkten entsteht anderer Inhalt</label>
+        <label><input type="checkbox" name="km3-04-q23" value="3" data-grund="Falsch — die doppelte Form ist die reguläre Schreibweise für ::before, kein Fehler."> Die doppelte Form ist ungültiges CSS</label>
       </div>
     </fieldset>
 
@@ -522,7 +522,7 @@ table.labor tbody tr:nth-child(odd) {
         <label><input type="checkbox" data-richtig name="km3-04-q24" value="0" data-grund="Richtig — der Text aus content existiert nur in der Darstellung."> Der Text aus <code>content</code> steht nicht im Quelltext</label>
         <label><input type="checkbox" data-richtig name="km3-04-q24" value="1" data-grund="Richtig — first-line folgt dem tatsächlichen Umbruch."> <code>::first-line</code> formatiert die erste Zeile des Blocks</label>
         <label><input type="checkbox" data-richtig name="km3-04-q24" value="2" data-grund="Richtig — marker ist genau für das Aufzählungszeichen da."> <code>::marker</code> färbt das Aufzählungszeichen</label>
-        <label><input type="checkbox" name="km3-04-q24" value="3" data-grund="Falsch — content nimmt Text, Zähler, Zitate und auch Bilder."> <code>content</code> funktioniert ausschließlich mit Bildern</label>
+        <label><input type="checkbox" name="km3-04-q24" value="3" data-grund="Falsch — content nimmt Text, im Beispiel sogar einen Zähler (counter) — nicht nur Bilder."> <code>content</code> funktioniert ausschließlich mit Bildern</label>
       </div>
     </fieldset>
   </div>

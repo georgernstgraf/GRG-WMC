@@ -76,7 +76,7 @@ typisierte Objekte an statt als lose Spaltenwerte.</p>
 <div class="quiz" data-loesung="2">
 <p class="frage">1. Was ist der Kernvorteil eines ORMs wie Drizzle?</p>
 <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil SQL nicht verschwindet — Drizzle erzeugt weiterhin SQL, und wer es nicht lesen kann, versteht seine Queries nicht."> Man muss nie wieder SQL schreiben oder lesen</label>
-<label><input type="radio" name="q1" value="1" data-grund="Falsch, weil Drizzle die Datenbank nicht schneller macht — Geschwindigkeit bleibt eine Frage von Schema, Index und Abfrage."> Die Datenbank wird automatisch schneller</label>
+<label><input type="radio" name="q1" value="1" data-grund="Falsch, weil Drizzle nur Zeilen auf typisierte Objekte mappt — an der Datenbank selbst ändert das nichts."> Die Datenbank wird automatisch schneller</label>
 <label><input type="radio" name="q1" value="2" data-grund="Richtig, weil das Schema in TypeScript liegt: falsche Namen und Typen schreien bei der Typ-Prüfung, nicht erst zur Laufzeit der Datenbank."> Typfehler werden zur Typ-Prüfung statt zur Laufzeit gefunden</label>
 <p class="feedback" aria-live="polite"></p>
 </div>
@@ -139,7 +139,7 @@ const db = drizzle({ client });</code></pre>
 
 <div class="quiz" data-loesung="1">
 <p class="frage">3. Welcher Treiber verbindet Drizzle mit SQLite in unserem Setup?</p>
-<label><input type="radio" name="q3" value="0" data-grund="Falsch, weil besser-sqlite3 ein natives npm-Paket mit Build-Aufwand ist — wir nutzen stattdessen den eingebauten node:sqlite-Treiber."> better-sqlite3 aus npm</label>
+<label><input type="radio" name="q3" value="0" data-grund="Falsch, weil wir den eingebauten node:sqlite-Treiber nehmen — Deno bleibt die Runtime, es kommt kein Node-Zwang dazu."> better-sqlite3 aus npm</label>
 <label><input type="radio" name="q3" value="1" data-grund="Richtig, weil node:sqlite in Deno eingebaut ist (DatabaseSync) und Drizzle dafür den Adapter drizzle-orm/node-sqlite mitbringt."> node:sqlite (DatabaseSync) über drizzle-orm/node-sqlite</label>
 <label><input type="radio" name="q3" value="2" data-grund="Falsch, weil Drizzle selbst nur die Query-Schicht ist — ohne Treiber redet es mit gar keiner Datenbank."> gar keiner — Drizzle spricht SQLite direkt</label>
 <p class="feedback" aria-live="polite"></p>
@@ -258,7 +258,7 @@ im SQL-Kern von KM5.</p>
 <div class="quiz" data-loesung="0">
 <p class="frage">10. <code>db.select({ n: count() }).from(track)</code> — welches SQL steckt dahinter?</p>
 <label><input type="radio" name="q10" value="0" data-grund="Richtig, weil count() ohne Spalten-Argument auf count(*) hinausläuft — dieselbe Aggregation wie im SQL-Kern."> select count(*) from "track"</label>
-<label><input type="radio" name="q10" value="1" data-grund="Falsch, weil count() zählt — ohne groupBy gibt es aber keine Gruppenspalten, und zählen will die Query ja gerade."> select * from "track" group by "id"</label>
+<label><input type="radio" name="q10" value="1" data-grund="Falsch, weil die Query count(*) erzeugt: Drizzle listet die Spalten explizit auf, statt sie als * zu holen."> select * from "track" group by "id"</label>
 <label><input type="radio" name="q10" value="2" data-grund="Falsch, weil Drizzle Spalten explizit auflistet und die Aggregation als Ausdrucks-Name (hier n) erscheint, nicht als Stern."> select "n" from "track"</label>
 <p class="feedback" aria-live="polite"></p>
 </div>
@@ -284,7 +284,7 @@ kennt — Drizzle macht sie zur Norm, statt sie zur Disziplin zu erklären.</p>
 
 <div class="quiz" data-loesung="1">
 <p class="frage">11. Warum stehen die Werte in <code>toSQL().params</code> und nicht im SQL-Text?</p>
-<label><input type="radio" name="q11" value="0" data-grund="Falsch, weil die Werte im Text nicht verschwunden, sondern getrennt sind — das Format entspricht genau dem, was an die DB geht."> Weil toSQL() die Werte sonst zu lang machen würde</label>
+<label><input type="radio" name="q11" value="0" data-grund="Falsch, weil es nicht um die Länge geht: Werte werden aus Prinzip getrennt vom SQL-Text übergeben — das ist die Parametrisierung, keine Platzfrage."> Weil toSQL() die Werte sonst zu lang machen würde</label>
 <label><input type="radio" name="q11" value="1" data-grund="Richtig, weil SQL-Text (Code) und Werte (Daten) getrennt übergeben werden — Parametrisierung verhindert strukturell, dass Daten als Code ausgeführt werden."> Weil Daten und Code getrennt bleiben — Parametrisierung</label>
 <label><input type="radio" name="q11" value="2" data-grund="Falsch, weil .toSQL() exakt wiedergibt, was die DB bekommt — die Trennung ist echte Übertragungsform, keine Anzeige-Konvention."> Weil das nur eine Anzeige-Vereinfachung von toSQL() ist</label>
 <p class="feedback" aria-live="polite"></p>
@@ -311,7 +311,7 @@ kennt — Drizzle macht sie zur Norm, statt sie zur Disziplin zu erklären.</p>
 <div class="quiz" data-loesung="2">
 <p class="frage">12. In welchem Fall ist Raw SQL über node:sqlite die bessere Wahl?</p>
 <label><input type="radio" name="q12" value="0" data-grund="Falsch, weil CRUD-Inserts genau der Brot-und-Butter-Fall für den Query-Builder sind — typsicher und parametrisiert."> Beim Einfügen einzelner Zeilen</label>
-<label><input type="radio" name="q12" value="1" data-grund="Falsch, weil Drizzle ORM nichts gegen die Sicherheit ändert — es parametrisiert by default und ist damit kein Sicherheitsrisiko."> Weil Raw SQL sicherer gegen Injection ist</label>
+<label><input type="radio" name="q12" value="1" data-grund="Falsch, weil Drizzle ohnehin by default parametrisiert — Raw SQL ist nur dann gleich sicher, wenn du selbst parametrisierst."> Weil Raw SQL sicherer gegen Injection ist</label>
 <label><input type="radio" name="q12" value="2" data-grund="Richtig, weil EXPLAIN QUERY PLAN, CLI-Import und Backup-Skripte SQL-Toolbox-Themen sind — dort gibt es nichts für ein ORM zu mappen."> Bei Messung, CLI-Import und Backup-Skripten</label>
 <p class="feedback" aria-live="polite"></p>
 </div>
