@@ -1,5 +1,10 @@
 # WMC 3baif
 
+## 2026-11-13-css
+
+- flexbox froggy gemeinsam durchgespielt
+- <https://css-tricks.com/css-selectors/> die wichtigsten CSS-Selektoren
+
 ## 2026-09-18 vscode und git
 
 Heute war Installationstag.
