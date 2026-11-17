@@ -10,6 +10,9 @@
 - 2026-09-15: Setup präsentieren, GitHub-Repo `WMC` anlegen, `index.html` pushen, Repo-Link mailen → [2026-09-15_tooling-git/](./2026-09-15_tooling-git/)
 - 2026-09-08: GitHub-Account + Repo `WMC` (public, mit README), Repo-Link mailen, beide Repos klonen → [2026-09-08__welcome/](./2026-09-08__welcome/)
 
+# 2026-11-17 CSS
+https://flukeout.github.io/ (CSS Diner) - Abgabe Screenshot, wenn erfolgreich absolviert.
+
 # 2026-11-10 Selektoren
 
 Folien Unterlagen/css/SELECTORS/Selektoren.pdf
