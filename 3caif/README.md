@@ -1,7 +1,7 @@
 # WMC Material 3caif
 
 ## Aufgaben
-
+- 2026-11-17: Abgabe Screenshot, wenn erfolgreich absolviert
 - 2026-11-10: unterricht/KM3-04-css-selektoren: Aufgabe ist dort angegeben!
 - 2026-10-13: Site mit Box-Model/`box-sizing`/Units erweitern → [2026-10-13_boxmodel/](./2026-10-13_boxmodel/)
 - 2026-10-06: HTML-Formular fertigstellen (Versand an Mailclient, Betreff; Bonus: Pflichtfelder/Pattern) — Abgabe 13.10. 00:00 → [2026-10-06_html-formulare/](./2026-10-06_html-formulare/)
@@ -11,7 +11,7 @@
 - 2026-09-08: GitHub-Account + Repo `WMC` (public, mit README), Repo-Link mailen, beide Repos klonen → [2026-09-08__welcome/](./2026-09-08__welcome/)
 
 # 2026-11-17 CSS
-https://flukeout.github.io/ (CSS Diner) - Abgabe Screenshot, wenn erfolgreich absolviert.
+https://flukeout.github.io/ (CSS Diner)
 
 # 2026-11-10 Selektoren
 
