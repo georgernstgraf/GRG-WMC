@@ -93,7 +93,10 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | CSP | Content Security Policy — Client-Security (Jahr 2 SS UE 8) |
 | Deno | Runtime für WMC-Demos/Lektionen: führt TypeScript direkt aus (`deno run`), Typ-Prüfung via `deno check` — bewusst **nicht Node** (Node-LTS nur Jahr-2-Vite-Tooling) |
 | enctype | Formular-Attribut: Kodierung des Request-Bodys; `multipart/form-data` für Datei-Uploads — HTML-Formulare & HTTP-POST (KM8-01) |
+| `flex` | Kurzform für `flex-grow`/`flex-shrink`/`flex-basis`: `flex: 1` = `1 1 0%`, `flex: auto` = `1 1 auto`, `flex: none` = `0 0 auto` — Flexbox (KM3-05) |
+| Flexbox | Layout-Modell für **eine** Richtung: Container mit `display: flex` legt Haupt-/Querachse fest, direkte Kinder werden Items. `justify-content` = Hauptachse, `align-items` = Querachse (Standard `stretch`), `gap` = Abstand nur zwischen Items — Flexbox (KM3-05) |
 | Formular-Action | `action`/`method` am `<form>`: wohin (URL) und wie (GET in die URL / POST in den Body) gesendet wird; `name` ist der Schlüssel des Werts — HTML-Formulare & HTTP-POST (KM8-01) |
+| Hauptachse | Achse entlang `flex-direction`: bei `row` waagrecht, bei `column` senkrecht. `flex-basis` und `justify-content` wirken auf ihr; die Querachse dreht mit (dort wirken `align-items`/`align-self`) — Flexbox (KM3-05) |
 | JWT | JSON Web Token — Auth-Client-Flow (WS UE 10): Token-Ablage, 401-Handling |
 | Kombinator | Verbindung zweier Selektoren: Leerzeichen (Nachfahre), `>` (Kind), `+` (direkter Nachbar), `~` (alle folgenden Geschwister) — CSS-Selektoren (KM3-04) |
 | Live Server | VS-Code-Extension für statisches Dev-Hosting (Jahr 1); Lessons laufen lokal auch im **VS-Code-Browser** (Simple Browser/Live Preview) — immer per Server-URL, nie `file://` |

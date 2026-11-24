@@ -37,6 +37,7 @@
 }
 
 :root[data-theme="dark"] {
+    color-scheme: dark;
     --bg: #0f1220;
     --panel: #171b2e;
     --panel2: #1d2238;
@@ -57,8 +58,16 @@
     --cmt: #b9b98a;
 }
 
+/* color-scheme folgt dem Umschalter, nicht dem Betriebssystem: sonst
+   zeichnet der Browser Checkboxen, Scrollbalken und Fokusringe in der
+   Systemfarbe — im Dunkelmodus wären die Kästchen im Quiz unsichtbar. */
+:root[data-theme="light"] {
+    color-scheme: light;
+}
+
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
+        color-scheme: dark;
         --bg: #0f1220;
         --panel: #171b2e;
         --panel2: #1d2238;

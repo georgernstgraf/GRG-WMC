@@ -16,6 +16,17 @@ Branch: main
 - [ ] POS-Abstimmung (Auth/REST-Design, produktive Projekt-API) mit Kolleg:innen — orga-seitig, Ergebnis in `lehrplan/jg2-einheiten.md` → Offene Punkte eintragen.
 
 ## Kontext für die nächste Session
+- **KM3-05 Flexbox (2026-11-24, #13):** Prepared Lesson
+  `unterricht/KM3-05-flexbox/` (`lesson.html` + `aufgabe.md`, kein
+  Demo-Ordner). Inhalt: Haupt-/Querachse, Richtung+Wrap, justify-content/gap,
+  align-items/align-self/align-content, `flex`-Kurzform inkl. `flex-basis`
+  auf der Hauptachse, `order` und `margin:auto`; 6 Lernquizzes (24 Fragen,
+  Lösungsmengen 0/1/2/3) und das Übungsartefakt „Merch-Stand“ (Kopfleiste,
+  Hero, Produktstreifen) als Beispiel 1. Beim Bau geprüft: gerendert bei
+  1100/760/420 px, Kurzlösung aus `aufgabe.md` reproduziert das Layout.
+  Nebenbefund behoben: `assets/lesson.css` setzt jetzt `color-scheme` am
+  `data-theme` — vorher waren native Quiz-Checkboxen im Dunkelmodus
+  unsichtbar (betraf alle Lessons).
 - **KM3-04 CSS-Selektoren (2026-11-10, #10):** erste Lesson nach dem neuen
   Lesson-Format (Quiz 2.1, `aufgabe.md` mit Beispiel 1–3, `<details>`-Lehrplan
   statt Tages-README-Vorlage). Dazu das **Selektoren-Labor**

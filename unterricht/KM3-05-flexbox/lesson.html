@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM3-05 · Flexbox</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle"
+          aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM3-05 · Flexbox</span>
+  <h1>Die Leiste denkt mit</h1>
+  <p class="subtitle">Drei Karten nebeneinander, gleich hoch, gleiche
+  Abstände — und auf dem Handy untereinander. Bisher war das Handarbeit.
+  Ab jetzt ist es eine Eigenschaft am Elternelement.</p>
+</header>
+
+<div class="callout tipp">
+  <span class="label">Lektüre</span>
+  <p>Pflicht, vor dem Weiterlesen:
+     <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks
+     — A Complete Guide to Flexbox</a> (die Folie aus dem Unterricht, alle
+     Eigenschaften auf einer Seite). Dazu zum Spielen:
+     <a href="https://flexboxfroggy.com/#de">Flexbox Froggy</a> —
+     24 Levels, jedes Level ist eine Regel.</p>
+</div>
+
+<section>
+  <div class="baustein">Einstiegsfrage</div>
+  <p>Am Freitag soll der Merch-Stand online sein. Drei Produkte
+  nebeneinander, alle drei gleich hoch, gleiche Abstände dazwischen. Der
+  Preis klebt unten in der Karte, auch wenn eine Beschreibung drei Zeilen
+  länger ist. Und auf dem Handy stehen die Karten untereinander.</p>
+  <p>Der naheliegende Weg: die Karten als <code>inline-block</code> mit
+  <code>width: 32%</code>. Dann kostet jede Lücke Prozente, die letzte
+  Karte rutscht in die nächste Zeile, und gleich hoch sind die Karten
+  nur, wenn du jeder eine feste Höhe gibst. Genau die Höhe, die beim
+  nächsten Text nicht mehr passt.</p>
+  <p><strong>Geht das ohne Rechnen?</strong> Ja: Du sagst dem
+  <em>Elternelement</em>, dass seine Kinder eine Leiste bilden. Ab da
+  verteilt der Browser.</p>
+</section>
+
+<section>
+  <div class="baustein">Ziel-Artefakt</div>
+  <p>Das baust du in dieser Doppelstunde — den Kopf des Merch-Stands einer
+  Band. Jeder Abschnitt ist eine Leiste, jede Leiste ein paar Zeilen
+  CSS.</p>
+<pre>
+┌──────────────────────────────────────────────┐
+│ NACHTFALTER          Termine Merch Kontakt   │ ← Kopfleiste
+├──────────────────────────────────────────────┤
+│ ┌────────┐  Tour 2027                        │
+│ │  Foto  │  Drei Termine im Frühjahr, ...    │ ← Hero
+│ └────────┘  [ Tickets holen ]                │
+├──────────────────────────────────────────────┤
+│ ┌──────────┐ ┌──────────┐ ┌──────────┐       │
+│ │ Shirt Neu│ │ Platte   │ │ Poster   │       │ ← Streifen
+│ │ Schwarz… │ │ 180 g …  │ │ DIN A2 … │       │
+│ │    29 €  │ │    24 €  │ │    12 €  │       │
+│ └──────────┘ └──────────┘ └──────────┘       │
+└──────────────────────────────────────────────┘
+        schmal: alles untereinander
+</pre>
+  <p>Dafür brauchst du kein Bild und keine Schriftart. Drei Platzhalter
+  mit Rahmen genügen, um zu sehen, ob das Layout stimmt. Die Farbe kommt
+  später.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 1 — Aus Kindern wird eine Leiste</h2>
+  <p>Eine Eigenschaft am Container schaltet alles um:</p>
+
+<pre>
+.leiste {
+    display: flex;   /* die Kinder bilden jetzt eine Leiste */
+}
+</pre>
+
+  <p>Vorher stapelten sich <code>div</code>-Kinder untereinander, weil
+  Block-Elemente die volle Breite nehmen. Mit <code>display: flex</code>
+  legt der Container seine Kinder in einer Reihe aus und verteilt den
+  Platz selbst.</p>
+
+  <p>Dabei passieren drei Dinge, die du kennen musst:</p>
+  <p><strong>1. Es gibt eine Hauptachse und eine Querachse.</strong>
+  Standard ist <code>flex-direction: row</code>: Die Hauptachse läuft
+  waagrecht nach rechts, die Querachse senkrecht. Alle
+  Verteil-Eigenschaften arbeiten auf diesen zwei Achsen.</p>
+
+  <p><strong>2. Nur direkte Kinder werden Items.</strong> Ein Absatz in
+  einem <code>div</code> in der Leiste ist kein Item, sondern normaler
+  Inhalt seines <code>div</code>s.</p>
+
+  <p><strong>3. Die Kinder schrumpfen auf ihren Inhalt.</strong> Ein
+  <code>div</code> ist als Item nicht mehr volle Breite breit, sondern so
+  breit wie nötig. Und weil <code>align-items</code> standardmäßig
+  <code>stretch</code> ist, werden alle Items gleich hoch — die
+  Querachse streckt sie.</p>
+
+<pre>
+vorher (Block)            nachher (display: flex)
+┌──────────────┐          ┌────┬────┬────┐
+│     Kind 1   │          │ K1 │ K2 │ K3 │ ← gleiche Höhe,
+├──────────────┤          └────┴────┴────┘   so hoch wie nötig
+│     Kind 2   │             Hauptachse →
+├──────────────┤
+│     Kind 3   │
+└──────────────┘
+</pre>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p>Die Leiste ersetzt nicht <code>width</code>, sondern die
+    <em>Verteilung</em>. Ein Kind mit <code>width: 100%</code> bleibt
+    breit und drückt die anderen zusammen. Wer Flexbox nutzt, lässt die
+    Breiten meist weg.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: leiste">
+    <fieldset class="frage">
+      <legend class="frage-text">Du willst drei Karten nebeneinander.
+      Welches Element bekommt <code>display: flex</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q1" value="0" data-grund="Richtig — die Eigenschaft steht am Container und wirkt auf seine Kinder."> das Elternelement der drei Karten</label>
+        <label><input type="checkbox" name="km3-05-q1" value="1" data-grund="Falsch — an der Karte selbst macht display:flex die Karte zum Container für ihren Inhalt, nicht die Karten zur Reihe."> jede der drei Karten einzeln</label>
+        <label><input type="checkbox" name="km3-05-q1" value="2" data-grund="Falsch — body ist zwar ein Vorfahre, aber die Leiste soll nur die Karten umfassen; sonst werden Kopf und Fuß mit zu Items."> das body-Element der Seite</label>
+        <label><input type="checkbox" name="km3-05-q1" value="3" data-grund="Falsch — eine Breite macht aus einem Element kein Elternteil; die Eigenschaft gehört dorthin, wo die Kinder liegen."> jedes Element, das eine feste Breite bekommt</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein <code>&lt;section class="streifen"&gt;</code>
+      enthält drei <code>&lt;article&gt;</code>, jedes mit einem
+      <code>&lt;p&gt;</code>. Bekommt <code>.streifen</code> ein
+      <code>display: flex</code>, was gilt?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q2" value="0" data-grund="Richtig — Items sind nur die direkten Kinder, also die drei article."> Die drei <code>article</code> werden Items, die Absätze nicht</label>
+        <label><input type="checkbox" name="km3-05-q2" value="1" data-grund="Falsch — Flexbox greift nur eine Ebene tief; für die Absätze bräuchte jedes article selbst display:flex."> Die Absätze werden auch Items, alle landen in einer Reihe</label>
+        <label><input type="checkbox" name="km3-05-q2" value="2" data-grund="Falsch — article ist ein Item wie jedes andere Element; der Tag-Name ändert daran nichts."> Nur <code>article</code> mit Klasse wird zum Item</label>
+        <label><input type="checkbox" name="km3-05-q2" value="3" data-grund="Falsch — die Eigenschaft wirkt sofort auf alle direkten Kinder, es gibt keine automatische Ausnahme."> Die Items brauchen zusätzlich <code>flex: 1</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussage über die zwei Achsen
+      stimmt bei <code>flex-direction: row</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q3" value="0" data-grund="Richtig — row legt die Hauptachse waagrecht nach rechts, die Querachse senkrecht."> Die Hauptachse läuft waagrecht, die Querachse senkrecht</label>
+        <label><input type="checkbox" name="km3-05-q3" value="1" data-grund="Falsch — das ist flex-direction: column; dort steht die Hauptachse senkrecht."> Die Hauptachse läuft senkrecht, die Querachse waagrecht</label>
+        <label><input type="checkbox" name="km3-05-q3" value="2" data-grund="Falsch — Achsen sind keine Eigenschaften des Kindes, sie ergeben sich aus der Richtung des Containers."> Jede Karte bestimmt ihre eigene Hauptachse</label>
+        <label><input type="checkbox" name="km3-05-q3" value="3" data-grund="Falsch — eine Leiste hat immer beide Achsen; row und column sind nur zwei Ausrichtungen derselben zwei Achsen."> Es gibt nur eine Achse, die Querachse entsteht erst bei wrap</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Am Container steht nur
+      <code>display: flex</code>, sonst ist nichts gesetzt. Welche
+      Aussagen stimmen dann?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q4" value="0" data-grund="Richtig — align-items: stretch ist der Standard, also sind alle Items gleich hoch."> Alle Karten werden gleich hoch</label>
+        <label><input type="checkbox" data-richtig name="km3-05-q4" value="1" data-grund="Richtig — als Item verliert ein div seine volle Breite und wird nur so breit wie sein Inhalt."> Jede Karte ist so breit wie ihr Inhalt</label>
+        <label><input type="checkbox" name="km3-05-q4" value="2" data-grund="Falsch — das ist das Verhalten von Block-Elementen ohne Flexbox; mit row stehen sie nebeneinander."> Die Karten stehen untereinander wie Block-Elemente</label>
+        <label><input type="checkbox" name="km3-05-q4" value="3" data-grund="Falsch — flex-grow ist standardmäßig 0; ohne eigenes flex: 1 wächst keine Karte."> Jede Karte bekommt automatisch <code>flex: 1</code></label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 2 — Richtung drehen, Umbruch erlauben</h2>
+  <p>Zwei Eigenschaften bestimmen, wie die Leiste liegt und was passiert,
+  wenn der Platz nicht reicht:</p>
+
+  <table>
+    <tr><th>Eigenschaft</th><th>Wert</th><th>Wirkung</th></tr>
+    <tr><td rowspan="2"><code>flex-direction</code></td>
+        <td><code>row</code> (Standard)</td>
+        <td>Hauptachse waagrecht, von links nach rechts</td></tr>
+    <tr><td><code>column</code></td>
+        <td>Hauptachse senkrecht, von oben nach unten</td></tr>
+    <tr><td rowspan="2"><code>flex-wrap</code></td>
+        <td><code>nowrap</code> (Standard)</td>
+        <td>eine Zeile; reicht der Platz nicht, schrumpfen die Items</td></tr>
+    <tr><td><code>wrap</code></td>
+        <td>neue Zeile, sobald der Platz nicht reicht</td></tr>
+  </table>
+
+  <p><strong>Die Falle:</strong> Mit <code>flex-direction: column</code>
+  drehen sich <em>beide</em> Achsen mit. Die Hauptachse ist jetzt
+  senkrecht — also richtet <code>justify-content: center</code> ab sofort
+  senkrecht aus, und <code>align-items</code> waagrecht. Wer das verwechselt,
+  sucht den Fehler an der falschen Stelle.</p>
+
+  <table>
+    <tr><th>Aspekt</th><th><code>row</code></th><th><code>column</code></th></tr>
+    <tr><td>Hauptachse</td><td>waagrecht →</td><td>senkrecht ↓</td></tr>
+    <tr><td><code>justify-content</code> verteilt</td><td>waagrecht</td><td>senkrecht</td></tr>
+    <tr><td><code>align-items</code> richtet aus</td><td>senkrecht</td><td>waagrecht</td></tr>
+    <tr><td><code>flex-basis</code> meint</td><td>Breite</td><td>Höhe</td></tr>
+  </table>
+
+  <p>Die letzte Zeile ist der Grund, warum diese Tabelle mehr wert ist als
+  ein Merksatz: Sobald du die Richtung drehst, ändert sich die Bedeutung
+  von drei Eigenschaften gleichzeitig.</p>
+
+  <p><code>flex-wrap: wrap</code> ist der Grund, warum der Produktstreifen
+  überhaupt umbrechen kann: Mit <code>flex-basis</code> bekommt jede Karte
+  eine Wunschbreite. Passen nicht alle in die Zeile, rutscht der Rest nach
+  unten, statt sich zu quetschen. Bei 400 px Fensterbreite passt keine
+  zweite Karte mehr daneben — der Streifen steht dann untereinander, ohne
+  dass du dafür eine eigene Regel brauchst.</p>
+
+  <p>Kurzschreibweise, wenn beides zusammen gesetzt wird:
+  <code>flex-flow: row wrap;</code>. Sie bedeutet genau
+  <code>flex-direction</code> plus <code>flex-wrap</code>.</p>
+
+  <p>Was auf einem breiten Bildschirm gilt, muss auf einem schmalen nicht
+  gelten. Dafür gibt es die <strong>Media Query</strong>: ein Block, der nur
+  unterhalb einer Fensterbreite greift.</p>
+
+<pre>
+@media (max-width: 700px) {
+    .hero { flex-direction: column; }   /* nur bis 700 px: untereinander */
+}
+</pre>
+
+  <p>Alles innerhalb der geschweiften Klammern gilt nur, solange das Fenster
+  höchstens 700 px breit ist. Darüber bleibt der Block wirkungslos. Für den
+  Produktstreifen brauchst du ihn nicht — der bricht schon durch
+  <code>wrap</code> —, für den Hero und die Kopfleiste schon.</p>
+
+  <div class="quiz" data-titel="Quiz: richtung">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Container hat
+      <code>flex-direction: column</code> und
+      <code>justify-content: center</code>. Was passiert mit den
+      Kindern?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q5" value="0" data-grund="Richtig — bei column ist die Hauptachse senkrecht, justify-content arbeitet also senkrecht."> Sie werden senkrecht zentriert</label>
+        <label><input type="checkbox" name="km3-05-q5" value="1" data-grund="Falsch — waagrecht richtet bei column align-items aus, weil das die Querachse ist."> Sie werden waagrecht zentriert</label>
+        <label><input type="checkbox" name="km3-05-q5" value="2" data-grund="Falsch — justify-content verteilt immer auf der Hauptachse, hier also senkrecht."> Sie werden in beide Richtungen zentriert</label>
+        <label><input type="checkbox" name="km3-05-q5" value="3" data-grund="Falsch — justify-content wirkt bei jedem flex-direction; es ändert nur die Achse."> Die Eigenschaft wird ignoriert</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Drei Karten mit
+      <code>flex: 0 0 20rem</code> stehen in einem 40rem breiten Streifen
+      ohne <code>flex-wrap</code>. Was siehst du?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q6" value="0" data-grund="Richtig — ohne wrap bleibt eine Zeile; zwei Karten passen, die dritte läuft über den Rand."> Eine Zeile, aus der die dritte Karte herausragt</label>
+        <label><input type="checkbox" name="km3-05-q6" value="1" data-grund="Falsch — Umbrechen braucht flex-wrap: wrap; nowrap ist der Standard."> Zwei Zeilen, die dritte rutscht nach unten</label>
+        <label><input type="checkbox" name="km3-05-q6" value="2" data-grund="Falsch — 0 0 20rem heißt: nicht wachsen, nicht schrumpfen, also bleiben 20rem."> Alle drei werden auf gleiche Breite geschrumpft</label>
+        <label><input type="checkbox" name="km3-05-q6" value="3" data-grund="Falsch — flex-shrink ist hier 0; genau deshalb schrumpft nichts."> Die Karten verschwinden aus der Ansicht</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was bedeutet
+      <code>flex-flow: column wrap;</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q7" value="0" data-grund="Richtig — flex-flow setzt flex-direction und flex-wrap in einer Zeile; die neue Spalte entsteht, sobald die Höhe nicht mehr reicht."> Hauptachse senkrecht, und bei begrenzter Höhe entsteht eine neue Spalte</label>
+        <label><input type="checkbox" name="km3-05-q7" value="1" data-grund="Falsch — column bleibt column; wrap ändert nur das Umbrechen, nicht die Richtung."> Hauptachse waagrecht, mit Umbruch in neue Zeilen</label>
+        <label><input type="checkbox" name="km3-05-q7" value="2" data-grund="Falsch — flex-flow ersetzt keine Ausrichtung; justify-content und align-items bleiben eigene Eigenschaften."> Es zentriert die Kinder senkrecht und waagrecht</label>
+        <label><input type="checkbox" name="km3-05-q7" value="3" data-grund="Falsch — die Kurzschreibweise setzt nur die beiden Eigenschaften der Leiste, nichts am einzelnen Kind."> Es setzt flex-basis und flex-grow der Kinder</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Der Streifen soll auf breiten Bildschirmen
+      drei Karten nebeneinander zeigen und auf schmalen untereinander.
+      Welche Kombination erreicht das?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q8" value="0" data-grund="Richtig — wrap erlaubt die zweite Zeile, eine ausreichend große flex-basis erzwingt sie bei wenig Platz."> <code>flex-wrap: wrap</code> mit <code>flex: 1 1 18rem</code> an den Karten</label>
+        <label><input type="checkbox" name="km3-05-q8" value="1" data-grund="Falsch — nowrap verhindert die zweite Zeile; die Karten würden nur schrumpfen."> <code>flex-wrap: nowrap</code> mit <code>flex: 1</code> an den Karten</label>
+        <label><input type="checkbox" name="km3-05-q8" value="2" data-grund="Falsch — flex-direction: column macht aus der Reihe sofort eine Spalte, unabhängig von der Breite."> <code>flex-direction: column</code> ohne Media Query</label>
+        <label><input type="checkbox" name="km3-05-q8" value="3" data-grund="Falsch — align-items richtet auf der Querachse aus und entscheidet nicht über Zeilen."> <code>align-items: stretch</code> mit fester Höhe</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 3 — Verteilen auf der Hauptachse</h2>
+  <p><code>justify-content</code> beantwortet eine einzige Frage: Wie
+  verteile ich den <em>freien</em> Platz entlang der Hauptachse? Die
+  Items behalten ihre Größe, nur die Lücken dazwischen wachsen.</p>
+
+  <table>
+    <tr><th>Wert</th><th>Wo landet der freie Platz?</th><th>Skizze (· = Platz)</th></tr>
+    <tr><td><code>flex-start</code> (Standard)</td><td>alles hinter den Items, sie kleben links</td><td><code>[A][B][C]··········</code></td></tr>
+    <tr><td><code>flex-end</code></td><td>alles davor, sie kleben rechts</td><td><code>··········[A][B][C]</code></td></tr>
+    <tr><td><code>center</code></td><td>gleich viel vor und hinter den Items</td><td><code>·····[A][B][C]·····</code></td></tr>
+    <tr><td><code>space-between</code></td><td>zwischen den Items; erstes und letztes am Rand</td><td><code>[A]·····[B]·····[C]</code></td></tr>
+    <tr><td><code>space-around</code></td><td>um jedes Item herum, halbe Lücken am Rand</td><td><code>·[A]··[B]··[C]·</code></td></tr>
+    <tr><td><code>space-evenly</code></td><td>alle Lücken gleich groß, auch am Rand</td><td><code>··[A]··[B]··[C]··</code></td></tr>
+  </table>
+
+  <p>Für die Lücken zwischen den Items gibt es <code>gap</code>. Es setzt
+  den Abstand <em>zwischen</em> den Items, nicht außen — genau das, was
+  <code>margin</code> an jedem Kind mühsam nachbauen muss und was beim
+  letzten Kind immer einen Rest lässt.</p>
+
+<pre>
+.streifen {
+    display: flex;
+    gap: 1rem;          /* 16px zwischen den Karten, nichts außen */
+}
+</pre>
+
+  <div class="callout">
+    <span class="label">Merke</span>
+    <p><code>gap</code> ersetzt <code>margin</code> an den Kindern. Wer
+    beides setzt, bekommt doppelte Abstände — ein häufiger Grund für
+    „warum ist die Lücke plötzlich so groß“.</p>
+  </div>
+
+  <p><strong>Ein Sonderfall, der im Kopf bleibt:</strong> Füllen die Items
+  die Zeile schon vollständig aus — etwa weil alle <code>flex: 1</code>
+  haben —, hat <code>justify-content</code> nichts zu verteilen. Sichtbar
+  wird der Wert erst, wenn Platz übrig bleibt: bei Items ohne
+  <code>flex-grow</code>, bei wenigen schmalen Karten, oder in der letzten
+  Zeile nach einem Umbruch, die nicht mehr voll wird.</p>
+
+  <div class="quiz" data-titel="Quiz: verteilen">
+    <fieldset class="frage">
+      <legend class="frage-text">Worin unterscheiden sich
+      <code>space-between</code> und <code>space-around</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q9" value="0" data-grund="Richtig — between lässt außen keinen Platz, around gibt jedem Item an beiden Seiten eine halbe Lücke."> Bei <code>between</code> kleben die äußeren Items am Rand, bei <code>around</code> bleibt außen eine halbe Lücke</label>
+        <label><input type="checkbox" name="km3-05-q9" value="1" data-grund="Falsch — beide verteilen auf der Hauptachse; die Querachse ist align-items."> <code>between</code> wirkt waagrecht, <code>around</code> senkrecht</label>
+        <label><input type="checkbox" name="km3-05-q9" value="2" data-grund="Falsch — den Außenabstand regeln beide unterschiedlich, das ist ja der Unterschied."> Sie verhalten sich gleich, nur die Reihenfolge der Items ändert sich</label>
+        <label><input type="checkbox" name="km3-05-q9" value="3" data-grund="Falsch — kein Wert von justify-content ändert die Größe der Items."> <code>around</code> vergrößert die Items, <code>between</code> nicht</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Drei gleich breite Karten stehen in einer
+      Leiste mit <code>justify-content: space-between</code>. Welche
+      Aussagen stimmen? (Es kann auch keine stimmen.)</legend>
+      <div class="optionen">
+        <label><input type="checkbox" name="km3-05-q10" value="0" data-grund="Falsch — eine halbe Lücke außen ist space-around; between lässt außen keinen Platz."> Links und rechts bleibt je eine halbe Lücke</label>
+        <label><input type="checkbox" name="km3-05-q10" value="1" data-grund="Falsch — alle Lücken gleich groß, auch außen, ist space-evenly."> Alle drei Lücken sind gleich groß, auch die beiden außen</label>
+        <label><input type="checkbox" name="km3-05-q10" value="2" data-grund="Falsch — das Wachsen regelt flex-grow an den Items, nicht justify-content."> Die Karten wachsen gleichmäßig, bis die Zeile voll ist</label>
+        <label><input type="checkbox" name="km3-05-q10" value="3" data-grund="Falsch — zwischen den Items wird verteilt, die Items selbst behalten ihre Breite."> Die mittlere Karte wird breiter als die beiden anderen</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über <code>gap</code>
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q11" value="0" data-grund="Richtig — gap wirkt nur zwischen den Items und lässt den Rand außen frei."> Es setzt Abstände nur zwischen den Items, nicht außen</label>
+        <label><input type="checkbox" data-richtig name="km3-05-q11" value="1" data-grund="Richtig — deshalb brauchen die Kinder kein margin mehr; beides zusammen ergibt doppelte Lücken."> Es ersetzt <code>margin</code> an den Kindern</label>
+        <label><input type="checkbox" data-richtig name="km3-05-q11" value="2" data-grund="Richtig — gap setzt nur Abstände; wie die Items verteilt werden, entscheidet weiterhin justify-content."> Es lässt <code>justify-content</code> unberührt</label>
+        <label><input type="checkbox" name="km3-05-q11" value="3" data-grund="Falsch — gap wirkt unabhängig davon, ob die Kinder eine Breite haben oder sich aus dem Inhalt ergeben."> Es zählt nur, wenn die Kinder eine feste Breite haben</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Drei Karten mit <code>flex: 1</code> füllen
+      die Zeile genau aus. Du setzt
+      <code>justify-content: space-evenly</code>. Was ändert sich?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q12" value="0" data-grund="Richtig — ohne freien Platz gibt es nichts zu verteilen; die Karten füllen die Zeile schon."> Nichts, es gibt keinen freien Platz zu verteilen</label>
+        <label><input type="checkbox" name="km3-05-q12" value="1" data-grund="Falsch — die Karten würden nur dann kleiner, wenn man flex-grow oder flex-basis ändert."> Die Karten werden schmaler und bekommen Lücken</label>
+        <label><input type="checkbox" name="km3-05-q12" value="2" data-grund="Falsch — justify-content ist keine Größenangabe; es verschiebt nur vorhandenen Leerraum."> Die mittlere Karte wird doppelt so breit</label>
+        <label><input type="checkbox" name="km3-05-q12" value="3" data-grund="Falsch — space-evenly verteilt nur auf der Hauptachse, hier also waagrecht; senkrecht richtet erst Schritt 4 aus."> Die Karten werden senkrecht zentriert</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 4 — Ausrichten auf der Querachse</h2>
+  <p>Nach der Hauptachse kommt die zweite Richtung.
+  <code>align-items</code> richtet alle Items auf der Querachse aus — bei
+  <code>row</code> also senkrecht.</p>
+
+  <table>
+    <tr><th>Wert</th><th>Wirkung (bei <code>row</code>)</th></tr>
+    <tr><td><code>stretch</code> (Standard)</td><td>alle Items so hoch wie die Zeile — gleich hohe Karten</td></tr>
+    <tr><td><code>flex-start</code></td><td>oben ausgerichtet, jede Karte so hoch wie ihr Inhalt</td></tr>
+    <tr><td><code>flex-end</code></td><td>unten ausgerichtet</td></tr>
+    <tr><td><code>center</code></td><td>mittig — der Klassiker für Kopfleisten</td></tr>
+    <tr><td><code>baseline</code></td><td>die erste Textzeile liegt auf einer Linie</td></tr>
+  </table>
+
+  <p>Mit <code>align-self</code> hebt ein einzelnes Kind die Entscheidung
+  des Containers auf. Praktisch, wenn genau eine Karte oben kleben soll,
+  während die anderen zentriert sind.</p>
+
+  <p><code>align-content</code> klingt ähnlich, meint aber etwas anderes:
+  Es verteilt <em>mehrere Zeilen</em> innerhalb des Containers. Bei einer
+  einzigen Zeile hat es keine Wirkung — ein Klassiker unter den
+  „warum tut sich nichts“-Momenten.</p>
+
+<pre>
+align-items: center        align-self: flex-start am 2. Kind
+┌───────────────┐          ┌───────────────┐
+│               │          │      ┌────┐   │
+│ ┌───┐ ┌───┐   │          │ ┌───┐│ K2 │   │
+│ │K1 │ │K2 │   │          │ │K1 │└────┘   │
+│ └───┘ └───┘   │          │ └───┘         │
+└───────────────┘          └───────────────┘
+</pre>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p>Gleich hohe Karten brauchen <em>kein</em> <code>height</code>. Der
+    Standard <code>stretch</code> macht das schon. Wer <code>height:
+    100%</code> schreibt, bekommt oft 0 oder eine abgeschnittene Karte,
+    weil das Prozentmaß eine feste Elternhöhe verlangt.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: ausrichten">
+    <fieldset class="frage">
+      <legend class="frage-text">Drei Karten mit unterschiedlich viel
+      Text sollen gleich hoch sein. Welche Eigenschaft erledigt das ohne
+      zusätzliche Angabe?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q13" value="0" data-grund="Richtig — stretch ist der Standardwert von align-items und streckt alle Items auf die Zeilenhöhe."> <code>align-items: stretch</code>, der Standardwert</label>
+        <label><input type="checkbox" name="km3-05-q13" value="1" data-grund="Falsch — height: 100% verlangt eine feste Elternhöhe und schneidet oft ab, statt zu strecken."> <code>height: 100%</code> an jeder Karte</label>
+        <label><input type="checkbox" name="km3-05-q13" value="2" data-grund="Falsch — justify-content verteilt auf der Hauptachse, also waagrecht; Höhe ist die Querachse."> <code>justify-content: stretch</code></label>
+        <label><input type="checkbox" name="km3-05-q13" value="3" data-grund="Falsch — gap setzt nur Abstände und ändert keine Größe."> <code>gap: 1rem</code> am Streifen</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Du setzt
+      <code>align-content: center</code>, siehst aber keine Änderung. Was
+      ist die wahrscheinlichste Ursache?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q14" value="0" data-grund="Richtig — align-content verteilt mehrere Zeilen; ohne wrap und Umbruch gibt es nur eine Zeile."> Es gibt nur eine Zeile, weil <code>flex-wrap</code> fehlt oder nichts umbricht</label>
+        <label><input type="checkbox" name="km3-05-q14" value="1" data-grund="Falsch — align-content gilt für jede Flexbox; die Anzahl der Zeilen ist der entscheidende Punkt."> Die Eigenschaft funktioniert nur in Grid</label>
+        <label><input type="checkbox" name="km3-05-q14" value="2" data-grund="Falsch — align-content braucht keine Höhenangabe; es verteilt vorhandene Zeilen im freien Raum."> Dem Container fehlt eine feste Höhe</label>
+        <label><input type="checkbox" name="km3-05-q14" value="3" data-grund="Falsch — align-content wirkt auf Zeilen, nicht auf einzelne Kinder; dafür gibt es align-self."> Die Kinder brauchen <code>align-self</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">In einer Leiste ist
+      <code>align-items: center</code> gesetzt. Genau eine Karte soll
+      oben kleben. Was schreibst du?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q15" value="0" data-grund="Richtig — align-self am Kind überschreibt align-items des Containers für dieses eine Item."> <code>align-self: flex-start</code> an dieser Karte</label>
+        <label><input type="checkbox" name="km3-05-q15" value="1" data-grund="Falsch — justify-self gibt es in Flexbox nicht; justify-content gilt für den Container."> <code>justify-self: flex-start</code> an dieser Karte</label>
+        <label><input type="checkbox" name="km3-05-q15" value="2" data-grund="Falsch — das hebt die Zentrierung für alle Karten auf, nicht nur für eine."> <code>align-items: flex-start</code> am Container</label>
+        <label><input type="checkbox" name="km3-05-q15" value="3" data-grund="Falsch — order ändert nur die Reihenfolge, nicht die Ausrichtung auf der Querachse."> <code>order: -1</code> an dieser Karte</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was bewirkt
+      <code>align-items: baseline</code> bei einer Zeile aus
+      Überschrift, Preis und Button?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q16" value="0" data-grund="Richtig — baseline legt die erste Textzeile aller Items auf eine gemeinsame Grundlinie."> Die erste Textzeile aller drei Elemente liegt auf einer Linie</label>
+        <label><input type="checkbox" name="km3-05-q16" value="1" data-grund="Falsch — das wäre flex-end; baseline richtet an der Schrift aus, nicht an der Unterkante der Box."> Alle drei Elemente enden an derselben Unterkante</label>
+        <label><input type="checkbox" name="km3-05-q16" value="2" data-grund="Falsch — baseline ist ein Wert von align-items, keine Zentrierung in beide Richtungen."> Alle drei Elemente werden waagrecht und senkrecht zentriert</label>
+        <label><input type="checkbox" name="km3-05-q16" value="3" data-grund="Falsch — Schriftgrößen ändern sich dadurch nicht, nur die Ausrichtung."> Die Schriftgröße wird aneinander angeglichen</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 5 — Wachsen und Schrumpfen</h2>
+  <p>Bis hierher haben die Items ihre Größe behalten. Jetzt verteilen wir
+  auch die Größe. Drei Eigenschaften arbeiten zusammen:</p>
+
+  <table>
+    <tr><th>Eigenschaft</th><th>Frage, die sie beantwortet</th><th>Standard</th></tr>
+    <tr><td><code>flex-grow</code></td><td>Wie viel vom <em>überschüssigen</em> Platz nimmt es?</td><td><code>0</code></td></tr>
+    <tr><td><code>flex-shrink</code></td><td>Wie stark darf es schrumpfen, wenn Platz fehlt?</td><td><code>1</code></td></tr>
+    <tr><td><code>flex-basis</code></td><td>Welche Größe hat es <em>vor</em> der Verteilung?</td><td><code>auto</code></td></tr>
+  </table>
+
+  <p>Statt drei Zeilen schreibt man meist die Kurzform
+  <code>flex</code>. Sie heißt immer
+  <code>flex: grow shrink basis</code>:</p>
+
+<pre>
+flex: 1;              /* = 1 1 0%    : gleicher Anteil am Ganzen */
+flex: 2;              /* = 2 1 0%    : doppelter Anteil */
+flex: auto;           /* = 1 1 auto  : wächst, Basis ist der Inhalt */
+flex: none;           /* = 0 0 auto  : bleibt genau so groß */
+flex: 1 1 18rem;      /* Wunschbreite 18rem, danach gerecht verteilt */
+</pre>
+
+  <p><strong>Rechnen wir einmal:</strong> Ein Streifen ist 600 px breit,
+  <code>gap: 15px</code> zwischen drei Karten. Die Karten haben
+  <code>flex: 1 1 90px</code>. Abzüglich der zwei Lücken bleiben 570 px.
+  Die drei Wunschbreiten kosten 270 px, also sind 300 px übrig. Die
+  verteilen sich zu gleichen Teilen: jede Karte wird 90 + 100 = 190 px
+  breit.</p>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p><code>flex-basis</code> wirkt auf der <strong>Hauptachse</strong>.
+    Bei <code>flex-direction: column</code> ist das die Höhe: Aus
+    <code>flex: 1 1 18rem</code> wird eine Ausgangshöhe von 18rem. Mit
+    <code>flex-shrink: 1</code> darf die Karte darunter gehen, aber sie
+    startet bei 18rem — der Grund, warum eine Karte im Hochformat
+    plötzlich einen leeren Streifen mitschleppt.</p>
+  </div>
+
+  <p>Eine letzte Grenze: Ein Item schrumpft nie unter seinen Inhalt,
+  solange <code>min-width</code> auf <code>auto</code> steht (der
+  Standard). Ein Bild oder ein langes Wort hält die Karte also breit.
+  Wenn es wirklich schrumpfen soll, hilft
+  <code>min-width: 0</code> am Item.</p>
+
+  <div class="quiz" data-titel="Quiz: wachsen">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Container ist 600 px breit,
+      <code>gap: 0</code>. Drei Items haben <code>flex-basis: 0</code> und
+      <code>flex-grow</code> 1, 2 und 1. Wie breit sind sie?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q17" value="0" data-grund="Richtig — 600 px geteilt durch 1+2+1 = 4 Anteile: 150 / 300 / 150."> 150 px, 300 px, 150 px</label>
+        <label><input type="checkbox" name="km3-05-q17" value="1" data-grund="Falsch — grow 2 nimmt doppelt so viel wie grow 1, nicht ein Drittel mehr."> 200 px, 200 px, 200 px</label>
+        <label><input type="checkbox" name="km3-05-q17" value="2" data-grund="Falsch — die Anteile werden aus der Summe der grow-Werte gebildet, hier vier Teile."> 100 px, 200 px, 300 px</label>
+        <label><input type="checkbox" name="km3-05-q17" value="3" data-grund="Falsch — ohne Basis bleibt kein Rest; der ganze Platz wird nach grow verteilt."> 0 px, 300 px, 300 px</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was bedeutet
+      <code>flex: 1</code> ausgeschrieben?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q18" value="0" data-grund="Richtig — die Zahl allein ist grow; shrink bleibt 1, die Basis wird 0%."> <code>flex-grow: 1; flex-shrink: 1; flex-basis: 0%</code></label>
+        <label><input type="checkbox" name="km3-05-q18" value="1" data-grund="Falsch — 0 0 auto ist flex: none und lässt das Item unverändert."> <code>flex-grow: 0; flex-shrink: 0; flex-basis: auto</code></label>
+        <label><input type="checkbox" name="km3-05-q18" value="2" data-grund="Falsch — auto als Basis gehört zu flex: auto; die nackte Zahl setzt die Basis auf 0."> <code>flex-grow: 1; flex-shrink: 1; flex-basis: auto</code></label>
+        <label><input type="checkbox" name="km3-05-q18" value="3" data-grund="Falsch — die Zahl ist kein Prozentwert der Breite, sondern ein Anteil am freien Platz."> <code>width: 1%</code> am Item</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Container mit
+      <code>flex-direction: column</code> enthält eine Karte mit
+      <code>flex: 1 1 18rem</code>. Was bedeutet die 18rem hier?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q19" value="0" data-grund="Richtig — flex-basis liegt auf der Hauptachse, bei column ist das die Höhe."> eine Wunschhöhe von 18rem</label>
+        <label><input type="checkbox" name="km3-05-q19" value="1" data-grund="Falsch — die Breite ist hier die Querachse; dafür wäre width zuständig."> eine Wunschbreite von 18rem</label>
+        <label><input type="checkbox" name="km3-05-q19" value="2" data-grund="Falsch — flex-basis ist keine Marge, sondern die Ausgangsgröße vor der Verteilung."> einen Außenabstand von 18rem</label>
+        <label><input type="checkbox" name="km3-05-q19" value="3" data-grund="Falsch — flex-basis ist die Ausgangsgröße, kein Mindestwert; mit flex-shrink: 1 darf die Karte sogar darunter gehen."> eine Mindesthöhe, die nie unterschritten wird</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Eine Karte mit einem breiten Bild
+      schrumpft nicht, obwohl der Platz knapp ist. Was ist die
+      Ursache?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q20" value="0" data-grund="Richtig — Items haben min-width: auto und schrumpfen nicht unter ihren Inhalt; min-width: 0 hebt das auf."> <code>min-width: auto</code> verhindert das Schrumpfen unter die Inhaltsbreite</label>
+        <label><input type="checkbox" name="km3-05-q20" value="1" data-grund="Falsch — flex-shrink ist standardmäßig 1, also darf geschrumpft werden."> <code>flex-shrink</code> steht standardmäßig auf 0</label>
+        <label><input type="checkbox" name="km3-05-q20" value="2" data-grund="Falsch — gap verkleinert nur den verfügbaren Platz, es verhindert kein Schrumpfen."> <code>gap</code> blockiert das Schrumpfen</label>
+        <label><input type="checkbox" name="km3-05-q20" value="3" data-grund="Falsch — Bilder sind normale Items; ihr Verhalten folgt denselben Regeln wie Text."> Bilder sind grundsätzlich keine Flex-Items</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 6 — Reihenfolge und der Automatik-Rand</h2>
+  <p>Zwei Werkzeuge bleiben, und beide sind kleine Zaubertricks mit
+  großem Nutzen.</p>
+
+  <p><strong><code>order</code></strong> ändert die <em>visuelle</em>
+  Reihenfolge der Items. Der Standardwert ist 0, kleinere Werte rutschen
+  nach vorn (auch negative), größere nach hinten. Das HTML bleibt
+  unangetastet — und genau da liegt die Gefahr: Wer mit
+  <code>order</code> die Reihenfolge umdreht, ändert die
+  Tabulator-Reihenfolge <em>nicht</em>. Für Tastatur und Screenreader
+  bleibt es die alte Reihenfolge.</p>
+
+  <p><strong><code>margin: auto</code></strong> ist in einer Flexbox
+  mächtiger als sonst: Ein Automatik-Rand frisst den gesamten freien
+  Platz auf seiner Seite. Deshalb ist der Standardtrick für die
+  Kopfleiste genau eine Zeile:</p>
+
+<pre>
+.nav { margin-left: auto; }   /* frisst den Platz links: rutscht nach rechts */
+</pre>
+
+  <p>Dasselbe in beide Richtungen — <code>margin: auto</code> an einem
+  Item — zentriert es waagrecht und senkrecht. Das ist der kürzeste Weg,
+  eine Karte in einem Container zu zentrieren.</p>
+
+  <div class="callout">
+    <span class="label">Antwort auf die Einstiegsfrage</span>
+    <p>Die Leiste braucht <code>display: flex</code> und
+    <code>gap</code>. Gleich hoch werden die Karten durch den Standard
+    <code>align-items: stretch</code>, gleiche Breiten durch
+    <code>flex: 1</code>. Der Preis klebt unten, weil die Karte selbst
+    eine Spalte ist (<code>flex-direction: column</code>) und der Preis
+    <code>margin-top: auto</code> bekommt. Der Umbruch im Streifen ist
+    <code>flex-wrap: wrap</code>; die Media Query braucht nur der Hero,
+    der untereinander klappt. Keine feste Höhe, keine Prozentrechnung.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: reihenfolge">
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>order</code> stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q21" value="0" data-grund="Richtig — die Darstellung ändert sich, die Reihenfolge im Dokument und damit für Tastatur und Screenreader nicht."> Es ändert nur die Darstellung, nicht die Reihenfolge im Dokument</label>
+        <label><input type="checkbox" data-richtig name="km3-05-q21" value="1" data-grund="Richtig — order nimmt ganze Zahlen, negative Werte rutschen nach vorn; 0 ist nur der Standard."> Es erlaubt auch negative Werte</label>
+        <label><input type="checkbox" name="km3-05-q21" value="2" data-grund="Falsch — genau das ist die Falle: die Tabulator-Reihenfolge folgt weiter dem HTML."> Es ändert auch die Reihenfolge beim Durchtabben</label>
+        <label><input type="checkbox" name="km3-05-q21" value="3" data-grund="Falsch — order wirkt auf jedes Flex-Item, unabhängig von der Ausrichtung."> Es funktioniert nur mit <code>flex-wrap: wrap</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">In einer Kopfleiste stehen Logo und
+      Navigation. Wie schiebst du die Navigation ohne
+      <code>justify-content</code> an den rechten Rand?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q22" value="0" data-grund="Richtig — der Automatik-Rand frisst den freien Platz links und schiebt das Element nach rechts."> <code>margin-left: auto</code> an der Navigation</label>
+        <label><input type="checkbox" name="km3-05-q22" value="1" data-grund="Falsch — order ändert nur die Reihenfolge, nicht den Abstand zum Rand."> <code>order: 1</code> an der Navigation</label>
+        <label><input type="checkbox" name="km3-05-q22" value="2" data-grund="Falsch — align-self richtet auf der Querachse aus, also senkrecht."> <code>align-self: flex-end</code> an der Navigation</label>
+        <label><input type="checkbox" name="km3-05-q22" value="3" data-grund="Falsch — flex-basis bestimmt die Größe, nicht die Position; das Element wächst nur."> <code>flex-basis: auto</code> an der Navigation</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Eine Karte soll in ihrem Container
+      waagrecht <em>und</em> senkrecht mittig sitzen. Welche Lösung ist am
+      kürzesten?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q23" value="0" data-grund="Richtig — ein Automatik-Rand in beide Richtungen frisst den freien Platz auf beiden Achsen."> <code>margin: auto</code> an der Karte</label>
+        <label><input type="checkbox" name="km3-05-q23" value="1" data-grund="Falsch — justify-content zentriert nur auf der Hauptachse, also nur waagrecht."> <code>justify-content: center</code> alleine</label>
+        <label><input type="checkbox" name="km3-05-q23" value="2" data-grund="Falsch — align-content verteilt mehrere Zeilen und braucht Umbruch."> <code>align-content: center</code> alleine</label>
+        <label><input type="checkbox" name="km3-05-q23" value="3" data-grund="Falsch — order verschiebt in der Reihenfolge, nicht in der Mitte."> <code>order: 0</code> an der Karte</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>margin: auto</code> in einer Flexbox stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-05-q24" value="0" data-grund="Richtig — ein Automatik-Rand nimmt den freien Platz auf seiner Seite vollständig ein."> Ein Automatik-Rand frisst den gesamten freien Platz auf seiner Seite</label>
+        <label><input type="checkbox" data-richtig name="km3-05-q24" value="1" data-grund="Richtig — mit auto auf beiden Seiten bleibt der Rest in der Mitte, das Item sitzt mittig."> <code>margin: auto</code> auf beiden Seiten zentriert das Item</label>
+        <label><input type="checkbox" name="km3-05-q24" value="2" data-grund="Falsch — der Automatik-Rand wirkt in jeder Flexbox, unabhängig von flex-wrap."> Er funktioniert nur mit <code>flex-wrap: wrap</code></label>
+        <label><input type="checkbox" name="km3-05-q24" value="3" data-grund="Falsch — margin:auto verschiebt das Item, es vergrößert es nicht."> Er vergrößert das Item um den freien Platz</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <div class="baustein">Jetzt du!</div>
+  <p>Erst vorhersagen, dann ausprobieren. Schreib die Vermutung auf, bevor
+  du die Datei öffnest — die Abweichung ist der Lernstoff.</p>
+
+  <h3>1 · Vorhersage: welche Leiste entsteht?</h3>
+  <p>Gegeben ist diese Regel für eine Kopfleiste mit Logo, Navigation und
+  einem Button:</p>
+<pre>
+.leiste {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.leiste .knopf { margin-left: auto; }
+</pre>
+  <p>Wo stehen die drei Elemente? Was bewirkt
+  <code>margin-left: auto</code> am Button zusätzlich zu
+  <code>space-between</code> — und was passiert, wenn du die Zeile mit dem
+  <code>margin-left</code> löschst?</p>
+
+  <h3>2 · Vorhersage: wie breit wird welche Karte?</h3>
+  <p>Ein Streifen ist 600 px breit, <code>gap: 15px</code>. Drei Karten
+  haben <code>flex: 1 1 90px</code>. Rechne die Breite jeder Karte aus,
+  bevor du es baust. Danach änderst du die mittlere Karte auf
+  <code>flex: 2 1 90px</code> und rechnest noch einmal.</p>
+
+  <h3>3 · Bauen: der Merch-Stand</h3>
+  <p>Baue Kopfleiste, Hero und Produktstreifen nach der Vorgabe in
+  <a href="aufgabe.md">Aufgabe KM3-05</a>, Beispiel 1. Arbeite in deinem
+  eigenen Projektordner. Prüfe am Ende mit dem Geräteschalter der
+  DevTools bei 400 px Breite: Stehen die Karten untereinander, ohne
+  Überlauf?</p>
+  <p>Zum Schluss die Verbindung zur letzten Lektion: Gib der letzten Karte
+  mit <code>.karte:last-child</code> einen anderen Rahmen — ohne neue
+  Klasse im HTML.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <div class="baustein">Typische Fehler</div>
+
+  <h3>Fehler 1 — Zentrieren auf der falschen Achse</h3>
+<pre>
+/* Karte soll senkrecht mittig sitzen — tut sie nicht: */
+.leiste { display: flex; justify-content: center; }
+
+/* Richtig: senkrecht ist die Querachse. Sichtbar wird das erst, wenn
+   der Container höher ist als die Karte (padding oder feste Höhe). */
+.leiste { display: flex; align-items: center; }
+</pre>
+
+  <h3>Fehler 2 — <code>display: flex</code> am Kind statt am Container</h3>
+<pre>
+.karte { display: flex; }    /* ordnet nur den INHALT der Karte */
+.streifen { display: flex; } /* ordnet die Karten selbst */
+</pre>
+
+  <h3>Fehler 3 — gleiche Höhe mit <code>height</code> erzwingen</h3>
+<pre>
+.karte { height: 100%; }     /* 0 oder abgeschnitten */
+/* Standard reicht: align-items: stretch */
+</pre>
+
+  <h3>Fehler 4 — <code>flex: 1</code> ohne Flex-Container</h3>
+<pre>
+/* .streifen hat kein display: flex */
+.karte { flex: 1; }   /* wirkungslos: kein Elternteil ist Flexbox */
+</pre>
+
+  <h3>Fehler 5 — <code>gap</code> und <code>margin</code> doppelt</h3>
+<pre>
+.streifen { gap: 1rem; }
+.karte { margin: 0 1rem; }   /* doppelte Lücke, außen ein Rest */
+</pre>
+
+  <h3>Fehler 6 — <code>flex-basis</code> in der Spalte für die Breite
+  gehalten</h3>
+<pre>
+.spalte { display: flex; flex-direction: column; }
+.karte { flex: 1 1 18rem; }  /* 18rem ist hier die HÖHE, nicht die Breite */
+</pre>
+
+  <h3>Fehler 7 — <code>order</code> als Reparatur für schlechtes HTML</h3>
+<pre>
+/* Optisch passt es, für Tastatur und Screenreader nicht: */
+.knopf { order: -1; }  /* wird zuerst gesehen, zuletzt erreicht */
+</pre>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Zusammenfassung</h2>
+  <table>
+    <tr><th>Eigenschaft</th><th>Ebene</th><th>Wofür</th></tr>
+    <tr><td><code>display: flex</code></td><td>Container</td><td>macht aus den Kindern eine Leiste</td></tr>
+    <tr><td><code>flex-direction</code></td><td>Container</td><td>legt die Hauptachse fest (row / column)</td></tr>
+    <tr><td><code>flex-wrap</code></td><td>Container</td><td>erlaubt neue Zeilen statt Quetschen</td></tr>
+    <tr><td><code>justify-content</code></td><td>Container</td><td>verteilt freien Platz auf der Hauptachse</td></tr>
+    <tr><td><code>align-items</code></td><td>Container</td><td>richtet auf der Querachse aus, Standard <code>stretch</code></td></tr>
+    <tr><td><code>align-content</code></td><td>Container</td><td>verteilt mehrere Zeilen (nur mit wrap)</td></tr>
+    <tr><td><code>gap</code></td><td>Container</td><td>Abstand zwischen den Items, nichts außen</td></tr>
+    <tr><td><code>flex</code></td><td>Item</td><td>grow, shrink und basis in einer Zeile</td></tr>
+    <tr><td><code>align-self</code></td><td>Item</td><td>Ausrichtung dieses einen Items</td></tr>
+    <tr><td><code>order</code></td><td>Item</td><td>visuelle Reihenfolge, nicht die Dokumentreihenfolge</td></tr>
+    <tr><td><code>margin: auto</code></td><td>Item</td><td>frisst freien Platz: nach rechts schieben oder zentrieren</td></tr>
+  </table>
+
+  <p><strong>Ausblick:</strong> Flexbox ordnet <em>eine</em> Richtung.
+  Für ein ganzes Seitengerüst mit Zeilen <em>und</em> Spalten kommt
+  <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">Grid</a>
+  dazu — und beides zusammen ist die Grundlage aller Karten- und
+  Shop-Layouts. Was du dabei ständig brauchst, steht schon in
+  <a href="../KM3-04-css-selektoren/lesson.html">KM3-04 — CSS-Selektoren</a>
+  (etwa <code>.karte:last-child</code>) und in
+  <a href="../KM3-03-css-basics/lesson.html">KM3-03</a> (Box-Model, das
+  hinter jeder Lücke steckt).</p>
+</section>
+
+<section>
+  <div class="baustein">Aufgabe</div>
+  <p>Drei Beispiele, aufsteigend: den Merch-Stand bauen, ein Selbsttest
+  im Prüfungsformat und eine Transferaufgabe mit einem Streifen, der sich
+  anders verhält als erwartet. Details:
+  <a href="aufgabe.md">Aufgabe KM3-05 — Flexbox</a>. —
+  <strong>Abgabe:</strong> nach Vorgabe deiner Lehrperson.</p>
+</section>
+
+<details class="lehrplan">
+  <summary>Lehrplan &amp; Einordnung</summary>
+  <ul>
+    <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile
+      Computing", Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr.
+      383/2021), Kompetenzmodul 3 — „Formatierungstechniken“</li>
+    <li><strong>KM-Bezug:</strong> KM3, Thema Flexbox (Semesterplan
+      UE 6) — baut auf KM3-03 (Box-Model) und KM3-04 (Selektoren) auf
+      und ist Grundlage für Grid, Responsive Design und Bootstrap</li>
+    <li><strong>Runtime:</strong> Browser + DevTools, eine
+      <code>index.html</code> mit verlinktem <code>style.css</code>;
+      kein Build, kein Server nötig — Auslieferung über
+      <code>./serve.sh</code></li>
+  </ul>
+</details>
+
+<footer class="navi">
+  <p><strong>Quelle zum Weiterlesen:</strong> CSS-Tricks,
+  <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A
+  Complete Guide to Flexbox</a> ·
+  <a href="https://developer.mozilla.org/de/docs/Web/CSS/CSS_flexible_box_layout">MDN
+  — Flexibles Box-Layout</a> · Spiel:
+  <a href="https://flexboxfroggy.com/#de">Flexbox Froggy</a>.</p>
+  <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a> ·
+    Zurück: <a href="../KM3-04-css-selektoren/lesson.html">KM3-04 —
+    CSS-Selektoren</a> ·
+    Aufgabe: <a href="aufgabe.md">Aufgabe KM3-05</a></p>
+</footer>
+
+</body>
+</html>
