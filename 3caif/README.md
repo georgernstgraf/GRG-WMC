@@ -1,6 +1,7 @@
 # WMC Material 3caif
 
 ## Aufgaben
+- 2026-11-24: Lektion KM3-05: Flexbox fertig studieren und die Übung "Jetzt Du" im eigenen Repo abgeben.
 - 2026-11-17: Abgabe Screenshot, wenn erfolgreich absolviert
 - 2026-11-10: unterricht/KM3-04-css-selektoren: Aufgabe ist dort angegeben!
 - 2026-10-13: Site mit Box-Model/`box-sizing`/Units erweitern → [2026-10-13_boxmodel/](./2026-10-13_boxmodel/)
