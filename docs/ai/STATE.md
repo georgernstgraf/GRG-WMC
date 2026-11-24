@@ -1,13 +1,25 @@
 # Project State
 
-Current status as of 2026-11-10.
+Current status as of 2026-11-24.
 
 ## Current Focus
-**Lernplattform (#7):** Der Markdown-SPA-Viewer ist durch einen **statischen Navigator** `index.html` ersetzt; GitHub Pages veröffentlicht nur `index.html`, `assets/` und `unterricht/` (`.github/workflows/pages.yml`, `build_type: workflow`). Der Navigator verlinkt die Prepared Lessons `KM3-01–03` unter `unterricht/KM3-<NN>-<slug>/` (Retrofit 2026-10-05).
+**Lernplattform (#7):** Der Markdown-SPA-Viewer ist durch einen **statischen Navigator** `index.html` ersetzt; GitHub Pages veröffentlicht nur `index.html`, `assets/` und `unterricht/` (`.github/workflows/pages.yml`, `build_type: workflow`). Der Navigator verlinkt die Prepared Lessons `KM3-01`–`KM3-06` unter `unterricht/KM3-<NN>-<slug>/` (Retrofit 2026-10-05).
 
 Mini-Hono-Referenz (#3) ist als lauffähiger Rumpf in `Beispielprojekte/hono_on_deno/` gebaut; der React-Referenzshop `Beispielprojekte/react_deno_hono/` konsumiert diese API (React 19, Pico CSS, Vite 8 auf Deno, `deno test`). Nächster Fokus: Jahr-2-Tooling (Node/Vite) + optionale #3-Restteile (JWT, RFC-7807, WS).
 
 ## Completed (this cycle)
+- [x] 2026-11-24 — #14 Lesson **KM3-06 CSS Grid** (`unterricht/KM3-06-css-grid/`:
+      `lesson.html`, `aufgabe.md`): 6 Schritte von `display: grid` über
+      `fr`/`repeat()`/`minmax()`, Linien-Platzierung, `grid-template-areas`,
+      `auto-fit` bis Ausrichtung + Grid-vs-Flexbox; 6 Lernquizzes (24 Fragen,
+      Lösungsmengen 0–4), Termine-Seite als Beispiel 1; Pixelmaße je per
+      Chromium-Headless reproduziert, Kurs-/Theme-/Badge-Pfad über CDP lokal
+      und unter simulierter Pages-Basis geprüft.
+- [x] 2026-11-24 — #13 Lesson **KM3-05 Flexbox** (`unterricht/KM3-05-flexbox/`):
+      Haupt-/Querachse, Verteilen, Ausrichten, Wachsen, `order`/`margin:auto`;
+      6 Lernquizzes (24 Fragen), Merch-Stand als Beispiel 1; `lesson.css`
+      setzt seither `color-scheme` am `data-theme` (native Checkboxen im
+      Dunkelmodus sichtbar).
 - [x] 2026-11-10 — #11 Quizzes der Alt-Lessons auf Format 2.1 umgestellt
       (KM3-01..03, KM8-01: 22 Fragen, je 4 Optionen mit `data-grund`, eine
       vierte Ablenkungsoption ergänzt; KM8-01 in zwei Quizze geteilt).

@@ -15,7 +15,7 @@ GRG-WMC is a static educational content repository (no build system) for the WMC
 | `Beispielprojekte/` | Demo projects (hono_on_deno, react_deno_hono, hono-prisma-htmx, deno_transpile, gists) | `hono_on_deno` = Mini-Hono-Referenzrumpf (Deno/Hono, in-memory Musikgeschäft-API, `/static`, SPA-Fallback, TS-Transpilation); `react_deno_hono` = React-19-Referenzshop (Vite 8 auf Deno, Pico CSS, `deno test` + RTL) gegen diese API |
 | `Übungen/` | Assignments | |
 | `docs/` | skriptum.md, wmc_ss_projekt_webapp.md, PDFs | Lehrinhalte_SS.md removed (absorbed into lehrplan/jg1-einheiten.md) |
-| `unterricht/` | Prepared Lessons (Lernplattform), flat `<PREFIX>-<NN>-<slug>/` (`KM<#>`/`SA`) with `lesson.html` + Tages-README-Vorlage | no runnable project code; cohort copying is manual |
+| `unterricht/` | Prepared Lessons (Lernplattform), flat `<PREFIX>-<NN>-<slug>/` (`KM<#>`/`SA`) with `lesson.html` + `aufgabe.md` | no runnable project code; cohort copying is manual |
 | `lehrplan/` | LEHRPLAN (3-layer source), METADATA, RIS/ + RIS.md, wmc-aif/kif/cif + kompetenzmodule/, jg1/jg2-einheiten (planning) | created 2026-07-26, zweig-retrofit 2026-09-10, planning moved to lehrplan root 2026-10-05 |
 | `docs/ai/` | Agent knowledge base | created 2026-07-26 |
 | `PROJEKT.md`, `PEER_REVIEW.md` | Jahr-1 project specs | generic, reused yearly |

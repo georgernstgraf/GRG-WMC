@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM3-06 · CSS Grid</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle"
+          aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM3-06 · CSS Grid</span>
+  <h1>Zwei Richtungen auf einmal</h1>
+  <p class="subtitle">Drei Karten nebeneinander waren eine Leiste. Jetzt
+  kommt ein ganzes Seitengerüst: Kopf und Fuß über die volle Breite, links
+  die Navigation, rechts die Termine. Und die Karten ordnen sich selbst.</p>
+</header>
+
+<div class="callout tipp">
+  <span class="label">Lektüre</span>
+  <p>Pflicht, vor dem Weiterlesen:
+     <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">CSS-Tricks
+     — A Complete Guide to Grid</a> (alle Eigenschaften auf einer Seite,
+     englisch, mit Bildern). Dazu zum Spielen:
+     <a href="https://cssgridgarden.com/#de">Grid Garden</a> —
+     28 Levels, jedes Level ist eine Eigenschaft.</p>
+</div>
+
+<section>
+  <div class="baustein">Einstiegsfrage</div>
+  <p>Der Merch-Stand bekommt eine Termine-Seite. Sie hat vier Zonen: oben
+  eine Kopfleiste über die ganze Breite, links eine schmale Spalte mit dem
+  Tourplan, rechts die Terminkarten. Unten folgt eine Fußzeile — wieder
+  über die ganze Breite.</p>
+  <p>Mit dem Werkzeug aus der letzten Stunde geht das so: außen eine
+  senkrechte Leiste für Kopf, Mittelteil und Fuß. Der Mittelteil ist eine
+  waagrechte Leiste für Plan und Karten. Die Karten stehen in einer dritten
+  Leiste, die umbricht. Jede Ebene hat ihre eigene Achse und rechnet ihre
+  Breiten selbst.</p>
+  <p>Das funktioniert, ist aber ein <strong>Flexbox-Sandwich</strong>: Drei
+  verschachtelte Leisten, die voneinander nichts wissen. Der Kopf läuft nur
+  dann über die volle Breite, wenn du die Breite auf jeder Ebene erneut
+  angibst. Und auf dem Handy baust du die Verschachtelung per Media Query
+  um.</p>
+  <p><strong>Geht das in einem Schritt?</strong> Ja: Du beschreibst dem
+  Elternelement ein Raster aus Zeilen <em>und</em> Spalten. Danach klebt der
+  Kopf an der oberen Kante, der Fuß an der unteren — ohne dass dazwischen
+  etwas verschachtelt ist.</p>
+</section>
+
+<section>
+  <div class="baustein">Ziel-Artefakt</div>
+  <p>Das baust du in dieser Doppelstunde — die Termine-Seite des
+  Merch-Stands. Ein Raster trägt das Gerüst, ein zweites ordnet die Karten.</p>
+<pre>
+┌──────────────────────────────────────────────┐
+│ NACHTFALTER      Termine Merch Kontakt       │ ← kopf: ganze Breite
+├────────────┬─────────────────────────────────┤
+│ Tourplan   │ ┌──────────────┐ ┌────────────┐ │
+│ 12.3. Wien │ │ 12.3. Wien   │ │ 19.3. Graz │ │ ← main: Karten
+│ 19.3. Graz │ │ Arena, 20:00 │ │ Orpheum    │ │
+│ 26.3. Linz │ └──────────────┘ └────────────┘ │
+│            │ ┌──────────────┐ ┌────────────┐ │
+│            │ │ 26.3. Linz   │ │ 2.4. Salz- │ │
+│            │ │ Posthof      │ │ burg       │ │
+├────────────┴─────────────────────────────────┤
+│ Impressum · Datenschutz · Newsletter         │ ← fuss: ganze Breite
+└──────────────────────────────────────────────┘
+   links 12rem       Rest für die Karten
+   schmal: alles untereinander, Karten eine pro Zeile
+</pre>
+  <p>Auch hier brauchst du kein Bild und keine Schriftart. Rahmen und
+  Platzhaltertext genügen, um zu sehen, ob das Raster stimmt.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 1 — Aus einem Container wird ein Raster</h2>
+  <p>Eine Eigenschaft am Container schaltet um:</p>
+
+<pre>
+.seite {
+    display: grid;   /* Zeilen UND Spalten, nicht nur eine Leiste */
+}
+</pre>
+
+  <p>Ab hier hat der Container ein Raster. Wie bei Flexbox werden nur die
+  direkten Kinder zu <strong>Grid-Items</strong>; ein Absatz in einem
+  <code>div</code> bleibt normaler Inhalt seines <code>div</code>s.</p>
+
+  <p>Drei Dinge sind neu gegenüber der Leiste:</p>
+  <p><strong>1. Es gibt keine Haupt- und Querachse, die sich drehen.</strong>
+  Waagrecht und senkrecht sind von Anfang an zwei gleichwertige
+  Richtungen — Spalten und Zeilen.</p>
+
+  <p><strong>2. Die Kinder fließen von selbst.</strong> Du schreibst kein
+  <code>flex</code> an die Karten. Der Browser setzt sie zeilenweise in die
+  nächsten freien Zellen: erst nach rechts, am Zeilenende weiter in der
+  nächsten Zeile.</p>
+
+  <p><strong>3. Die Zellen bleiben, auch wenn sie leer sind.</strong> Ein
+  Raster mit drei Spalten und nur zwei Karten zeigt zwei Karten und eine
+  leere Zelle. Das Raster wird dadurch weder schmaler noch wachsen die
+  Karten hinein.</p>
+
+<pre>
+display: flex                display: grid
+┌──────────────────┐         ┌─────┬─────┬─────┐
+│ K1 K2 K3         │         │ K1  │ K2  │ K3  │
+└──────────────────┘         ├─────┼─────┼─────┤
+  eine Leiste,               │ K4  │     │     │
+  die Kinder bestimmen       └─────┴─────┴─────┘
+  ihre Breite selbst          feste Spalten,
+                              feste Zeilen
+</pre>
+
+  <p>Vergleich der beiden Werkzeuge — sie ersetzen einander nicht, sie
+  lösen verschiedene Aufgaben:</p>
+
+  <table>
+    <tr><th>Frage</th><th>Flexbox</th><th>Grid</th></tr>
+    <tr><td>Wie viele Richtungen?</td><td>eine (Hauptachse)</td>
+        <td>zwei (Zeilen und Spalten)</td></tr>
+    <tr><td>Wer bestimmt die Größe?</td><td>der Inhalt der Kinder</td>
+        <td>der Container (und der Inhalt als Grenze)</td></tr>
+    <tr><td>Typische Aufgabe</td><td>Kopfleiste, Button-Gruppe,
+        Karteninhalt</td><td>ganzes Seitengerüst, Kartenraster,
+        Galerie</td></tr>
+    <tr><td>Passen die Kinder nicht</td><td>sie schrumpfen (mit
+        <code>flex-wrap</code> brechen sie um)</td><td>es entsteht
+        automatisch eine neue Zeile</td></tr>
+  </table>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p>Ohne Spaltenangabe hat ein Raster genau eine Spalte: Die Kinder
+    stehen untereinander, wie Block-Elemente. <code>display: grid</code>
+    alleine sieht also erst einmal nach nichts aus. Erst
+    <code>grid-template-columns</code> macht daraus mehrere Spalten —
+    Schritt 2.</p>
+  </div>
+
+  <p>Noch ein Wort zu den Namen, die in Schritt 4 auftauchen: Sie sind
+  frei wählbar. Sie haben nichts mit HTML-Tags zu tun, dürfen mehrfach
+  vorkommen — genau dadurch entsteht ein breiter Bereich — und dürfen
+  nicht mit einem Punkt beginnen oder eine Ziffer sein.</p>
+
+  <div class="quiz" data-titel="Quiz: raster">
+    <fieldset class="frage">
+      <legend class="frage-text">Du willst vier Karten in einem Raster.
+      Welches Element bekommt <code>display: grid</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q1" value="0" data-grund="Richtig — die Rastereigenschaften stehen am Container und wirken auf die direkten Kinder."> das Elternelement der vier Karten</label>
+        <label><input type="checkbox" name="km3-06-q1" value="1" data-grund="Falsch — am Kind macht display:grid das Kind zum Raster für seinen Inhalt, nicht die Karten zum Raster."> jede der vier Karten einzeln</label>
+        <label><input type="checkbox" name="km3-06-q1" value="2" data-grund="Falsch — body umfasst auch Kopf und Fuß; die sollen nicht zu Zellen des Kartenrasters werden."> das body-Element der Seite</label>
+        <label><input type="checkbox" name="km3-06-q1" value="3" data-grund="Falsch — eine Breitenangabe legt kein Raster an; dafür ist display: grid am Elternelement zuständig."> das Element mit der festen Breite</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was unterscheidet Grid von Flexbox?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q2" value="0" data-grund="Richtig — Grid beschreibt Zeilen und Spalten gleichzeitig, Flexbox nur eine Richtung."> Grid legt Zeilen und Spalten gleichzeitig fest</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q2" value="1" data-grund="Richtig — die Kinder werden automatisch in die nächsten freien Zellen gesetzt, zeilenweise."> Grid setzt die Kinder automatisch in die nächsten freien Zellen</label>
+        <label><input type="checkbox" name="km3-06-q2" value="2" data-grund="Falsch — auch Grid braucht ein Elternelement mit display: grid; die Kinder allein bilden kein Raster."> Grid braucht kein Elternelement</label>
+        <label><input type="checkbox" name="km3-06-q2" value="3" data-grund="Falsch — genau das Gegenteil: Grid kann beliebig viele Zeilen und Spalten tragen."> Grid erlaubt nur eine einzige Zeile</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster hat
+      <code>grid-template-columns: repeat(3, 1fr)</code> und fünf Kinder,
+      sonst ist nichts gesetzt. Welche Aussagen stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q3" value="0" data-grund="Richtig — die ersten drei Kinder bilden die erste Zeile, weil zeilenweise gefüllt wird."> Die ersten drei Kinder bilden die erste Zeile</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q3" value="1" data-grund="Richtig — das vierte Kind beginnt eine neue Zeile in der ersten Spalte."> Das vierte Kind landet in der zweiten Zeile, erste Spalte</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q3" value="2" data-grund="Richtig — alle drei Spalten haben 1fr, also den gleichen Anteil am freien Platz."> Die drei Spalten sind gleich breit</label>
+        <label><input type="checkbox" name="km3-06-q3" value="3" data-grund="Falsch — gefüllt wird zeilenweise, nicht spaltenweise; die zweite Spalte beginnt erst in der nächsten Zeile."> Die Kinder füllen zuerst die Spalten von oben nach unten</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster hat
+      <code>grid-template-columns: repeat(3, 1fr)</code> und nur zwei
+      Karten. Welche Aussagen stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" name="km3-06-q4" value="0" data-grund="Falsch — die Spaltenzahl steht im CSS und bleibt; die dritte Spalte verschwindet nicht, weil eine Karte fehlt."> Die dritte Spalte verschwindet, die zwei Karten teilen sich die Breite</label>
+        <label><input type="checkbox" name="km3-06-q4" value="1" data-grund="Falsch — die leere Zelle bleibt leer; nichts wird gestreckt."> Die zwei Karten werden über die leere Zelle gestreckt</label>
+        <label><input type="checkbox" name="km3-06-q4" value="2" data-grund="Falsch — die Kinder wachsen nicht von selbst; ihre Breite folgt der Spalte, nicht dem freien Platz."> Die Karten wachsen auf die volle Breite des Containers</label>
+        <label><input type="checkbox" name="km3-06-q4" value="3" data-grund="Falsch — weniger Kinder als Zellen sind kein Fehler; das Raster bleibt einfach teilweise leer."> Es entsteht ein Fehler, weil weniger Kinder als Zellen vorhanden sind</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 2 — Spalten und Zeilen beschreiben</h2>
+  <p>Die Spalten stehen am Container, in einer Zeile, von links nach
+  rechts. Jede Angabe ist eine Spalte:</p>
+
+<pre>
+.seite {
+    display: grid;
+    grid-template-columns: 12rem 1fr;   /* Navigation, dann der Rest */
+    gap: 1.5rem;                        /* Abstand zwischen den Zellen */
+}
+</pre>
+
+  <p><code>12rem</code> ist eine feste Breite. <code>1fr</code> heißt
+  „ein freier Anteil“ — der Platz, der nach <code>gap</code> und den festen
+  Spalten übrig bleibt, wird unter allen <code>fr</code>-Spalten
+  aufgeteilt.</p>
+
+  <p><strong>Rechnen wir einmal:</strong> Ein Container ist 600 px breit,
+  <code>gap: 0</code>, die Spalten sind <code>2fr 3fr 1fr</code>. Alle
+  Angaben sind <code>fr</code>, also wird die ganze Breite geteilt:
+  2 + 3 + 1 = 6 Anteile zu je 100 px. Die Spalten werden 200 px, 300 px
+  und 100 px breit.</p>
+
+  <p>Kommt <code>gap</code> dazu, wird es <em>vorher</em> abgezogen. Ein
+  Container ist 640 px breit, <code>gap: 20px</code>, die Spalten sind
+  <code>repeat(3, 1fr)</code>. Für die Spalten bleiben
+  640 − 2 × 20 = 600 px, also je 200 px. Die Lücke gehört dem Container,
+  nicht der Spalte.</p>
+
+  <p><code>repeat()</code> spart Tipparbeit, wenn sich Angaben
+  wiederholen. Es funktioniert auch mit Mustern:</p>
+
+<pre>
+grid-template-columns: repeat(3, 1fr);      /* 1fr 1fr 1fr */
+grid-template-columns: repeat(2, 80px 1fr); /* 80px 1fr 80px 1fr */
+</pre>
+
+  <p>Zeilen beschreibst du genauso mit <code>grid-template-rows</code>.
+  Für das Seitengerüst reicht eine Zeile mit drei Höhen:</p>
+
+<pre>
+.seite {
+    grid-template-rows: auto 1fr auto;  /* Kopf so hoch wie nötig,  */
+    min-height: 100dvh;                 /* Mitte füllt den Rest,   */
+}                                       /* Fuß wieder so hoch wie nötig */
+</pre>
+
+  <p><code>auto</code> heißt „so groß wie der Inhalt“.
+  <code>1fr</code> nimmt den Rest der Höhe. <code>100dvh</code> ist die
+  Höhe des sichtbaren Fensterbereichs, <code>d</code> steht für „dynamic“:
+  Sie schrumpft mit, wenn auf dem Handy die Adressleiste Platz nimmt. Mit
+  <code>min-height: 100dvh</code> ist die Seite mindestens so hoch wie das
+  Fenster — deshalb sitzt der Fuß unten, auch wenn wenig Inhalt da ist.</p>
+
+  <p>Die Zeilen musst du aber nicht vorher kennen. Legst du weniger Zeilen
+  fest als Kinder vorhanden sind, erzeugt der Browser <strong>implizite
+  Zeilen</strong>. Deren Höhe steuerst du mit
+  <code>grid-auto-rows</code>:</p>
+
+<pre>
+.produkte {
+    grid-auto-rows: minmax(8rem, auto);  /* mindestens 8rem, sonst Inhalt */
+}
+</pre>
+
+  <p><code>minmax()</code> setzt eine Unter- und eine Obergrenze.
+  <code>minmax(8rem, auto)</code> heißt: nie kleiner als 8rem, nach oben
+  offen für den Inhalt. Das ist der Standard für Kartenraster, in denen
+  eine Beschreibung länger ist als die andere.</p>
+
+  <div class="callout">
+    <span class="label">Merke</span>
+    <p><code>gap</code> setzt den Abstand zwischen den Zellen, nichts
+    außen. Es ersetzt <code>margin</code> an den Kindern — wer beides
+    setzt, bekommt doppelte Lücken. Das kennst du schon aus der
+    Flexbox.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: spalten">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Container ist 600 px breit,
+      <code>gap: 0</code>, die Spalten sind
+      <code>2fr 3fr 1fr</code>. Wie breit sind sie?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q5" value="0" data-grund="Richtig — sechs Anteile zu 100 px: 2, 3 und 1 Anteile ergeben 200, 300 und 100 px."> 200 px, 300 px, 100 px</label>
+        <label><input type="checkbox" name="km3-06-q5" value="1" data-grund="Falsch — 150 px käme heraus, wenn man 600 durch vier teilt; hier gibt es sechs Anteile."> 150 px, 150 px, 150 px</label>
+        <label><input type="checkbox" name="km3-06-q5" value="2" data-grund="Falsch — 2fr ist ein Anteil von sechs, nicht ein Drittel; die Summe der Angaben ist der Nenner."> 200 px, 200 px, 200 px</label>
+        <label><input type="checkbox" name="km3-06-q5" value="3" data-grund="Falsch — fr ist kein Prozentwert; 3fr bedeutet drei Anteile, nicht 3 % der Breite."> 2 px, 3 px, 1 px</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Container ist 640 px breit,
+      <code>gap: 20px</code>, die Spalten sind
+      <code>repeat(3, 1fr)</code>. Welche Aussagen stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q6" value="0" data-grund="Richtig — 640 minus zwei Lücken zu 20 px ergibt 600 px, geteilt durch drei Spalten 200 px."> Jede Spalte ist 200 px breit</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q6" value="1" data-grund="Richtig — gap wird vor der Verteilung von der verfügbaren Breite abgezogen."> Der gap wird vor der Verteilung von der Breite abgezogen</label>
+        <label><input type="checkbox" name="km3-06-q6" value="2" data-grund="Falsch — das wäre 640 geteilt durch drei ohne Abzug des gap; die Lücken fehlen dann."> Jede Spalte ist 213,33 px breit</label>
+        <label><input type="checkbox" name="km3-06-q6" value="3" data-grund="Falsch — bei gleichen fr-Anteilen sind alle Spalten gleich breit; die Lage in der Mitte ändert nichts."> Die mittlere Spalte ist breiter, weil sie in der Mitte liegt</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über <code>fr</code>
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q7" value="0" data-grund="Richtig — fr verteilt nur den Platz, der nach gap und festen Spalten übrig bleibt."> Es verteilt den Platz nach gap und festen Spalten</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q7" value="1" data-grund="Richtig — 4fr bekommt viermal so viel Anteil wie 1fr, solange Platz vorhanden ist."> <code>4fr</code> wird viermal so breit wie <code>1fr</code></label>
+        <label><input type="checkbox" data-richtig name="km3-06-q7" value="2" data-grund="Richtig — fr ist ein Anteil am freien Platz, keine Prozentangabe und keine feste Länge."> Es ist weder ein Prozentwert noch eine feste Länge</label>
+        <label><input type="checkbox" name="km3-06-q7" value="3" data-grund="Falsch — die Einheit rem ist eine feste Länge; für Anteile gibt es fr."> Es ist eine feste Länge von 1 rem</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster hat
+      <code>grid-template-columns: repeat(2, 1fr)</code> und fünf Kinder.
+      Was passiert mit den Zeilen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q8" value="0" data-grund="Richtig — fehlende Zeilen entstehen automatisch als implizite Zeilen; ihre Höhe regelt grid-auto-rows."> Der Browser legt automatisch weitere Zeilen an</label>
+        <label><input type="checkbox" name="km3-06-q8" value="1" data-grund="Falsch — Grid platziert alle Kinder; keines fällt weg."> Die Kinder 3 bis 5 verschwinden aus dem Raster</label>
+        <label><input type="checkbox" name="km3-06-q8" value="2" data-grund="Falsch — ein Überlauf entsteht nicht; Grid erzeugt so viele Zeilen wie nötig."> Es entsteht ein waagerechter Überlauf, weil Zeilen fehlen</label>
+        <label><input type="checkbox" name="km3-06-q8" value="3" data-grund="Falsch — jede Zelle wird nur einmal belegt; die Kinder stapeln sich nicht."> Die Kinder 3 bis 5 landen in denselben Zellen wie 1 und 2</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 3 — Zellen von Hand belegen</h2>
+  <p>Bis hierher hat der Browser die Kinder selbst verteilt. Jetzt greifst
+  du ein — mit den <strong>Linien</strong> zwischen den Zellen. Ein Raster
+  hat immer eine Linie mehr als Spalten:</p>
+
+<pre>
+Spalten:    [   1   ][   2   ][   3   ]
+Linien:    1        2        3        4
+</pre>
+
+  <p>Die Linien werden ab 1 durchnummeriert, von links nach rechts bzw. von
+  oben nach unten. Ein Kind bekommt zwei Linien: die, an der es beginnt,
+  und die, an der es endet.</p>
+
+<pre>
+.kopf {
+    grid-column: 1 / 3;   /* von Linie 1 bis Linie 3: Spalten 1 und 2 */
+}
+
+.fuss {
+    grid-column: 1 / -1;  /* -1 ist die letzte Linie: ganze Breite */
+}
+</pre>
+
+  <p><strong>Die Falle:</strong> Die zweite Zahl ist die <em>Endlinie</em>,
+  nicht die Anzahl der Zellen. <code>grid-column: 1 / 3</code> deckt zwei
+  Spalten, <code>grid-column: 1 / 2</code> nur eine. Die Endlinie gehört
+  nicht mehr zum Element — genau wie beim Zuschneiden: Du schneidest
+  <em>an</em> der Linie.</p>
+
+  <p>Für das Seitengerüst ist <code>-1</code> die praktische Abkürzung: Sie
+  meint immer die letzte Linie, egal wie viele Spalten du später
+  dazunimmst. <code>grid-row: 1 / 3</code> funktioniert senkrecht genauso.</p>
+
+  <p>Wenn du die Zellen nicht zählen willst, sagst du stattdessen
+  <code>span</code>:</p>
+
+<pre>
+.karte-breit {
+    grid-column: span 2;   /* zwei Zellen ab der Stelle, die Grid zuteilt */
+    grid-row: span 2;      /* zwei Zeilen hoch */
+}
+</pre>
+
+  <p><code>span</code> ist der Unterschied zwischen „zwei Zellen ab hier“
+  und „genau hier“. Die Kurzform mit Linien ist dann sinnvoll, wenn die
+  Lage im Raster wichtig ist — etwa eine Karte, die oben rechts über zwei
+  Zeilen laufen soll:</p>
+
+<pre>
+.werbung {
+    grid-column: 3;        /* Spalte 3 (Linie 3 bis Linie 4) */
+    grid-row: 2 / 4;       /* Zeilen 2 und 3 */
+}
+</pre>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p>Zeilen- und Spaltennummern zählen die <em>Linien</em> des Rasters,
+    nicht die Kinder. Wer die Kinder zählt, landet eine Zelle daneben —
+    und weil das Raster trotzdem gültig ist, gibt es keine Fehlermeldung,
+    nur ein falsches Bild.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: linien">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster hat drei Spalten. Wie viele
+      senkrechte Linien hat es?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q9" value="0" data-grund="Richtig — vor, zwischen und nach den drei Spalten liegen vier Linien."> vier Linien</label>
+        <label><input type="checkbox" name="km3-06-q9" value="1" data-grund="Falsch — mit drei Linien gäbe es nur zwei Spalten dazwischen."> drei Linien</label>
+        <label><input type="checkbox" name="km3-06-q9" value="2" data-grund="Falsch — zwei Linien fassen genau eine Spalte ein."> zwei Linien</label>
+        <label><input type="checkbox" name="km3-06-q9" value="3" data-grund="Falsch — sechs Linien gäbe es bei fünf Spalten; die Anzahl ist Spalten plus eins."> sechs Linien</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">In einem Raster mit vier Spalten steht
+      <code>grid-column: 2 / 5;</code>. Welche Aussage stimmt?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q10" value="0" data-grund="Richtig — Endlinie 5 schließt die Spalten 2, 3 und 4 ein, also drei Zellen."> Das Element deckt die Spalten 2, 3 und 4</label>
+        <label><input type="checkbox" name="km3-06-q10" value="1" data-grund="Falsch — vier Zellen wären 2 bis 6; die Endlinie selbst zählt nicht mit."> Das Element deckt die Spalten 2 bis 5, also vier Zellen</label>
+        <label><input type="checkbox" name="km3-06-q10" value="2" data-grund="Falsch — gezählt werden die Linien: von 2 bis 5 sind es drei Spalten, nicht zwei."> Das Element deckt zwei Zellen</label>
+        <label><input type="checkbox" name="km3-06-q10" value="3" data-grund="Falsch — fünf Linien gibt es bei vier Spalten; die Angabe ist gültig."> Die Angabe ist ungültig, weil das Raster nur vier Spalten hat</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über Liniennummern
+      stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q11" value="0" data-grund="Richtig — die Zählung beginnt bei der ersten Linie mit 1."> Die erste Linie trägt die Nummer 1</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q11" value="1" data-grund="Richtig — die Endlinie 4 schließt die Spalten 2 und 3 ein."> <code>grid-column: 2 / 4</code> deckt die Spalten 2 und 3</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q11" value="2" data-grund="Richtig — negative Nummern zählen von hinten; -1 ist die letzte Linie."> Die letzte Linie lässt sich als <code>-1</code> ansprechen</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q11" value="3" data-grund="Richtig — grid-row arbeitet mit denselben Liniennummern, nur senkrecht."> <code>grid-row</code> verwendet dieselben Liniennummern senkrecht</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Was bedeutet
+      <code>grid-column: 1 / -1;</code> an einem Kind?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q12" value="0" data-grund="Richtig — von der ersten bis zur letzten Linie: das Kind füllt die ganze Breite des Rasters."> Es läuft über die ganze Breite des Rasters</label>
+        <label><input type="checkbox" name="km3-06-q12" value="1" data-grund="Falsch — -1 ist die letzte Linie, keine Abkürzung für die erste Spalte."> Es bleibt in der ersten Spalte</label>
+        <label><input type="checkbox" name="km3-06-q12" value="2" data-grund="Falsch — negative Zahlen sind erlaubt und zählen von der letzten Linie rückwärts."> Die Angabe ist ungültig, weil negative Zahlen nicht erlaubt sind</label>
+        <label><input type="checkbox" name="km3-06-q12" value="3" data-grund="Falsch — das wäre grid-row: 1 / -1; grid-column wirkt waagrecht."> Es läuft über die ganze Höhe des Rasters</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 4 — Bereiche benennen</h2>
+  <p>Liniennummern funktionieren, sind aber schwer zu lesen: Wer
+  <code>grid-column: 2 / 5</code> sieht, muss zählen. Für ein ganzes
+  Seitengerüst gibt es etwas Besseres — du <em>zeichnest</em> das Layout
+  mit Namen:</p>
+
+<pre>
+.seite {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    grid-template-areas:
+        "kopf  kopf"
+        "nav   main"
+        "fuss  fuss";
+    gap: 1rem;
+}
+
+.kopf { grid-area: kopf; }
+.nav  { grid-area: nav;  }
+.main { grid-area: main; }
+.fuss { grid-area: fuss; }
+</pre>
+
+  <p>Jede Zeile in Anführungszeichen ist eine Rasterzeile. Jeder Name ist
+  eine Zelle. Gleiche Namen, die aneinander liegen, werden zu
+  <em>einem</em> Bereich zusammengefasst — deshalb spannt <code>kopf</code>
+  über beide Spalten.</p>
+
+  <p>Drei Regeln entscheiden, ob die Vorlage gültig ist:</p>
+  <p><strong>1. Jede Zeile hat gleich viele Namen.</strong> Eine Zeile mit
+  einem Namen mehr oder weniger macht die ganze Vorlage ungültig. Wie
+  breit das Raster wirklich ist, entscheidet
+  <code>grid-template-columns</code>; die Vorlage muss dazu passen, sonst
+  bleiben Spalten ohne Namen.</p>
+  <p><strong>2. Jeder Bereich ist ein Rechteck.</strong> Ein L-förmiger
+  Bereich „um die Ecke“ ist nicht erlaubt. Der Fehler ist still: Die
+  gesamte <code>grid-template-areas</code>-Angabe wird ungültig, die
+  Bereiche fallen weg, und die Kinder landen an Stellen, die du nie
+  geplant hast. Es gibt keine Fehlermeldung.</p>
+  <p><strong>3. Leere Zellen bekommen einen Punkt.</strong> In einem
+  dreispaltigen Raster lässt <code>"nav main ."</code> die dritte Zelle
+  frei. Ein Name, der in der Vorlage fehlt, platziert sein Element
+  automatisch: Es landet in der nächsten freien Zelle, oft in einer neuen
+  Zeile.</p>
+
+  <p>Der große Gewinn: Auf schmalen Bildschirmen schreibst du die Vorlage
+  neu, ohne das HTML anzufassen. Die Reihenfolge kann sich dabei ändern,
+  weil die Bereiche über ihre Namen angesprochen werden:</p>
+
+<pre>
+@media (max-width: 720px) {
+    .seite {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "kopf"
+            "nav"
+            "main"
+            "fuss";
+    }
+}
+</pre>
+
+  <p>Unter 720 px gibt es nur eine Spalte, und die Vorlage schreibt die
+  Bereiche untereinander. Die Navigation steht damit zwischen Kopf und
+  Inhalt — im HTML steht sie an derselben Stelle wie vorher. Die Vorlage
+  ordnet also nur die <em>Darstellung</em> um.</p>
+
+  <p>Die Tücke ist dieselbe wie bei <code>order</code>: Weicht die
+  Darstellung von der Dokumentreihenfolge ab, tabbst du weiter durch die
+  alte Reihenfolge, und Screenreader lesen sie so vor. Wähle die
+  Mobile-Vorlage deshalb so, dass sie der Lese-Reihenfolge im HTML folgt —
+  oder bring das HTML gleich in die Reihenfolge, die du willst.</p>
+
+  <div class="callout">
+    <span class="label">Merke</span>
+    <p>Die Vorlage ist eine ASCII-Zeichnung des Layouts. Wer sie ansieht,
+    erkennt die Seite — ohne CSS zu lesen. Das ist der Grund, warum sie
+    sich auch für die mündliche Prüfung lohnt: Du kannst dein Layout
+    erklären, indem du es aufmalst.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: bereiche">
+    <fieldset class="frage">
+      <legend class="frage-text">Die Vorlage ist
+      <code>"kopf kopf"</code> / <code>"nav main"</code> /
+      <code>"fuss fuss"</code> bei <code>12rem 1fr</code>. Wie viele
+      Spalten hat das Raster, und was bedeuten die zwei Namen pro
+      Zeile?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q13" value="0" data-grund="Richtig — zwei Namen pro Zeile entsprechen den zwei Spalten; gleiche Namen werden zu einem Bereich verbunden."> Zwei Spalten; gleiche Namen bilden einen Bereich</label>
+        <label><input type="checkbox" name="km3-06-q13" value="1" data-grund="Falsch — die Anzahl der Namen pro Zeile ist die Spaltenzahl, nicht die Zeilenzahl."> Drei Spalten, weil die Vorlage drei Zeilen hat</label>
+        <label><input type="checkbox" name="km3-06-q13" value="2" data-grund="Falsch — Namen sind frei wählbar; sie entsprechen keinen HTML-Tags."> Zwei Spalten, und die Namen müssen HTML-Tags sein</label>
+        <label><input type="checkbox" name="km3-06-q13" value="3" data-grund="Falsch — Namen dürfen mehrfach vorkommen; genau dadurch entsteht ein breiter Bereich."> Zwei Spalten, und jeder Name darf nur einmal vorkommen</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Regeln muss eine
+      <code>grid-template-areas</code>-Vorlage einhalten?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q14" value="0" data-grund="Richtig — ungleiche Zeilenlängen machen die gesamte Angabe ungültig."> Jede Zeile enthält gleich viele Namen</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q14" value="1" data-grund="Richtig — jeder Bereich muss ein Rechteck sein; L-Formen sind nicht erlaubt."> Jeder Bereich bildet ein Rechteck</label>
+        <label><input type="checkbox" name="km3-06-q14" value="2" data-grund="Falsch — Namen sind frei wählbar und haben mit HTML-Tags nichts zu tun."> Jeder Bereichsname ist ein HTML-Tag</label>
+        <label><input type="checkbox" name="km3-06-q14" value="3" data-grund="Falsch — freie Zellen bekommen einen Punkt, keinen eigenen Namen."> Jede Zelle braucht einen eigenen Namen</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Bereich ist L-förmig „um die Ecke“
+      gezeichnet. Was passiert im Browser?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q15" value="0" data-grund="Richtig — die ganze Vorlage ist ungültig; der Browser verwirft sie und die Kinder verlieren ihre Bereiche."> Die Vorlage ist ungültig, die Kinder landen woanders</label>
+        <label><input type="checkbox" name="km3-06-q15" value="1" data-grund="Falsch — der Browser repariert die Form nicht; er verwirft die Angabe."> Der Browser teilt den Bereich in zwei Rechtecke</label>
+        <label><input type="checkbox" name="km3-06-q15" value="2" data-grund="Falsch — eine ungültige Deklaration wird ignoriert, ohne Meldung im Layout; sichtbar wird es nur durch das falsche Bild."> Der Browser zeigt eine Fehlermeldung auf der Seite</label>
+        <label><input type="checkbox" name="km3-06-q15" value="3" data-grund="Falsch — das Element bleibt im Raster; nur die Vorlage als Ganzes fällt weg."> Nur dieses eine Element verschwindet</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Element hat
+      <code>grid-area: nav</code>, aber in der Vorlage kommt der Name
+      <code>nav</code> nicht vor. Was ist die Folge?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q16" value="0" data-grund="Richtig — ein Name, der in der Vorlage fehlt, platziert nichts; das Element wird automatisch gesetzt, oft in einer neuen Zeile, nicht im gewünschten Bereich."> Das Element landet in der nächsten freien Zelle</label>
+        <label><input type="checkbox" name="km3-06-q16" value="1" data-grund="Falsch — der Name wird nicht erfunden; ohne Vorkommen in der Vorlage bleibt die Platzierung aus."> Der Browser legt automatisch einen neuen Bereich an</label>
+        <label><input type="checkbox" name="km3-06-q16" value="2" data-grund="Falsch — grid-area ist eine normale Eigenschaft; ein unbekannter Name ist kein Syntaxfehler."> Das ganze Stylesheet wird ungültig</label>
+        <label><input type="checkbox" name="km3-06-q16" value="3" data-grund="Falsch — das Element verschwindet nicht; es wird nur nicht dem Bereich zugeordnet."> Das Element wird ausgeblendet</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 5 — Das Raster rechnet selbst</h2>
+  <p>Bis hierher stand die Spaltenzahl fest. Für die Terminkarten willst du
+  etwas anderes: <em>so viele Spalten, wie hineinpassen</em>. Dafür
+  kombinierst du <code>repeat()</code> mit <code>auto-fit</code> und
+  <code>minmax()</code>:</p>
+
+<pre>
+.produkte {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+}
+</pre>
+
+  <p>Lies es von innen nach außen: <code>minmax(14rem, 1fr)</code> ist eine
+  Spalte, die mindestens 14rem breit ist und dann wächst.
+  <code>auto-fit</code> heißt: Bilde so viele solche Spalten, wie
+  nebeneinander passen. <code>repeat()</code> wiederholt das Muster.</p>
+
+  <p><strong>Rechnen wir einmal:</strong> Ein Fenster ist 800 px breit,
+  <code>gap: 16px</code>, <code>minmax(180px, 1fr)</code>. Vier Spalten
+  brauchen 4 × 180 + 3 × 16 = 768 px — das passt. Fünf Spalten bräuchten
+  5 × 180 + 4 × 16 = 964 px — das passt nicht. Also entstehen vier
+  Spalten; die übrigen 32 px werden gleichmäßig verteilt: jede Spalte wird
+  188 px breit.</p>
+
+  <p>Das Ergebnis ist ein Kartenraster <strong>ohne Media Query</strong>:
+  Bei jedem Fenster entstehen so viele Spalten, wie die Mindestbreite
+  zulässt. Auf dem Handy ist das eine Spalte, auf dem Beamer sind es vier —
+  mit derselben Regel.</p>
+
+  <p>Was macht aber <code>auto-fit</code> mit <em>leeren</em> Spalten? Es
+  entfernt sie. Enthält das Raster nur zwei Karten, bleiben bei 800 px
+  zwei Spalten zu je 392 px übrig — die zwei leeren Spuren verschwinden.
+  <code>auto-fill</code> täte das Gegenteil: Es behielte vier Spuren zu
+  188 px und ließe die letzten zwei leer. Der Unterschied ist nur sichtbar,
+  wenn weniger Karten als Spaltenplätze da sind.</p>
+
+  <div class="callout">
+    <span class="label">Antwort auf die Einstiegsfrage</span>
+    <p>Das Seitengerüst ist <em>ein</em> Raster mit drei Zeilen und zwei
+    Spalten; <code>kopf</code> und <code>fuss</code> stehen in der Vorlage
+    in beiden Spalten. Die Karten liegen in <em>einem zweiten</em> Raster
+    im <code>main</code>-Bereich und holen sich ihre Spaltenzahl mit
+    <code>repeat(auto-fit, minmax(14rem, 1fr))</code>. Kein Sandwich aus
+    Leisten, keine Prozentrechnung, und die Media Query schreibt nur
+    Vorlage und Spaltenzahl um — nicht die Struktur.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: automatisch">
+    <fieldset class="frage">
+      <legend class="frage-text">Was bewirkt
+      <code>repeat(auto-fit, minmax(14rem, 1fr))</code>?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q17" value="0" data-grund="Richtig — es entstehen so viele Spalten wie möglich, jede mindestens 14rem, und der Rest wird gleichmäßig verteilt."> So viele Spalten wie möglich, jede mindestens 14rem breit</label>
+        <label><input type="checkbox" name="km3-06-q17" value="1" data-grund="Falsch — genau 14 Spalten entstehen nicht; die Anzahl richtet sich nach der verfügbaren Breite."> Genau 14 Spalten, jede einen Bruchteil breit</label>
+        <label><input type="checkbox" name="km3-06-q17" value="2" data-grund="Falsch — auto-fit erzeugt Spalten, keine Zeilen; Zeilen entstehen durch den Inhalt."> Vierzehn Zeilen, jede mindestens 1fr hoch</label>
+        <label><input type="checkbox" name="km3-06-q17" value="3" data-grund="Falsch — die Karten bleiben Grid-Items; nur ihre Spalten werden automatisch gebildet."> Eine einzige Spalte, in der die Karten untereinander stehen</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster ist 800 px breit,
+      <code>gap: 16px</code>, die Spalten sind
+      <code>repeat(auto-fit, minmax(180px, 1fr))</code>, und es enthält nur
+      zwei Karten. Wie sieht es aus?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q18" value="0" data-grund="Richtig — auto-fit entfernt die leeren Spuren; die zwei Karten teilen sich den Platz: je (800 − 16) / 2 = 392 px."> Zwei breite Karten zu je 392 px</label>
+        <label><input type="checkbox" name="km3-06-q18" value="1" data-grund="Falsch — das wäre auto-fill: vier Spuren bleiben, die Karten sind 188 px breit und zwei Spuren leer."> Vier Kartenplätze zu je 188 px, zwei davon leer</label>
+        <label><input type="checkbox" name="km3-06-q18" value="2" data-grund="Falsch — die Mindestbreite 180 px ist erfüllt; die Karten bleiben im Raster, nicht darüber hinaus."> Die Karten laufen über den rechten Rand hinaus</label>
+        <label><input type="checkbox" name="km3-06-q18" value="3" data-grund="Falsch — auto-fit richtet sich nach der Breite, nicht nach der Kartenzahl; zwei Karten füllen den Platz."> Eine Spalte zu 800 px, die Karten untereinander</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>minmax(180px, 1fr)</code> stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q19" value="0" data-grund="Richtig — 180px ist die Untergrenze der Spalte."> Die Spalte ist mindestens 180 px breit</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q19" value="1" data-grund="Richtig — die Obergrenze ist 1fr, also der freie Anteil; die Spalte wächst mit dem Platz."> Die Spalte wächst mit dem freien Platz</label>
+        <label><input type="checkbox" name="km3-06-q19" value="2" data-grund="Falsch — 180px ist das Minimum; nach oben ist die Spalte offen."> Die Spalte ist höchstens 180 px breit</label>
+        <label><input type="checkbox" name="km3-06-q19" value="3" data-grund="Falsch — 180px ist eine feste Länge, kein Anteil; der Anteil folgt erst als Obergrenze."> 180px ist ein Prozentwert der Containerbreite</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Warum braucht das Produktgitter
+      <code>repeat(auto-fit, minmax(14rem, 1fr))</code> keine Media
+      Query?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q20" value="0" data-grund="Richtig — die Spaltenzahl folgt aus der verfügbaren Breite; der Browser rechnet bei jedem Fenster neu."> Weil die Spaltenzahl aus der verfügbaren Breite folgt</label>
+        <label><input type="checkbox" name="km3-06-q20" value="1" data-grund="Falsch — Media Queries werden nicht abgeschafft; hier sind sie nur nicht nötig."> Weil Media Queries in Grid grundsätzlich nicht funktionieren</label>
+        <label><input type="checkbox" name="km3-06-q20" value="2" data-grund="Falsch — JavaScript ist nicht beteiligt; Grid rechnet im Browser-CSS."> Weil der Browser dafür JavaScript einsetzt</label>
+        <label><input type="checkbox" name="km3-06-q20" value="3" data-grund="Falsch — die Mindestbreite ist eine CSS-Angabe; ohne sie gäbe es keine Grenze für die Spaltenzahl."> Weil die Mindestbreite 14rem automatisch entfällt</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Schritt 6 — Ausrichten und entscheiden</h2>
+  <p>Im Raster gibt es <em>zwei</em> Dinge, die ausgerichtet werden können:
+  der Inhalt <em>in</em> seiner Zelle und das Raster als Ganzes im
+  Container. Dafür gibt es zwei Familien von Eigenschaften.</p>
+
+  <table>
+    <tr><th>Ebene</th><th>waagrecht</th><th>senkrecht</th><th>beides</th></tr>
+    <tr><td>Inhalt in der Zelle (Container)</td>
+        <td><code>justify-items</code></td>
+        <td><code>align-items</code></td>
+        <td><code>place-items</code></td></tr>
+    <tr><td>ein einzelnes Kind</td>
+        <td><code>justify-self</code></td>
+        <td><code>align-self</code></td>
+        <td><code>place-self</code></td></tr>
+    <tr><td>das ganze Raster im Container</td>
+        <td><code>justify-content</code></td>
+        <td><code>align-content</code></td>
+        <td><code>place-content</code></td></tr>
+  </table>
+
+  <p>Die Merkregel ist hier einfacher als bei der Flexbox, weil die Achsen
+  feststehen: <code>justify</code> heißt immer <strong>waagrecht</strong>
+  (in der Schreibrichtung), <code>align</code> immer
+  <strong>senkrecht</strong>. Bei Flexbox hing das von
+  <code>flex-direction</code> ab — bei Grid nicht.</p>
+
+<pre>
+.karte {
+    display: grid;
+    place-items: center;   /* Inhalt waagrecht UND senkrecht mittig */
+}
+</pre>
+
+  <p>Die dritte Zeile der Tabelle ist der Stolperstein.
+  <code>justify-content: center</code> zentriert nicht den Inhalt der
+  Zellen, sondern das <em>ganze Raster</em> — und nur dann, wenn das
+  Raster schmaler ist als sein Container. Ein Raster aus
+  <code>repeat(3, 100px)</code> in einem 600 px breiten Container ist
+  300 px breit; <code>justify-content: center</code> schiebt es in die
+  Mitte, 150 px von jeder Seite.</p>
+
+  <p>Für Zeilen gilt derselbe Gedanke mit <code>align-content</code>:
+  Sind die Zeilen zusammen niedriger als der Bereich, verteilt diese
+  Eigenschaft die freie Höhe. Mit <code>align-content: start</code>
+  beginnen die Karten oben, statt sich über die ganze Höhe zu strecken —
+  genau das brauchst du im Termine-Raster.</p>
+
+  <p>Für den Alltag heißt das: <code>items</code> ist der Normalfall,
+  <code>content</code> die Ausnahme. Wer den Inhalt einer Zelle mittig
+  haben will und <code>justify-content</code> schreibt, sieht oft keine
+  Änderung. Der Grund: Das Raster füllt den Container schon aus, also gibt
+  es nichts zu verteilen.</p>
+
+  <p><strong>Und wann nimmst du was?</strong> Die Entscheidung ist eine
+  Frage an das Layout, nicht an den Geschmack:</p>
+
+  <table>
+    <tr><th>Wenn …</th><th>dann</th></tr>
+    <tr><td>die Anordnung in <em>einer</em> Richtung fließen soll
+        (Leiste, Button-Gruppe, Karteninhalt)</td><td>Flexbox</td></tr>
+    <tr><td>Zeilen und Spalten aufeinander Bezug nehmen (Gerüst,
+        Kalender, Galerie)</td><td>Grid</td></tr>
+    <tr><td>die Spaltenzahl aus der Breite folgen soll</td>
+        <td>Grid mit <code>auto-fit</code> und <code>minmax()</code></td></tr>
+    <tr><td>die Elemente ihre Größe aus dem Inhalt ziehen</td>
+        <td>Flexbox</td></tr>
+  </table>
+
+  <p>In der Praxis arbeitest du mit beiden: Grid für das Gerüst, Flexbox
+  im Innenleben. Eine Karte ist ein Grid-Item <em>und</em> ein
+  Flex-Container für ihre Überschrift und den Preis — die Werkzeuge
+  schließen einander nicht aus.</p>
+
+  <div class="callout achtung">
+    <span class="label">Achtung</span>
+    <p>Grid-Items werden standardmäßig in <em>beiden</em> Richtungen
+    gestreckt. Eine Karte füllt also ihre Zelle, auch wenn der Inhalt
+    kleiner ist. Wer das nicht will, setzt <code>align-items: start</code>
+    am Container — oder <code>align-self: start</code> am einzelnen Kind.</p>
+  </div>
+
+  <div class="quiz" data-titel="Quiz: ausrichten">
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster-Container hat
+      <code>justify-items: center</code>. Was wird zentriert?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q21" value="0" data-grund="Richtig — justify-items richtet den Inhalt jedes Kindes waagrecht in seiner Zelle aus."> Der Inhalt jedes Kindes, waagrecht in seiner Zelle</label>
+        <label><input type="checkbox" name="km3-06-q21" value="1" data-grund="Falsch — senkrecht wäre align-items; justify ist im Grid immer waagrecht."> Der Inhalt jedes Kindes, senkrecht in seiner Zelle</label>
+        <label><input type="checkbox" name="km3-06-q21" value="2" data-grund="Falsch — das ganze Raster im Container richtet justify-content aus, nicht justify-items."> Das ganze Raster waagrecht im Container</label>
+        <label><input type="checkbox" name="km3-06-q21" value="3" data-grund="Falsch — die Spaltenbreiten bleiben unverändert; ausgerichtet wird der Inhalt, nicht das Raster."> Die Spalten werden gleich breit gemacht</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über
+      <code>justify-content</code> im Grid stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q22" value="0" data-grund="Richtig — es verteilt das ganze Raster waagrecht, wenn es schmaler ist als der Container."> Es verteilt das ganze Raster waagrecht im Container</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q22" value="1" data-grund="Richtig — bei Flexbox folgt es der Hauptachse, bei Grid ist es immer waagrecht."> Es bedeutet im Grid etwas anderes als in der Flexbox</label>
+        <label><input type="checkbox" name="km3-06-q22" value="2" data-grund="Falsch — den Inhalt der Zellen richten justify-items bzw. justify-self aus."> Es zentriert den Inhalt jeder Zelle</label>
+        <label><input type="checkbox" name="km3-06-q22" value="3" data-grund="Falsch — gap ist dafür nicht nötig; ohne freien Platz wirkt die Verteilung nur nicht."> Es funktioniert nur zusammen mit <code>gap</code></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Welche Aussagen über das Zusammenspiel
+      von Grid und Flexbox stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q23" value="0" data-grund="Richtig — Grid trägt das Gerüst aus Zeilen und Spalten."> Grid eignet sich für das Seitengerüst aus Zeilen und Spalten</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q23" value="1" data-grund="Richtig — eine einzelne Leiste mit Inhalten löst Flexbox einfacher."> Flexbox eignet sich für eine einzelne Leiste im Karteninneren</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q23" value="2" data-grund="Richtig — ein Grid-Item kann selbst ein Flex-Container sein; die Modelle schließen einander nicht aus."> Ein Grid-Item kann selbst ein Flex-Container sein</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q23" value="3" data-grund="Richtig — die Lektion zeigt genau diese Kombination: Raster fürs Gerüst, Flexbox in der Karte; beides steht nebeneinander auf einer Seite."> Beide Werkzeuge lassen sich auf einer Seite verschachteln</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="frage">
+      <legend class="frage-text">Ein Raster hat
+      <code>repeat(3, 100px)</code> in einem 600 px breiten Container.
+      Welche Aussagen stimmen?</legend>
+      <div class="optionen">
+        <label><input type="checkbox" data-richtig name="km3-06-q24" value="0" data-grund="Richtig — 100px ist eine feste Länge; die Spalten wachsen nicht mit."> Die Spalten bleiben 100 px breit</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q24" value="1" data-grund="Richtig — 300 px sind belegt, 300 px bleiben übrig; was damit geschieht, entscheidet justify-content."> 300 px des Containers bleiben übrig</label>
+        <label><input type="checkbox" data-richtig name="km3-06-q24" value="2" data-grund="Richtig — justify-content: center legt das schmalere Raster mittig in den Container."> <code>justify-content: center</code> legt das Raster in die Mitte</label>
+        <label><input type="checkbox" name="km3-06-q24" value="3" data-grund="Falsch — feste Längen wachsen nicht; zum Mitwachsen bräuchte die Spalte 1fr oder minmax()."> Die Spalten wachsen automatisch auf 200 px</label>
+      </div>
+    </fieldset>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <div class="baustein">Jetzt du!</div>
+  <p>Erst vorhersagen, dann ausprobieren. Schreib die Vermutung auf, bevor
+  du die Datei öffnest — die Abweichung ist der Lernstoff.</p>
+
+  <h3>1 · Vorhersage: welche Zellen deckt das Element?</h3>
+  <p>Ein Raster hat vier Spalten und drei Zeilen. Ein Kind bekommt
+  <code>grid-column: 2 / 4; grid-row: 1 / 3;</code>. Zeichne auf, welche
+  Zellen es belegt, und wie viele es sind. Danach änderst du die zweite
+  Zahl der Spalte auf <code>5</code> und zeichnest noch einmal.</p>
+
+  <h3>2 · Vorhersage: wie viele Spalten entstehen?</h3>
+  <p>Ein Raster ist 700 px breit, <code>gap: 10px</code>, die Spalten sind
+  <code>repeat(auto-fit, minmax(150px, 1fr))</code>. Rechne aus, wie viele
+  Spalten entstehen und wie breit jede wird — bevor du es baust. Wiederhole
+  die Rechnung für 500 px Fensterbreite.</p>
+
+  <h3>3 · Bauen: die Termine-Seite</h3>
+  <p>Baue Kopf, Plan-Spalte, Kartenraster und Fuß nach der Vorgabe in
+  <a href="aufgabe.md">Aufgabe KM3-06</a>, Beispiel 1. Arbeite in deinem
+  eigenen Projektordner. Prüfe mit dem Geräteschalter der DevTools bei
+  400 px: Stehen alle Bereiche untereinander, ohne Überlauf?</p>
+  <p>Zum Schluss die Verbindung zu den letzten Lektionen: Gib der letzten
+  Karte mit <code>.karte:last-child</code> einen anderen Rahmen (KM3-04).
+  Dann lass den Preis mit <code>margin-top: auto</code> unten in der Karte
+  kleben — dafür wird die Karte eine Flexbox-Spalte (KM3-05).</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <div class="baustein">Typische Fehler</div>
+
+  <h3>Fehler 1 — Die Endlinie als Zellenzahl gelesen</h3>
+<pre>
+/* Soll zwei Spalten decken, deckt aber eine: */
+.karte { grid-column: 1 / 2; }
+
+/* Richtig: die zweite Zahl ist die Linie HINTER der letzten Zelle. */
+.karte { grid-column: 1 / 3; }   /* Spalten 1 und 2 */
+</pre>
+
+  <h3>Fehler 2 — Ein Bereich „um die Ecke“</h3>
+<pre>
+/* nav läuft links durch und unten weiter — L-Form: */
+grid-template-areas:
+    "kopf kopf"
+    "nav  main"
+    "nav  nav";    /* nav ist L-förmig → ganze Vorlage ungültig */
+</pre>
+
+  <h3>Fehler 3 — Ungleich lange Zeilen in der Vorlage</h3>
+<pre>
+grid-template-areas:
+    "kopf kopf"
+    "nav main"
+    "fuss";        /* dritte Zeile hat nur einen Namen → ungültig */
+</pre>
+
+  <h3>Fehler 4 — <code>1fr</code> für „100 %“ gehalten</h3>
+<pre>
+/* Ein langes Wort dehnt die erste Spalte: 1fr hat ein Mindestmaß
+   von "auto", also mindestens die Breite des Inhalts. */
+.raster { grid-template-columns: 1fr 1fr; }
+
+/* Richtig, wenn beide Spalten wirklich gleich sein sollen: */
+.raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+</pre>
+
+  <h3>Fehler 5 — <code>display: grid</code> am Kind statt am Container</h3>
+<pre>
+.karte { display: grid; }     /* ordnet nur den INHALT der Karte */
+.raster { display: grid; }    /* ordnet die Karten selbst */
+</pre>
+
+  <h3>Fehler 6 — <code>justify-content</code> für die Zelle
+  gehalten</h3>
+<pre>
+/* Soll den Inhalt der Karte zentrieren, tut aber nichts Sichtbares: */
+.karte { display: grid; justify-content: center; }
+
+/* Richtig: Inhalt in der Zelle ausrichten. */
+.karte { display: grid; justify-items: center; }
+</pre>
+
+  <h3>Fehler 7 — <code>gap</code> und <code>margin</code> doppelt</h3>
+<pre>
+.raster { gap: 1rem; }
+.karte  { margin: 1rem; }   /* doppelte Lücke, außen ein Rest */
+</pre>
+
+  <h3>Fehler 8 — Grid für eine einzelne Leiste</h3>
+<pre>
+/* Drei Buttons in einer Reihe: Flexbox ist kürzer und klarer. */
+.knopfreihe { display: flex; gap: 0.5rem; }
+</pre>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2>Zusammenfassung</h2>
+  <table>
+    <tr><th>Eigenschaft</th><th>Ebene</th><th>Wofür</th></tr>
+    <tr><td><code>display: grid</code></td><td>Container</td>
+        <td>macht aus den Kindern ein Raster aus Zeilen und Spalten</td></tr>
+    <tr><td><code>grid-template-columns</code></td><td>Container</td>
+        <td>legt Spaltenzahl und -breite fest, mit <code>fr</code>,
+        <code>repeat()</code>, <code>minmax()</code></td></tr>
+    <tr><td><code>grid-template-rows</code></td><td>Container</td>
+        <td>legt die Zeilenhöhen fest; fehlende Zeilen entstehen
+        automatisch</td></tr>
+    <tr><td><code>grid-auto-rows</code></td><td>Container</td>
+        <td>Höhe der automatisch angelegten Zeilen</td></tr>
+    <tr><td><code>gap</code></td><td>Container</td>
+        <td>Abstand zwischen den Zellen, nichts außen</td></tr>
+    <tr><td><code>grid-template-areas</code></td><td>Container</td>
+        <td>Layout als Namenszeichnung; jeder Bereich ein Rechteck</td></tr>
+    <tr><td><code>grid-column</code> / <code>grid-row</code></td>
+        <td>Item</td>
+        <td>Platzierung über Linien (<code>1 / 3</code>) oder
+        <code>span</code>; Endlinie exklusiv</td></tr>
+    <tr><td><code>grid-area</code></td><td>Item</td>
+        <td>ordnet das Kind einem benannten Bereich zu</td></tr>
+    <tr><td><code>auto-fit</code> + <code>minmax()</code></td>
+        <td>Container</td>
+        <td>responsive Spaltenzahl ohne Media Query</td></tr>
+    <tr><td><code>justify-items</code> / <code>align-items</code></td>
+        <td>Container</td>
+        <td>Inhalt der Kinder in ihrer Zelle ausrichten</td></tr>
+    <tr><td><code>justify-self</code> / <code>align-self</code></td>
+        <td>Item</td>
+        <td>Ausrichtung eines einzelnen Kindes in seiner Zelle</td></tr>
+    <tr><td><code>justify-content</code> / <code>align-content</code></td>
+        <td>Container</td>
+        <td>das ganze Raster im Container verteilen</td></tr>
+  </table>
+
+  <p><strong>Ausblick:</strong> Grid trägt das Gerüst, Flexbox das
+  Innenleben. Damit sind die beiden Layout-Werkzeuge komplett — was fehlt,
+  sind Bausteine, die sich wiederholen: Karten, Kopfleisten, Formulare.
+  Genau das liefert Bootstrap, das seinen eigenen Spalten-Mechanismus
+  mitbringt und auf denselben Ideen wie dein Raster steht. Wiederhole
+  dafür <a href="../KM3-05-flexbox/lesson.html">KM3-05 — Flexbox</a>
+  (Achsen, <code>gap</code>, <code>order</code>) und
+  <a href="../KM3-04-css-selektoren/lesson.html">KM3-04 — CSS-Selektoren</a>
+  (<code>:last-child</code>, Spezifität, wenn eine Rasterregel nicht
+  greift).</p>
+</section>
+
+<section>
+  <div class="baustein">Aufgabe</div>
+  <p>Drei Beispiele, aufsteigend: die Termine-Seite bauen, ein Selbsttest
+  im Prüfungsformat und eine Transferaufgabe mit einem Raster, das sich
+  anders verhält als erwartet. Details:
+  <a href="aufgabe.md">Aufgabe KM3-06 — CSS Grid</a>. —
+  <strong>Abgabe:</strong> nach Vorgabe deiner Lehrperson.</p>
+</section>
+
+<details class="lehrplan">
+  <summary>Lehrplan &amp; Einordnung</summary>
+  <ul>
+    <li><strong>Lehrplan:</strong> „5. Webprogrammierung und Mobile
+      Computing“, Anlage 1.10 (BGBl. II Nr. 262/2015 idF BGBl. II Nr.
+      383/2021), Kompetenzmodul 3 — „Formatierungstechniken“</li>
+    <li><strong>KM-Bezug:</strong> KM3, Thema Grid &amp; Responsive
+      (Semesterplan UE 7) — baut auf KM3-03 (Box-Model), KM3-04
+      (Selektoren) und KM3-05 (Flexbox) auf und ist Grundlage für
+      Bootstrap und das WS-Projekt „Website“</li>
+    <li><strong>Runtime:</strong> Browser + DevTools, eine
+      <code>index.html</code> mit verlinktem <code>style.css</code>;
+      kein Build, kein Server nötig — Auslieferung über
+      <code>./serve.sh</code></li>
+  </ul>
+</details>
+
+<footer class="navi">
+  <p><strong>Quelle zum Weiterlesen:</strong> CSS-Tricks,
+  <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">A
+  Complete Guide to Grid</a> ·
+  <a href="https://developer.mozilla.org/de/docs/Web/CSS/CSS_grid_layout">MDN
+  — CSS Grid Layout</a> · Spiel:
+  <a href="https://cssgridgarden.com/#de">Grid Garden</a>.</p>
+  <p>Zurück zum Überblick: <a href="../../index.html">Lernplattform</a> ·
+    Zurück: <a href="../KM3-05-flexbox/lesson.html">KM3-05 — Flexbox</a> ·
+    Aufgabe: <a href="aufgabe.md">Aufgabe KM3-06</a></p>
+</footer>
+
+</body>
+</html>

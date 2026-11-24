@@ -89,6 +89,7 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | Attribut-Selektor | `[attr]`, `[attr="…"]` und die Operatoren `^=`, `$=`, `*=`, `~=`, `\|=`: prüft Attribute statt Klassen; `~=` verlangt ein ganzes Wort, `*=` einen Teilstring — CSS-Selektoren (KM3-04) |
 | async function | Funktion, die implizit ein `Promise` zurückgibt; `await` nur darin (bzw. auf Modulebene) erlaubt — Diagnostik-Rep UE 1 (KM3/KM7, Block WS) |
 | await | Operator: entpackt Fulfillment-Wert eines `Promise`s; bei Rejection wird die Exception geworfen (→ try/catch) — Diagnostik-Rep UE 1 (KM3/KM7, Block WS) |
+| `auto-fit` / `auto-fill` | Werte für `repeat()` in `grid-template-columns`: `auto-fit` streicht leere Spuren (die Karten teilen sich den Platz), `auto-fill` behält sie (die Karten bleiben schmal) — CSS Grid (KM3-06) |
 | CORS | Cross-Origin Resource Sharing — Grund, warum Backend `/static` + `/api` unter einem Origin liefert (Jahr 2 WS UE 11) |
 | CSP | Content Security Policy — Client-Security (Jahr 2 SS UE 8) |
 | Deno | Runtime für WMC-Demos/Lektionen: führt TypeScript direkt aus (`deno run`), Typ-Prüfung via `deno check` — bewusst **nicht Node** (Node-LTS nur Jahr-2-Vite-Tooling) |
@@ -96,12 +97,18 @@ Diese Begriffe haben **zwei Bedeutungen** — Kontext entscheidet:
 | `flex` | Kurzform für `flex-grow`/`flex-shrink`/`flex-basis`: `flex: 1` = `1 1 0%`, `flex: auto` = `1 1 auto`, `flex: none` = `0 0 auto` — Flexbox (KM3-05) |
 | Flexbox | Layout-Modell für **eine** Richtung: Container mit `display: flex` legt Haupt-/Querachse fest, direkte Kinder werden Items. `justify-content` = Hauptachse, `align-items` = Querachse (Standard `stretch`), `gap` = Abstand nur zwischen Items — Flexbox (KM3-05) |
 | Formular-Action | `action`/`method` am `<form>`: wohin (URL) und wie (GET in die URL / POST in den Body) gesendet wird; `name` ist der Schlüssel des Werts — HTML-Formulare & HTTP-POST (KM8-01) |
+| `fr` | Bruchteil-Einheit für Grid-Spalten/-Zeilen: verteilt den Platz, der nach `gap` und festen Spalten übrig bleibt; `2fr` bekommt den doppelten Anteil von `1fr` — CSS Grid (KM3-06) |
+| Grid | Layout-Modell für **zwei** Richtungen: `display: grid` am Container, `grid-template-columns`/`-rows` legen Spalten und Zeilen fest; direkte Kinder werden Items und fließen automatisch in die nächsten Zellen — CSS Grid (KM3-06) |
+| Grid-Bereich | `grid-template-areas` zeichnet das Layout mit Namen (jede Zeile gleich viele Namen, jeder Bereich ein Rechteck, `.` = leere Zelle); `grid-area` ordnet ein Kind einem Bereich zu — CSS Grid (KM3-06) |
+| Grid-Linie | Trennlinien des Rasters, ab 1 gezählt (n Spalten = n+1 Linien); `grid-column: 2 / 4` heißt Linie 2 bis 4, also zwei Zellen; `-1` ist die letzte Linie — CSS Grid (KM3-06) |
 | Hauptachse | Achse entlang `flex-direction`: bei `row` waagrecht, bei `column` senkrecht. `flex-basis` und `justify-content` wirken auf ihr; die Querachse dreht mit (dort wirken `align-items`/`align-self`) — Flexbox (KM3-05) |
+| implizite Zeile | Automatisch angelegte Rasterzeile für Kinder ohne Zeilenangabe; Höhe über `grid-auto-rows` (z. B. `minmax(8rem, auto)`) — CSS Grid (KM3-06) |
 | JWT | JSON Web Token — Auth-Client-Flow (WS UE 10): Token-Ablage, 401-Handling |
 | Kombinator | Verbindung zweier Selektoren: Leerzeichen (Nachfahre), `>` (Kind), `+` (direkter Nachbar), `~` (alle folgenden Geschwister) — CSS-Selektoren (KM3-04) |
 | Live Server | VS-Code-Extension für statisches Dev-Hosting (Jahr 1); Lessons laufen lokal auch im **VS-Code-Browser** (Simple Browser/Live Preview) — immer per Server-URL, nie `file://` |
 | Manifest | Web App Manifest — PWA-Kern (SS UE 2): name, icons, `display`, `theme_color` |
 | Mini-Hono-Referenz | Übungs-API (Deno/Hono) in `Beispielprojekte/hono_on_deno/` — Konsum-Ziel, kein Stoff |
+| `minmax()` | Unter- und Obergrenze für eine Spalte/Zeile: `minmax(180px, 1fr)` = mindestens 180 px, wächst mit dem freien Platz; Grundlage von `repeat(auto-fit, minmax(…))` — CSS Grid (KM3-06) |
 | Offline-Fallback | SW-Strategie (cache-first/network-first, App-Shell, Fallback-Seite) (SS UE 3) |
 | PWA | Progressive Web App — Manifest + Service Worker + HTTPS (SS UE 1–4) |
 | Promise-Kette | Aufeinanderfolgende `.then()`-Aufrufe; jeder `.then()` gibt ein neues `Promise` zurück (Recap 18.9.2026, `5akif/2026-09-18__promise/`) |

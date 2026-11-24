@@ -16,6 +16,25 @@ Branch: main
 - [ ] POS-Abstimmung (Auth/REST-Design, produktive Projekt-API) mit Kolleg:innen — orga-seitig, Ergebnis in `lehrplan/jg2-einheiten.md` → Offene Punkte eintragen.
 
 ## Kontext für die nächste Session
+- **KM3-06 CSS Grid (2026-11-24, #14):** Prepared Lesson
+  `unterricht/KM3-06-css-grid/` (`lesson.html` + `aufgabe.md`). Inhalt:
+  `display: grid` (zwei Richtungen, Auto-Placement, leere Zellen bleiben),
+  `grid-template-columns`/`-rows` mit `fr`/`repeat()`/`minmax()`, implizite
+  Zeilen + `grid-auto-rows`, Platzieren über Linien (`1 / 3`, Endlinie
+  exklusiv, `span`, `-1`), `grid-template-areas`/`grid-area` (Rechteck-Regel,
+  Media-Query-Umbau), `repeat(auto-fit, minmax(…))` (auto-fit vs auto-fill),
+  `justify/align-items`/`-self`/`-content` + Grid-vs-Flexbox-Entscheidung;
+  6 Lernquizzes (24 Fragen, Lösungsmengen 0–4) und die Termine-Seite als
+  Beispiel 1. Alle genannten Pixelmaße (fr-Verteilung, gap, auto-fit,
+  auto-fill, feste Spuren + `justify-content`) per Chromium-Headless
+  (`getBoundingClientRect`) reproduziert; Quiz/Theme/Badge lokal und unter
+  simulierter Pages-Basis (`/GRG-WMC/`) über CDP geprüft; Kurzlösung bei
+  1100/760/400 px gerendert. Nebenbefund behoben: `docs/ai/CONVENTIONS.md`
+  und `ARCHITECTURE.md` sprachen noch von „Tages-README-Vorlage“ und dem
+  alten Quiz-Markup (`data-loesung`) — auf `aufgabe.md` + Quiz 2.1 gezogen.
+  Merkregel für `grid-template-areas`: ungleich lange Zeilen machen die
+  Angabe ungültig, weniger Namen als `grid-template-columns` nicht (die
+  übrigen Spalten bleiben dann ohne Namen).
 - **KM3-05 Flexbox (2026-11-24, #13):** Prepared Lesson
   `unterricht/KM3-05-flexbox/` (`lesson.html` + `aufgabe.md`, kein
   Demo-Ordner). Inhalt: Haupt-/Querachse, Richtung+Wrap, justify-content/gap,
