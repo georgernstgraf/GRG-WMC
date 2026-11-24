@@ -2,11 +2,17 @@
 
 ## Aufgaben
 
+- 2026-11-24: unterricht/KM3-05-flexbox/ die aufgabe dort bis 30.11. 23:59. Der Screenshot von flexbox-froggy ist bis 2026-11-24 17:55 abzugeben (Schulübung)
 - 2026-10-20: Unterlagen/css/SELECTORS ANSEHEN → [Unterlagen/css/SELECTORS/](../Unterlagen/css/SELECTORS/)
 - 2026-10-13: „Über mich"-Seite mit Box-Model/`box-sizing`/Einheiten erweitern → [2026-10-13_border_box/](./2026-10-13_border_box/)
 - 2026-10-06: Seite dekorieren (CSS) → [unterricht/KM3-03-css-basics/](../unterricht/KM3-03-css-basics/)
 - 2026-09-29: „Über mich"-Seite (HTML) → [2026-09-29_html-basics/](./2026-09-29_html-basics/)
 - 2026-09-15: Setup lauffähig präsentieren & Repo-Link mailen → [2026-09-15_tooling-git/](./2026-09-15_tooling-git/)
+
+## 2026-11-24: flexbox
+
+- guide auf css-tricks
+- lektion in unterricht/KM3-05-flexbox/
 
 ## 2026-10-06__css
 

@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    gap: 1em;
+}
+
+.container>* {
+    padding: 1em;
+    margin: 1em;
+    border: 2px dotted rebeccapurple;
+}
